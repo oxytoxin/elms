@@ -2,7 +2,12 @@
 
 namespace App\Http;
 
+use Fruitcake\Cors\HandleCors;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 
 class Kernel extends HttpKernel
 {
@@ -63,5 +68,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'redirectMe' => \App\Http\Middleware\RedirectMe::class,
+        'isStudent' => \App\Http\Middleware\IsStudent::class,
+        'isTeacher' => \App\Http\Middleware\IsTeacher::class,
+        'isProgramHead' => \App\Http\Middleware\IsProgramHead::class,
     ];
 }

@@ -1,6 +1,6 @@
-@extends('layouts.teacher')
+@extends('layouts.student')
 @section('content')
-@include('includes.teacher.header')
+@include('includes.student.header')
 <main class="p-3">
     <div class="flex min-h-screen">
         <div class="w-full mx-4 md:w-5/6">
@@ -8,7 +8,7 @@
             <iframe src="https://docs.google.com/file/d/{{ $file->google_id }}/preview" frameborder="2"
                 class="w-full min-h-halfscreen md:min-h-screen"></iframe>
         </div>
-        @include('includes.teacher.menu')
+        @include('includes.student.menu')
     </div>
 </main>
 @endsection

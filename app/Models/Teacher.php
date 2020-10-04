@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Course;
+use App\Models\College;
+use App\Models\Student;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Teacher extends Model
 {
@@ -16,6 +21,10 @@ class Teacher extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class)->withPivot('course_id');
     }
     public function courses()
     {

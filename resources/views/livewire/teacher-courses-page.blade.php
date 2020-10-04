@@ -39,7 +39,7 @@
             <th class="border-2 border-gray-600">Email</th>
         </thead>
         <tbody class="text-center">
-            @forelse ($course->students->reverse() as $student)
+            @forelse (auth()->user()->teacher->students->reverse() as $student)
             <tr>
                 <td class="border-2 border-gray-600">{{ $student->user->name }}</td>
                 <td class="border-2 border-gray-600">{{ $student->user->email }}</td>
@@ -99,20 +99,21 @@
         {{ session('message') }}
         @endif
     </div>
-    <h1 class="my-2 font-bold">Course Module List</h1>
+    <h1 class="my-2 font-bold">Course Resources List</h1>
     <table class="table w-full border-2 border-collapse border-gray-600 table-fixed">
         <thead class="">
             <th class="border-2 border-gray-600">Title</th>
-            <th class="border-2 border-gray-600">Status</th>
-            <th class="border-2 border-gray-600">Date Approved</th>
+            <th class="border-2 border-gray-600">Date Added</th>
         </thead>
         <tbody class="text-center">
+            @foreach ($course->modules as $module)
+            @foreach ($module->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
             <tr>
-                <td class="border-2 border-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga quia
-                    mollitia non.</td>
-                <td class="border-2 border-gray-600">Pending Approval</td>
-                <td class="border-2 border-gray-600">1 sec ago</td>
+                <td class="border-2 border-gray-600">{{$resource->title}}</td>
+                <td class="border-2 border-gray-600">{{ $resource->created_at->diffForHumans()}}</td>
             </tr>
+            @endforeach
+            @endforeach
         </tbody>
     </table>
     @endif

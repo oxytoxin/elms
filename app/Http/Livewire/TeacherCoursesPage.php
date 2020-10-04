@@ -35,6 +35,7 @@ class TeacherCoursesPage extends Component
         $student = User::has('student')->where('email', $this->email)->firstOrFail()->student;
         if (!$this->course->students->contains($student)) {
             $this->course->students()->attach($student->id, ['teacher_id' => auth()->user()->teacher->id]);
+            auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->course->id]);
             $this->course =  Course::find($this->course->id);
             $this->email = "";
             session()->flash('message', 'Student succesfully enrolled.');
@@ -69,6 +70,7 @@ class TeacherCoursesPage extends Component
         $this->fileId++;
         $this->title = "";
         $this->description = "";
+        $this->module_id = 0;
         $this->resources = [];
         $this->course = Course::find($this->course->id);
         session()->flash('message', 'Resources have been added.');

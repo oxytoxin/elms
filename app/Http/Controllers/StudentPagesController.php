@@ -2,33 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
+use App\Models\Course;
 use App\Models\Module;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StudentPagesController extends Controller
 {
     public function home()
     {
-        return view('pages.student.index');
+        $courses = auth()->user()->student->courses;
+        return view('pages.student.index', compact('courses'));
     }
     public function modules()
     {
-        return view('pages.student.modules.index');
+        $courses = auth()->user()->student->courses;
+        return view('pages.student.modules.index', compact('courses'));
     }
     public function course_modules(Course $course)
     {
-        return view('pages.student.modules.course_modules');
+        $modules = $course->modules;
+        return view('pages.student.modules.course_modules', compact('modules', 'course'));
     }
     public function module(Module $module)
     {
-        return view('pages.student.modules.module');
+        $resources = $module->resources()->whereIn('teacher_id', auth()->user()->student->teachers)->get();
+        return view('pages.student.modules.module', compact('module', 'resources'));
     }
     public function courses()
     {
     }
     public function course(Course $course)
     {
-        return view('pages.student.courses.course');
+        return view('pages.student.courses.course', compact('course'));
     }
     public function create_course()
     {
@@ -36,6 +43,6 @@ class StudentPagesController extends Controller
     }
     public function preview(File $file)
     {
-        return view('pages.student.preview');
+        return view('pages.student.preview', compact('file'));
     }
 }
