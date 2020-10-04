@@ -50,4 +50,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function dean()
+    {
+        return $this->hasOne(Dean::class);
+    }
+    public function program_head()
+    {
+        return $this->hasOne(ProgramHead::class);
+    }
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }

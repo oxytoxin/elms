@@ -17,7 +17,6 @@ class CreateModulesTable extends Migration
             $table->id();
             $table->foreignId('course_id')->constrained();
             $table->string('name');
-            $table->text('description');
             $table->timestamps();
         });
     }

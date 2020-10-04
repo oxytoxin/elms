@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResourceTypesTable extends Migration
+class CreateCourseTeacherTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateResourceTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resource_types', function (Blueprint $table) {
+        Schema::create('course_teacher', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('course_id')->constrained();
+            $table->foreignId('teacher_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateResourceTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource_types');
+        Schema::dropIfExists('course_teacher');
     }
 }

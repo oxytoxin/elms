@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('gdriver')) {
     function gdriver($q = null)
     {
@@ -15,5 +18,21 @@ if (!function_exists('gdriver')) {
             return array('id' => $item->id, 'name' => $item->name);
         })->first();
         return $files;
+    }
+}
+if (!function_exists('redirectTo')) {
+    function redirectTo()
+    {
+        switch (Auth::user()->role_id) {
+            case 2:
+                return '/student/home';
+                break;
+            case 3:
+                return '/teacher/home';
+                break;
+            case 4:
+                return '/head/home';
+                break;
+        }
     }
 }

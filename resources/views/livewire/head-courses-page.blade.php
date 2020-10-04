@@ -1,5 +1,6 @@
-<div class="w-5/6 p-2 m-4">
-    <h1 class="font-semibold">COURSE TITLE</h1>
+<div class="w-5/6 px-2 mx-4">
+    <h1 class="text-xl font-semibold">{{ $course->name }}<i wire:loading wire:target="enrolFaculty"
+            class="fa fa-spinner fa-spin"></i></h1>
     <div class="box-border flex text-lg text-gray-300 border-2 border-black">
         <a href="#" wire:click="$set('tab','faculty')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'faculty' ?  'bg-primary-500 text-gray-700' : '' }}">
@@ -12,11 +13,18 @@
     </div>
     @if ($tab == 'faculty')
     <div class="mt-2">
-        <form action="">
+        <form wire:submit.prevent="enrolFaculty">
+            @csrf
             <label for="email">Faculty Email</label>
+            <div class="italic text-green-400">
+                @if (session()->has('message'))
+                {{ session('message') }}
+                @endif
+            </div>
             <div class="flex items-center mt-2">
-                <input type="email" class="flex-1 block form-input" autocomplete="off" autofocus name="email">
-                <button class="p-2 ml-2 text-white rounded-lg hover:text-black focus:outline-none bg-primary-500">Enrol
+                <input type="email" class="flex-1 block form-input" placeholder="user@email.com" autocomplete="off"
+                    autofocus name="email" wire:model.defer="email">
+                <button class="p-2 ml-2 text-white rounded-lg hover:text-black focus:outline-none bg-primary-500">Enroll
                     Faculty</button>
             </div>
         </form>
@@ -28,40 +36,71 @@
             <th class="border-2 border-gray-600">Email</th>
         </thead>
         <tbody class="text-center">
+            @forelse ($teachers as $teacher)
             <tr>
-                <td class="border-2 border-gray-600">Name</td>
-                <td class="border-2 border-gray-600">Email</td>
+                <td class="border-2 border-gray-600">{{ $teacher->user->name }}</td>
+                <td class="border-2 border-gray-600">{{ $teacher->user->email }}</td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="2" class="border-2 border-gray-600">No faculty member found on this course.</td>
+            </tr>
+            @endforelse
+
         </tbody>
     </table>
     @endif
     @if ($tab == 'modules')
     <div class="mt-2">
-        <form action="">
-            <label class="font-semibold" for="title">Module Title</label>
-            <input type="text" class="flex-1 block w-full form-input" autocomplete="off" placeholder="Module Title"
-                autofocus name="title">
+        <form wire:submit.prevent="addModule" enctype="multipart/form-data">
+            @csrf
+            <label class="font-semibold" for="title">Module Title<i wire:loading wire:target="addModule"
+                    class="fa fa-spinner fa-spin"></i></label>
+            <input wire:model="moduleName" type="text" class="flex-1 block w-full form-input" autocomplete="off"
+                placeholder="Module Title" autofocus name="moduleName">
+            @error('moduleName')
+            <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+            @enderror
             <div class="flex items-center mt-2">
-                <input type="file" class="flex-1 block form-input" autocomplete="off" autofocus name="module">
-                <button class="p-2 ml-2 text-white rounded-lg hover:text-black focus:outline-none bg-primary-500">Submit
-                    for Approval</button>
+                <input type="file" wire:model="module" class="flex-1 block form-input" autocomplete="off" autofocus
+                    id="file{{ $fileId }}" name="module">
+                @error('module')
+                <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+                @enderror
+                <button wire:target="module" wire:loading.remove
+                    class="p-2 ml-2 text-white rounded-lg hover:text-black focus:outline-none bg-primary-500">Upload
+                    Module</button>
             </div>
         </form>
+    </div>
+
+    <div wire:target="module" wire:loading>
+        <h1 class="italic font-semibold text-green-400">Uploading Module. Please
+            wait...<i class="fa fa-spinner fa-spin"></i></h1>
+    </div>
+    <div class="italic text-green-400">
+        @if (session()->has('message'))
+        {{ session('message') }}
+        @endif
     </div>
     <h1 class="my-2 font-bold">Course Module List</h1>
     <table class="table w-full border-2 border-collapse border-gray-600 table-fixed">
         <thead class="">
             <th class="border-2 border-gray-600">Title</th>
-            <th class="border-2 border-gray-600">Status</th>
-            <th class="border-2 border-gray-600">Date Approved</th>
+            <th class="border-2 border-gray-600">Date Added</th>
         </thead>
         <tbody class="text-center">
+            @forelse ($course->modules as $course_module)
             <tr>
-                <td class="border-2 border-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fuga quia mollitia non.</td>
-                <td class="border-2 border-gray-600">Pending Approval</td>
-                <td class="border-2 border-gray-600">1 sec ago</td>
+                <td class="border-2 border-gray-600">{{ $course_module->name }}</td>
+                <td class="border-2 border-gray-600">{{ $course_module->created_at->diffForHumans() }}</td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="2" class="border-2 border-gray-600">No modules found on this course.</td>
+            </tr>
+            @endforelse
+
         </tbody>
     </table>
     @endif

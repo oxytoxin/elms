@@ -1,5 +1,5 @@
 <div class="w-full md:w-5/6">
-    <h1 class="font-semibold">COURSE TITLE<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
+    <h1 class="font-semibold">{{ $course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
     <div class="box-border flex text-lg text-gray-300 border-2 border-black">
         <a href="#" wire:click="$set('tab','student')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'student' ?  'bg-primary-500 text-gray-700' : '' }}">
@@ -13,15 +13,23 @@
 
     @if ($tab == 'student')
     <div class="mt-2">
-        <form action="">
+        <form action="#" wire:submit.prevent="enrolStudent">
             <label for="email">Student Email</label>
+            <div class="italic text-green-400">
+                @if (session()->has('message'))
+                {{ session('message') }}
+                @endif
+            </div>
             <div class="flex flex-col items-center mt-2 md:flex-row">
-                <input type="email" class="w-full form-input" placeholder="student@email.com" autocomplete="off"
-                    autofocus name="email">
+                <input wire:model="email" type="email" class="w-full form-input" placeholder="student@email.com"
+                    autocomplete="off" autofocus name="email">
                 <button
                     class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:ml-3 md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Enrol
                     Student</button>
             </div>
+            @error('email')
+            <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+            @enderror
         </form>
     </div>
     <h1 class="my-2 font-bold">Course Student List</h1>
@@ -31,29 +39,65 @@
             <th class="border-2 border-gray-600">Email</th>
         </thead>
         <tbody class="text-center">
+            @forelse ($course->students->reverse() as $student)
             <tr>
-                <td class="border-2 border-gray-600">Name</td>
-                <td class="border-2 border-gray-600">Email</td>
+                <td class="border-2 border-gray-600">{{ $student->user->name }}</td>
+                <td class="border-2 border-gray-600">{{ $student->user->email }}</td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="2" class="border-2 border-gray-600">No students enrolled.</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
     @endif
     @if ($tab == 'resources')
     <div class="mt-2">
-        <form action="">
+        <form action="#" wire:submit.prevent="addResources">
+            <label class="font-semibold" for="module">Select Module</label>
+            <select wire:model="module_id" class="flex-1 block w-full form-select" name="module_id">
+                <option value="0">Select Module</option>
+                @forelse ($course->modules as $i=>$module)
+                <option value="{{ $module->id }}">{{ $module->name }}</option>
+                @empty
+                @endforelse
+            </select>
+            @error('module_id')
+            <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+            @enderror
             <label class="font-semibold" for="title">Resource Title</label>
-            <input type="text" class="flex-1 block w-full form-input" autocomplete="off" placeholder="Module Title"
-                autofocus name="title">
+            <input wire:model="title" type="text" class="flex-1 block w-full form-input" autocomplete="off"
+                placeholder="Resource Title" autofocus name="title">
+            @error('title')
+            <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+            @enderror
             <label class="font-semibold" for="description">Resource Description</label>
-            <textarea class="flex-1 w-full resize form-textarea" rows="4" autocomplete="off"
-                placeholder="Module Description" autofocus name="description"></textarea>
+            <textarea wire:model="description" class="flex-1 w-full resize form-textarea" rows="4" autocomplete="off"
+                placeholder="Resource Description" autofocus name="description"></textarea>
+            @error('description')
+            <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+            @enderror
             <div class="flex flex-col items-center mt-2 md:flex-row">
-                <input type="file" class="w-full form-input" autocomplete="off" multiple name="module">
+                <input type="file" wire:model="resources" id="file{{ $fileId }}" class="w-full form-input"
+                    autocomplete="off" multiple name="resources">
                 <button
                     class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:w-auto md:ml-2 md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Resource</button>
             </div>
+            @error('resources.*')
+            <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+            @enderror
+            <div wire:loading wire:target="addResources">
+                <h1 class="italic text-green-400">Uploading resources. Please wait...<i
+                        class="fa fa-spinner fa-spin"></i></h1>
+            </div>
         </form>
+    </div>
+    <div class="italic text-green-400">
+        @if (session()->has('message'))
+        {{ session('message') }}
+        @endif
     </div>
     <h1 class="my-2 font-bold">Course Module List</h1>
     <table class="table w-full border-2 border-collapse border-gray-600 table-fixed">

@@ -15,9 +15,10 @@ class CreateResourcesTable extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('teacher_id')->constrained();
             $table->foreignId('module_id')->constrained();
-            $table->foreignId('resource_type_id')->constrained();
-            $table->string('url');
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
         });
     }

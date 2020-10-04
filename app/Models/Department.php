@@ -9,4 +9,24 @@ class Department extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function college()
+    {
+        return $this->belongsTo(College::class);
+    }
+    public function program_head()
+    {
+        return $this->hasOne(ProgramHead::class);
+    }
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
+    }
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }
