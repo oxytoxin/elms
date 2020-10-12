@@ -5,7 +5,7 @@
     <div class="flex min-h-screen">
         <div class="w-5/6 mx-4">
             <h1 class="p-2 text-2xl font-semibold">Assigned Courses</h1>
-            <div class="grid grid-cols-4 gap-2 p-2">
+            <div class="grid-cols-4 gap-2 p-2 md:grid">
                 @forelse($courses as $course)
                 <div class="w-full overflow-hidden h-80">
                     <div class="h-1/2"><img src="{{ asset('img/course.jpg') }}" class="object-cover w-full h-full"

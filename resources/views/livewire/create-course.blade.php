@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex-1 px-2">
                     <label for="course_code">Course code</label>
-                    <input wire:model="course_code" name="course_code" type="text" placeholder="Enter Course Code"
+                    <input wire:model="course_code" name="course_code" type="text" placeholder="ABC123"
                         autocomplete="off" class="w-full form-input">
                     @error('course_code')
                     <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>

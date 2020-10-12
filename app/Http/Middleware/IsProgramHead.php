@@ -17,7 +17,9 @@ class IsProgramHead
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role_id != 4) return redirect('/redirectMe');
+        if (Auth::check()) {
+            if (!(bool)Auth::user()->roles()->find(4)) return redirect('/redirectMe');
+        }
         return $next($request);
     }
 }

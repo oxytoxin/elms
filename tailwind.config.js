@@ -40,6 +40,9 @@ module.exports = {
                 "48": "12rem",
                 "56": "14rem",
                 "64": "16rem",
+                "72": "18rem",
+                "84": "21rem",
+                "96": "24rem",
                 halfscreen: "50vh"
             },
             minWidth: {
@@ -60,6 +63,9 @@ module.exports = {
                 "48": "12rem",
                 "56": "14rem",
                 "64": "16rem",
+                "72": "18rem",
+                "84": "21rem",
+                "96": "24rem",
                 halfscreen: "50vw"
             },
             maxHeight: {
@@ -80,6 +86,9 @@ module.exports = {
                 "48": "12rem",
                 "56": "14rem",
                 "64": "16rem",
+                "72": "18rem",
+                "84": "21rem",
+                "96": "24rem",
                 halfscreen: "50vh"
             },
             maxWidth: {
@@ -100,6 +109,9 @@ module.exports = {
                 "48": "12rem",
                 "56": "14rem",
                 "64": "16rem",
+                "72": "18rem",
+                "84": "21rem",
+                "96": "24rem",
                 halfscreen: "50vw"
             },
             fontFamily: {

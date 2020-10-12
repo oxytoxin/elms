@@ -31,7 +31,7 @@ class CourseFactory extends Factory
             $coursecode .= $c[0];
         }
         return [
-            'code' => $coursecode . $this->faker->numerify('-###'),
+            'code' => $coursecode . $this->faker->numerify('###'),
             'name' => $name,
             'college_id' => $college->id,
             'department_id' => $college->departments->random()->id,

@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @section('content')
 @include('includes.head.header')
-<main class="p-3">
+<main class="md:p-3">
     <div class="flex min-h-screen">
         @livewire('head-courses-page',['course'=>$course])
         @include('includes.head.menu')

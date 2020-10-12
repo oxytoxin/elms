@@ -20,6 +20,11 @@ use App\Http\Controllers\ProgramHeadPagesController;
 
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 
+Route::get('/command', function () {
+    \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
+    \Illuminate\Support\Facades\Artisan::call("view:cache");
+});
+
 Route::get('/', function () {
     return redirect('/redirectMe');
 })->middleware('auth');
@@ -33,12 +38,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('test', function () {
-    return view('test');
+    return view('layouts.master');
 });
 Route::post('test', [TestController::class, 'test']);
 
 // Student Routes
-Route::prefix('student')->middleware('auth')->middleware('isStudent')->group(function () {
+Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/home', [StudentPagesController::class, 'home'])->name('student.home');
     Route::get('/modules', [StudentPagesController::class, 'modules'])->name('student.modules');
     Route::get('/course/{course}/modules', [StudentPagesController::class, 'course_modules'])->name('student.course_modules');
@@ -51,7 +56,7 @@ Route::prefix('student')->middleware('auth')->middleware('isStudent')->group(fun
 
 
 // Teacher Routes
-Route::prefix('teacher')->middleware('auth')->middleware('isTeacher')->group(function () {
+Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/home', [TeacherPagesController::class, 'home'])->name('teacher.home');
     Route::get('/modules', [TeacherPagesController::class, 'modules'])->name('teacher.modules');
     Route::get('/course/{course}/modules', [TeacherPagesController::class, 'course_modules'])->name('teacher.course_modules');
@@ -63,7 +68,7 @@ Route::prefix('teacher')->middleware('auth')->middleware('isTeacher')->group(fun
 });
 
 // Program Head Routes
-Route::prefix('programhead')->middleware('auth')->middleware('isProgramHead')->group(function () {
+Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(function () {
     Route::get('/home', [ProgramHeadPagesController::class, 'home'])->name('head.home');
     Route::get('/modules', [ProgramHeadPagesController::class, 'modules'])->name('head.modules');
     Route::get('/course/{course}/modules', [ProgramHeadPagesController::class, 'course_modules'])->name('head.course_modules');
@@ -72,4 +77,5 @@ Route::prefix('programhead')->middleware('auth')->middleware('isProgramHead')->g
     Route::get('/courses', [ProgramHeadPagesController::class, 'courses'])->name('head.courses');
     Route::get('/courses/create', [ProgramHeadPagesController::class, 'create_course'])->name('head.create_course');
     Route::get('/preview/{file}', [ProgramHeadPagesController::class, 'preview'])->name('head.preview');
+    Route::get('/calendar', [ProgramHeadPagesController::class, 'calendar'])->name('head.calendar');
 });

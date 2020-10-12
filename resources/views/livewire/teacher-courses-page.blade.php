@@ -10,7 +10,6 @@
             <div class="font-bold text-center uppercase hover:text-gray-700">UPLOAD MODULE RESOURCES</div>
         </a>
     </div>
-
     @if ($tab == 'student')
     <div class="mt-2">
         <form action="#" wire:submit.prevent="enrolStudent">
@@ -39,10 +38,14 @@
             <th class="border-2 border-gray-600">Email</th>
         </thead>
         <tbody class="text-center">
-            @forelse (auth()->user()->teacher->students->reverse() as $student)
+            @forelse ($course->students()->wherePivot('teacher_id',auth()->user()->teacher->id)->get()->reverse() as
+            $student)
             <tr>
                 <td class="border-2 border-gray-600">{{ $student->user->name }}</td>
-                <td class="border-2 border-gray-600">{{ $student->user->email }}</td>
+                <td class="border-2 border-gray-600">{{ $student->user->email }}<i
+                        onclick="confirm('Confirm removal of student member?') || event.stopImmediatePropagation()"
+                        wire:click.prevent="removeStudent({{ $student->id }})"
+                        class="ml-5 text-red-600 cursor-pointer icofont-trash"></i></td>
             </tr>
             @empty
             <tr>
@@ -56,7 +59,7 @@
     <div class="mt-2">
         <form action="#" wire:submit.prevent="addResources">
             <label class="font-semibold" for="module">Select Module</label>
-            <select wire:model="module_id" class="flex-1 block w-full form-select" name="module_id">
+            <select wire:model="module_id" required class="flex-1 block w-full form-select" name="module_id">
                 <option value="0">Select Module</option>
                 @forelse ($course->modules as $i=>$module)
                 <option value="{{ $module->id }}">{{ $module->name }}</option>
@@ -80,7 +83,7 @@
             @enderror
             <div class="flex flex-col items-center mt-2 md:flex-row">
                 <input type="file" wire:model="resources" id="file{{ $fileId }}" class="w-full form-input"
-                    autocomplete="off" multiple name="resources">
+                    autocomplete="off" required multiple name="resources">
                 <button
                     class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:w-auto md:ml-2 md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Resource</button>
@@ -107,12 +110,19 @@
         </thead>
         <tbody class="text-center">
             @foreach ($course->modules as $module)
-            @foreach ($module->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
+            @forelse ($module->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
             <tr>
                 <td class="border-2 border-gray-600">{{$resource->title}}</td>
-                <td class="border-2 border-gray-600">{{ $resource->created_at->diffForHumans()}}</td>
+                <td class="border-2 border-gray-600">{{ $resource->created_at->diffForHumans()}}<i
+                        onclick="confirm('Confirm deletion of module resource?') || event.stopImmediatePropagation()"
+                        wire:click.prevent="removeResource({{ $resource->id }})"
+                        class="ml-5 text-red-600 cursor-pointer icofont-trash"></i></td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="2" class="border-2 border-gray-600">No resources found on this module.</td>
+            </tr>
+            @endforelse
             @endforeach
         </tbody>
     </table>

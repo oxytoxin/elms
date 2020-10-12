@@ -16,14 +16,14 @@
 </head>
 
 <body class="w-full overflow-x-hidden font-sans antialiased">
-    <div class="flex min-h-screen bg-gray-100">
+    <div x-data="{ sidebar: true}" class="flex min-h-screen bg-gray-100">
 
-        <aside class="hidden md:w-1/6 md:block bg-primary-600">
+        <aside class="hidden md:block bg-primary-600">
             @include('includes.teacher.sidebar')
         </aside>
 
         <!-- Page Content -->
-        <article class="w-full md:w-5/6">
+        <article class="w-full">
             @yield('content')
         </article>
     </div>

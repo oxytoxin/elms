@@ -27,7 +27,7 @@ class ProgramHeadPagesController extends Controller
     public function course_modules(Course $course)
     {
         $modules = $course->modules;
-        return view('pages.head.modules.course_modules', compact('modules'));
+        return view('pages.head.modules.course_modules', compact('modules', 'course'));
     }
     public function module(Module $module)
     {
@@ -50,5 +50,9 @@ class ProgramHeadPagesController extends Controller
     public function preview(File $file)
     {
         return view('pages.head.preview', compact('file'));
+    }
+    public function calendar()
+    {
+        return view('pages.head.calendar');
     }
 }

@@ -8,7 +8,7 @@
             <div class="grid grid-cols-4 gap-2 p-2">
 
                 @forelse($courses as $course)
-                @foreach ($course->modules as $module)
+                @forelse ($course->modules as $module)
                 <div class="w-full overflow-hidden h-80">
                     <div class="h-1/2"><img src="{{ asset('img/course.jpg') }}" class="object-cover w-full h-full"
                             alt="course"></div>
@@ -24,7 +24,9 @@
                         </a>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <h1>No Course Modules Found</h1>
+                @endforelse
                 @empty
                 <h1>No Course Modules Found</h1>
                 @endforelse

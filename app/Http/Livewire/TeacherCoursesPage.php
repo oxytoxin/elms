@@ -5,10 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Student;
 use Livewire\Component;
 use App\Models\Resource;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherCoursesPage extends Component
 {
@@ -42,10 +44,16 @@ class TeacherCoursesPage extends Component
         } else
             session()->flash('message', 'Student already enrolled.');
     }
+    public function removeStudent(Student $student)
+    {
+        $this->course->students()->detach($student);
+        $this->course =  Course::find($this->course->id);
+        session()->flash('message', 'Faculty member succesfully removed.');
+    }
     public function addResources()
     {
         $this->validate([
-            'module_id' => 'required',
+            'module_id' => ['required', 'not_in:0'],
             'title' => 'required|string',
             'description' => 'required|string',
             'resources.*' => 'required|file'
@@ -58,7 +66,8 @@ class TeacherCoursesPage extends Component
             'description' => $this->description
         ]);
         foreach ($this->resources as $resource) {
-            $url = $resource->storeAs("", Carbon::now()->format('Ymdhis') . $resource->getClientOriginalName(), 'google');
+            // $url = $resource->store("", Carbon::now()->format('Ymdhis') . $resource->getClientOriginalName(), 'google');
+            $url = $resource->store("", 'google');
             $match = gdriver($url);
             $res->files()->create([
                 'google_id' => $match['id'],
@@ -70,9 +79,18 @@ class TeacherCoursesPage extends Component
         $this->fileId++;
         $this->title = "";
         $this->description = "";
-        $this->module_id = 0;
+        $this->module_id = null;
         $this->resources = [];
         $this->course = Course::find($this->course->id);
         session()->flash('message', 'Resources have been added.');
+    }
+    public function removeResource(Resource $resource)
+    {
+        foreach ($resource->files as $f) {
+            Storage::cloud()->delete($f->google_id);
+        }
+        $resource->delete();
+        $this->course = Course::find($this->course->id);
+        session()->flash('message', 'Module resources have been updated.');
     }
 }

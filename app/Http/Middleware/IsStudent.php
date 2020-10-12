@@ -17,7 +17,9 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role_id != 2) return redirect('/redirectMe');
+        if (Auth::check()) {
+            if (!(bool)Auth::user()->roles()->find(2)) return redirect('/redirectMe');
+        }
         return $next($request);
     }
 }

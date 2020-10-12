@@ -1,6 +1,6 @@
-@extends('layouts.teacher')
+@extends('layouts.student')
 @section('content')
-@include('includes.teacher.header')
+@include('includes.student.header')
 <main class="p-3">
     <div class="flex min-h-screen">
         <div class="mx-4 md:w-5/6">
@@ -26,7 +26,7 @@
                 @endforelse
             </div>
         </div>
-        @include('includes.teacher.menu')
+        @include('includes.student.menu')
     </div>
 </main>
 @endsection

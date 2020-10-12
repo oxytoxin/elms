@@ -1,7 +1,8 @@
 <header
     class="sticky top-0 z-50 flex flex-col items-center justify-between p-2 text-gray-300 md:h-12 md:flex-row bg-primary-500">
     <div class="flex items-center left">
-        <i class="m-2 icofont-navigation-menu"></i>
+        <i @click="sidebar = !sidebar" class="hidden m-2 cursor-pointer md:block icofont-navigation-menu"></i>
+        <i class="m-2 cursor-pointer md:hidden icofont-navigation-menu"></i>
         <h1 class="text-sm font-semibold">SULTAN KUDARAT STATE UNIVERSITY</h1>
     </div>
     <div class="flex items-center justify-center text-2xl md:mr-4 right">

@@ -16,7 +16,7 @@ class RedirectMe
      */
     public function handle(Request $request, Closure $next)
     {
-        switch (auth()->user()->role_id) {
+        switch (auth()->user()->roles()->first()->id) {
             case 2:
                 return redirect()->route('student.home');
                 break;
@@ -27,5 +27,6 @@ class RedirectMe
                 return redirect()->route('head.home');
                 break;
         }
+        return response('Error');
     }
 }

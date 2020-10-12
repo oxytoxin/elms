@@ -5,6 +5,7 @@
     <div class="flex min-h-screen">
         <div class="w-5/6 mx-4">
             <h1 class="p-2 text-2xl font-semibold">MODULES MANAGER</h1>
+            <h1 class="p-2 mx-2 italic font-semibold text-white bg-primary-500">{{ $course->name }}</h1>
             <div class="grid grid-cols-4 gap-2 p-2">
                 @forelse($modules as $module)
                 <div class="w-full overflow-hidden h-80">

@@ -1,28 +1,28 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Profile') }}
         </h2>
     </x-slot>
 
     <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
             @livewire('profile.update-profile-information-form')
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <x-jet-section-border />
-            
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.update-password-form')
-                </div>
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.update-password-form')
+            </div>
             @endif
 
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                <x-jet-section-border />
+            <x-jet-section-border />
 
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.two-factor-authentication-form')
-                </div>
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.two-factor-authentication-form')
+            </div>
             @endif
 
             <x-jet-section-border />
@@ -33,9 +33,9 @@
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            {{-- <div class="mt-10 sm:mt-0">
                 @livewire('profile.delete-user-form')
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-app-layout>

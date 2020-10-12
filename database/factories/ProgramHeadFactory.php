@@ -27,7 +27,7 @@ class ProgramHeadFactory extends Factory
     {
         $college = College::find($this->faker->numberBetween(1, 4));
         return [
-            'user_id' => User::factory()->create(['role_id' => 4])->id,
+            'user_id' => User::factory()->create(['email' => 1000 + User::count() + 1 . '@gmail.com'])->id,
             'college_id' => $college->id,
             'department_id' => $college->departments->random()->id,
         ];
