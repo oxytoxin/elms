@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CalendarEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -53,6 +54,8 @@ class ProgramHeadPagesController extends Controller
     }
     public function calendar()
     {
-        return view('pages.head.calendar');
+        $events = auth()->user()->calendar_events;
+        $events = $events->merge(CalendarEvent::where('level', 'all'));
+        return view('pages.head.calendar', compact('events'));
     }
 }

@@ -1,10 +1,11 @@
-@extends('layouts.teacher')
+@extends('layouts.master')
 @section('content')
-@include('includes.teacher.header')
-<main class="p-3">
-    <div class="flex min-h-screen">
+<div class="px-5">
+    <div class="flex">
         @livewire('teacher-courses-page',['course'=>$course])
-        @include('includes.teacher.menu')
     </div>
-</main>
+    </div>
+@endsection
+@section('sidebar')
+    @include('includes.teacher.sidebar')
 @endsection

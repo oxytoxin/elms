@@ -18,6 +18,6 @@ mix.js("resources/js/app.js", "public/js")
     ])
     .browserSync({
         notify: false,
-        proxy: "http://elms.test",
+        proxy: "elms.test",
         port: 3000
     });

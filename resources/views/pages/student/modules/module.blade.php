@@ -1,11 +1,9 @@
 @extends('layouts.student')
 @section('content')
-@include('includes.student.header')
-<main class="p-3">
-    <div class="flex min-h-screen">
-        <div class="w-5/6 px-2 mx-4">
-            <h1 class="font-semibold">Module Title</h1>
-            <h1 class="my-2">{{ $module->name }}</h1>
+<div class="px-5">
+    <div class="flex">
+        <div class="w-full px-2 m-4">
+            <h1 class="my-2 text-2xl"><i class="mr-2 icofont-star"></i>{{ $module->name }}</h1>
             <h1 class="font-semibold">Module Resources</h1>
             @forelse ($module->files as $file)
             <div class="flex items-center my-2">
@@ -41,7 +39,9 @@
             @endforelse
 
         </div>
-        @include('includes.student.menu')
     </div>
-</main>
+    </div>
+@endsection
+@section('sidebar')
+    @include('includes.student.sidebar')
 @endsection

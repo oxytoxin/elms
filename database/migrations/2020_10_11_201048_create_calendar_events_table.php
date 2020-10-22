@@ -15,6 +15,14 @@ class CreateCalendarEventsTable extends Migration
     {
         Schema::create('calendar_events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('code');
+            $table->string('level');
+            $table->string('title');
+            $table->string('classNames')->nullable()->default(null);
+            $table->string('url')->nullable()->default(null);
+            $table->string('start');
+            $table->string('end')->nullable()->default(null);
             $table->timestamps();
         });
     }

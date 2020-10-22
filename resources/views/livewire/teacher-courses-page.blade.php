@@ -1,5 +1,5 @@
-<div class="w-full md:w-5/6">
-    <h1 class="font-semibold">{{ $course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
+<div class="w-full">
+    <h1 class="my-5 text-xl font-semibold">{{ $course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
     <div class="box-border flex text-lg text-gray-300 border-2 border-black">
         <a href="#" wire:click="$set('tab','student')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'student' ?  'bg-primary-500 text-gray-700' : '' }}">
@@ -32,24 +32,24 @@
         </form>
     </div>
     <h1 class="my-2 font-bold">Course Student List</h1>
-    <table class="table w-full border-2 border-collapse border-gray-600">
-        <thead class="">
-            <th class="border-2 border-gray-600">Name</th>
-            <th class="border-2 border-gray-600">Email</th>
+    <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
         </thead>
         <tbody class="text-center">
             @forelse ($course->students()->wherePivot('teacher_id',auth()->user()->teacher->id)->get()->reverse() as
             $student)
-            <tr>
-                <td class="border-2 border-gray-600">{{ $student->user->name }}</td>
-                <td class="border-2 border-gray-600">{{ $student->user->email }}<i
+            <tr class="divide-x">
+                <td>{{ $student->user->name }}</td>
+                <td>{{ $student->user->email }}<i
                         onclick="confirm('Confirm removal of student member?') || event.stopImmediatePropagation()"
                         wire:click.prevent="removeStudent({{ $student->id }})"
                         class="ml-5 text-red-600 cursor-pointer icofont-trash"></i></td>
             </tr>
             @empty
             <tr>
-                <td colspan="2" class="border-2 border-gray-600">No students enrolled.</td>
+                <td colspan="2">No students enrolled.</td>
             </tr>
             @endforelse
         </tbody>
@@ -103,27 +103,31 @@
         @endif
     </div>
     <h1 class="my-2 font-bold">Course Resources List</h1>
-    <table class="table w-full border-2 border-collapse border-gray-600 table-fixed">
-        <thead class="">
-            <th class="border-2 border-gray-600">Title</th>
-            <th class="border-2 border-gray-600">Date Added</th>
+    <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
+        <thead>
+            <th>Title</th>
+            <th>Date Added</th>
         </thead>
         <tbody class="text-center">
-            @foreach ($course->modules as $module)
+            @forelse ($course->modules as $module)
             @forelse ($module->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
-            <tr>
-                <td class="border-2 border-gray-600">{{$resource->title}}</td>
-                <td class="border-2 border-gray-600">{{ $resource->created_at->diffForHumans()}}<i
+            <tr class="divide-x">
+                <td>{{$resource->title}}</td>
+                <td>{{ $resource->created_at->diffForHumans()}}<i
                         onclick="confirm('Confirm deletion of module resource?') || event.stopImmediatePropagation()"
                         wire:click.prevent="removeResource({{ $resource->id }})"
                         class="ml-5 text-red-600 cursor-pointer icofont-trash"></i></td>
             </tr>
             @empty
             <tr>
-                <td colspan="2" class="border-2 border-gray-600">No resources found on this module.</td>
+                <td colspan="2">No resources found on this module.</td>
             </tr>
             @endforelse
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="2">No Modules Found</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
     @endif

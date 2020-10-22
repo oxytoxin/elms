@@ -13,82 +13,34 @@
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
+    <style>
+        [x-cloak] { display: none; }
+    </style>
+    @stack('styles')
 </head>
 
-<body class="font-sans antialiased bg-gray-400">
-    <div class="flex w-full">
-        <aside class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
-            <a href="#" class="flex items-center justify-center h-16 p-2 border-2 border-white banner bg-primary-500">
-                <div class="w-12 logo">
-                    <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
-                </div>
-                <h1 class="mx-3 text-xl font-semibold text-white">E-LeaDs</h1>
-            </a>
-            <div class="flex items-center justify-center py-3 mx-2 border-b-2 border-white">
-                <div class="avatar">
-                    <img class="w-12 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="avatar">
-                </div>
-                <div class="mx-4">
-                    <h1>{{ auth()->user()->name }}</h1>
-                    <h1 class="flex items-center"><div class="w-3 h-3 mr-1 rounded-full bg-primary-500"></div>Online</h1>
-                </div>
-            </div>
-            <div class="m-3 font-semibold links">
-                <h1 class="text-sm font-semibold">Teacher</h1>
-            <div class="actions">
-                <a href="{{ route('teacher.home') }}"
-                    class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-home"></i>
-                    <h1 class="text-sm font-semibold">Home</h1>
-                </a>
-                <a href="{{ route('teacher.modules') }}"
-                    class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-book"></i>
-                    <h1 class="text-sm font-semibold">Modules</h1>
-                </a>
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-ui-calendar"></i>
-                    <h1 class="text-sm font-semibold">Calendar</h1>
-                </a>
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-file-pdf"></i>
-                    <h1 class="text-sm font-semibold">Forms</h1>
-                </a>
-            </div>
-            <h1 class="mt-5 text-sm font-semibold">Tasks</h1>
-            <div class="actions">
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-ui-folder"></i>
-                    <h1 class="text-sm font-semibold">Assigments</h1>
-                </a>
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-ui-folder"></i>
-                    <h1 class="text-sm font-semibold">Quizzes</h1>
-                </a>
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-ui-folder"></i>
-                    <h1 class="text-sm font-semibold">Activities</h1>
-                </a>
-                <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-ui-folder"></i>
-                    <h1 class="text-sm font-semibold">Exams</h1>
-                </a>
-            </div>
-            <h1 class="mt-5 text-sm font-semibold">Actions</h1>
-            <div class="actions">
-                <a href="{{ route('head.home') }}" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
-                    <i class="mr-2 icofont-external"></i>
-                    <h1 class="text-sm font-semibold">Program Head Dashboard</h1>
-                </a>
-            </div>
-            </div>
-
+<body class="font-sans antialiased">
+    <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
+        if(window.matchMedia('(max-width: 480px)').matches){mobile=true; showSidebar=false;}
+    }">
+        <aside @click.away="if(mobile)showSidebar = false" x-show="showSidebar"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 transform -translate-x-40"
+        x-transition:enter-end="opacity-100 transform"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 transform"
+        x-transition:leave-end="opacity-0 transform -translate-x-40"
+        class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
+                @yield('sidebar')
         </aside>
         <main class="w-full">
-            <header class="sticky top-0 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
-                <h1 class="text-center">SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
+            <header class="sticky top-0 z-50 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
+                <h1 class="flex items-center text-center"><div x-show="!showSidebar" class="w-12 mx-3 logo">
+                    <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
+                </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
                 <nav class="text-2xl">
-                    <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-wechat"></i></a>
+                    <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-white icofont-navigation-menu"></i></a>
+                    <a><i class="mx-2 cursor-pointer hover:text-white icofont-wechat"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-alarm"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-question-circle"></i></a>
@@ -97,10 +49,10 @@
                 </nav>
             </header>
             <article class="flex w-full">
-                <section class="w-full h-screen">
+                <section class="w-full pb-5">
                     @yield('content')
                 </section>
-                <section class="flex flex-col flex-shrink-0 w-64 p-3 pinned-items">
+                <section x-show.transition.duration.750ms.origin.center.right="showSidebar" class="relative flex-col flex-shrink-0 hidden w-64 p-3 lg:flex pinned-items">
                         <div class="bg-white rounded-sm shadow-md card">
                             <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
                                 <h1 class="text-sm font-semibold">To Do</h1>

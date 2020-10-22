@@ -1,6 +1,6 @@
-<div class="px-2 mx-4 md:w-5/6">
-    <h1 class="text-xl font-semibold">{{ $course->name }} <i class="ml-5 cursor-pointer icofont-edit"
-            onclick="document.querySelector('#course_edit').style.display='flex'"></i><i
+<div class="w-full" x-data="{showEditCourse:false}">
+    <h1 class="my-5 text-xl font-semibold">{{ $course->name }} <i class="ml-5 cursor-pointer icofont-edit"
+            @click="showEditCourse = !showEditCourse"></i><i
             onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCourse"
             class="ml-5 text-red-600 cursor-pointer icofont-trash"></i><i wire:loading wire:target="enrolFaculty"
             class="fa fa-spinner fa-spin"></i></h1>
@@ -14,7 +14,7 @@
             <div class="font-bold text-center uppercase hover:text-gray-700">UPLOAD MODULE RESOURCES</div>
         </a>
     </div>
-    <form id="course_edit" action="#" class="flex-col hidden p-2 my-3 border-2 border-gray-600 rounded-lg">
+    <form x-show.transition.opacity="showEditCourse" id="course_edit" action="#" class="flex flex-col prounded-lg">
         <label for="course_name" class="mt-2">Course Name</label>
         <input wire:model.defer="newCourseName" name="course_name" type="text" class="form-input">
         @error('newCourseName')
@@ -26,8 +26,8 @@
         <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
         @enderror
         <button type="submit" onclick="confirm('Confirm changes?') || event.stopImmediatePropagation()"
-            wire:click.prevent="editCourse" class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Save</button>
-        <button wire:click.prevent="" onclick="document.querySelector('#course_edit').style.display = 'none'"
+            wire:click.prevent="editCourse" @click="showEditCourse = !showEditCourse" class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Save</button>
+        <button wire:click.prevent="" @click="showEditCourse = !showEditCourse"
             class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Cancel</button>
     </form>
     <div class="italic text-green-400">
@@ -35,11 +35,6 @@
         {{ session('course_updates') }}
         @endif
     </div>
-    <script>
-        window.addEventListener('course-updated', (event) => {
-            document.querySelector('#course_edit').style.display = 'none';
-        });
-    </script>
     @if ($tab == 'faculty')
     <div class="mt-2">
         <form wire:submit.prevent="enrolFaculty">
@@ -60,23 +55,23 @@
         </form>
     </div>
     <h1 class="my-2 font-bold">Course Faculty List</h1>
-    <table class="table w-full border-2 border-collapse border-gray-600">
+    <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
         <thead class="">
-            <th class="border-2 border-gray-600">Name</th>
-            <th class="border-2 border-gray-600">Email</th>
+            <th>Name</th>
+            <th>Email</th>
         </thead>
         <tbody class="text-center">
             @forelse ($teachers as $teacher)
-            <tr>
-                <td class="border-2 border-gray-600">{{ $teacher->user->name }}</td>
-                <td class="border-2 border-gray-600">{{ $teacher->user->email }}<i
+            <tr class="divide-x">
+                <td>{{ $teacher->user->name }}</td>
+                <td>{{ $teacher->user->email }}<i
                         onclick="confirm('Confirm removal of faculty member?') || event.stopImmediatePropagation()"
                         wire:click.prevent="removeFaculty({{ $teacher->id }})"
                         class="ml-5 text-red-600 cursor-pointer icofont-trash"></i></td>
             </tr>
             @empty
             <tr>
-                <td colspan="2" class="border-2 border-gray-600">No faculty member found on this course.</td>
+                <td colspan="2">No faculty member found on this course.</td>
             </tr>
             @endforelse
 
@@ -101,7 +96,7 @@
                 <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
                 @enderror
                 <button wire:target="module" wire:loading.remove
-                    class="p-2 mt-2 ml-2 text-white rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
+                    class="p-2 mt-2 ml-2 text-white whitespace-no-wrap rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Module</button>
             </div>
         </form>
@@ -122,17 +117,17 @@
         {{ session('module_deleted') }}
         @endif
     </div>
-    <table class="table w-full border-2 border-collapse border-gray-600 table-fixed">
+    <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
         <thead class="">
-            <th class="border-2 border-gray-600">Title</th>
-            <th class="border-2 border-gray-600">Date Added</th>
+            <th>Title</th>
+            <th>Date Added</th>
         </thead>
         <tbody class="text-center">
             @forelse ($course->modules as $course_module)
-            <tr>
-                <td class="border-2 border-gray-600">{{ $course_module->name }}</td>
+            <tr class="divide-x">
+                <td>{{ $course_module->name }}</td>
 
-                <td class="border-2 border-gray-600">{{ $course_module->created_at->diffForHumans() }}<i
+                <td>{{ $course_module->created_at->diffForHumans() }}<i
                         onclick="confirm('Are you sure you want to delete this module?')|| event.stopImmediatePropagation()"
                         wire:click.prevent="deleteModule({{ $course_module->id }})"
                         class="ml-4 text-red-600 cursor-pointer icofont-trash"></i>
@@ -140,7 +135,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="2" class="border-2 border-gray-600">No modules found on this course.</td>
+                <td colspan="2">No modules found on this course.</td>
             </tr>
             @endforelse
 

@@ -1,4 +1,4 @@
-<div>
+<div class="w-full">
     <h1 class="mt-3 text-lg font-semibold">CREATE COURSE <i wire:loading class="fa fa-spin fa-spinner"></i></h1>
     <div class="italic text-green-400">
         @if(session('message'))

@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Livewire\TaskMaker;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\TaskTaker;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,7 @@ use App\Http\Controllers\ProgramHeadPagesController;
 */
 
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
+Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
 
 Route::get('/command', function () {
     \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
@@ -52,6 +57,9 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/courses', [StudentPagesController::class, 'courses'])->name('student.courses');
     Route::get('/courses/create', [StudentPagesController::class, 'create_course'])->name('student.create_course');
     Route::get('/preview/{file}', [StudentPagesController::class, 'preview'])->name('student.preview');
+    Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
+    Route::get('/task/{task}', TaskTaker::class)->name('student.task');
+    Route::get('/tasks', [StudentPagesController::class, 'tasks'])->name('student.tasks');
 });
 
 
@@ -65,6 +73,8 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/courses', [TeacherPagesController::class, 'courses'])->name('teacher.courses');
     Route::get('/courses/create', [TeacherPagesController::class, 'create_course'])->name('teacher.create_course');
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
+    Route::get('/calendar', [TeacherPagesController::class, 'calendar'])->name('teacher.calendar');
+    Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
 });
 
 // Program Head Routes

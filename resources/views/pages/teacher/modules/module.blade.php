@@ -1,11 +1,17 @@
-@extends('layouts.teacher')
+@extends('layouts.master')
 @section('content')
-@include('includes.teacher.header')
-<main class="p-3">
-    <div class="flex min-h-screen">
-        <div class="w-5/6 px-2 mx-4">
-            <h1 class="font-semibold">Module Title</h1>
-            <h1 class="my-2">{{ $module->name }}</h1>
+<div class="px-5">
+    <div class="flex">
+        <div class="w-full px-2 m-4">
+            <h1 class="my-2 text-2xl"><i class="mr-2 icofont-star"></i>{{ $module->name }}</h1>
+            <div class="flex flex-col items-center justify-between py-3 mb-5 border-t-2 border-b-2 md:flex-row border-primary-600">
+                <h1 class="font-semibold">CREATE A TASK</h1>
+                <div class="text-center">
+                    @foreach ($task_types as $task)
+                    <a href="{{ route('teacher.taskmaker',['module'=>$module->id,'course'=>$module->course->id,'type'=> $task->name ]) }}"><button class="p-2 my-2 font-semibold text-white rounded-md min-w-48 hover:text-primary-600 bg-primary-500"><i class="mr-2 icofont-ui-folder"></i>{{ strtoupper($task->name) }}</button></a>
+                    @endforeach
+                </div>
+            </div>
             <h1 class="font-semibold">Module Resources</h1>
             @forelse ($module->files as $file)
             <div class="flex items-center my-2">
@@ -39,9 +45,10 @@
             @empty
             <h1>No additional resources found.</h1>
             @endforelse
-
         </div>
-        @include('includes.teacher.menu')
     </div>
-</main>
+</div>
+@endsection
+@section('sidebar')
+    @include('includes.teacher.sidebar')
 @endsection

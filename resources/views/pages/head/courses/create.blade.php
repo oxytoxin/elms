@@ -1,13 +1,14 @@
-@extends('layouts.head')
+@extends('layouts.master')
 @section('content')
-@include('includes.head.header')
-<main class="p-3">
-    <div class="flex min-h-screen">
-        <div class="w-5/6 mx-4">
+<div class="px-5">
+    <div class="">
+        <div>
             <h1 class="text-2xl font-semibold">COURSE MANAGER</h1>
             @livewire('create-course')
         </div>
-        @include('includes.head.menu')
     </div>
-</main>
+</div>
+@endsection
+@section('sidebar')
+    @include('includes.head.sidebar')
 @endsection

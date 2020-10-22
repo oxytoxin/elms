@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Course;
 use App\Models\Module;
 use Illuminate\Http\Request;
+use App\Models\CalendarEvent;
 use App\Http\Controllers\Controller;
 
 class StudentPagesController extends Controller
@@ -44,5 +45,18 @@ class StudentPagesController extends Controller
     public function preview(File $file)
     {
         return view('pages.student.preview', compact('file'));
+    }
+    public function calendar()
+    {
+        $events = auth()->user()->calendar_events;
+        $events = $events->merge(CalendarEvent::where('level', 'all'));
+        $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
+            return $t->user->calendar_events->where('level', 'students');
+        })->flatten());
+        return view('pages.student.calendar', compact('events'));
+    }
+    public function tasks()
+    {
+        return view('pages.student.tasks');
     }
 }

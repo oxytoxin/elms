@@ -7,7 +7,9 @@ use App\Models\Role;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\ProgramHead;
+use App\Models\CalendarEvent;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -75,5 +77,21 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+    public function calendar_events()
+    {
+        return $this->hasMany(CalendarEvent::class);
+    }
+    public function scopeIsStudent()
+    {
+        return (bool)Auth::user()->roles()->find(2);
+    }
+    public function scopeIsTeacher()
+    {
+        return (bool)Auth::user()->roles()->find(3);
+    }
+    public function scopeIsProgramHead()
+    {
+        return (bool)Auth::user()->roles()->find(4);
     }
 }
