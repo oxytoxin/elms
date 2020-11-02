@@ -7,6 +7,7 @@ use Database\Seeders\RolesSeeder;
 use Database\Seeders\UsersSeeder;
 use Database\Seeders\CollegeSeeder;
 use Database\Seeders\CoursesSeeder;
+use Database\Seeders\TaskTypeSeeder;
 use Database\Seeders\DepartmentSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(CoursesSeeder::class);
+        $this->call(TaskTypeSeeder::class);
     }
 }

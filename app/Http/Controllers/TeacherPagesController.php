@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\Task;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\TaskType;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
 use App\Http\Controllers\Controller;
-use App\Models\TaskType;
 
 class TeacherPagesController extends Controller
 {
@@ -54,5 +55,15 @@ class TeacherPagesController extends Controller
         $events = $events->merge(CalendarEvent::where('level', 'all'));
         $events = $events->merge(CalendarEvent::where('level', 'faculty'));
         return view('pages.teacher.calendar', compact('events'));
+    }
+    public function tasks($task_type)
+    {
+        $tasks = auth()->user()->teacher->tasks()->where('task_type_id', $task_type)->get();
+        $task_type = TaskType::find($task_type);
+        return view('pages.teacher.tasks', compact('tasks', 'task_type'));
+    }
+    public function task()
+    {
+        return view('pages.teacher.task');
     }
 }

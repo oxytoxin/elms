@@ -1,4 +1,4 @@
-@extends('layouts.student')
+@extends('layouts.master')
 @section('content')
 <div class="px-5">
     <div class="flex">

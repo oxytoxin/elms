@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 class EventCreator extends Component
 {
     public $event_name = "";
+    public $event_description = "";
     public $event_target = "personal";
     public $event_start_day = null;
     public $event_start_time = null;
@@ -41,19 +42,26 @@ class EventCreator extends Component
         if ($this->event_end_day) {
             if ($this->event_end_time) {
                 $end = $this->event_end_day . ' ' . $this->event_end_time;
+                $allDay = false;
             } else {
-                $end = $this->event_end_day;
+                $allDay = true;
+                $end = Carbon::parse($this->event_end_day)->addDay()->format('Y-m-d');
             }
-        } else $end = null;
+        } else {
+            $end = null;
+            $allDay = true;
+        };
         $code = Carbon::now()->timestamp;
         CalendarEvent::create([
             'user_id' => auth()->user()->id,
             'code' => $code,
             'title' => $this->event_name,
+            'description' => $this->event_description,
             'level' => $this->event_target,
             'start' => $start,
             'url' => '/event/' . $code,
             'end' => $end,
+            'allDay' => $allDay,
         ]);
         $this->event_name = "";
         $this->event_target = "personal";

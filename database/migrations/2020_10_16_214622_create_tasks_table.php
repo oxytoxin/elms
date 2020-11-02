@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('module_id')->constrained();
             $table->foreignId('teacher_id')->constrained();
             $table->foreignId('task_type_id')->constrained();
+            $table->string('name');
             $table->integer('max_score');
             $table->longText('content');
             $table->dateTime('deadline');

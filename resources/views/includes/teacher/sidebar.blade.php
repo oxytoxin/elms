@@ -37,19 +37,19 @@
     </div>
     <h1 class="mt-5 text-sm font-semibold">Tasks</h1>
     <div class="actions">
-        <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
+        <a href="{{ route('teacher.tasks',['task_type'=>1]) }}" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
             <i class="mr-2 icofont-ui-folder"></i>
             <h1 class="text-sm font-semibold">Assigments</h1>
         </a>
-        <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
+        <a href="{{ route('teacher.tasks',['task_type'=>2]) }}" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
             <i class="mr-2 icofont-ui-folder"></i>
             <h1 class="text-sm font-semibold">Quizzes</h1>
         </a>
-        <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
+        <a href="{{ route('teacher.tasks',['task_type'=>3]) }}" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
             <i class="mr-2 icofont-ui-folder"></i>
             <h1 class="text-sm font-semibold">Activities</h1>
         </a>
-        <a href="#" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
+        <a href="{{ route('teacher.tasks',['task_type'=>4]) }}" class="flex items-center p-2 bg-opacity-25 rounded-md hover:bg-gray-400 item">
             <i class="mr-2 icofont-ui-folder"></i>
             <h1 class="text-sm font-semibold">Exams</h1>
         </a>

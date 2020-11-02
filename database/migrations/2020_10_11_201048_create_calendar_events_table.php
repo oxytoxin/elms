@@ -19,6 +19,8 @@ class CreateCalendarEventsTable extends Migration
             $table->string('code');
             $table->string('level');
             $table->string('title');
+            $table->boolean('allDay')->default(true);
+            $table->string('description');
             $table->string('classNames')->nullable()->default(null);
             $table->string('url')->nullable()->default(null);
             $table->string('start');

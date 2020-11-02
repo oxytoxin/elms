@@ -17,6 +17,13 @@
                         @enderror
                     </div>
                     <div class="mt-2">
+                        <label for="event_description">Event Description</label>
+                        <input wire:model="event_description" placeholder="Event Description" type="text" class="w-full form-input" name="event_description">
+                        @error('event_description')
+                            <h1 class="text-sm italic text-red-600">{{ $message }}</h1>
+                        @enderror
+                    </div>
+                    <div class="mt-2">
                     <label for="event_target">Event Target</label>
                     <select wire:model="event_target" name="level" class="block w-full mt-2 form-select" id="level">
                         <option value="personal">Personal</option>

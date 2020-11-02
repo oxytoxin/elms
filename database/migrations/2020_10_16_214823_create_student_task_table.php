@@ -17,8 +17,10 @@ class CreateStudentTaskTable extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained();
             $table->foreignId('task_id')->constrained();
-            $table->integer('score');
-            $table->date('date_submitted');
+            $table->boolean('isGraded')->default(false);
+            $table->longText('answers');
+            $table->integer('score')->default(0);
+            $table->dateTime('date_submitted')->nullable()->default(null);
             $table->timestamps();
         });
     }

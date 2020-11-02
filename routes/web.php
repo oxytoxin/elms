@@ -10,6 +10,7 @@ use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
 use App\Http\Livewire\TaskTaker;
+use App\Http\Livewire\TeacherTasklist;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('test', function () {
-    return view('layouts.master');
-});
+Route::get('/task/{id}', [MiscController::class, 'taskRedirect']);
 Route::post('test', [TestController::class, 'test']);
 
 // Student Routes
@@ -59,7 +58,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/preview/{file}', [StudentPagesController::class, 'preview'])->name('student.preview');
     Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
-    Route::get('/tasks', [StudentPagesController::class, 'tasks'])->name('student.tasks');
+    Route::get('/tasks/{task_type}', [StudentPagesController::class, 'tasks'])->name('student.tasks');
 });
 
 
@@ -75,6 +74,8 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
     Route::get('/calendar', [TeacherPagesController::class, 'calendar'])->name('teacher.calendar');
     Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
+    Route::get('/tasks/{task_type}', [TeacherPagesController::class, 'tasks'])->name('teacher.tasks');
+    Route::get('/task/{task}', TeacherTasklist::class)->name('teacher.task');
 });
 
 // Program Head Routes

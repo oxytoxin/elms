@@ -21,4 +21,10 @@ class MiscController extends Controller
         $event = CalendarEvent::where('code', $event)->firstOrFail();
         return view('pages.event', compact('event'));
     }
+
+    public function taskRedirect($id)
+    {
+        if (auth()->user()->student) return redirect("/student/task/$id");
+        else if (auth()->user()->teacher) return redirect("/teacher/task/$id");
+    }
 }

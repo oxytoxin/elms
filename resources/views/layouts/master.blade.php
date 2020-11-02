@@ -34,7 +34,7 @@
                 @yield('sidebar')
         </aside>
         <main class="w-full">
-            <header class="sticky top-0 z-50 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
+            <header class="sticky top-0 z-40 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
                 <h1 class="flex items-center text-center"><div x-show="!showSidebar" class="w-12 mx-3 logo">
                     <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
                 </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
@@ -42,7 +42,7 @@
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-white icofont-navigation-menu"></i></a>
                     <a><i class="mx-2 cursor-pointer hover:text-white icofont-wechat"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-alarm"></i></a>
-                    <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-ui-calendar"></i></a>
+                    <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-white icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-question-circle"></i></a>
                     <a href="{{ route('profile.show') }}"><i
                             class="mx-2 cursor-pointer hover:text-white icofont-user-alt-4"></i></a>

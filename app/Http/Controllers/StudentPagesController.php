@@ -8,6 +8,8 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Task;
+use App\Models\TaskType;
 
 class StudentPagesController extends Controller
 {
@@ -55,8 +57,10 @@ class StudentPagesController extends Controller
         })->flatten());
         return view('pages.student.calendar', compact('events'));
     }
-    public function tasks()
+    public function tasks($task_type)
     {
-        return view('pages.student.tasks');
+        $tasks = auth()->user()->student->tasksByType($task_type);
+        $task_type = TaskType::find($task_type);
+        return view('pages.student.tasks', compact('tasks', 'task_type'));
     }
 }

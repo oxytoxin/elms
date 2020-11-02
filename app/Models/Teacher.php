@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\College;
 use App\Models\Student;
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Teacher extends Model
@@ -33,5 +35,26 @@ class Teacher extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function ungradedTasks($task_type_id)
+    {
+        return $this->students->map(function ($s) {
+            return $s->ungradedTasks;
+        })->flatten()->filter(function ($item) use ($task_type_id) {
+            return $item->task_type_id == $task_type_id;
+        });
+    }
+    public function gradedTasks($task_type_id)
+    {
+        return $this->students->map(function ($s) {
+            return $s->gradedTasks;
+        })->flatten()->filter(function ($item) use ($task_type_id) {
+            return $item->task_type_id == $task_type_id;
+        });
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\College;
 use App\Models\Teacher;
 use App\Models\Department;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -33,5 +35,31 @@ class Student extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers');
+    }
+    public function getAllTasksAttribute()
+    {
+        return $this->teachers->map(function ($t) {
+            return $t->tasks;
+        })->flatten();
+    }
+    public function tasksByType($task_type)
+    {
+        return $this->all_tasks->filter(function ($t) use ($task_type) {
+            return $t->task_type_id == $task_type;
+        });
+    }
+
+    public function gradedTasks()
+    {
+        return $this->belongsToMany(Task::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers')->wherePivot('isGraded', 1);
+    }
+    public function ungradedTasks()
+    {
+        return $this->belongsToMany(Task::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers')->wherePivot('isGraded', 0);
     }
 }
