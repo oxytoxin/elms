@@ -51,7 +51,7 @@ class StudentPagesController extends Controller
     public function calendar()
     {
         $events = auth()->user()->calendar_events;
-        $events = $events->merge(CalendarEvent::where('level', 'all'));
+        $events = $events->merge(CalendarEvent::where('level', 'all')->get());
         $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
             return $t->user->calendar_events->where('level', 'students');
         })->flatten());

@@ -19,12 +19,12 @@
     @stack('styles')
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-gray-200">
     <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
         if(window.matchMedia('(max-width: 480px)').matches){mobile=true; showSidebar=false;}
     }">
         <aside @click.away="if(mobile)showSidebar = false" x-show="showSidebar"
-        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter="transition ease-out du ration-200"
         x-transition:enter-start="opacity-0 transform -translate-x-40"
         x-transition:enter-end="opacity-100 transform"
         x-transition:leave="transition ease-in duration-200"
@@ -39,13 +39,16 @@
                     <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
                 </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
                 <nav class="text-2xl">
-                    <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-white icofont-navigation-menu"></i></a>
-                    <a><i class="mx-2 cursor-pointer hover:text-white icofont-wechat"></i></a>
-                    <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-alarm"></i></a>
-                    <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-white icofont-ui-calendar"></i></a>
-                    <a href="#"><i class="mx-2 cursor-pointer hover:text-white icofont-question-circle"></i></a>
+                    <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
+                    <a><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
+                    <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-alarm"></i></a>
+                    <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
+                    <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>
                     <a href="{{ route('profile.show') }}"><i
-                            class="mx-2 cursor-pointer hover:text-white icofont-user-alt-4"></i></a>
+                            class="mx-2 cursor-pointer hover:text-primary-600 icofont-user-alt-4"></i></a>
+                    <form class="inline-block" method="POST" action="{{ route('logout') }}">
+                        <button type="submit"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-logout"></i></button>
+                    </form>
                 </nav>
             </header>
             <article class="flex w-full">
@@ -53,35 +56,7 @@
                     @yield('content')
                 </section>
                 <section x-show.transition.duration.750ms.origin.center.right="showSidebar" class="relative flex-col flex-shrink-0 hidden w-64 p-3 lg:flex pinned-items">
-                        <div class="bg-white rounded-sm shadow-md card">
-                            <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
-                                <h1 class="text-sm font-semibold">To Do</h1>
-                                <a href="#"><i class="icofont-plus"></i></a>
-                            </div>
-                            <div class="min-h-16 content"></div>
-                        </div>
-                        <div class="mt-5 bg-white rounded-sm shadow-md card">
-                            <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
-                                <h1 class="text-sm font-semibold">Assignments</h1>
-                            </div>
-                            <div class="p-2 min-h-16 content">
-                                <h1 class="text-xs">
-                                    <i class="icofont-notepad"></i><a href="#">A Part of Precaution.....</a>
-                                    <h1 class="text-xs text-red-600">(Due: 09-08-2020)</h1>
-                                </h1>
-                            </div>
-                        </div>
-                        <div class="mt-5 bg-white rounded-sm shadow-md card">
-                            <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
-                                <h1 class="text-sm font-semibold">Announcements</h1>
-                            </div>
-                            <div class="p-2 min-h-16 content">
-                                <h1 class="text-xs">
-                                    <i class="text-red-600 icofont-alarm"></i><a href="#">Resume of Payment</a>
-                                    <i class="text-red-600 icofont-alarm"></i><a href="#">Enrollment Date</a>
-                                </h1>
-                            </div>
-                        </div>
+                    @livewire('layouts.sidelist')
                 </section>
             </article>
         </main>

@@ -59,10 +59,10 @@
     <div class="mt-2">
         <form action="#" wire:submit.prevent="addResources">
             <label class="font-semibold" for="module">Select Module</label>
-            <select wire:model="module_id" required class="flex-1 block w-full form-select" name="module_id">
+            <select wire:change="updateModule" wire:model="module_id" required class="flex-1 block w-full form-select">
                 <option value="0">Select Module</option>
                 @forelse ($course->modules as $i=>$module)
-                <option value="{{ $module->id }}">{{ $module->name }}</option>
+                <option wire:key="moduleOption_{{ $i }}" value="{{ $module->id }}">{{ $module->name }}</option>
                 @empty
                 @endforelse
             </select>
@@ -102,17 +102,19 @@
         {{ session('message') }}
         @endif
     </div>
-    <h1 class="my-2 font-bold">Course Resources List</h1>
+    <h1 class="my-2 font-bold">Module Resources List</h1>
     <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
         <thead>
             <th>Title</th>
+            <th># of Files</th>
             <th>Date Added</th>
         </thead>
         <tbody class="text-center">
-            @forelse ($course->modules as $module)
-            @forelse ($module->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
+            @if ($moduleSelected)
+            @forelse ($moduleSelected->resources()->where('teacher_id',auth()->user()->teacher->id)->get() as $resource)
             <tr class="divide-x">
-                <td>{{$resource->title}}</td>
+                <td><a href="{{ route('teacher.module',['module'=>$module_id]) }}">{{$resource->title}} <i class="icofont-external-link text-primary-500"></i></a></td>
+                <td>{{$resource->files->count()}}</td>
                 <td>{{ $resource->created_at->diffForHumans()}}<i
                         onclick="confirm('Confirm deletion of module resource?') || event.stopImmediatePropagation()"
                         wire:click.prevent="removeResource({{ $resource->id }})"
@@ -120,14 +122,15 @@
             </tr>
             @empty
             <tr>
-                <td colspan="2">No resources found on this module.</td>
+                <td colspan="3">No module resources found</td>
             </tr>
             @endforelse
-            @empty
+            @else
             <tr>
-                <td colspan="2">No Modules Found</td>
+                <td colspan="3">No module selected.</td>
             </tr>
-            @endforelse
+            @endif
+
         </tbody>
     </table>
     @endif

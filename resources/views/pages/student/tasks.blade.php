@@ -10,7 +10,7 @@
                     <h1 class="text-sm font-semibold text-white">{{ $task->module->course->name }} <span class="text-black">[{{ $task->module->course->code }}]</span></h1>
                     <h1 class="text-sm italic font-semibold">~{{ $task->module->name }}</h1>
                     <h1 class="text-sm font-semibold">:{{ $task->teacher->user->name }}</h1>
-                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ Carbon\Carbon::parse($task->deadline)->format('h:i a, m/d/Y') }}</h1>
+                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline->format('h:i a, m/d/Y') }}</h1>
                 </div>
             </a>
             @empty

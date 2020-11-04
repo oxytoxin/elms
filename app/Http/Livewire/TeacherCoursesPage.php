@@ -20,6 +20,7 @@ class TeacherCoursesPage extends Component
     public $email = '';
     public $course;
     public $module_id;
+    public $moduleSelected;
     public $title;
     public $description;
     public $resources = [];
@@ -29,6 +30,12 @@ class TeacherCoursesPage extends Component
     {
         return view('livewire.teacher-courses-page');
     }
+
+    public function updateModule()
+    {
+        $this->moduleSelected = Module::find($this->module_id);
+    }
+
     public function enrolStudent()
     {
         $this->validate([

@@ -16,6 +16,7 @@ class HeadCoursesPage extends Component
 {
     use WithFileUploads;
     public $tab = 'faculty';
+    public $showEditCourse = false;
     public $course;
     public $teachers;
     public $email = "";
@@ -25,12 +26,18 @@ class HeadCoursesPage extends Component
     public $newCourseName = "";
     public $newCourseCode = "";
 
+
+    protected $messages = [
+        'newCourseCode.regex' => "The format is invalid. Please follow \"ABC123\" pattern."
+    ];
+
     public function mount()
     {
         $this->teachers =  $this->course->teachers->reverse();
         $this->newCourseName = $this->course->name;
         $this->newCourseCode = $this->course->code;
     }
+
 
     public function render()
     {
@@ -70,6 +77,10 @@ class HeadCoursesPage extends Component
             'name' => $this->module->getClientOriginalName(),
             'url' => $url
         ]);
+        $rand = rand(1, 7);
+        $mod->image()->create([
+            'url' => "/img/bg/bg($rand).jpg"
+        ]);
         $this->fileId++;
         $this->moduleName = "";
         $this->course = Course::find($this->course->id);
@@ -88,6 +99,7 @@ class HeadCoursesPage extends Component
         $this->course = Course::find($this->course->id);
         $this->newCourseName = $this->course->name;
         $this->newCourseCode = $this->course->code;
+        $this->showEditCourse = false;
         $this->dispatchBrowserEvent('course-updated');
         session()->flash('course_updates', 'Course has been updated.');
     }

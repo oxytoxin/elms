@@ -16,7 +16,7 @@ class MiscController extends Controller
         //     return Storage::download($file->google_id);
         return Storage::disk('google')->download($file->google_id, $file->url);
     }
-    public function event_details($event)
+    public function event_details($event, Request $request)
     {
         $event = CalendarEvent::where('code', $event)->firstOrFail();
         return view('pages.event', compact('event'));

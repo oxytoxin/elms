@@ -116,6 +116,9 @@ module.exports = {
             },
             fontFamily: {
                 sans: ["Montserrat", ...defaultTheme.fontFamily.sans]
+            },
+            screens:{
+                'xxl':'1920px'
             }
         }
     },

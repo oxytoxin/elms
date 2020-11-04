@@ -15,6 +15,10 @@ class CreateCourse extends Component
     public $course_image;
     public $fileId = 0;
 
+    protected $messages = [
+        'course_code.regex' => "The format is invalid. Please follow \"ABC123\" pattern."
+    ];
+
     public function render()
     {
         return view('livewire.create-course');

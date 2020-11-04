@@ -8,9 +8,11 @@
         <h1>Event Description: {{ $event->description }}</h1>
         <h1>Created by: {{ $event->user->name }}</h1>
         <h1>Created at: {{ $event->created_at->format('M d, Y') }}</h1>
-        <h1>Event Starts at: {{ Carbon\Carbon::parse($event->start)->format('M d, Y - g:i A') }}</h1>
+        <h1>Event Starts at: {{ $event->start->format('M d, Y - g:i A') }}</h1>
         @if ($event->end)
-        <h1>Event Ends at: {{ $event->allDay ?  Carbon\Carbon::parse($event->end)->format('M d, Y') : Carbon\Carbon::parse($event->end)->format('M d, Y - g:i A')}}</h1>
+        <h1>Event Ends at: {{ $event->allDay ?  $event->end->format('M d, Y') : $event->end->format('M d, Y - g:i A')}}</h1>
         @endif
+        <br>
+        <a href="{{ url()->previous() }}" class="p-2 font-semibold text-white bg-primary-500">Back</a>
     </div>
 @endsection

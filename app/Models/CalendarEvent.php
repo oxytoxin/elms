@@ -10,6 +10,7 @@ class CalendarEvent extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $dates = ['start', 'end'];
     public function user()
     {
         return $this->belongsTo(User::class);

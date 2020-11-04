@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Dean;
 use App\Models\Role;
+use App\Models\Todo;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\ProgramHead;
@@ -57,6 +58,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 
     public function dean()
     {

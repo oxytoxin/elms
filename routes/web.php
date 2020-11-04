@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/task/{id}', [MiscController::class, 'taskRedirect']);
+Route::get('/task/{id}', [MiscController::class, 'taskRedirect'])->middleware(['auth']);
 Route::post('test', [TestController::class, 'test']);
 
 // Student Routes

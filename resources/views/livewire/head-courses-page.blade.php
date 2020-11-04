@@ -1,6 +1,6 @@
-<div class="w-full" x-data="{showEditCourse:false}">
+<div class="w-full" x-data="{ showEditCourse:@entangle('showEditCourse')}">
     <h1 class="my-5 text-xl font-semibold">{{ $course->name }} <i class="ml-5 cursor-pointer icofont-edit"
-            @click="showEditCourse = !showEditCourse"></i><i
+            wire:click="$set('showEditCourse',true)"></i><i
             onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCourse"
             class="ml-5 text-red-600 cursor-pointer icofont-trash"></i><i wire:loading wire:target="enrolFaculty"
             class="fa fa-spinner fa-spin"></i></h1>
@@ -26,7 +26,7 @@
         <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
         @enderror
         <button type="submit" onclick="confirm('Confirm changes?') || event.stopImmediatePropagation()"
-            wire:click.prevent="editCourse" @click="showEditCourse = !showEditCourse" class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Save</button>
+            wire:click.prevent="editCourse" class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Save</button>
         <button wire:click.prevent="" @click="showEditCourse = !showEditCourse"
             class="px-10 py-2 mt-2 rounded-lg bg-primary-500">Cancel</button>
     </form>

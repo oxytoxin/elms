@@ -96,7 +96,7 @@
                                     </td>
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ Carbon\Carbon::parse($student->pivot->date_submitted)->format('M d,Y-h:i a') }}
+                                            {{ $student->pivot->date_submitted->format('M d, Y-h:i a') }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -118,9 +118,9 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                <td colspan="5" class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                         <div class="ml-3">
-                                            <p class="text-gray-900 whitespace-no-wrap">
+                                            <p  class="text-gray-900 whitespace-no-wrap">
                                                 No submissions yet.
                                             </p>
                                         </div>

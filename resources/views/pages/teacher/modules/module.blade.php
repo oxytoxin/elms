@@ -8,7 +8,7 @@
                 <h1 class="font-semibold">CREATE A TASK</h1>
                 <div class="text-center">
                     @foreach ($task_types as $task)
-                    <a href="{{ route('teacher.taskmaker',['module'=>$module->id,'course'=>$module->course->id,'type'=> $task->name ]) }}"><button class="p-2 my-2 font-semibold text-white rounded-md min-w-48 hover:text-primary-600 bg-primary-500"><i class="mr-2 icofont-ui-folder"></i>{{ strtoupper($task->name) }}</button></a>
+                    <a href="{{ route('teacher.taskmaker',['module'=>$module->id,'course'=>$module->course->id,'type'=> $task->name ]) }}"><button class="p-2 m-2 font-semibold text-white rounded-md min-w-40 hover:text-primary-600 bg-primary-500"><i class="mr-2 icofont-ui-folder"></i>{{ strtoupper($task->name) }}</button></a>
                     @endforeach
                 </div>
             </div>

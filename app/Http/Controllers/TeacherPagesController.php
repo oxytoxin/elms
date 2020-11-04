@@ -52,8 +52,8 @@ class TeacherPagesController extends Controller
     public function calendar()
     {
         $events = auth()->user()->calendar_events;
-        $events = $events->merge(CalendarEvent::where('level', 'all'));
-        $events = $events->merge(CalendarEvent::where('level', 'faculty'));
+        $events = $events->merge(CalendarEvent::where('level', 'all')->get());
+        $events = $events->merge(CalendarEvent::where('level', 'faculty')->get());
         return view('pages.teacher.calendar', compact('events'));
     }
     public function tasks($task_type)

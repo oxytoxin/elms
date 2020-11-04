@@ -12,7 +12,7 @@
                     <h1 class="text-sm font-semibold">Submissions: {{ $task->submissions }}</h1>
                     <h1 class="text-sm font-semibold">Graded: {{ $task->graded }}</h1>
                     <h1 class="text-sm font-semibold">Ungraded: {{ $task->ungraded }}</h1>
-                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ Carbon\Carbon::parse($task->deadline)->format('h:i a, m/d/Y') }}</h1>
+                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline->format('h:i a, m/d/Y') }}</h1>
                 </div>
             </a>
             @empty

@@ -6,6 +6,7 @@ use App\Models\Module;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\TaskType;
+use App\Models\StudentTask;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +14,10 @@ class Task extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected $dates = [
+        'deadline'
+    ];
 
     public function task_type()
     {
@@ -28,7 +33,7 @@ class Task extends Model
     }
     public function students()
     {
-        return $this->belongsToMany(Student::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers');
+        return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers');
     }
 
     public function getSubmissionsAttribute()
