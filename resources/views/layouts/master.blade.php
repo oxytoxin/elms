@@ -12,16 +12,19 @@
     <link rel="stylesheet" href="{{ asset('css/fa-min.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
     @livewireStyles
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <style>
-        [x-cloak] { display: none; }
+        .fc-scroller{
+            overflow: auto !important;
+        }
     </style>
     @stack('styles')
 </head>
 
-<body class="font-sans antialiased bg-gray-200">
+<body class="antialiased bg-gray-200">
     <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
-        if(window.matchMedia('(max-width: 480px)').matches){mobile=true; showSidebar=false;}
+        if(window.matchMedia('(max-width: 768px)').matches){mobile=true; showSidebar=false;}
     }">
         <aside @click.away="if(mobile)showSidebar = false" x-show="showSidebar"
         x-transition:enter="transition ease-out du ration-200"
@@ -33,7 +36,7 @@
         class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
                 @yield('sidebar')
         </aside>
-        <main class="w-full">
+        <main class="w-full overflow-hidden">
             <header class="sticky top-0 z-40 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
                 <h1 class="flex items-center text-center"><div x-show="!showSidebar" class="w-12 mx-3 logo">
                     <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
@@ -41,7 +44,7 @@
                 <nav class="text-2xl">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
                     <a><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
-                    <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-alarm"></i></a>
+                    @livewire('notification-component')
                     <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>
                     <a href="{{ route('profile.show') }}"><i
@@ -52,7 +55,7 @@
                 </nav>
             </header>
             <article class="flex w-full">
-                <section class="w-full pb-5">
+                <section class="w-full pb-5 overflow-hidden">
                     @yield('content')
                 </section>
                 <section x-show.transition.duration.750ms.origin.center.right="showSidebar" class="relative flex-col flex-shrink-0 hidden w-64 p-3 lg:flex pinned-items">

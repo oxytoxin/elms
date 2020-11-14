@@ -1,5 +1,8 @@
 window._ = require('lodash');
-
+window.$ = require('jquery');
+window.toastr = require('toastr');
+// import $ from 'jquery';
+// import dt from 'datatables.net';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -16,13 +19,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+import Pusher from 'pusher-js'
+import Echo from 'laravel-echo'
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: '66212e32c297e111355b',
+  cluster: 'ap1',
+  forceTLS: true
+});

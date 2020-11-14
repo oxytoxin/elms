@@ -57,7 +57,7 @@
     @endif
     @if ($tab == 'resources')
     <div class="mt-2">
-        <form action="#" wire:submit.prevent="addResources">
+        <form action="#">
             <label class="font-semibold" for="module">Select Module</label>
             <select wire:change="updateModule" wire:model="module_id" required class="flex-1 block w-full form-select">
                 <option value="0">Select Module</option>
@@ -70,13 +70,13 @@
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
             @enderror
             <label class="font-semibold" for="title">Resource Title</label>
-            <input wire:model="title" type="text" class="flex-1 block w-full form-input" autocomplete="off"
+            <input wire:model.lazy="title" type="text" class="flex-1 block w-full form-input" autocomplete="off"
                 placeholder="Resource Title" autofocus name="title">
             @error('title')
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
             @enderror
             <label class="font-semibold" for="description">Resource Description</label>
-            <textarea wire:model="description" class="flex-1 w-full resize form-textarea" rows="4" autocomplete="off"
+            <textarea wire:model.lazy="description" class="flex-1 w-full resize form-textarea" rows="4" autocomplete="off"
                 placeholder="Resource Description" autofocus name="description"></textarea>
             @error('description')
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
@@ -84,14 +84,14 @@
             <div class="flex flex-col items-center mt-2 md:flex-row">
                 <input type="file" wire:model="resources" id="file{{ $fileId }}" class="w-full form-input"
                     autocomplete="off" required multiple name="resources">
-                <button
+                <button wire:click="addResources" wire:loading.remove wire:target="resources"
                     class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:w-auto md:ml-2 md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Resource</button>
             </div>
             @error('resources.*')
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
             @enderror
-            <div wire:loading wire:target="addResources">
+            <div wire:loading wire:target="addResources,resources">
                 <h1 class="italic text-green-400">Uploading resources. Please wait...<i
                         class="fa fa-spinner fa-spin"></i></h1>
             </div>

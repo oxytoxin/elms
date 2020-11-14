@@ -14,7 +14,7 @@
             <div class="font-bold text-center uppercase hover:text-gray-700">UPLOAD MODULE RESOURCES</div>
         </a>
     </div>
-    <form x-show.transition.opacity="showEditCourse" id="course_edit" action="#" class="flex flex-col prounded-lg">
+    <form x-cloak x-show.transition.opacity="showEditCourse" id="course_edit" action="#" class="flex flex-col prounded-lg">
         <label for="course_name" class="mt-2">Course Name</label>
         <input wire:model.defer="newCourseName" name="course_name" type="text" class="form-input">
         @error('newCourseName')
@@ -95,7 +95,7 @@
                 @error('module')
                 <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
                 @enderror
-                <button wire:target="module" wire:loading.remove
+                <button  wire:target="module" wire:loading.remove
                     class="p-2 mt-2 ml-2 text-white whitespace-no-wrap rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Module</button>
             </div>

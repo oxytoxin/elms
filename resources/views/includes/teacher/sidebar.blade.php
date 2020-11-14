@@ -30,6 +30,10 @@
             <i class="mr-2 icofont-ui-calendar"></i>
             <h1 class="text-sm font-semibold">Calendar</h1>
         </a>
+        <a href="{{ route('teacher.gradebook') }}" class="flex {{ strpos(url()->current(),'gradebook') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+            <i class="mr-2 icofont-chart-bar-graph"></i>
+            <h1 class="text-sm font-semibold">Gradebook</h1>
+        </a>
         <a href="#" class="flex {{ strpos(url()->current(),'forms') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
             <i class="mr-2 icofont-file-pdf"></i>
             <h1 class="text-sm font-semibold">Forms</h1>

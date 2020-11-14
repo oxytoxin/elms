@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('task_type_id')->constrained();
             $table->string('name');
             $table->integer('max_score');
+            $table->text('essay_rubric')->nullable()->default(null);
             $table->longText('content');
             $table->dateTime('deadline');
             $table->timestamps();

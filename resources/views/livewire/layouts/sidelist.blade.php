@@ -1,11 +1,11 @@
 <div x-data="{showAdd:@entangle('showAdd')}">
     <div class="bg-white rounded-sm shadow-md card">
         <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
-            <h1 class="text-sm font-semibold">To Do</h1>
-            <button wire:click="toggleAdd" class="focus:outline-none hover:text-primary-600"><i class="icofont-plus"></i></button>
+            <h1 class="text-sm font-semibold"><i wire:loading class="mr-2 fas fa-spinner fa-spin"></i>To Do</h1>
+            <button @click="showAdd = true" class="focus:outline-none hover:text-primary-600"><i class="icofont-plus"></i></button>
         </div>
-        <div @click.away="showAdd = !showAdd" x-show.transition="showAdd" class="flex p-2">
-            <input wire:model="todo" type="text" class="w-10/12 text-xs form-input">
+        <div @click.away="showAdd = !showAdd" x-cloak x-show.transition="showAdd" class="flex p-2">
+            <input wire:model.defer="todo" autofocus type="text" class="w-10/12 text-xs form-input">
             <button wire:click="addTodo" class="px-2 mx-1 text-lg text-white rounded-lg focus:outline-none bg-primary-500 hover:bg-primary-600"><i class="icofont-check"></i></button>
         </div>
         <div class="px-2">
@@ -36,12 +36,13 @@
         <div class="p-2 min-h-16 content">
             <ul>
                 @forelse ($upcoming as $upcome)
-                <li class="text-xs">
-                    <i class="mr-1 text-lg icofont-notepad"></i><a href="#" class="truncate hover:underline">{{ $upcome->name }}</a>
+                <li wire:key="upcoming_{{ $upcome->id }}" title="{{ $upcome->name }}" class="text-xs truncate">
+                    <i class="mr-1 text-lg icofont-notepad"></i><a href="{{ route('student.task',['task'=>$upcome->id]) }}" class="truncate hover:underline">{{ $upcome->name }}</a>
                     <h1 class="text-xs text-right text-red-600">(Due: <span class="font-semibold">{{ $upcome->deadline->format('h:i A-M d, Y') }}</span> )</h1>
                 </li>
                 @empty
-
+                <li class="text-xs"> Woohoo! No upcoming tasks.
+                </li>
                 @endforelse
             </ul>
         </div>
@@ -62,6 +63,11 @@
                     <i class="text-red-600 icofont-alarm"></i>No announcements.
                 </li>
                 @endforelse
+                @if (count($events))
+                <li class="p-1 font-semibold text-center truncate hover:bg-primary-500">
+                   <a href="{{ \Request()->route()->getPrefix() .'/calendar' }}">SEE ALL</a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>

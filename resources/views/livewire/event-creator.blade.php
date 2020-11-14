@@ -1,4 +1,4 @@
-<div x-show.transition.duration.500ms="showEventCreator" class="fixed inset-0 z-50 overflow-y-auto">
+<div x-cloak x-show.transition.duration.500ms="showEventCreator" class="fixed inset-0 z-50 overflow-y-auto">
     <div class="z-50 flex flex-col items-center justify-center w-full min-h-screen">
         <div @click.away="showEventCreator = false" class="w-11/12 bg-white rounded-lg shadow-lg md:w-1/2 min-h-halfscreen">
             <h1 class="m-3 font-semibold">EVENT CREATOR</h1>

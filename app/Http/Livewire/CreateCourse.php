@@ -29,11 +29,15 @@ class CreateCourse extends Component
             'course_title' => 'required|string',
             'course_code' => ['required', 'regex:/^[a-zA-Z]{3}\d{3}$/'],
         ]);
-        Course::create([
+        $course = Course::create([
             'code' => strtoupper($this->course_code),
             'name' => strtoupper($this->course_title),
             'college_id' => Auth::user()->program_head->college_id,
             'department_id' => Auth::user()->program_head->department_id,
+        ]);
+        $rand = rand(1, 7);
+        $course->image()->create([
+            'url' => "/img/bg/bg($rand).jpg"
         ]);
         $this->course_title = "";
         $this->course_code = "";

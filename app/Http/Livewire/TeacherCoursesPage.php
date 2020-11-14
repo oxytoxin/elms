@@ -87,6 +87,7 @@ class TeacherCoursesPage extends Component
         $this->title = "";
         $this->description = "";
         $this->module_id = null;
+        $this->moduleSelected = null;
         $this->resources = [];
         $this->course = Course::find($this->course->id);
         session()->flash('message', 'Resources have been added.');

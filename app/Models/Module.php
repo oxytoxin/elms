@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\File;
+use App\Models\Task;
 use App\Models\Image;
 use App\Models\Course;
 use App\Models\Resource;
@@ -28,6 +30,10 @@ class Module extends Model
     }
     public function files()
     {
-        return $this->morphMany('App\Models\File', 'fileable');
+        return $this->morphMany(File::class, 'fileable');
+    }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

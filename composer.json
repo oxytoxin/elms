@@ -17,7 +17,8 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.0",
-        "nao-pon/flysystem-google-drive": "~1.1"
+        "nao-pon/flysystem-google-drive": "~1.1",
+        "pusher/pusher-php-server": "~4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

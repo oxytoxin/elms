@@ -3,26 +3,24 @@
         <div class="container px-4 mx-auto sm:px-8">
                 <div>
                     <h2 class="text-2xl font-semibold leading-tight">Task Submissions</h2>
+                    <div class="flex flex-col my-4 md:flex-row md:justify-between">
+                        <div>
+                            <h1><span class="font-semibold">COURSE: </span>{{ $task->course->name }}</h1>
+                            <h1><span class="font-semibold">Perfect Score: </span>{{ $task->max_score }}</h1>
+                            <a href="{{ route('teacher.task_preview',['task' => $task->id]) }}" class="p-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">PREVIEW TASK</a>
+                        </div>
+                        <div class="mt-4 md:text-right md:mt-0">
+                            <h1><span class="font-semibold">MODULE: </span>{{ $task->module->name }}</h1>
+                            <h1><span class="font-semibold">TASK: </span>{{ $task->name }}</h1>
+                            <h1 class="uppercase"><span class="font-semibold">TASK TYPE: </span>{{ $task->task_type->name }}</h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col my-2 sm:flex-row">
+                <div class="flex flex-col my-2 md:flex-row">
                     <div class="flex flex-row mb-1 sm:mb-0">
                         <div class="relative">
                             <select
-                                class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-l appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>20</option>
-                            </select>
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <select
-                                class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border-t border-b border-r border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                                class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                                 <option>All</option>
                                 <option>Graded</option>
                                 <option>Ungraded</option>
@@ -75,7 +73,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($students as $key => $student)
+                                @forelse ($students->sortBy('user.name') as $key => $student)
                                 <tr>
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                         <div class="flex items-center">
@@ -103,7 +101,7 @@
                                         <span
                                             class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 rounded-full opacity-50"></span>
+                                                class="absolute inset-0 {{ $student->pivot->isGraded ?  'bg-green-200' : 'bg-yellow-300'}} rounded-full opacity-50"></span>
                                             <span class="relative">{{ $student->pivot->isGraded ? 'Graded' : 'Ungraded' }}</span>
                                         </span>
                                     </td>
@@ -112,8 +110,10 @@
                                         <button class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900 hover:bg-primary-500">
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-green-200 opacity-50"></span>
-                                            <span class="relative"><i class="icofont-check-circled"></i>Grade</span>
+                                            <a href="{{ route('teacher.grade_task',['task' => $student->pivot->task_id, 'student' => $student->id]) }}"><span class="relative"><i class="mr-2 icofont-check-circled"></i>Grade</span></a>
                                         </button>
+                                        @else
+                                        <h1 class="flex items-center"><span class="mr-2">Score:</span><span class="text-xl font-semibold">{{ $student->pivot->score }}</span></h1>
                                         @endif
                                     </td>
                                 </tr>

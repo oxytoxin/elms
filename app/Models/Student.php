@@ -43,7 +43,7 @@ class Student extends Model
     }
     public function getAllTasksAttribute()
     {
-        return $this->teachers->map(function ($t) {
+        return $this->teachers->unique()->map(function ($t) {
             return $t->tasks;
         })->flatten();
     }
@@ -52,6 +52,25 @@ class Student extends Model
         return $this->all_tasks->filter(function ($t) use ($task_type) {
             return $t->task_type_id == $task_type;
         });
+    }
+
+    public function course_tasks($course_id)
+    {
+        return $this->all_tasks->filter(function ($t) use ($course_id) {
+            return $t->course->id == $course_id;
+        });
+    }
+
+    public function task_status($task_id)
+    {
+        if ($this->tasks()->where('task_id', $task_id)->first()) {
+            $task = $this->tasks()->where('task_id', $task_id)->first();
+            if ($task->pivot->date_submitted) {
+                if ($task->pivot->isGraded) return $task->pivot->score;
+                else return 'ungraded';
+            } else return false;
+        } else return false;
+        // return $this->tasks()->where('task_id', $task_id)->first();
     }
 
     public function gradedTasks()

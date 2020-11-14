@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Course;
 use App\Models\Module;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -18,6 +19,11 @@ class Task extends Model
     protected $dates = [
         'deadline'
     ];
+
+    public function getCourseAttribute()
+    {
+        return $this->module->course;
+    }
 
     public function task_type()
     {

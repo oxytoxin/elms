@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\MiscSeeder;
 use Database\Seeders\RolesSeeder;
 use Database\Seeders\UsersSeeder;
 use Database\Seeders\CollegeSeeder;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(CoursesSeeder::class);
         $this->call(TaskTypeSeeder::class);
+        $this->call(MiscSeeder::class);
     }
 }

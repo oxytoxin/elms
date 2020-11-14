@@ -82,10 +82,11 @@ class UsersSeeder extends Seeder
             'college_id' => 4,
         ])->user->roles()->attach(Role::find(5));
         User::find(201)->roles()->attach(Role::find(3));
+        $s = Student::find(1);
         Teacher::create([
             'user_id' => 201,
-            'department_id' => 1,
-            'college_id' => 1
+            'department_id' => $s->department_id,
+            'college_id' => $s->college_id
         ]);
     }
 }

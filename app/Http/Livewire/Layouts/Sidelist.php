@@ -11,36 +11,36 @@ class Sidelist extends Component
 
     public $todos;
     public $events;
-    public $upcoming;
     public $todo = "";
     public $showAdd = false;
+
+    public function render()
+    {
+        $upcoming = [];
+        if (auth()->user()->isStudent()) {
+            $upcoming = auth()->user()->student->allTasks->take(5)->sortBy('deadline');
+        }
+        return view('livewire.layouts.sidelist', [
+            'upcoming' => $upcoming,
+        ]);
+    }
 
     public function mount()
     {
         $this->todos = auth()->user()->todos->sortByDesc('created_at');
-        $this->events = CalendarEvent::where('level', 'all')->get();
-        if (auth()->user()->isStudent()) {
-            $this->upcoming = auth()->user()->student->allTasks->take(5)->sortByDesc('deadline');
-        }
+        $this->events = CalendarEvent::where('level', 'all')->get()->take(4)->sortBy('start');
     }
 
-
-    public function toggleAdd()
-    {
-        $this->showAdd = true;
-    }
 
     public function markAsDone(Todo $todo)
     {
         $todo->update([
             'completed' => true,
         ]);
+        $this->todos = auth()->user()->todos->sortByDesc('created_at');
     }
 
-    public function render()
-    {
-        return view('livewire.layouts.sidelist');
-    }
+
     public function addTodo()
     {
         $this->validate([
@@ -50,7 +50,9 @@ class Sidelist extends Component
             'content' => $this->todo,
         ]);
         $this->todo = "";
+        $this->showAdd = false;
         $this->todos = auth()->user()->todos->sortByDesc('created_at');
+        $this->dispatchBrowserEvent('toast', ['type' => 'success', 'message' => 'Todo added!']);
     }
 
     public function removeTodo(Todo $todo)

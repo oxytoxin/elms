@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Livewire\TaskMaker;
+use App\Http\Livewire\TaskTaker;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\TeacherTasklist;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
+use App\Http\Livewire\Teacher\Gradebook;
+use App\Http\Livewire\Teacher\GradeTask;
+use App\Http\Livewire\Teacher\TaskPreview;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\TaskTaker;
-use App\Http\Livewire\TeacherTasklist;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +79,9 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
     Route::get('/tasks/{task_type}', [TeacherPagesController::class, 'tasks'])->name('teacher.tasks');
     Route::get('/task/{task}', TeacherTasklist::class)->name('teacher.task');
+    Route::get('/preview_task/{task}', TaskPreview::class)->name('teacher.task_preview');
+    Route::get('/grade/{task}', GradeTask::class)->name('teacher.grade_task');
+    Route::get('/gradebook', Gradebook::class)->name('teacher.gradebook');
 });
 
 // Program Head Routes

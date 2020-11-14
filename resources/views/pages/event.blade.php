@@ -13,6 +13,6 @@
         <h1>Event Ends at: {{ $event->allDay ?  $event->end->format('M d, Y') : $event->end->format('M d, Y - g:i A')}}</h1>
         @endif
         <br>
-        <a href="{{ url()->previous() }}" class="p-2 font-semibold text-white bg-primary-500">Back</a>
+        <a href="/" class="p-2 font-semibold text-white bg-primary-500">Back to Home</a>
     </div>
 @endsection

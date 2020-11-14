@@ -1,9 +1,35 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "toastr";
 
 @media (max-width: 480px) {
     .fc-header-toolbar {
         flex-direction: column;
     }
+}
+
+[x-cloak] {
+    display: none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.selected-row {
+    @apply bg-primary-500;
 }
