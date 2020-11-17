@@ -14,6 +14,7 @@ use App\Http\Livewire\Teacher\TaskPreview;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\PreviewSubmission;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/task/{id}', [MiscController::class, 'taskRedirect'])->middleware(['auth']);
 Route::post('test', [TestController::class, 'test']);
+
+
+Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 
 // Student Routes
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {

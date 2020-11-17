@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Task;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentTask extends Pivot
 {
@@ -11,4 +13,13 @@ class StudentTask extends Pivot
     protected $guarded = [];
     public $incrementing = true;
     protected $dates = ['date_submitted'];
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

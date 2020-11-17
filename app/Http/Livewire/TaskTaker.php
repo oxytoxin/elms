@@ -13,6 +13,7 @@ class TaskTaker extends Component
     public $task;
     public $answers = [];
     public $task_content;
+    public $hasSubmission;
 
     protected $messages = [
         'answers.*.answer.required' => 'You forgot to answer this item.',
@@ -29,6 +30,7 @@ class TaskTaker extends Component
 
     public function mount(Task $task)
     {
+        $this->hasSubmission = $task->students->where('id', auth()->user()->student->id)->first();
         $this->task = $task;
         $this->task_content = json_decode($this->task->content, true);
     }
