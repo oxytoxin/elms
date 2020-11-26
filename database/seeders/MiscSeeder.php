@@ -67,7 +67,7 @@ class MiscSeeder extends Seeder
                         $task->id,
                         [
                             'isGraded' => $graded,
-                            'answers' => '[{"answer":"I have no idea."},{"files":[{"name":"signature.png","url":"tasks\/5PAMsJ59MbIQzuZJOcF2t30b1cZ31ywLFqg0SSCo.png"}]},{"answer":"I do not know."},{"answer":"The others are mistakes."},{"answer":"True"}]',
+                            'answers' => '[{"answer":"I have no idea."},{"files":[{"name":"signature.png","url":"https://picsum.photos/200"}]},{"answer":"I do not know."},{"answer":"The others are mistakes."},{"answer":"True"}]',
                             'score' => $graded ? rand(10, $task->max_score) : 0,
                             'date_submitted' => Carbon::now()->format('Y-m-d h:i:s')
                         ]
