@@ -8,7 +8,7 @@
     <label for="task_name">Task Name:</label>
     <span>{{ $task->name }}</span>
     <h1>Date Due: {{ $task->deadline->format('M d, Y') }}</h1>
-        @if ($task->essay_rubric)
+        @if ($rubric)
         <hr class="border border-primary-600">
         <div class="w-full my-2 overflow-auto">
             <h1 class="font-semibold text-center">Rubrics for Grading Essay</h1>
