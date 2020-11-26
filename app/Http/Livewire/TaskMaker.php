@@ -182,7 +182,10 @@ class TaskMaker extends Component
             'items.*.points' => 'required|numeric|min:1|max:100',
         ]);
 
-        foreach ($this->items as  $item) {
+        foreach ($this->items as  $key => $item) {
+            if (isset($item['answer'])) {
+                $this->items[$key]['answer'] = $item['options'][$item['answer']];
+            }
             if ($item['essay'] && !$this->isRubricSet) {
                 $this->showrubric = true;
                 return false;

@@ -50,8 +50,8 @@
                     @endif
                     @foreach ($item['options'] as $id=>$option)
                     <div class="relative flex items-center w-full mt-2">
-                        <input type="radio" wire:model="items.{{ $key }}.answer" name="item_{{ $key }}_answer" class="mr-2 form-radio" value="{{ $option }}">
-                        <input placeholder="Enter an option..." wire:model="items.{{ $key }}.options.{{ $id }}" type="text" class="form-input flex-1 {{ $key%2 ? 'text-black' : '' }}" name="option">
+                        <input type="radio" wire:model="items.{{ $key }}.answer" name="item_{{ $key }}_answer" class="mr-2 form-radio" value="{{ $id }}">
+                        <input placeholder="Enter an option..." wire:model.defer="items.{{ $key }}.options.{{ $id }}" type="text" class="form-input flex-1 {{ $key%2 ? 'text-black' : '' }}" name="option">
                         <i class="absolute ml-2 text-2xl text-red-600 cursor-pointer inset-y-2 right-1 icofont-trash" wire:click.prevent="removeOption({{ $key }},{{ $id }})"></i>
                     </div>
                     @error("items.$key.options.$id")
