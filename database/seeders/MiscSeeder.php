@@ -43,7 +43,7 @@ class MiscSeeder extends Seeder
                 ]);
             }
         }
-        Task::factory()->count(20)->create(['teacher_id' => 101]);
+        Task::factory()->count(50)->create(['teacher_id' => 101]);
         $tasks = Task::get();
         foreach ($tasks as $task) {
             $code = Carbon::now()->timestamp;
