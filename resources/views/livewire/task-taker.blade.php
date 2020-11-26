@@ -10,11 +10,11 @@
             <h1>{{ $item['question'] }}</h1>
             @if ($item['files'])
             <div class="flex justify-center my-3">
+                <div class="flex flex-col items-center">
                 @foreach ($item['files'] as $file)
-            <div class="flex flex-col items-center">
                 <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
-            </div>
-            @endforeach
+                @endforeach
+                </div>
             </div>
         @endif
         @forelse ($item['options'] as $id=>$option)

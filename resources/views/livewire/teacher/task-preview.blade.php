@@ -42,52 +42,52 @@
     <hr class="border border-primary-600">
     <div class="py-5 bg-white">
         @foreach ($task_content as $key => $item)
-    <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
+        <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
         <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
         <h1>{{ $item['question'] }}</h1>
         @if ($item['files'])
         <div class="flex justify-center my-3">
-            @foreach ($item['files'] as $file)
-        <div class="flex flex-col items-center">
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
+            <div class="flex flex-col items-center">
+                @foreach ($item['files'] as $file)
+                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
+                @endforeach
+            </div>
         </div>
-        @endforeach
-        </div>
-    @endif
-    @forelse ($item['options'] as $id=>$option)
-        <div class="flex items-center">
-            <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="mr-1 form-radio">
-            <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
-        </div>
-    @empty
+        @endif
+        @forelse ($item['options'] as $id=>$option)
+            <div class="flex items-center">
+                <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="mr-1 form-radio">
+                <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
+            </div>
+        @empty
 
-    @endforelse
+        @endforelse
 
-    @if ($item['options'])
-    <br>
-    <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
-    @endif
-    <br>
-    @isset($answers[$key]['files'])
-        <div class="p-3 mb-1 bg-white border shadow">
-            <h1 class="text-sm font-semibold uppercase">Your Attachments:</h1>
-            @foreach ($answers[$key]['files'] as $file)
-                <h1 class="text-sm italic">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</h1>
-            @endforeach
+        @if ($item['options'])
+        <br>
+        <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
+        @endif
+        <br>
+        @isset($answers[$key]['files'])
+            <div class="p-3 mb-1 bg-white border shadow">
+                <h1 class="text-sm font-semibold uppercase">Your Attachments:</h1>
+                @foreach ($answers[$key]['files'] as $file)
+                    <h1 class="text-sm italic">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</h1>
+                @endforeach
+            </div>
+        @endisset
+        @if ($item['attachment'])
+        <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
+        <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
+        @endif
+        @if ($item['essay'])
+        <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+        @else
+        @if (!$item['options'])
+        <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
+        @endif
+        @endif
         </div>
-    @endisset
-    @if ($item['attachment'])
-    <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-    <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
-    @endif
-    @if ($item['essay'])
-    <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
-    @else
-    @if (!$item['options'])
-    <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
-    @endif
-    @endif
-</div>
 @endforeach
     </div>
     <div class="flex flex-col items-center p-4 md:flex-row">

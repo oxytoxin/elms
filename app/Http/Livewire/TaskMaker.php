@@ -190,17 +190,17 @@ class TaskMaker extends Component
                 $this->showrubric = true;
                 return false;
             }
+            if (isset($this->files[$key]['fileArray']))
+                $this->items[$key]['files'] = $this->files[$key]['fileArray'];
         }
-
         foreach ($this->items as $key => $item) {
+            $this->items[$key]['files'] = [];
             foreach ($item['files'] as $id => $file) {
                 $filename = $file->getClientOriginalName();
                 $url = $file->store('tasks', 'public');
-                $this->items[$key]['files'] = [];
                 array_push($this->items[$key]['files'], ['name' => $filename, 'url' => $url]);
             }
         }
-
         $task = Task::create([
             'module_id' => $this->module->id,
             'teacher_id' => auth()->user()->teacher->id,

@@ -16,7 +16,7 @@
     <input type="time" wire:model.defer="time_due" class="m-2 form-input" name="time_due" id="time_due">
     <hr class="border border-primary-600">
         @foreach ($items as $key => $item)
-            <div class="p-2 m-2 {{ $key%2 ? 'bg-primary-500 text-white' : '' }} relative shadow-lg">
+            <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-primary-500 text-white' : '' }} relative shadow-lg">
                 @if ($key != 0)
                     <div class="absolute right-0 pr-2"><i wire:click.prevent="removeItem({{ $key }})" class="text-red-600 cursor-pointer icofont-close"></i></div>
                 @endif
@@ -34,7 +34,7 @@
                 @enderror
 
                 <div>
-                    <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="items.{{ $key }}.files" multiple>
+                    <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="files.{{ $key }}.fileArray" multiple>
                         <div class="flex flex-col items-center mt-2 text-white md:flex-row">
                             <button class="w-full p-2 my-1 whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
                             <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 md:ml-3 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>

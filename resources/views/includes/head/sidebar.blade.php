@@ -31,7 +31,7 @@
                 <i class="mr-2 icofont-book"></i>
                 <h1 class="text-sm font-semibold">Modules</h1>
             </a>
-            <a href="{{ route('head.calendar') }}" class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+            <a href="{{ route('head.calendar') }}" data-turbolinks="false"  class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
                 <i class="mr-2 icofont-ui-calendar"></i>
                 <h1 class="text-sm font-semibold">Calendar</h1>
             </a>
