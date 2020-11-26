@@ -43,7 +43,7 @@ class MiscSeeder extends Seeder
                 ]);
             }
         }
-        Task::factory()->count(100)->create(['teacher_id' => 101]);
+        Task::factory()->count(20)->create(['teacher_id' => 101]);
         $tasks = Task::get();
         foreach ($tasks as $task) {
             $code = Carbon::now()->timestamp;
@@ -67,7 +67,7 @@ class MiscSeeder extends Seeder
                         $task->id,
                         [
                             'isGraded' => $graded,
-                            'answers' => json_encode([]),
+                            'answers' => '[{"answer":"I have no idea."},{"files":[{"name":"signature.png","url":"tasks\/5PAMsJ59MbIQzuZJOcF2t30b1cZ31ywLFqg0SSCo.png"}]},{"answer":"I do not know."},{"answer":"The others are mistakes."},{"answer":"True"}]',
                             'score' => $graded ? rand(10, $task->max_score) : 0,
                             'date_submitted' => Carbon::now()->format('Y-m-d h:i:s')
                         ]

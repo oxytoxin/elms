@@ -39,7 +39,7 @@ class Task extends Model
     }
     public function students()
     {
-        return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers');
+        return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('id', 'score', 'date_submitted', 'isGraded', 'answers');
     }
 
     public function getSubmissionsAttribute()

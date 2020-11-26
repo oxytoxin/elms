@@ -31,5 +31,5 @@
 }
 
 .selected-row {
-    @apply bg-primary-500;
+    @apply bg-gradient-to-b from-green-400 to-green-500;
 }

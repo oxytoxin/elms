@@ -114,6 +114,11 @@
                                         </button>
                                         @else
                                         <h1 class="flex items-center"><span class="mr-2">Score:</span><span class="text-xl font-semibold">{{ $student->pivot->score }}</span></h1>
+                                        <button class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900 hover:bg-primary-500">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50"></span>
+                                            <a href="{{ route('preview-submission',['submission' => $student->pivot->id]) }}"><span class="relative text-xs">Preview Submission</a>
+                                        </button>
                                         @endif
                                     </td>
                                 </tr>

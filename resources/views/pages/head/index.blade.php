@@ -14,9 +14,9 @@
                         <h1 class="font-semibold text-center text-orange-500">{{ $course->code }}</h1>
                     </div>
                     <div class="h-2/12">
-                        <a href="{{ route('head.course',['course'=>$course->id]) }}"
+                        <a href="{{ route('head.course_modules',['course'=>$course->id]) }}"
                             class="flex items-center justify-center w-full h-full p-1 text-white hover:text-black bg-primary-600">
-                            View Course
+                            View Modules
                         </a>
                     </div>
                 </div>

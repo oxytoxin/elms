@@ -1,11 +1,11 @@
 <div class="w-full">
     <h1 class="my-5 text-xl font-semibold">{{ $course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
     <div class="box-border flex text-lg text-gray-300 border-2 border-black">
-        <a href="#" wire:click="$set('tab','student')"
+        <a href="#" data-turbolinks="false"  wire:click="$set('tab','student')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'student' ?  'bg-primary-500 text-gray-700' : '' }}">
             <div class="font-bold text-center uppercase hover:text-gray-700">ENROL STUDENT</div>
         </a>
-        <a href="#" wire:click="$set('tab','resources')"
+        <a href="#" data-turbolinks="false"  wire:click="$set('tab','resources')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'resources' ?  'bg-primary-500 text-gray-700' : '' }}">
             <div class="font-bold text-center uppercase hover:text-gray-700">UPLOAD MODULE RESOURCES</div>
         </a>

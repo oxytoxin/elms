@@ -5,11 +5,11 @@
             class="ml-5 text-red-600 cursor-pointer icofont-trash"></i><i wire:loading wire:target="enrolFaculty"
             class="fa fa-spinner fa-spin"></i></h1>
     <div class="box-border flex text-lg text-gray-300 border-2 border-black">
-        <a href="#" wire:click="$set('tab','faculty')"
+        <a href="#" data-turbolinks="false" wire:click="$set('tab','faculty')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'faculty' ?  'bg-primary-500 text-gray-700' : '' }}">
             <div class="font-bold text-center uppercase hover:text-gray-700">ENROL FACULTY</div>
         </a>
-        <a href="#" wire:click="$set('tab','modules')"
+        <a href="#" data-turbolinks="false" wire:click="$set('tab','modules')"
             class="flex items-center justify-center w-1/2 {{ $tab == 'modules' ?  'bg-primary-500 text-gray-700' : '' }}">
             <div class="font-bold text-center uppercase hover:text-gray-700">UPLOAD MODULE RESOURCES</div>
         </a>

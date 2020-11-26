@@ -33,9 +33,6 @@ class StudentPagesController extends Controller
         $resources = $module->resources()->whereIn('teacher_id', auth()->user()->student->teachers)->get();
         return view('pages.student.modules.module', compact('module', 'resources'));
     }
-    public function courses()
-    {
-    }
     public function course(Course $course)
     {
         return view('pages.student.courses.course', compact('course'));

@@ -98,8 +98,10 @@
         </div>
     @endisset
     <hr class="my-2 border border-primary-600">
+    @isset($answers[$key]['answer'])
     <h1 class="text-sm font-semibold">Student answered: {{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
     <p>{{ $answers[$key]['answer'] }}</p>
+    @endisset
     <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pts</span>
 </div>
 @endforeach

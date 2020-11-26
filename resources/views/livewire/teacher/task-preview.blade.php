@@ -40,9 +40,10 @@
         </div>
         @endif
     <hr class="border border-primary-600">
-    @foreach ($task_content as $key => $item)
+    <div class="py-5 bg-white">
+        @foreach ($task_content as $key => $item)
     <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
-        <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. ({{ $item['essay'] ? 'Essay' : '' }})</h1>
+        <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
         <h1>{{ $item['question'] }}</h1>
         @if ($item['files'])
         <div class="flex justify-center my-3">
@@ -54,8 +55,8 @@
         </div>
     @endif
     @forelse ($item['options'] as $id=>$option)
-        <div>
-            <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="form-radio">
+        <div class="flex items-center">
+            <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="mr-1 form-radio">
             <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
         </div>
     @empty
@@ -64,7 +65,7 @@
 
     @if ($item['options'])
     <br>
-    <h1>Correct Answer: <span class="font-semibold">{{ $item['options'][$item['answer']] }}</span></h1>
+    <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
     @endif
     <br>
     @isset($answers[$key]['files'])
@@ -77,17 +78,18 @@
     @endisset
     @if ($item['attachment'])
     <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-    <input type="file" readonly name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
+    <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
     @endif
     @if ($item['essay'])
-    <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." readonly cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+    <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
     @else
     @if (!$item['options'])
-    <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer" >
+    <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
     @endif
     @endif
 </div>
 @endforeach
+    </div>
     <div class="flex flex-col items-center p-4 md:flex-row">
         <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:w-auto">Total points: {{ $task->max_score }}</span>
     </div>

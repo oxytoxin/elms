@@ -8,7 +8,7 @@
                 @forelse($courses as $course)
                 @forelse ($course->modules as $module)
                 <div class="w-full overflow-hidden h-80">
-                    <div class="h-1/2"><img src="{{ $course->image->url }}" class="object-cover w-full h-full"
+                    <div class="h-1/2"><img src="{{ $module->image->url }}" class="object-cover w-full h-full"
                             alt="course"></div>
                     <div class="p-2 text-white h-4/12 bg-secondary-500">
                         <h1 class="text-xs italic text-center">{{ $course->name }}</h1>
@@ -23,10 +23,10 @@
                     </div>
                 </div>
                 @empty
-                <h1>No Course Modules Found</h1>
+
                 @endforelse
                 @empty
-                <h1>No Course Modules Found</h1>
+                <h1>No Courses Found</h1>
                 @endforelse
             </div>
         </div>

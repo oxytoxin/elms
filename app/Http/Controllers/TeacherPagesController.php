@@ -34,16 +34,9 @@ class TeacherPagesController extends Controller
         $resources = $module->resources()->where('teacher_id', auth()->user()->teacher->id)->get();
         return view('pages.teacher.modules.module', compact('module', 'task_types', 'resources'));
     }
-    public function courses()
-    {
-    }
     public function course(Course $course)
     {
         return view('pages.teacher.courses.course', compact('course'));
-    }
-    public function create_course()
-    {
-        return view('pages.teacher.courses.create');
     }
     public function preview(File $file)
     {

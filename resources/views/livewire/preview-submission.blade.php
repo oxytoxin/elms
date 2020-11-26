@@ -9,6 +9,7 @@
     @elseif(auth()->user()->isTeacher())
     <h1>Student: {{ $submission->student->user->name }}</h1>
     @endif
+    {{-- @dd($answers) --}}
     @foreach ($questions as $key => $question)
     <div class="p-4 mt-2 bg-white rounded-lg shadow">
         <h1><span class="font-semibold">Question {{ $question['item_no'] }}:</span> {{ $question['question'] }}</h1>
@@ -20,7 +21,9 @@
             @endforeach
             </div>
         @endif
+        @isset($answers[$key]['answer'])
         <p class="mt-3 text-sm"><span class="font-semibold">Answer:</span> {{ $answers[$key]['answer'] }}</p>
+        @endisset
         @if(!empty($answers[$key]['files']))
         <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Answer Attachments</h1>
             <div class="px-4 py-2">

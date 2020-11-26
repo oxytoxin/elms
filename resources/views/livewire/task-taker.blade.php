@@ -1,7 +1,9 @@
 <div class="p-5">
+    <h1 class="px-5 font-semibold uppercase"><span class="text-xl">{{ $task->task_type->name }}</h1>
+    <h1 class="px-5 italic font-semibold uppercase">Task: {{ $task->name }}</h1>
+    <h1 class="px-5 italic font-semibold uppercase">Course: {{ $task->course->name }}</span></h1>
+    <h1 class="px-5 italic font-semibold uppercase">Module: <span class="text-orange-500">{{ $task->module->name }}</span></h1>
     @if (!$hasSubmission)
-        <h1 class="px-5 font-semibold uppercase"><span class="text-2xl">{{ $task->task_type->name }} |</span> {{ $task->name }}</h1>
-        <h1 class="px-5 text-xl italic font-semibold uppercase"><span class="text-orange-500">{{ $task->module->name }}</span></h1>
         @foreach ($task_content as $key => $item)
         <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
             <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
@@ -53,8 +55,10 @@
         @enderror
         <button wire:click.prevent="submitAnswers" class="float-right p-2 mx-5 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
     @else
-        <h1>You have already submitted.</h1>
-        <div class="mt-5"><a href="#" class="p-2 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600">View Submission</a></div>
+        <div class="mx-5 mt-5">
+            <h1>You have already submitted.</h1>
+        <div class="mt-5"><a href="{{ route('preview-submission', ['submission'=>$hasSubmission->pivot->id]) }}" class="p-2 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600">View Submission</a></div>
+        </div>
     @endif
 
 </div>

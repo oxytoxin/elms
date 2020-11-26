@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
+use App\Http\Middleware\StudentIsEnrolled;
+use App\Http\Middleware\TeacherIsEnrolled;
 use Illuminate\Session\Middleware\StartSession;
 use App\Http\Middleware\SubmissionAuthorization;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -73,5 +75,7 @@ class Kernel extends HttpKernel
         'isTeacher' => \App\Http\Middleware\IsTeacher::class,
         'isProgramHead' => \App\Http\Middleware\IsProgramHead::class,
         'submissionPreview' => \App\Http\Middleware\SubmissionAuthorization::class,
+        'studentIsEnrolled' => \App\Http\Middleware\StudentIsEnrolled::class,
+        'teacherIsEnrolled' => \App\Http\Middleware\TeacherIsEnrolled::class,
     ];
 }

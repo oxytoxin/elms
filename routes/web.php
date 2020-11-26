@@ -57,10 +57,9 @@ Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middle
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/home', [StudentPagesController::class, 'home'])->name('student.home');
     Route::get('/modules', [StudentPagesController::class, 'modules'])->name('student.modules');
-    Route::get('/course/{course}/modules', [StudentPagesController::class, 'course_modules'])->name('student.course_modules');
+    Route::get('/course/{course}/modules', [StudentPagesController::class, 'course_modules'])->middleware('studentIsEnrolled')->name('student.course_modules');
     Route::get('/course/{course}', [StudentPagesController::class, 'course'])->name('student.course');
     Route::get('/module/{module}', [StudentPagesController::class, 'module'])->name('student.module');
-    Route::get('/courses', [StudentPagesController::class, 'courses'])->name('student.courses');
     Route::get('/courses/create', [StudentPagesController::class, 'create_course'])->name('student.create_course');
     Route::get('/preview/{file}', [StudentPagesController::class, 'preview'])->name('student.preview');
     Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
@@ -73,11 +72,11 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
 Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/home', [TeacherPagesController::class, 'home'])->name('teacher.home');
     Route::get('/modules', [TeacherPagesController::class, 'modules'])->name('teacher.modules');
-    Route::get('/course/{course}/modules', [TeacherPagesController::class, 'course_modules'])->name('teacher.course_modules');
+    Route::get('/course/{course}/modules', [TeacherPagesController::class, 'course_modules'])->middleware('teacherIsEnrolled')->name('teacher.course_modules');
     Route::get('/course/{course}', [TeacherPagesController::class, 'course'])->name('teacher.course');
     Route::get('/module/{module}', [TeacherPagesController::class, 'module'])->name('teacher.module');
-    Route::get('/courses', [TeacherPagesController::class, 'courses'])->name('teacher.courses');
-    Route::get('/courses/create', [TeacherPagesController::class, 'create_course'])->name('teacher.create_course');
+    // Route::get('/courses', [TeacherPagesController::class, 'courses'])->name('teacher.courses');
+    // Route::get('/courses/create', [TeacherPagesController::class, 'create_course'])->name('teacher.create_course');
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
     Route::get('/calendar', [TeacherPagesController::class, 'calendar'])->name('teacher.calendar');
     Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
