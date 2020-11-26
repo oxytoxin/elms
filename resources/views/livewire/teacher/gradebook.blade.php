@@ -86,6 +86,10 @@
     </script>
 @endpush
 
+@push('metas')
+    <meta name="turbolinks-cache-control" content="no-cache">
+@endpush
+
 @section('sidebar')
     @include('includes.teacher.sidebar')
 @endsection

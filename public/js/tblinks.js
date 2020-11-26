@@ -115,7 +115,9 @@ Copyright © 2018 Basecamp, LLC
 
 var Turbolinks = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
 
-Turbolinks.start();
+document.addEventListener("livewire:load", function (event) {
+  Turbolinks.start();
+});
 
 /***/ }),
 
