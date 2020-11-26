@@ -118,6 +118,7 @@ class TaskMaker extends Component
             array_unshift($this->items[$key]['options'], "True", "False");
         } else {
             array_splice($this->items[$key]['options'], 0, 2);
+            unset($this->items[$key]['answer']);
         }
     }
     public function Essaytrigger($key)
