@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fa-min.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
     <script src="{{ asset('js/tblinks.js') }}" defer></script>
     <style>
         .fc-scroller{

@@ -14,9 +14,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
 <script>
-
     document.addEventListener('turbolinks:load', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -36,7 +34,4 @@
         location.reload()
     })
   </script>
-@endpush
-@push('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
 @endpush

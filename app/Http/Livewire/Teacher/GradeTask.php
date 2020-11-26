@@ -106,7 +106,7 @@ class GradeTask extends Component
     public function getTotalScore()
     {
         return collect($this->items)->map(function ($i) {
-            return $i['score'];
+            return $i ? $i['score'] : 0;
         })->sum();
     }
 

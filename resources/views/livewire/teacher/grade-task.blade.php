@@ -111,5 +111,5 @@
 </div>
 
 @section('sidebar')
-    @include('includes.student.sidebar')
+    @include('includes.teacher.sidebar')
 @endsection
