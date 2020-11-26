@@ -122,8 +122,11 @@ class TaskMaker extends Component
     }
     public function Essaytrigger($key)
     {
-        $this->items[$key]['options'] = [];
         $this->items[$key]['essay'] = !$this->items[$key]['essay'];
+        if ($this->items[$key]['essay'] && isset($this->items[$key]['answer'])) {
+            $this->items[$key]['options'] = [];
+            unset($this->items[$key]['answer']);
+        }
         if ($this->items[$key]['torf']) {
             $this->items[$key]['torf'] = false;
             array_splice($this->items[$key]['options'], 0, 2);
