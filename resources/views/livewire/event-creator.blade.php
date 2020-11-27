@@ -1,4 +1,4 @@
-<div x-cloak x-show.transition.duration.500ms="showEventCreator" class="fixed inset-0 z-50 overflow-y-auto">
+<div x-data="{showEventCreator: @entangle('creatorOpen')}" id="event_creator" x-cloak x-show.transition="showEventCreator" class="fixed inset-0 z-50 overflow-y-auto">
     <div class="z-50 flex flex-col items-center justify-center w-full min-h-screen">
         <div @click.away="showEventCreator = false" class="w-11/12 bg-white rounded-lg shadow-lg md:w-1/2 min-h-halfscreen">
             <h1 class="m-3 font-semibold">EVENT CREATOR</h1>
@@ -8,20 +8,24 @@
                 {{ session('message') }}
                 @endif
             </div>
-            <form action="#" wire:submit.prevent="addEvent" class="flex flex-col p-5 mx-3 text-sm">
+            <div class="flex flex-col p-5 mx-3 text-sm">
                     <div class="mt-2">
                         <label for="event_name">Event Name</label>
                         <input wire:model="event_name" placeholder="Event Name" type="text" class="w-full form-input" name="event_name">
-                        @error('event_name')
+                        <div>
+                            @error('event_name')
                             <h1 class="text-sm italic text-red-600">{{ $message }}</h1>
-                        @enderror
+                            @enderror
+                        </div>
                     </div>
                     <div class="mt-2">
                         <label for="event_description">Event Description</label>
                         <input wire:model="event_description" placeholder="Event Description" type="text" class="w-full form-input" name="event_description">
-                        @error('event_description')
+                        <div>
+                            @error('event_description')
                             <h1 class="text-sm italic text-red-600">{{ $message }}</h1>
-                        @enderror
+                            @enderror
+                        </div>
                     </div>
                     <div class="mt-2">
                     <label for="event_target">Event Target</label>
@@ -40,9 +44,11 @@
                     <div class="flex flex-col w-1/2 mr-2">
                         <label for="event_start" class="block">Event Date Start</label>
                         <input wire:model="event_start_day" type="date" name="start_date" class="form-input" id="start_date">
-                        @error('event_start_day')
+                        <div>
+                            @error('event_start_day')
                                 <h1 class="text-sm italic text-red-600">{{ $message }}</h1>
-                        @enderror
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="flex flex-col w-1/2">
@@ -56,8 +62,8 @@
                     <div class="flex flex-col w-1/2"><label for="event_end" class="block">Event Time (Leave blank for whole day events)</label>
                     <input wire:model="event_end_time" type="time" name="end_time" class="form-input" id="end_time"></div>
                 </div>
-                <button type="submit" class="p-2 my-3 font-semibold text-white rounded-md bg-primary-500">ADD EVENT</button>
-            </form>
+                <button wire:click="addEvent" class="p-2 my-3 font-semibold text-white rounded-md bg-primary-500">ADD EVENT</button>
+            </div>
 
         </div>
     </div>

@@ -17,12 +17,15 @@ class EventCreator extends Component
     public $event_start_time = null;
     public $event_end_day = null;
     public $event_end_time = null;
-    public $previous;
+    public $creatorOpen = false;
 
-    public function mount()
+    protected $listeners = ['openEventCreator'];
+
+    public function openEventCreator()
     {
-        $this->previous = URL::previous();
+        $this->creatorOpen = true;
     }
+
     public function render()
     {
         return view('livewire.event-creator');
@@ -69,6 +72,7 @@ class EventCreator extends Component
         $this->event_start_time = null;
         $this->event_end_day = null;
         $this->event_end_time = null;
+        $this->creatorOpen = false;
         $this->dispatchBrowserEvent('event-created');
     }
 }
