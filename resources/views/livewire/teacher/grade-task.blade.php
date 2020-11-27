@@ -2,9 +2,9 @@
     <div x-show.transition="uiEssay" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
         @if ($rubric)
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
-            <h1 class="italic">Question: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, dolorum?</h1>
+            <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
             <hr class="my-1 border border-primary-600">
-            <h1 class="text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores placeat commodi soluta, aperiam, cumque quisquam nulla magni possimus enim voluptate doloribus itaque. Quia minus illum ratione ipsa quis consequuntur doloribus.</h1>
+            <p class="text-sm">{{ $answers[$essay_item]['answer'] }}</p>
             <div class="w-full overflow-auto">
                 <table class="table w-full mt-3 border-2 border-collapse table-auto border-primary-600">
                     <thead>

@@ -50,7 +50,6 @@ class GradeTask extends Component
 
     public function showEssayGrader($key)
     {
-        $this->uiEssay = true;
         $item = $this->task_content[$key];
         if ($item['essay']) {
             foreach ($this->rubric['criteria'] as $c => $criterion) {
@@ -60,6 +59,7 @@ class GradeTask extends Component
         $this->essay_item = $key;
         $this->essay_maxscore = $item['points'];
         isset($this->items['score']) ? $this->item['score'] : $this->essay_score = 0;
+        $this->uiEssay = true;
     }
 
     public function gradeEssay()

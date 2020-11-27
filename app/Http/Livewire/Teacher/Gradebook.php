@@ -29,7 +29,7 @@ class Gradebook extends Component
         $this->task_types = TaskType::all();
         $this->course = auth()->user()->teacher->courses()->first();
         $this->tasks = $this->course->modules->flatMap(function ($m) {
-            return $m->tasks;
+            return $m->tasks->where('teacher_id', auth()->user()->teacher->id);
         })->groupBy('task_type_id')->sortKeys();
         $this->students = $this->course->students()->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
     }
@@ -37,7 +37,7 @@ class Gradebook extends Component
     {
         $this->course = Course::find($this->course_id);
         $this->tasks = $this->course->modules->flatMap(function ($m) {
-            return $m->tasks;
+            return $m->tasks->where('teacher_id', auth()->user()->teacher->id);
         })->groupBy('task_type_id')->sortKeys();
         $this->students = $this->course->students()->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
     }
