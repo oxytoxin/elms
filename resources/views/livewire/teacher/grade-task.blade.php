@@ -1,5 +1,6 @@
 <div class="m-5" x-data="{uiEssay:@entangle('uiEssay')}">
     <div x-show.transition="uiEssay" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
+        @if ($rubric)
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
             <h1 class="italic">Question: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, dolorum?</h1>
             <hr class="my-1 border border-primary-600">
@@ -40,6 +41,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
     <h1 class="text-2xl font-semibold">Grade Task Submission</h1>
