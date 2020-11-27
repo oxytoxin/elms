@@ -55,7 +55,7 @@ class ProgramHeadPagesController extends Controller
     public function calendar()
     {
         $events = auth()->user()->calendar_events;
-        $events = $events->merge(CalendarEvent::where('level', 'all'));
+        $events = $events->merge(CalendarEvent::where('level', 'all')->get());
         return view('pages.head.calendar', compact('events'));
     }
 }
