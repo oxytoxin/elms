@@ -50,6 +50,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/task/{id}', [MiscController::class, 'taskRedirect'])->middleware(['auth']);
 Route::post('test', [TestController::class, 'test']);
 
+Route::view('/under_development', 'underdev')->name('soon_to_be_developed');
 
 Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 

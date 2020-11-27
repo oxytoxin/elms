@@ -26,6 +26,9 @@ class RedirectMe
             case 4:
                 return redirect()->route('head.home');
                 break;
+            case 5:
+                return redirect()->route('soon_to_be_developed');
+                break;
         }
         return response('Error');
     }
