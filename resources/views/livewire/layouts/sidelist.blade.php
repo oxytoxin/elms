@@ -65,7 +65,7 @@
                 @endforelse
                 @if (count($events))
                 <li class="p-1 font-semibold text-center truncate hover:bg-primary-500">
-                   <a href="{{ \Request()->route()->getPrefix() .'/calendar' }}">SEE ALL</a>
+                   <a data-turbolinks="false" href="{{ \Request()->route()->getPrefix() .'/calendar' }}">SEE ALL</a>
                 </li>
                 @endif
             </ul>
