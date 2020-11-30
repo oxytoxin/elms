@@ -128,7 +128,7 @@ document.addEventListener("livewire:load", function (event) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\J7 IT Solutions\elms\resources\js\tblinks.js */"./resources/js/tblinks.js");
+module.exports = __webpack_require__(/*! /var/www/elms/resources/js/tblinks.js */"./resources/js/tblinks.js");
 
 
 /***/ })

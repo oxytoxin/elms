@@ -59,6 +59,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function receivesBroadcastNotificationsOn()
+    {
+        return "users.$this->id";
+    }
+
     public function todos()
     {
         return $this->hasMany(Todo::class);

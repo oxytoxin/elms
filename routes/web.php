@@ -1,20 +1,26 @@
 <?php
 
+use App\Models\Task;
+use App\Models\User;
+use App\Events\NewTask;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\TeacherTasklist;
+use App\Notifications\SomeNotification;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
+use App\Http\Livewire\PreviewSubmission;
 use App\Http\Livewire\Teacher\Gradebook;
 use App\Http\Livewire\Teacher\GradeTask;
 use App\Http\Livewire\Teacher\TaskPreview;
+use App\Notifications\AnotherNotification;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\PreviewSubmission;
+use App\Models\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +37,9 @@ Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('f
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
 
 Route::get('/command', function () {
-    \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
-    \Illuminate\Support\Facades\Artisan::call("view:cache");
+    // \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
+    // \Illuminate\Support\Facades\Artisan::call("view:cache");
+    event(new NewTask(Task::find(1), Teacher::find(101)));
 });
 
 Route::get('/', function () {

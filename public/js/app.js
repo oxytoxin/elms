@@ -36862,10 +36862,20 @@ window.addEventListener('toast', function (event) {
       });
       break;
   }
-});
-var channel = Echo.channel('my-channel');
-channel.listen('.event', function (data) {
-  alert(JSON.stringify(data));
+}); // var channel = Echo.channel('my-channel');
+// channel.listen('.event', function (data) {
+//     alert(JSON.stringify(data));
+// });
+// channel.listen('.next-event', function (data) {
+//     alert(JSON.stringify(data));
+// });
+// Echo.private('users.' + 1)
+//     .notification((notification) => {
+//         console.log(notification);
+//     });
+
+document.addEventListener('notification', function (e) {
+  document.querySelector('#notifAudio').play();
 });
 
 /***/ }),
@@ -36907,7 +36917,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   broadcaster: 'pusher',
   key: '66212e32c297e111355b',
   cluster: 'ap1',
-  forceTLS: true
+  forceTLS: true,
+  authEndpoint: '/broadcasting/auth'
 });
 
 /***/ }),
@@ -36919,8 +36930,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\J7 IT Solutions\elms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\J7 IT Solutions\elms\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/elms/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/elms/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

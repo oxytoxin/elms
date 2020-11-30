@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Course;
 use App\Models\Module;
+use App\Events\NewTask;
+use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\TaskType;
 use App\Models\CalendarEvent;
@@ -223,9 +225,8 @@ class TaskMaker extends Component
             'url' => '/task/' . $task->id,
             'allDay' => false
         ]);
-
+        event(new NewTask($task, auth()->user()->teacher));
         return redirect()->route('teacher.home');
-        // $this->response = (string)json_encode($this->items);
     }
 
     //

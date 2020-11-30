@@ -29,6 +29,9 @@
 </head>
 
 <body class="antialiased bg-gray-200">
+    <audio id="notifAudio">
+        <source src="{{ asset('notification.ogg') }}" type="audio/ogg">
+    </audio>
     <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
         if(window.matchMedia('(max-width: 768px)').matches){mobile=true; showSidebar=false;}
     }">
@@ -42,12 +45,12 @@
         class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
                 @yield('sidebar')
         </aside>
-        <main class="w-full overflow-hidden">
+        <main class="w-full">
             <header class="sticky top-0 z-40 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
                 <h1 class="flex items-center text-center"><div x-show="!showSidebar" class="w-12 mx-3 logo">
                     <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
                 </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
-                <nav class="text-2xl">
+                <nav class="text-2xl whitespace-no-wrap">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
                     <a><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
                     @livewire('notification-component')

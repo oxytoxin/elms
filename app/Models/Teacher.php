@@ -28,6 +28,12 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Student::class)->withPivot('course_id');
     }
+
+    public function courseStudents($course)
+    {
+        return $this->belongsToMany(Student::class)->wherePivot('course_id', $course)->withPivot('course_id');
+    }
+
     public function courses()
     {
         return $this->belongsToMany(Course::class);

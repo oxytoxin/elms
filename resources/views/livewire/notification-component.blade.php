@@ -1,31 +1,25 @@
-<div class="inline md:relative" x-data="{showNotifs:false}">
-    <a @click="showNotifs = !showNotifs"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-alarm"></i></a>
-    <div  @click.away="showNotifs = false" x-cloak x-show.transition.opacity="showNotifs" class="absolute right-0 z-50 mr-3 text-gray-700 bg-white w-72">
-        <ul class="text-xs font-normal divide-y-2">
-            <li class="flex items-center p-2 cursor-pointer hover:bg-gray-300">
-                <div class="w-24 mr-2 overflow-hidden rounded-full">
-                <img src="{{ auth()->user()->profile_photo_url }}" class="object-cover w-full" alt="notif_image">
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, cupiditate.</h1>
+<div class="relative inline" x-data="{showNotifs: @entangle('showNotifs')}">
+    <a wire:click="notificationsOpened"><i class="cursor-pointer hover:text-primary-600 icofont-alarm"></i><span class="absolute right-0 px-1 text-xs bg-orange-500 rounded-sm">{{ $unread }}</span></a>
+    <div @click.away="showNotifs = false" x-cloak x-show.transition.opacity="showNotifs" class="absolute right-0 z-50 mr-3 text-gray-700 bg-white w-72">
+        <ul class="flex flex-col text-xs font-normal divide-y">
+            @forelse ($notifications as $notification)
+            <a href="{{ $notification->data['url'] }}">
+            <li class="flex items-center p-2 cursor-pointer hover:bg-green-300">
+                    <div class="flex-shrink-0 w-12 mr-2 overflow-hidden rounded-full">
+                        <img src="{{ $notification->data['photo_url'] }}" class="object-cover w-full" alt="notif_image">
+                    </div>
+                    <div>
+                        <h1 class="whitespace-normal">{{ $notification->data['message'] }}</h1>
+                        <h1 class="text-xs text-right">{{ $notification->created_at->diffForHumans() }}</h1>
+                    </div>
             </li>
-            <li class="flex items-center p-2 cursor-pointer hover:bg-gray-300">
-                <div class="w-24 mr-2 overflow-hidden rounded-full">
-                <img src="{{ auth()->user()->profile_photo_url }}" class="object-cover w-full" alt="notif_image">
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, cupiditate.</h1>
+            </a>
+            @empty
+            <li>
+                <h1 class="p-2 text-center">No notifications.</h1>
             </li>
-            <li class="flex items-center p-2 cursor-pointer hover:bg-gray-300">
-                <div class="w-24 mr-2 overflow-hidden rounded-full">
-                <img src="{{ auth()->user()->profile_photo_url }}" class="object-cover w-full" alt="notif_image">
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, cupiditate.</h1>
-            </li>
-            <li class="flex items-center p-2 cursor-pointer hover:bg-gray-300">
-                <div class="w-24 mr-2 overflow-hidden rounded-full">
-                <img src="{{ auth()->user()->profile_photo_url }}" class="object-cover w-full" alt="notif_image">
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, cupiditate.</h1>
-            </li>
+            @endforelse
+
         </ul>
     </div>
 </div>

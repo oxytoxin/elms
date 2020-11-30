@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\NewSubmission;
+use App\Events\NewTask;
 use App\Listeners\CheckSubmission;
+use App\Listeners\NotifyTaskStudents;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewSubmission::class => [
             CheckSubmission::class,
+        ],
+        NewTask::class => [
+            NotifyTaskStudents::class,
         ],
     ];
 
