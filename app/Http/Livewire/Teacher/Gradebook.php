@@ -3,22 +3,35 @@
 namespace App\Http\Livewire\Teacher;
 
 use App\Models\Course;
-use App\Models\TaskType;
+use App\Models\Section;
 use Livewire\Component;
+use App\Models\TaskType;
+use Illuminate\Database\Query\Builder;
 
 class Gradebook extends Component
 {
 
     public $courses;
     public $course;
-    public $tasks;
+    public $section_id;
+    public $sections;
+    protected $tasks;
     public $students;
     public $task_types;
     public $course_id;
 
     public function render()
     {
-        return view('livewire.teacher.gradebook')
+        $this->tasks = Section::find($this->section_id)->tasks->filter(function ($t) {
+            return $t->course->id == $this->course_id;
+        })->groupBy('task_type_id');
+        if (!$this->section_id) {
+            $this->section_id = $this->course->sections->first()->id;
+        }
+        $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
+        return view('livewire.teacher.gradebook', [
+            'tasks' => $this->tasks,
+        ])
             ->extends('layouts.master')
             ->section('content');
     }
@@ -28,21 +41,21 @@ class Gradebook extends Component
         $this->courses  = auth()->user()->teacher->courses;
         $this->task_types = TaskType::all();
         $this->course = auth()->user()->teacher->courses()->first();
-        $this->tasks = $this->course->modules->flatMap(function ($m) {
-            return $m->tasks->where('teacher_id', auth()->user()->teacher->id);
-        })->groupBy('task_type_id')->sortKeys();
-        $this->students = $this->course->students()->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
+        $this->course_id = $this->course->id;
+        $this->section_id = $this->course->sections->first()->id;
+
+        $this->tasks = Section::find($this->section_id)->tasks->filter(function ($t) {
+            return $t->course->id == $this->course_id;
+        })->groupBy('task_type_id');
     }
     public function updateCourse()
     {
         $this->course = Course::find($this->course_id);
-        $this->tasks = $this->course->modules->flatMap(function ($m) {
-            return $m->tasks->where('teacher_id', auth()->user()->teacher->id);
-        })->groupBy('task_type_id')->sortKeys();
-        $this->students = $this->course->students()->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
+        $this->section_id = $this->course->sections->first()->id;
     }
 
-    private function resetProps()
+    public function updateSection()
     {
+        $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
     }
 }

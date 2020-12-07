@@ -1,8 +1,9 @@
-<div x-data="{showrubric: @entangle('showrubric')}" class="p-2 m-4 shadow">
+<div x-data="{showrubric: @entangle('showrubric')}" class="p-2 m-4 text-sm shadow">
     <h1 class="text-xl font-semibold">TASK CREATOR</h1>
     <br>
     <h1>For Course: <span class="italic">{{ $module->course->name }}</span></h1>
     <h1>For Module: <span class="italic">{{ $module->name }}</span></h1>
+    <h1>For Section: <span class="italic">{{ $module->section->code }}</span></h1>
     <h1>Task Type: {{ strtoupper($type) }}</h1>
     <br>
     <label for="task_name">Task Name:</label>

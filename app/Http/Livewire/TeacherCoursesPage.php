@@ -8,6 +8,7 @@ use App\Models\Module;
 use App\Models\Student;
 use Livewire\Component;
 use App\Models\Resource;
+use App\Models\Section;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,7 @@ class TeacherCoursesPage extends Component
 
     public $tab = 'student';
     public $email = '';
-    public $course;
+    public $section;
     public $module_id;
     public $moduleSelected;
     public $title;
@@ -28,7 +29,14 @@ class TeacherCoursesPage extends Component
 
     public function render()
     {
-        return view('livewire.teacher-courses-page');
+        return view('livewire.teacher-courses-page')
+            ->extends('layouts.master')
+            ->section('content');
+    }
+
+    public function mount(Section $section)
+    {
+        $this->section = $section;
     }
 
     public function updateModule()
@@ -42,10 +50,9 @@ class TeacherCoursesPage extends Component
             'email' => 'required|email',
         ]);
         $student = User::has('student')->where('email', $this->email)->firstOrFail()->student;
-        if (!$this->course->students->contains($student)) {
-            $this->course->students()->attach($student->id, ['teacher_id' => auth()->user()->teacher->id]);
-            auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->course->id]);
-            $this->course =  Course::find($this->course->id);
+        if (!$this->section->students->contains($student)) {
+            auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->section->course->id, 'section_id' => $this->section->id]);
+            $this->section =  $this->section;
             $this->email = "";
             session()->flash('message', 'Student succesfully enrolled.');
         } else
@@ -53,9 +60,9 @@ class TeacherCoursesPage extends Component
     }
     public function removeStudent(Student $student)
     {
-        $this->course->students()->detach($student);
-        $this->course =  Course::find($this->course->id);
-        session()->flash('message', 'Faculty member succesfully removed.');
+        $this->section->students()->detach($student);
+        $this->section =  $this->section;
+        session()->flash('message', 'Student succesfully unenrolled.');
     }
     public function addResources()
     {
@@ -89,7 +96,7 @@ class TeacherCoursesPage extends Component
         $this->module_id = null;
         $this->moduleSelected = null;
         $this->resources = [];
-        $this->course = Course::find($this->course->id);
+        $this->section = $this->section;
         session()->flash('message', 'Resources have been added.');
     }
     public function removeResource(Resource $resource)
@@ -98,7 +105,7 @@ class TeacherCoursesPage extends Component
             Storage::cloud()->delete($f->google_id);
         }
         $resource->delete();
-        $this->course = Course::find($this->course->id);
+        $this->section = $this->section;
         session()->flash('message', 'Module resources have been updated.');
     }
 }

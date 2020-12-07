@@ -8,8 +8,10 @@ use App\Models\Course;
 use App\Models\College;
 use App\Models\Teacher;
 use App\Models\Department;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\StudentTask;
+use App\Models\CourseTeacherStudent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
@@ -30,11 +32,16 @@ class Student extends Model
     }
     public function courses()
     {
-        return $this->belongsToMany(Course::class)->withPivot('teacher_id');
+        return $this->belongsToMany(Course::class, 'student_teacher')->using(CourseTeacherStudent::class)->withPivot('teacher_id');
     }
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'student_teacher')->withPivot(['course_id', 'teacher_id']);
     }
 
     public function tasks()

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Task;
 use App\Models\Module;
+use App\Models\Section;
 use App\Models\Teacher;
 use App\Models\TaskType;
 use Carbon\Carbon;
@@ -31,6 +32,7 @@ class TaskFactory extends Factory
         return [
             'module_id' => rand(1, $m),
             'teacher_id' => rand(1, $t),
+            'section_id' => Section::get()->random()->id,
             'task_type_id' => rand(1, $k),
             'name' => $this->faker->catchPhrase,
             'max_score' => intdiv(rand(20, 100), 10) * 10,

@@ -12,6 +12,7 @@ class CreateCourse extends Component
 
     public $course_title = '';
     public $course_code = '';
+    public $course_units = 3.00;
     public $course_image;
     public $fileId = 0;
 
@@ -28,12 +29,14 @@ class CreateCourse extends Component
         $this->validate([
             'course_title' => 'required|string',
             'course_code' => ['required', 'regex:/^[a-zA-Z]{3}\d{3}$/'],
+            'course_units' => ['required', 'numeric', 'min:1'],
         ]);
         $course = Course::create([
             'code' => strtoupper($this->course_code),
             'name' => strtoupper($this->course_title),
-            'college_id' => Auth::user()->program_head->college_id,
-            'department_id' => Auth::user()->program_head->department_id,
+            'units' => $this->course_units,
+            // 'college_id' => Auth::user()->program_head->college_id,
+            // 'department_id' => Auth::user()->program_head->department_id,
         ]);
         $rand = rand(1, 7);
         $course->image()->create([

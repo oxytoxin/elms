@@ -3,6 +3,7 @@
 use App\Models\Task;
 use App\Models\User;
 use App\Events\NewTask;
+use App\Models\Teacher;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
 use App\Http\Livewire\PreviewSubmission;
+use App\Http\Livewire\Teacher\AddModule;
 use App\Http\Livewire\Teacher\Gradebook;
 use App\Http\Livewire\Teacher\GradeTask;
 use App\Http\Livewire\Teacher\TaskPreview;
@@ -20,7 +22,10 @@ use App\Notifications\AnotherNotification;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Models\Teacher;
+use App\Http\Livewire\Head\AddSection;
+use App\Http\Livewire\Head\FacultyManager;
+use App\Http\Livewire\Head\WorkloadUploader;
+use App\Http\Livewire\TeacherCoursesPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +44,13 @@ Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('ev
 Route::get('/command', function () {
     // \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
     // \Illuminate\Support\Facades\Artisan::call("view:cache");
-    event(new NewTask(Task::find(1), Teacher::find(101)));
+    // event(new NewTask(Task::find(1), Teacher::find(101)));\
+    $csv = [];
+    $handle = fopen('sample.csv', 'r');
+    while (($data = fgetcsv($handle, 0, ',')) !== FALSE) {
+        array_push($csv, $data);
+    }
+    return $csv;
 });
 
 Route::get('/', function () {
@@ -80,9 +91,10 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
 Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/home', [TeacherPagesController::class, 'home'])->name('teacher.home');
     Route::get('/modules', [TeacherPagesController::class, 'modules'])->name('teacher.modules');
-    Route::get('/course/{course}/modules', [TeacherPagesController::class, 'course_modules'])->middleware('teacherIsEnrolled')->name('teacher.course_modules');
-    Route::get('/course/{course}', [TeacherPagesController::class, 'course'])->name('teacher.course');
+    Route::get('/section/{section}/modules', [TeacherPagesController::class, 'course_modules'])->middleware('teacherIsEnrolled')->name('teacher.course_modules');
+    Route::get('/course/{section}', TeacherCoursesPage::class)->name('teacher.course');
     Route::get('/module/{module}', [TeacherPagesController::class, 'module'])->name('teacher.module');
+    Route::get('/addmodule/{section}', AddModule::class)->name('teacher.addmodule');
     // Route::get('/courses', [TeacherPagesController::class, 'courses'])->name('teacher.courses');
     // Route::get('/courses/create', [TeacherPagesController::class, 'create_course'])->name('teacher.create_course');
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
@@ -99,11 +111,14 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
 Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(function () {
     Route::get('/home', [ProgramHeadPagesController::class, 'home'])->name('head.home');
     Route::get('/modules', [ProgramHeadPagesController::class, 'modules'])->name('head.modules');
-    Route::get('/course/{course}/modules', [ProgramHeadPagesController::class, 'course_modules'])->name('head.course_modules');
+    Route::get('/course/{section}/modules', [ProgramHeadPagesController::class, 'course_modules'])->name('head.course_modules');
     Route::get('/course/{course}', [ProgramHeadPagesController::class, 'course'])->name('head.course');
     Route::get('/module/{module}', [ProgramHeadPagesController::class, 'module'])->name('head.module');
     Route::get('/courses', [ProgramHeadPagesController::class, 'courses'])->name('head.courses');
     Route::get('/courses/create', [ProgramHeadPagesController::class, 'create_course'])->name('head.create_course');
     Route::get('/preview/{file}', [ProgramHeadPagesController::class, 'preview'])->name('head.preview');
     Route::get('/calendar', [ProgramHeadPagesController::class, 'calendar'])->name('head.calendar');
+    Route::get('/add-section', AddSection::class)->name('head.add_section');
+    Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
+    Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');
 });

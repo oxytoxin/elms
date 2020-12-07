@@ -1,6 +1,6 @@
 <div class="relative inline" x-data="{showNotifs: @entangle('showNotifs')}">
     <a wire:click="notificationsOpened"><i class="cursor-pointer hover:text-primary-600 icofont-alarm"></i><span class="absolute right-0 px-1 text-xs bg-orange-500 rounded-sm">{{ $unread }}</span></a>
-    <div @click.away="showNotifs = false" x-cloak x-show.transition.opacity="showNotifs" class="absolute right-0 z-50 mr-3 text-gray-700 bg-white w-72">
+    <div @click.away="showNotifs = false" x-cloak x-show.transition.opacity="showNotifs" class="absolute z-50 mr-3 text-gray-700 bg-white md:right-0 w-72">
         <ul class="flex flex-col text-xs font-normal divide-y">
             @forelse ($notifications as $notification)
             <a href="{{ $notification->data['url'] }}">

@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\College;
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,11 @@ class Teacher extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
     }
 
     public function ungradedTasks($task_type_id)

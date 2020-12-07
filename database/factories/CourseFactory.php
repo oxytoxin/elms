@@ -33,8 +33,9 @@ class CourseFactory extends Factory
         return [
             'code' => $coursecode . $this->faker->numerify('###'),
             'name' => $name,
-            'college_id' => $college->id,
-            'department_id' => $college->departments->random()->id,
+            'units' => 3.00,
+            // 'college_id' => $college->id,
+            // 'department_id' => $college->departments->random()->id,
         ];
     }
 }

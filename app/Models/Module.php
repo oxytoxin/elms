@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Task;
 use App\Models\Image;
 use App\Models\Course;
+use App\Models\Section;
 use App\Models\Resource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,11 @@ class Module extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
     public function resources()
     {

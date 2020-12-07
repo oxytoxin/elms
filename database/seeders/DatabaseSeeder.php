@@ -10,6 +10,7 @@ use Database\Seeders\CollegeSeeder;
 use Database\Seeders\CoursesSeeder;
 use Database\Seeders\TaskTypeSeeder;
 use Database\Seeders\DepartmentSeeder;
+use DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(UsersSeeder::class);
+        DB::unprepared(file_get_contents('database/seeders/subjects.sql'));
         $this->call(CoursesSeeder::class);
         $this->call(TaskTypeSeeder::class);
         $this->call(MiscSeeder::class);

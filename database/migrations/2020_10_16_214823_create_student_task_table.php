@@ -16,6 +16,7 @@ class CreateStudentTaskTable extends Migration
         Schema::create('student_task', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained();
+            $table->foreignId('section_id')->constrained();
             $table->foreignId('task_id')->constrained();
             $table->boolean('isGraded')->default(false);
             $table->longText('answers');

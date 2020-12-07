@@ -2,15 +2,30 @@
     <div class="m-2">
         <h1 class="text-2xl font-semibold">Gradebook</h1>
         <div>
-            <h1 class="text-xl font-semibold">For Course:</h1>
-            <i class="mr-4 text-xl fas fa-spin fa-spinner text-primary-600" wire:loading></i><select wire:change="updateCourse" wire:model="course_id" class="truncate form-select" name="course_select" id="course_select">
-                @forelse ($courses as $c)
-                <option value="{{ $c->id }}">{{ $c->name }}</option>
-                @empty
-                <option value="0" selected disabled hidden>No Courses Found.</option>
-                @endforelse
-            </select>
+            <div class="flex flex-col mb-3 md:flex-row">
+                <div class="mx-5">
+                    <h1 class="text-xl font-semibold">For Course:</h1>
+                    <select wire:change="updateCourse" wire:model="course_id" class="flex-grow truncate form-select" name="course_select" id="course_select">
+                        @forelse ($courses as $c)
+                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                        @empty
+                        <option value="0" selected disabled hidden>No Courses Found.</option>
+                        @endforelse
+                    </select>
+                </div>
+                <div class="mx-5">
+                    <h1 class="text-xl font-semibold">For Section:</h1>
+                    <select wire:change="updateSection" wire:model="section_id" class="flex-growtruncate form-select" name="course_select" id="course_select">
+                        @forelse ($course->sections as $section)
+                        <option value="{{ $section->id }}">{{ $section->code }}</option>
+                        @empty
+                        <option value="0" selected disabled hidden>No Courses Found.</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
             <button onclick="clearSelections()" class="p-3 text-xs font-bold text-white uppercase rounded-lg hover:bg-primary-600 bg-primary-500">Clear highlighted</button>
+            <i class="mr-4 text-xl fas fa-spin fa-spinner text-primary-600" wire:loading></i>
         </div>
         <div class="flex flex-col items-center justify-center mt-3 md:flex-row">
             <div class="mx-5">
@@ -40,8 +55,7 @@
                     </tr>
             </thead>
                 <tbody>
-
-                    @forelse ($students->sortBy('user.name') as $student)
+                    @forelse ($students as $student)
                     <tr class="z-20 bg-white bg-gradient-to-b hover:from-green-400 to-green-500">
                         <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-no-wrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">{{ $student->user->name }}</th>
                         @foreach ($tasks as $task)

@@ -20,9 +20,6 @@ class HeadCoursesPage extends Component
     public $course;
     public $teachers;
     public $email = "";
-    public $module;
-    public $moduleName = "";
-    public $fileId = 0;
     public $newCourseName = "";
     public $newCourseCode = "";
 
@@ -59,33 +56,7 @@ class HeadCoursesPage extends Component
         $this->teachers =  Course::find($this->course->id)->teachers->reverse();
         session()->flash('message', 'Faculty member succesfully removed.');
     }
-    public function addModule()
-    {
-        $this->validate([
-            'moduleName' => 'required|string',
-            'module' => 'required|file'
-        ]);
-        // $url = $this->module->storeAs("", Carbon::now()->format('Ymdhis') . $this->module->getClientOriginalName(), 'google');
-        $url = $this->module->store("", "google");
-        $match = gdriver($url);
-        $mod = Module::create([
-            'course_id' => $this->course->id,
-            'name' => $this->moduleName
-        ]);
-        $mod->files()->create([
-            'google_id' => $match['id'],
-            'name' => $this->module->getClientOriginalName(),
-            'url' => $url
-        ]);
-        $rand = rand(1, 7);
-        $mod->image()->create([
-            'url' => "/img/bg/bg($rand).jpg"
-        ]);
-        $this->fileId++;
-        $this->moduleName = "";
-        $this->course = Course::find($this->course->id);
-        session()->flash('message', 'Module has been added.');
-    }
+
     public function editCourse()
     {
         $this->validate([
@@ -108,11 +79,5 @@ class HeadCoursesPage extends Component
         $this->course->teachers()->detach();
         $this->course->delete();
         return redirect('/');
-    }
-    public function deleteModule(Module $module)
-    {
-        $module->delete();
-        $this->course = Course::find($this->course->id);
-        session()->flash('module_deleted', 'Module resources has been updated.');
     }
 }

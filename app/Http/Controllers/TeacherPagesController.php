@@ -10,23 +10,24 @@ use App\Models\TaskType;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 
 class TeacherPagesController extends Controller
 {
     public function home()
     {
-        $courses = auth()->user()->teacher->courses;
-        return view('pages.teacher.index', compact('courses'));
+        $sections = auth()->user()->teacher->sections()->with('course')->get();
+        return view('pages.teacher.index', compact('sections'));
     }
     public function modules()
     {
-        $courses = auth()->user()->teacher->courses;
-        return view('pages.teacher.modules.index', compact('courses'));
+        $sections = auth()->user()->teacher->sections()->with('course')->get();
+        return view('pages.teacher.modules.index', compact('sections'));
     }
-    public function course_modules(Course $course)
+    public function course_modules(Section $section)
     {
-        $modules = $course->modules;
-        return view('pages.teacher.modules.course_modules', compact('modules', 'course'));
+        $modules = $section->course->modules;
+        return view('pages.teacher.modules.course_modules', compact('modules', 'section'));
     }
     public function module(Module $module)
     {
@@ -34,9 +35,10 @@ class TeacherPagesController extends Controller
         $resources = $module->resources()->where('teacher_id', auth()->user()->teacher->id)->get();
         return view('pages.teacher.modules.module', compact('module', 'task_types', 'resources'));
     }
-    public function course(Course $course)
+    public function course(Course $course, Request $request)
     {
-        return view('pages.teacher.courses.course', compact('course'));
+        $section = Section::find($request->section);
+        return view('pages.teacher.courses.course', compact('course', 'section'));
     }
     public function preview(File $file)
     {
@@ -51,7 +53,7 @@ class TeacherPagesController extends Controller
     }
     public function tasks($task_type)
     {
-        $tasks = auth()->user()->teacher->tasks()->where('task_type_id', $task_type)->get();
+        $tasks = auth()->user()->teacher->tasks()->where('task_type_id', $task_type)->paginate(10);
         $task_type = TaskType::find($task_type);
         return view('pages.teacher.tasks', compact('tasks', 'task_type'));
     }

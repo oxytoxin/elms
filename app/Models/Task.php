@@ -59,4 +59,9 @@ class Task extends Model
     {
         return $query->where('task_type_id', $task_type);
     }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }

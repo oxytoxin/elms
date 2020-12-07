@@ -24,6 +24,13 @@
         .fc-scroller{
             overflow: auto !important;
         }
+        button:focus{
+            outline: none;
+        }
+        *{
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
     @stack('styles')
 </head>

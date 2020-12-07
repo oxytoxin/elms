@@ -14,11 +14,18 @@ class CoursesSeeder extends Seeder
      */
     public function run()
     {
-        Course::factory()->count(100)->create()->each(function ($c) {
+        $courses = Course::get();
+        foreach ($courses as $c) {
             $rand = rand(1, 7);
             $c->image()->create([
                 'url' => "/img/bg/bg($rand).jpg"
             ]);
-        });
+        }
+        // Course::factory()->count(100)->create()->each(function ($c) {
+        //     $rand = rand(1, 7);
+        //     $c->image()->create([
+        //         'url' => "/img/bg/bg($rand).jpg"
+        //     ]);
+        // });
     }
 }

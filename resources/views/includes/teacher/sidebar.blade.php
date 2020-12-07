@@ -15,7 +15,7 @@
                 <h1 class="flex items-center"><div class="w-3 h-3 mr-1 rounded-full bg-primary-500"></div>Online</h1>
             </div>
         </div>
-        <div class="m-3 font-semibold bg-opacity-75 links bg-primary-600">
+        <div class="p-3 font-semibold bg-opacity-75 links bg-primary-600">
             <h1 class="text-sm font-semibold">Teacher</h1>
         <div class="actions">
             <a href="{{ route('teacher.home') }}"

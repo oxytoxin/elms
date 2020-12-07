@@ -7,7 +7,7 @@
     </div>
     <div class="mt-3">
         <form wire:submit.prevent="addCourse" class="px-2">
-            <div class="flex w-full">
+            <div class="flex flex-wrap w-full">
                 <div class="flex-1 px-2">
                     <label for="course_title">Course Title</label>
                     <input wire:model.defer="course_title" name="course_title" type="text" placeholder="Enter Course Title"
@@ -21,6 +21,14 @@
                     <input wire:model.defer="course_code" name="course_code" type="text" placeholder="ABC123"
                         autocomplete="off" class="w-full form-input">
                     @error('course_code')
+                    <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+                    @enderror
+                </div>
+                <div class="flex-1 px-2">
+                    <label for="course_code">Course units</label>
+                    <input wire:model.defer="course_units" name="course_code" type="text" placeholder="3.00"
+                        autocomplete="off" class="w-full form-input">
+                    @error('course_units')
                     <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
                     @enderror
                 </div>

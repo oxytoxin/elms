@@ -12,7 +12,8 @@
                         <h1 class="text-sm italic font-semibold">~{{ $task->module->name }}</h1>
                         <h1 class="text-sm font-semibold">Submissions: {{ $task->submissions }}</h1>
                         <h1 class="text-sm font-semibold">Graded: {{ $task->graded }}</h1>
-                        <h1 class="mb-6 text-sm font-semibold">Ungraded: {{ $task->ungraded }}</h1>
+                        <h1 class="text-sm font-semibold">Ungraded: {{ $task->ungraded }}</h1>
+                        <h1 class="mb-6 text-sm font-semibold">Section: {{ $task->section->code }}</h1>
                     </div>
                     <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline->format('h:i a, m/d/Y') }}</h1>
                 </div>
@@ -20,6 +21,9 @@
             @empty
             <h1>Hooray! Nothing to do here yet.</h1>
             @endforelse
+    </div>
+    <div class="my-3">
+        {{ $tasks->links() }}
     </div>
 </div>
 

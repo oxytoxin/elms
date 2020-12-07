@@ -4,19 +4,25 @@
     <div class="flex">
         <div>
             <h1 class="text-2xl font-semibold">COURSE MANAGER</h1>
-            <div class="py-2">
+            <div class="flex py-2 space-x-3">
                 <a href="{{ route('head.create_course') }}"
                     class="p-2 font-semibold text-white rounded-lg hover:text-primary-600 bg-primary-500"><i class="mr-2 icofont-plus"></i>ADD
-                    COURSE</a>
+                    COURSE
+                </a>
+                <a href="{{ route('head.add_section') }}"
+                    class="p-2 font-semibold text-white rounded-lg hover:text-primary-600 bg-primary-500"><i class="mr-2 icofont-plus"></i>ADD
+                    SECTION
+                </a>
             </div>
             <div class="grid gap-2 mt-2 xxl:grid-cols-5 md:grid-cols-4">
                 @forelse($courses as $course)
-                <div class="w-full overflow-hidden h-80">
+                <div class="w-full overflow-hidden h-96">
                     <div class="h-1/2"><img src="{{ $course->image->url }}" class="object-cover w-full h-full"
                             alt="course"></div>
                     <div class="p-2 text-white h-4/12 bg-secondary-500">
                         <h1 class="text-sm text-center">{{ $course->name }}</h1>
                         <h1 class="font-semibold text-center text-orange-500">{{ $course->code }}</h1>
+                        <h1 class="font-semibold text-center">sections: {{ $course->sections->count() }}</h1>
                     </div>
                     <div class="h-2/12">
                         <a href="{{ route('head.course',['course'=>$course->id]) }}"
