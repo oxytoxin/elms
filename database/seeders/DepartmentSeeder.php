@@ -15,36 +15,52 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         Department::create([
-            'name' => 'Civil Engineering',
+            'name' => 'Bachelor of Science in Civil Engineering (BSCE)',
             'college_id' => 1
         ]);
         Department::create([
-            'name' => 'Computer Engineering',
+            'name' => 'Bachelor of Science in Computer Engineering (BSCpE)',
             'college_id' => 1
         ]);
         Department::create([
-            'name' => 'Secondary Education',
+            'name' => 'Bachelor of Science in Electronics Engineering (BSECE)',
+            'college_id' => 1
+        ]);
+        Department::create([
+            'name' => 'Bachelor of Science in Computer Science (BSCS)',
             'college_id' => 2
         ]);
         Department::create([
-            'name' => 'Elementary Education',
+            'name' => 'Bachelor of Science in Information Technology (BSIT)',
             'college_id' => 2
         ]);
         Department::create([
-            'name' => 'Accountancy',
+            'name' => 'Bachelor of Science in Information Systems (BSIS)',
+            'college_id' => 2
+        ]);
+        Department::create([
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Food Service Management',
             'college_id' => 3
         ]);
         Department::create([
-            'name' => 'Financial Management',
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Drafting Technology',
             'college_id' => 3
         ]);
         Department::create([
-            'name' => 'English',
-            'college_id' => 4
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Automotive Technology',
+            'college_id' => 3
         ]);
         Department::create([
-            'name' => 'Political Science',
-            'college_id' => 4
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Electrical Technology',
+            'college_id' => 3
+        ]);
+        Department::create([
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Electronic Technology',
+            'college_id' => 3
+        ]);
+        Department::create([
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd) - Civil Technology',
+            'college_id' => 3
         ]);
     }
 }

@@ -26,7 +26,7 @@ class TeacherPagesController extends Controller
     }
     public function course_modules(Section $section)
     {
-        $modules = $section->course->modules;
+        $modules = $section->modules;
         return view('pages.teacher.modules.course_modules', compact('modules', 'section'));
     }
     public function module(Module $module)

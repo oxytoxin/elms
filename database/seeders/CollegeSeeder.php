@@ -18,13 +18,10 @@ class CollegeSeeder extends Seeder
             'name' => 'College of Engineering'
         ]);
         College::create([
-            'name' => 'College of Education'
+            'name' => 'College of Computer Studies'
         ]);
         College::create([
-            'name' => 'College of Accountancy and Business Administration'
-        ]);
-        College::create([
-            'name' => 'College of Arts and Sciences'
+            'name' => 'College of Industrial Technology'
         ]);
     }
 }

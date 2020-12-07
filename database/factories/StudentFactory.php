@@ -27,7 +27,7 @@ class StudentFactory extends Factory
      */
     public function definition()
     {
-        $college = College::find($this->faker->numberBetween(1, 4));
+        $college = College::find($this->faker->numberBetween(1, 3));
         return [
             'user_id' => User::factory()->create(['email' => 1000 + User::count() + 1 . '@gmail.com'])->id,
             'college_id' => $college->id,

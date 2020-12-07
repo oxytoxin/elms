@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 use Database\Seeders\MiscSeeder;
 use Database\Seeders\RolesSeeder;
 use Database\Seeders\UsersSeeder;
+use Database\Seeders\Bootstrapper;
 use Database\Seeders\CollegeSeeder;
 use Database\Seeders\CoursesSeeder;
 use Database\Seeders\TaskTypeSeeder;
 use Database\Seeders\DepartmentSeeder;
-use DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,7 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         DB::unprepared(file_get_contents('database/seeders/subjects.sql'));
         $this->call(CoursesSeeder::class);
+        DB::unprepared(file_get_contents('database/seeders/prospectus.sql'));
         $this->call(TaskTypeSeeder::class);
         $this->call(MiscSeeder::class);
+        $this->call(Bootstrapper::class);
     }
 }

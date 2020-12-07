@@ -18,8 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->decimal('units');
+            $table->foreignId('department_id')->nullable()->default(null)->constrained();
             // $table->foreignId('college_id')->constrained();
-            // $table->foreignId('department_id')->constrained();
             $table->timestamps();
         });
     }

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\Course;
 use App\Models\Module;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\CalendarEvent;
 use App\Models\Section;
+use Illuminate\Http\Request;
+use App\Models\CalendarEvent;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProgramHeadPagesController extends Controller
 {
@@ -23,8 +24,10 @@ class ProgramHeadPagesController extends Controller
     public function modules()
     {
         $department = Auth::user()->program_head->department->id;
-        $courses = Course::byDepartment($department)->get();
-        return view('pages.head.modules.index', compact('courses'));
+        $modules = Module::whereHas('course', function (Builder $q) {
+            return $q->where('department_id', auth()->user()->program_head->department_id);
+        })->paginate(20);
+        return view('pages.head.modules.index', compact('modules'));
     }
     public function course_modules(Section $section)
     {

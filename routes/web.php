@@ -26,6 +26,8 @@ use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Head\WorkloadUploader;
 use App\Http\Livewire\TeacherCoursesPage;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,12 +47,14 @@ Route::get('/command', function () {
     // \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
     // \Illuminate\Support\Facades\Artisan::call("view:cache");
     // event(new NewTask(Task::find(1), Teacher::find(101)));\
-    $csv = [];
-    $handle = fopen('sample.csv', 'r');
-    while (($data = fgetcsv($handle, 0, ',')) !== FALSE) {
-        array_push($csv, $data);
+    $r = json_encode(['id' => 1, 'course' => 2]);
+    $test = Crypt::encryptString($r);
+    dump($test);
+    try {
+        dump(json_decode(Crypt::decryptString($test), true));
+    } catch (DecryptException $e) {
+        abort(404);
     }
-    return $csv;
 });
 
 Route::get('/', function () {
