@@ -26,7 +26,7 @@ class AddSection extends Component
 
     function mount()
     {
-        $this->courses = Course::byDepartment(auth()->user()->program_head->department_id)->get();
+        $this->courses = auth()->user()->program_head->courses;
         $this->teachers = Department::find(auth()->user()->program_head->department_id)->teachers;
     }
 

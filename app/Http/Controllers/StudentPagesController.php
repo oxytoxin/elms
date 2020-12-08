@@ -15,12 +15,12 @@ class StudentPagesController extends Controller
 {
     public function home()
     {
-        $courses = auth()->user()->student->courses;
+        $courses = auth()->user()->student->courses()->paginate(20);
         return view('pages.student.index', compact('courses'));
     }
     public function modules()
     {
-        $courses = auth()->user()->student->courses;
+        $courses = auth()->user()->student->courses()->paginate(5);
         return view('pages.student.modules.index', compact('courses'));
     }
     public function course_modules(Course $course)

@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Section;
 use App\Models\Teacher;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -15,9 +16,9 @@ use Livewire\WithFileUploads;
 class HeadCoursesPage extends Component
 {
     use WithFileUploads;
-    public $tab = 'faculty';
     public $showEditCourse = false;
     public $course;
+    public $sections;
     public $teachers;
     public $email = "";
     public $newCourseName = "";
@@ -33,6 +34,7 @@ class HeadCoursesPage extends Component
         $this->teachers =  $this->course->teachers->reverse();
         $this->newCourseName = $this->course->name;
         $this->newCourseCode = $this->course->code;
+        $this->sections = $this->course->sections;
     }
 
 
@@ -40,21 +42,15 @@ class HeadCoursesPage extends Component
     {
         return view('livewire.head-courses-page');
     }
-    public function enrolFaculty()
+
+    public function removeSection(Section $section, $teacher_id)
     {
-        $teacher = User::has('teacher')->where('email', $this->email)->firstOrFail()->teacher;
-        if (!$this->course->teachers->contains($teacher)) {
-            $this->course->teachers()->attach($teacher->id);
-            $this->teachers =  Course::find($this->course->id)->teachers->reverse();
-            $this->email = "";
-            session()->flash('message', 'Faculty member succesfully enrolled.');
-        } else session()->flash('message', 'Faculty member already enrolled.');
-    }
-    public function removeFaculty(Teacher $teacher)
-    {
-        $this->course->teachers()->detach($teacher);
-        $this->teachers =  Course::find($this->course->id)->teachers->reverse();
-        session()->flash('message', 'Faculty member succesfully removed.');
+        $section->delete();
+        if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {
+            $this->course->teachers()->detach($teacher_id);
+        }
+        $this->sections =  Course::find($this->course->id)->sections;
+        session()->flash('message', 'Section succesfully deleted.');
     }
 
     public function editCourse()

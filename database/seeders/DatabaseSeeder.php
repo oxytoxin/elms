@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CoursesSeeder::class);
         DB::unprepared(file_get_contents('database/seeders/prospectus.sql'));
         $this->call(TaskTypeSeeder::class);
-        $this->call(MiscSeeder::class);
+        // $this->call(MiscSeeder::class);
         $this->call(Bootstrapper::class);
     }
 }

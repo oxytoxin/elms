@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\College;
+use App\Models\Teacher;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProgramHead extends Model
 {
@@ -20,5 +24,15 @@ class ProgramHead extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getTeachersAttribute()
+    {
+        return $this->department->teachers;
+    }
+
+    public function getCoursesAttribute()
+    {
+        return $this->teachers->flatMap(fn ($t) => $t->courses);
     }
 }

@@ -24,9 +24,7 @@ class ProgramHeadPagesController extends Controller
     public function modules()
     {
         $department = Auth::user()->program_head->department->id;
-        $modules = Module::whereHas('course', function (Builder $q) {
-            return $q->where('department_id', auth()->user()->program_head->department_id);
-        })->paginate(20);
+        $modules = Module::byDepartment($department)->paginate(20);
         return view('pages.head.modules.index', compact('modules'));
     }
     public function course_modules(Section $section)
@@ -42,7 +40,7 @@ class ProgramHeadPagesController extends Controller
     public function courses()
     {
         $department = Auth::user()->program_head->department->id;
-        $courses = Course::byDepartment($department)->get();
+        $courses = auth()->user()->program_head->courses;
         return view('pages.head.courses.index', compact('courses'));
     }
     public function course(Course $course)

@@ -35,8 +35,8 @@ class CreateCourse extends Component
             'code' => strtoupper($this->course_code),
             'name' => strtoupper($this->course_title),
             'units' => $this->course_units,
+            'department_id' => Auth::user()->program_head->department_id,
             // 'college_id' => Auth::user()->program_head->college_id,
-            // 'department_id' => Auth::user()->program_head->department_id,
         ]);
         $rand = rand(1, 7);
         $course->image()->create([

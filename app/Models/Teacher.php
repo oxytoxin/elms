@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Module;
 use App\Models\College;
 use App\Models\Section;
 use App\Models\Student;
@@ -68,5 +69,10 @@ class Teacher extends Model
         })->flatten()->filter(function ($item) use ($task_type_id) {
             return $item->task_type_id == $task_type_id;
         });
+    }
+
+    public function modules()
+    {
+        return $this->hasManyThrough(Module::class, Section::class);
     }
 }

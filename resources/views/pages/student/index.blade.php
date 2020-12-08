@@ -24,6 +24,9 @@
                 <h1>No Course Found</h1>
                 @endforelse
             </div>
+            <div class="mt-3">
+                {{ $courses->links() }}
+            </div>
         </div>
     </div>
     </div>

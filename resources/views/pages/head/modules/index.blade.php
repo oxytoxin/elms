@@ -9,8 +9,8 @@
                     <div class="h-1/2"><img src="{{ $module->image->url }}" class="object-cover w-full h-full"
                             alt="course"></div>
                     <div class="p-2 text-white h-4/12 bg-secondary-500">
-                        <h1 class="text-xs italic text-center">{{ $course->name }}</h1>
-                        <h1 class="text-xs italic font-bold text-center text-orange-500">{{ $course->code }}</h1>
+                        <h1 class="text-xs italic text-center">{{ $module->course->name }}</h1>
+                        <h1 class="text-xs italic font-bold text-center text-orange-500">{{ $module->course->code }}</h1>
                         <h1 class="text-sm text-center">{{ $module->name }}</h1>
                     </div>
                     <div class="h-2/12">
@@ -23,6 +23,10 @@
                 @empty
                 <h1>No Modules Found</h1>
                 @endforelse
+
+            </div>
+            <div class="mx-auto mt-3">
+                {{ $modules->links('vendor.pagination.tailwind') }}
             </div>
         </div>
     </div>
