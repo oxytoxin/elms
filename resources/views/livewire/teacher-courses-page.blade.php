@@ -1,8 +1,13 @@
-<div class="px-5">
+<div class="px-5" x-data="{showInviteCode : @entangle('showInviteCode')}">
     <div class="flex">
         <div class="w-full">
-            <h1 class="mt-3 text-xl font-semibold">{{ $section->course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
-            <h1 class="mb-3 font-semibold">Section: {{ $section->code }}</h1>
+            <div class="flex flex-col items-center justify-between my-3 md:my-0 md:flex-row">
+                <div>
+                    <h1 class="mt-3 text-xl font-semibold">{{ $section->course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
+                    <h1 class="mb-3 font-semibold">Section: {{ $section->code }}</h1>
+                </div>
+                <div><button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button></div>
+            </div>
             <div class="box-border flex text-lg text-gray-300 border-2 border-black">
                 <a href="#" data-turbolinks="false"  wire:click="$set('tab','student')"
                     class="flex items-center justify-center w-1/2 {{ $tab == 'student' ?  'bg-primary-500 text-gray-700' : '' }}">
@@ -139,8 +144,36 @@
             @endif
         </div>
     </div>
+    {{-- Modal --}}
+    <div x-cloak x-show.transition="showInviteCode" class="absolute inset-0 z-50 flex items-center justify-center bg-gray-400 bg-opacity-50">
+        <div @click.away="showInviteCode = false" class="p-5 bg-white md:w-1/2 min-h-halfscreen">
+            <h1>Share this invite code to your students for them to enrol in this course.</h1>
+            <hr class="border-t-2 border-primary-600">
+            <h1 class="mt-5 text-lg font-semibold">INVITE CODE:</h1>
+            <div class="p-5 m-5 border-2 border-primary-600">
+                <p id="invite_code" class="break-all">{{ $inviteCode }}</p>
+            </div>
+            <button onclick="copyText()" class="float-right p-3 mx-5 text-sm font-bold text-white bg-primary-500 hover:text-primary-600">COPY CODE</button>
+        </div>
+    </div>
+
 </div>
 
 @section('sidebar')
     @include('includes.teacher.sidebar')
 @endsection
+
+@push('scripts')
+<script>
+    function copyText() {
+    var text = document.getElementById('invite_code').innerText;
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = text;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+    toastr.success('Invite code copied to clipboard.', '', { closeButton: true, "timeOut": "1000", });
+}
+</script>
+@endpush

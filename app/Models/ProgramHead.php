@@ -28,7 +28,8 @@ class ProgramHead extends Model
 
     public function getTeachersAttribute()
     {
-        return $this->department->teachers;
+
+        return $this->department ? $this->department->teachers : collect();
     }
 
     public function getCoursesAttribute()

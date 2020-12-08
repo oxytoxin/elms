@@ -60,12 +60,20 @@
                 <h1 class="text-sm font-semibold">Exams</h1>
             </a>
         </div>
-        @if (auth()->user()->isProgramHead())
         <h1 class="mt-5 text-sm font-semibold">Actions</h1>
+        @if (auth()->user()->isProgramHead())
         <div class="actions">
             <a href="{{ route('head.home') }}" class="flex items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
                 <i class="mr-2 icofont-external"></i>
                 <h1 class="text-sm font-semibold">Program Head Dashboard</h1>
+            </a>
+        </div>
+        @endif
+        @if (auth()->user()->isDean())
+        <div class="actions">
+            <a href="{{ route('dean.home') }}" class="flex items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+                <i class="mr-2 icofont-external"></i>
+                <h1 class="text-sm font-semibold">Dean Dashboard</h1>
             </a>
         </div>
         @endif

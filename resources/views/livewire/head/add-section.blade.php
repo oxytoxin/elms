@@ -19,7 +19,7 @@
                 <div class="flex-1 px-2">
                     <label for="course_select">Course</label>
                     <select wire:model="course_select" name="course_select" class="w-full truncate form-select" id="course_select">
-                        @foreach ($courses as $course)
+                            @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
                             @endforeach
                             <option value="null" selected disabled hidden>Select a course</option>

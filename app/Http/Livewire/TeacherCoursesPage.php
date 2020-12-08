@@ -12,6 +12,7 @@ use App\Models\Section;
 use DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 class TeacherCoursesPage extends Component
@@ -27,6 +28,8 @@ class TeacherCoursesPage extends Component
     public $description;
     public $resources = [];
     public $fileId = 0;
+    public $showInviteCode = false;
+    public $inviteCode = '';
 
     public function render()
     {
@@ -38,6 +41,7 @@ class TeacherCoursesPage extends Component
     public function mount(Section $section)
     {
         $this->section = $section;
+        $this->inviteCode = Crypt::encrypt(['course_id' => $section->course_id, 'section_id' => $section->id, 'teacher_id' => auth()->user()->teacher->id]);
     }
 
     public function updateModule()

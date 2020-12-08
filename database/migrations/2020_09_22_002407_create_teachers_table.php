@@ -17,7 +17,7 @@ class CreateTeachersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('college_id')->constrained();
-            $table->foreignId('department_id')->constrained();
+            $table->foreignId('department_id')->nullable()->default(null)->constrained();
             $table->timestamps();
         });
     }

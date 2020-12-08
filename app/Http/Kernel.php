@@ -74,6 +74,7 @@ class Kernel extends HttpKernel
         'isStudent' => \App\Http\Middleware\IsStudent::class,
         'isTeacher' => \App\Http\Middleware\IsTeacher::class,
         'isProgramHead' => \App\Http\Middleware\IsProgramHead::class,
+        'isDean' => \App\Http\Middleware\IsDean::class,
         'submissionPreview' => \App\Http\Middleware\SubmissionAuthorization::class,
         'studentIsEnrolled' => \App\Http\Middleware\StudentIsEnrolled::class,
         'teacherIsEnrolled' => \App\Http\Middleware\TeacherIsEnrolled::class,

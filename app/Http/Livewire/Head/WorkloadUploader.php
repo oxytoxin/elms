@@ -17,19 +17,25 @@ class WorkloadUploader extends Component
     use WithFileUploads;
 
     public $teacher;
+    protected $sections;
     public $workloadArray = [];
     public $workload;
     public $hasWorkload = false;
+    public $fileId = 0;
 
 
     public function mount(Teacher $teacher)
     {
         $this->teacher = $teacher;
+        $teacher->sections->count() ? $this->hasWorkload = true : '';
     }
 
     public function render()
     {
-        return view('livewire.head.workload-uploader')
+        $this->sections = $this->teacher->sections()->with('course')->get();
+        return view('livewire.head.workload-uploader', [
+            'sections' => $this->sections,
+        ])
             ->extends('layouts.master')
             ->section('content');
     }
@@ -57,6 +63,8 @@ class WorkloadUploader extends Component
             }
         });
         $this->workloadArray = [];
-        return redirect()->route('head.faculty_manager');
+        $this->fileId += 1;
+        $this->hasWorkload = true;
+        session()->flash('message', 'Workload was successfully added to faculty member.');
     }
 }

@@ -2,8 +2,13 @@
 @section('content')
 <div class="px-5">
     <div class="flex">
-        <div class="mx-4">
-            <h1 class="p-2 text-2xl font-semibold">Enrolled Courses</h1>
+        <div class="w-full mx-4 mt-5">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-semibold">Enrolled Courses</h1>
+                <div>
+                    <a href="{{ route('student.enrol_via_code') }}" class="p-3 font-semibold text-white bg-primary-500 hover:text-primary-600">ENROLL CODE</a>
+                </div>
+            </div>
             <div class="gap-2 p-2 md:grid-cols-3 xxl:grid-cols-5 lg:grid-cols-4 md:grid">
                 @forelse($courses as $course)
                 <div class="w-full overflow-hidden h-80">

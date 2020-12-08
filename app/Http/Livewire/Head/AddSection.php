@@ -10,8 +10,8 @@ use Livewire\Component;
 class AddSection extends Component
 {
 
-    public $courses;
-    public $teachers;
+    protected $courses;
+    protected $teachers;
     public $section_code = '';
     public $schedule = '';
     public $room = '';
@@ -24,15 +24,16 @@ class AddSection extends Component
         'faculty_select.numeric' => "Please select a faculty member to assign the section in."
     ];
 
-    function mount()
-    {
-        $this->courses = auth()->user()->program_head->courses;
-        $this->teachers = Department::find(auth()->user()->program_head->department_id)->teachers;
-    }
 
     public function render()
     {
-        return view('livewire.head.add-section')
+        $this->courses = auth()->user()->program_head->courses;
+        $department = Department::find(auth()->user()->program_head->department_id);
+        $this->teachers = $department ? $department->teachers : collect();
+        return view('livewire.head.add-section', [
+            'teachers' => $this->teachers,
+            'courses' => $this->courses
+        ])
             ->extends('layouts.master')
             ->section('content');
     }

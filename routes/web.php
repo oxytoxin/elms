@@ -3,6 +3,7 @@
 use App\Models\Task;
 use App\Models\User;
 use App\Events\NewTask;
+use App\Http\Controllers\DeanPagesController;
 use App\Models\Teacher;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
@@ -22,9 +23,11 @@ use App\Notifications\AnotherNotification;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\Dean\ProgramHeadManager;
 use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Head\WorkloadUploader;
+use App\Http\Livewire\Student\EnrolViaCode;
 use App\Http\Livewire\TeacherCoursesPage;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -88,6 +91,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
     Route::get('/tasks/{task_type}', [StudentPagesController::class, 'tasks'])->name('student.tasks');
+    Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
 });
 
 
@@ -125,4 +129,10 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/add-section', AddSection::class)->name('head.add_section');
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');
+});
+
+// Dean Routes
+Route::prefix('dean')->middleware(['auth', 'isDean'])->group(function () {
+    Route::get('/home', [DeanPagesController::class, 'home'])->name('dean.home');
+    Route::get('/manage-program-heads', ProgramHeadManager::class)->name('dean.programhead_manager');
 });

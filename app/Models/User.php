@@ -105,4 +105,8 @@ class User extends Authenticatable
     {
         return (bool)Auth::user()->roles()->find(4);
     }
+    public function scopeIsDean()
+    {
+        return (bool)Auth::user()->roles()->find(5);
+    }
 }

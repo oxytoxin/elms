@@ -17,13 +17,13 @@ class ProgramHeadPagesController extends Controller
 {
     public function home()
     {
-        $department = Auth::user()->program_head->department->id;
+        $department = Auth::user()->program_head->department_id;
         $sections = Section::byDepartment($department)->with('course')->get();
         return view('pages.head.index', compact('sections'));
     }
     public function modules()
     {
-        $department = Auth::user()->program_head->department->id;
+        $department = Auth::user()->program_head->department_id;
         $modules = Module::byDepartment($department)->paginate(20);
         return view('pages.head.modules.index', compact('modules'));
     }
@@ -39,7 +39,7 @@ class ProgramHeadPagesController extends Controller
     }
     public function courses()
     {
-        $department = Auth::user()->program_head->department->id;
+        $department = Auth::user()->program_head->department_id;
         $courses = auth()->user()->program_head->courses;
         return view('pages.head.courses.index', compact('courses'));
     }
