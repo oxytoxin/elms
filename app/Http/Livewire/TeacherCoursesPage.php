@@ -9,6 +9,7 @@ use App\Models\Student;
 use Livewire\Component;
 use App\Models\Resource;
 use App\Models\Section;
+use DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -73,22 +74,24 @@ class TeacherCoursesPage extends Component
             'resources.*' => 'required|file'
         ]);
 
-        $res = Resource::create([
-            'teacher_id' => auth()->user()->teacher->id,
-            'module_id' => $this->module_id,
-            'title' => $this->title,
-            'description' => $this->description
-        ]);
-        foreach ($this->resources as $resource) {
-            // $url = $resource->store("", Carbon::now()->format('Ymdhis') . $resource->getClientOriginalName(), 'google');
-            $url = $resource->store("", 'google');
-            $match = gdriver($url);
-            $res->files()->create([
-                'google_id' => $match['id'],
-                'name' => $resource->getClientOriginalName(),
-                'url' => $url
+        DB::transaction(function () {
+            $res = Resource::create([
+                'teacher_id' => auth()->user()->teacher->id,
+                'module_id' => $this->module_id,
+                'title' => $this->title,
+                'description' => $this->description
             ]);
-        }
+            foreach ($this->resources as $resource) {
+                // $url = $resource->store("", Carbon::now()->format('Ymdhis') . $resource->getClientOriginalName(), 'google');
+                $url = $resource->store("", 'google');
+                $match = gdriver($url);
+                $res->files()->create([
+                    'google_id' => $match['id'],
+                    'name' => $resource->getClientOriginalName(),
+                    'url' => $url
+                ]);
+            }
+        });
 
         $this->fileId++;
         $this->title = "";

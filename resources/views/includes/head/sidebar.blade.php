@@ -47,6 +47,7 @@
                     <h1 class="text-sm font-semibold">Forms</h1>
                 </a>
             </div>
+            @if (auth()->user()->isTeacher())
             <h1 class="mt-5 text-sm font-semibold">Actions</h1>
             <div class="actions">
                 <a href="{{ route('teacher.home') }}" class="flex items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
@@ -54,6 +55,7 @@
                     <h1 class="text-sm font-semibold">Faculty Dashboard</h1>
                 </a>
             </div>
+            @endif
             </div>
     </div>
     <div class="absolute inset-0 z-0 flex items-center justify-center mx-auto overflow-hidden logo">

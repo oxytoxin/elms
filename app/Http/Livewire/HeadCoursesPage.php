@@ -34,7 +34,7 @@ class HeadCoursesPage extends Component
         $this->teachers =  $this->course->teachers->reverse();
         $this->newCourseName = $this->course->name;
         $this->newCourseCode = $this->course->code;
-        $this->sections = $this->course->sections;
+        $this->sections = $this->course->sections()->byDepartment(auth()->user()->program_head->department_id)->get();
     }
 
 
