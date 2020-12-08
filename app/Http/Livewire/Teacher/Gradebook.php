@@ -41,6 +41,7 @@ class Gradebook extends Component
         $this->courses  = auth()->user()->teacher->courses;
         $this->task_types = TaskType::all();
         $this->course = auth()->user()->teacher->courses()->first();
+        if (!$this->course) abort(404);
         $this->course_id = $this->course->id;
         $this->section_id = $this->course->sections->first()->id;
 
