@@ -30,7 +30,7 @@
                     <td class="p-1">{{ $teacher->user->email }}</td>
                     <td class="p-1 py-3 text-xs text-center"><a href="{{ route('head.workload_uploader',['teacher' => $teacher->id]) }}" class="p-2 font-semibold text-white hover:text-primary-600 bg-primary-500">MANAGE WORKLOAD</a><i
                         onclick="confirm('Confirm removal of faculty member?') || event.stopImmediatePropagation()"
-                        wire:click.prevent="removeProgramHead({{ $teacher->id }})"
+                        wire:click.prevent="removeFaculty({{ $teacher->id }})"
                         class="ml-4 text-lg text-red-600 cursor-pointer icofont-trash"></i></td>
                 </tr>
                 @empty

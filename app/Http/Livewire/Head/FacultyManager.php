@@ -37,4 +37,10 @@ class FacultyManager extends Component
         $this->email = '';
         session()->flash('message', 'Faculty member was successfully added.');
     }
+
+    public function removeFaculty(Teacher $teacher)
+    {
+        $teacher->update(['department_id' => null]);
+        session()->flash('message', 'Faculty member removed.');
+    }
 }

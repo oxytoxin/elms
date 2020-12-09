@@ -28,6 +28,7 @@ use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Head\WorkloadUploader;
 use App\Http\Livewire\Student\EnrolViaCode;
+use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Livewire\TeacherCoursesPage;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -113,6 +114,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/preview_task/{task}', TaskPreview::class)->name('teacher.task_preview');
     Route::get('/grade/{task}', GradeTask::class)->name('teacher.grade_task');
     Route::get('/gradebook', Gradebook::class)->name('teacher.gradebook');
+    Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
 });
 
 // Program Head Routes

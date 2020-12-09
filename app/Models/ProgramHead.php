@@ -34,6 +34,8 @@ class ProgramHead extends Model
 
     public function getCoursesAttribute()
     {
-        return $this->teachers->flatMap(fn ($t) => $t->courses);
+        $departmentcourses = $this->department ? $this->department->courses : collect();
+        $facultycourses = $this->teachers->flatMap(fn ($t) => $t->courses);
+        return $departmentcourses->merge($facultycourses);
     }
 }

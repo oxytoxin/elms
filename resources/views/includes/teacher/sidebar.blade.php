@@ -23,6 +23,11 @@
                 <i class="mr-2 icofont-home"></i>
                 <h1 class="text-sm font-semibold">Home</h1>
             </a>
+            <a href="{{ route('teacher.faculty_workload') }}"
+                class="flex {{ strpos(url()->current(),'my-workload') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+                <i class="mr-2 icofont-tasks"></i>
+                <h1 class="text-sm font-semibold">My Workload</h1>
+            </a>
             <a href="{{ route('teacher.modules') }}"
                 class="flex {{ strpos(url()->current(),'modules') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
                 <i class="mr-2 icofont-book"></i>
