@@ -84,7 +84,7 @@ Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middle
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/home', [StudentPagesController::class, 'home'])->name('student.home');
     Route::get('/modules', [StudentPagesController::class, 'modules'])->name('student.modules');
-    Route::get('/course/{course}/modules', [StudentPagesController::class, 'course_modules'])->middleware('studentIsEnrolled')->name('student.course_modules');
+    Route::get('/course/{section}/modules', [StudentPagesController::class, 'course_modules'])->middleware('studentIsEnrolled')->name('student.course_modules');
     Route::get('/course/{course}', [StudentPagesController::class, 'course'])->name('student.course');
     Route::get('/module/{module}', [StudentPagesController::class, 'module'])->name('student.module');
     Route::get('/courses/create', [StudentPagesController::class, 'create_course'])->name('student.create_course');

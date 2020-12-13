@@ -18,7 +18,7 @@ class Sidelist extends Component
     {
         $upcoming = [];
         if (auth()->user()->isStudent()) {
-            $upcoming = auth()->user()->student->allTasks->take(5)->sortBy('deadline');
+            $upcoming = auth()->user()->student->allTasks->whereNotNull('deadline')->take(5)->sortBy('deadline');
         }
         return view('livewire.layouts.sidelist', [
             'upcoming' => $upcoming,

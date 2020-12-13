@@ -36,6 +36,7 @@
             </div>
         </div>
     </div>
+    @if ($students->count())
     <div class="max-h-screen overflow-auto text-gray-700">
         <table id="table_id" class="inline-block m-2 text-center bg-gray-800 border-collapse table-fixed">
             <thead class="border">
@@ -75,11 +76,13 @@
                     @endforeach
                     </tr>
                     @empty
-
                     @endforelse
                 </tbody>
         </table>
-</div>
+    </div>
+    @else
+        <h1 class="text-xl font-semibold text-center">No Students Enrolled in this section.</h1>
+    @endif
 </div>
 
 @push('scripts')

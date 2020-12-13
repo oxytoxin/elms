@@ -11,21 +11,29 @@
     @error("task_name")
     <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
     @enderror
-    <h1>Date Due:</h1>
-    <i class="fas fa-spin fa-spinner" wire:loading></i>
+    <h1>Date Due: <i class="fas fa-spin fa-spinner" wire:loading></i></h1>
     <input type="date" wire:model.defer="date_due" class="m-2 form-input" name="date_due" id="date_due">
     <input type="time" wire:model.defer="time_due" class="m-2 form-input" name="time_due" id="time_due">
+    <span class="inline-flex items-center">
+    <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
+    <label for="noDeadline" class="font-bold uppercase text-md">Do not set deadline</label>
+    </span>
     <hr class="border border-primary-600">
         @foreach ($items as $key => $item)
             <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-primary-500 text-white' : '' }} relative shadow-lg">
                 @if ($key != 0)
                     <div class="absolute right-0 pr-2"><i wire:click.prevent="removeItem({{ $key }})" class="text-red-600 cursor-pointer icofont-close"></i></div>
                 @endif
-                <input type="number" wire:model="items.{{ $key }}.points" class="w-28 mr-2 {{ $key%2 ? 'text-black' : '' }} form-input">
-                <span class="mr-2">(points)</span>
-                <label for="question_{{ $key+1 }}"><i class="mr-2 icofont-question-circle"></i>Question {{ $key + 1 }}</label>
-                <div class="flex items-center my-2">
-                    <input type="text" placeholder="Enter your question or instruction..." wire:model.defer="items.{{ $key }}.question" class="w-full {{ $key%2 ? 'text-black' : '' }} form-input">
+
+                <div class="flex items-center my-2 space-x-2">
+                    <div class="flex-grow">
+                        <label for="question_{{ $key+1 }}"><i class="mr-2 icofont-question-circle"></i>Question {{ $key + 1 }}</label>
+                        <input type="text" placeholder="Enter your question or instruction..." wire:model.defer="items.{{ $key }}.question" class="w-full {{ $key%2 ? 'text-black' : '' }} form-input">
+                    </div>
+                    <div>
+                        <h1 class="font-semibold">POINTS</h1>
+                        <input type="number" wire:model="items.{{ $key }}.points" class="w-28 {{ $key%2 ? 'text-black' : '' }} form-input">
+                    </div>
                 </div>
                 @error("items.$key.question")
                     <h1 class="text-xs italic text-red-600">{{ $message }}</h1>

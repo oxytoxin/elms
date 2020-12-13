@@ -15,7 +15,7 @@
                         <h1 class="text-sm font-semibold">Ungraded: {{ $task->ungraded }}</h1>
                         <h1 class="mb-6 text-sm font-semibold">Section: {{ $task->section->code }}</h1>
                     </div>
-                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline->format('h:i a, m/d/Y') }}</h1>
+                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline ? $task->deadline->format('h:i a, m/d/Y') : 'No deadline set' }}</h1>
                 </div>
             </a>
             @empty

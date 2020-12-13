@@ -3,30 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\Task;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Section;
+use App\Models\TaskType;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-use App\Models\TaskType;
 
 class StudentPagesController extends Controller
 {
     public function home()
     {
-        $courses = auth()->user()->student->courses()->paginate(20);
-        return view('pages.student.index', compact('courses'));
+        $sections = auth()->user()->student->sections()->paginate(20);
+        return view('pages.student.index', compact('sections'));
     }
     public function modules()
     {
         $courses = auth()->user()->student->courses()->paginate(5);
         return view('pages.student.modules.index', compact('courses'));
     }
-    public function course_modules(Course $course)
+    public function course_modules(Section $section)
     {
-        $modules = $course->modules;
-        return view('pages.student.modules.course_modules', compact('modules', 'course'));
+        $modules = $section->modules;
+        return view('pages.student.modules.course_modules', compact('modules', 'section'));
     }
     public function module(Module $module)
     {

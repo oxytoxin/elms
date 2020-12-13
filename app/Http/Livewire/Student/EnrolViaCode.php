@@ -22,11 +22,13 @@ class EnrolViaCode extends Component
     public function enroll()
     {
         $code = "";
-        try {
-            $code = Crypt::decrypt($this->invite_code);
-        } catch (DecryptException $e) {
-            abort(404);
-        }
+        // try {
+        //     $code = Crypt::decrypt($this->invite_code);
+        // } catch (DecryptException $e) {
+        //     abort(404);
+        // }
+        $code = json_decode(base64_decode($this->invite_code), true);
+        if (!$code) return session()->flash('error', 'No course found with this invite code.');
         DB::transaction(function () use ($code) {
             $section = Section::find($code['section_id']);
             if (!$section->students->contains(auth()->user()->student))

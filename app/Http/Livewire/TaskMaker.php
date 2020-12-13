@@ -33,6 +33,7 @@ class TaskMaker extends Component
     public $isRubricSet = false;
     public $showrubric = false;
     public $task_rubric = [];
+    public $noDeadline = false;
 
 
     // Rubric Setting
@@ -205,6 +206,8 @@ class TaskMaker extends Component
             }
         }
         DB::transaction(function () {
+            if (!$this->noDeadline) $deadline = $this->date_due . ' ' . $this->time_due;
+            else $deadline = null;
             $task = Task::create([
                 'module_id' => $this->module->id,
                 'section_id' => $this->module->section_id,
@@ -214,20 +217,22 @@ class TaskMaker extends Component
                 'max_score' => $this->total_points,
                 'essay_rubric' => json_encode($this->task_rubric),
                 'content' => json_encode($this->items),
-                'deadline' => $this->date_due . ' ' . $this->time_due,
+                'deadline' => $deadline,
             ]);
-            $code = Carbon::now()->timestamp;
-            CalendarEvent::create([
-                'user_id' => auth()->user()->id,
-                'code' => $code,
-                'title' => $task->name,
-                'description' => $task->name . ' for module: ' . $task->module->name,
-                'level' => 'students',
-                'start' => $this->date_due . ' ' . $this->time_due,
-                'end' => Carbon::parse($this->date_due)->addDay()->format('Y-m-d'),
-                'url' => '/task/' . $task->id,
-                'allDay' => false
-            ]);
+            if (!$this->noDeadline) {
+                $code = Carbon::now()->timestamp;
+                CalendarEvent::create([
+                    'user_id' => auth()->user()->id,
+                    'code' => $code,
+                    'title' => $task->name,
+                    'description' => $task->name . ' for module: ' . $task->module->name,
+                    'level' => 'students',
+                    'start' => $this->date_due . ' ' . $this->time_due,
+                    'end' => Carbon::parse($this->date_due)->addDay()->format('Y-m-d'),
+                    'url' => '/task/' . $task->id,
+                    'allDay' => false
+                ]);
+            }
             event(new NewTask($task, auth()->user()->teacher));
         });
         return redirect()->route('teacher.home');

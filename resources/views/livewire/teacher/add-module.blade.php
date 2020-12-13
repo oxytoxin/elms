@@ -17,7 +17,7 @@
                 @enderror
             </div>
             <div class="flex flex-col items-center mt-2 md:flex-row">
-                <input type="file" required wire:model="moduleFiles" class="w-full form-input" autocomplete="off" multiple
+                <input type="file" required wire:model="moduleFiles" class="w-full form-input" multiple
                     id="file{{ $fileId }}" name="module">
                 @error('moduleFiles.*')
                 <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
@@ -64,7 +64,7 @@
                 </tr>
                 @empty
                 <tr class="divide-x-2 divide-primary-600">
-                    <td colspan="2">No modules found on this course.</td>
+                    <td colspan="3">No modules found on this course.</td>
                 </tr>
                 @endforelse
 

@@ -53,7 +53,9 @@
         @error('answers')
             <h1 class="mx-5 mt-2 text-sm italic text-right text-red-600">{{ $message }}</h1>
         @enderror
+        @if (!$task->deadline || $task->deadline > now())
         <button wire:click.prevent="submitAnswers" class="float-right p-2 mx-5 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
+        @endif
     @else
         <div class="mx-5 mt-5">
             <h1>You have already submitted.</h1>

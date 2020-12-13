@@ -32,7 +32,7 @@ class Student extends Model
     }
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'student_teacher')->using(CourseTeacherStudent::class)->withPivot('teacher_id');
+        return $this->belongsToMany(Course::class, 'student_teacher')->using(CourseTeacherStudent::class)->withPivot('teacher_id', 'section_id');
     }
     public function user()
     {

@@ -31,6 +31,9 @@
             -ms-user-select: none;
             user-select: none;
         }
+        [data-tooltip="Pop-out"]{
+            display: none;
+        }
     </style>
     @stack('styles')
 </head>

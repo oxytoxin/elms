@@ -23,7 +23,7 @@ class CreateTasksTable extends Migration
             $table->integer('max_score');
             $table->text('essay_rubric')->nullable()->default(null);
             $table->longText('content');
-            $table->dateTime('deadline');
+            $table->dateTime('deadline')->nullable()->default(null);
             $table->timestamps();
         });
     }
