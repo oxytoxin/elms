@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use DB;
 use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Course;
 use App\Models\Module;
 use App\Events\NewTask;
+use App\Models\Student;
 use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\TaskType;
+use App\Jobs\TaskOpening;
 use App\Models\CalendarEvent;
-use DB;
 use Livewire\WithFileUploads;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -35,6 +37,10 @@ class TaskMaker extends Component
     public $task_rubric = [];
     public $noDeadline = false;
 
+
+    public $openImmediately = true;
+    public $date_open = null;
+    public $time_open = null;
 
     // Rubric Setting
     public $rubric = [];
@@ -175,8 +181,18 @@ class TaskMaker extends Component
     }
     public function saveTask()
     {
+        $carbondue = Carbon::parse($this->date_due . ' ' . $this->time_due)->format('M d,Y - h:i a');
+        $carbonopen = Carbon::parse($this->date_open . ' ' . $this->time_open)->format('M d,Y - h:i a');
         for ($i = 0; $i < count($this->items); $i++) {
             $this->items[$i]['item_no'] = $i + 1;
+        }
+        if (!$this->openImmediately) {
+            $this->validate([
+                'date_open' => 'required',
+                'time_open' => 'required',
+            ]);
+            if (Carbon::now()->addMinutes(30) > Carbon::parse($this->date_open . ' ' . $this->time_open)) return session()->flash('error', 'Task opening must at least be 30 minutes later than the current time.');
+            if ($carbondue < $carbonopen) return session()->flash('error', 'Cannot set the deadline before task opens.');
         }
         $this->validate([
             'task_name' => 'required',
@@ -185,6 +201,7 @@ class TaskMaker extends Component
             'items.*.answer' => 'required_with:items.*.options',
             'items.*.points' => 'required|numeric|min:1|max:100',
         ]);
+
 
         foreach ($this->items as  $key => $item) {
             if (isset($item['answer'])) {
@@ -208,6 +225,8 @@ class TaskMaker extends Component
         DB::transaction(function () {
             if (!$this->noDeadline) $deadline = $this->date_due . ' ' . $this->time_due;
             else $deadline = null;
+            if (!$this->openImmediately) $open_on = $this->date_open . ' ' . $this->time_open;
+            else $open_on = null;
             $task = Task::create([
                 'module_id' => $this->module->id,
                 'section_id' => $this->module->section_id,
@@ -218,8 +237,10 @@ class TaskMaker extends Component
                 'essay_rubric' => json_encode($this->task_rubric),
                 'content' => json_encode($this->items),
                 'deadline' => $deadline,
+                'open' => $this->openImmediately,
+                'open_on' => $open_on,
             ]);
-            if (!$this->noDeadline) {
+            if (!$this->noDeadline && $this->openImmediately) {
                 $code = Carbon::now()->timestamp;
                 CalendarEvent::create([
                     'user_id' => auth()->user()->id,
@@ -227,15 +248,20 @@ class TaskMaker extends Component
                     'title' => $task->name,
                     'description' => $task->name . ' for module: ' . $task->module->name,
                     'level' => 'students',
-                    'start' => $this->date_due . ' ' . $this->time_due,
-                    'end' => Carbon::parse($this->date_due)->addDay()->format('Y-m-d'),
+                    'start' => $task->deadline,
+                    'end' => $task->deadline->addDay()->format('Y-m-d'),
                     'url' => '/task/' . $task->id,
                     'allDay' => false
                 ]);
             }
-            event(new NewTask($task, auth()->user()->teacher));
+            if ($this->openImmediately) {
+                event(new NewTask($task, auth()->user()->teacher));
+            } else {
+                // TaskOpening::dispatch($task)->delay(Carbon::now()->addSeconds(10));
+                TaskOpening::dispatch($task)->delay(Carbon::parse($this->date_open . ' ' . $this->time_open));
+            }
         });
-        return redirect()->route('teacher.home');
+        return redirect()->route('teacher.module', ['module' => $this->module]);
     }
 
     //

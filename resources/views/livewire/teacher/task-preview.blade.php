@@ -7,7 +7,10 @@
     <br>
     <label for="task_name">Task Name:</label>
     <span>{{ $task->name }}</span>
-    <h1>Date Due: {{ $task->deadline->format('M d, Y') }}</h1>
+    <h1>Date Due: {{ $task->deadline->format('M d, Y - h:i a') }}</h1>
+    @if (!$task->open && $task->open_on)
+    <h1>Task Opens On: {{ $task->open_on->format('M d, Y - h:i a') }}</h1>
+    @endif
         @if ($rubric)
         <hr class="border border-primary-600">
         <div class="w-full my-2 overflow-auto">

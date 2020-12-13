@@ -1,7 +1,7 @@
 <div class="px-5">
     <div class="mt-2">
         <h1 class="flex items-center justify-between text-xl font-semibold"><span>ADD MODULE</span><span class="text-sm font-normal"><input type="checkbox" wire:model="allSections" class="form-checkbox" name="addforall" id="addforall"><label for="addforall" class="ml-1 font-bold uppercase">Add for all your sections</label></span></h1>
-        <form wire:submit.prevent="addModule" enctype="multipart/form-data">
+        <div>
             @csrf
             <div class="text-sm">
                 <h1>Course: {{ $section->course->name }}</h1>
@@ -19,14 +19,14 @@
             <div class="flex flex-col items-center mt-2 md:flex-row">
                 <input type="file" required wire:model="moduleFiles" class="w-full form-input" multiple
                     id="file{{ $fileId }}" name="module">
-                @error('moduleFiles.*')
-                <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
-                @enderror
-                <button  wire:target="moduleFiles" wire:loading.remove
+                <button onclick="confirm('Confirm addition of module?') || event.stopImmediatePropagation()" wire:click.prevent="addModule"   wire:target="moduleFiles" wire:loading.remove
                     class="p-2 mt-2 ml-2 text-white whitespace-no-wrap rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Module</button>
             </div>
-        </form>
+            @error('moduleFiles')
+                <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+                @enderror
+        </div>
     </div>
 
     <div wire:target="moduleFiles" wire:loading>

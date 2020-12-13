@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Teacher;
 use App\Models\Course;
 use App\Models\Module;
 use App\Models\Section;
+use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
@@ -20,6 +21,11 @@ class AddModule extends Component
     public $fileId = 0;
     public $moduleName = '';
     public $moduleFiles = [];
+
+
+    protected $messages = [
+        'moduleFiles.filled' => 'A file is required for a module.'
+    ];
 
     public function render()
     {
@@ -43,7 +49,7 @@ class AddModule extends Component
     {
         $this->validate([
             'moduleName' => 'required|string',
-            'moduleFiles.*' => 'required|file'
+            'moduleFiles' => 'filled'
         ]);
         if ($this->allSections) {
             $sections = auth()->user()->teacher->sections()->where('course_id', $this->section->course_id)->get();
@@ -73,24 +79,26 @@ class AddModule extends Component
                 }
             }
         } else {
-            $mod = Module::create([
-                'section_id' => $this->section->id,
-                'course_id' => $this->section->course->id,
-                'name' => $this->moduleName
-            ]);
-            foreach ($this->moduleFiles as  $module) {
-                $url = $module->store("", "google");
-                $match = gdriver($url);
-                $mod->files()->create([
-                    'google_id' => $match['id'],
-                    'name' => $module->getClientOriginalName(),
-                    'url' => $url
+            DB::transaction(function () {
+                $mod = Module::create([
+                    'section_id' => $this->section->id,
+                    'course_id' => $this->section->course->id,
+                    'name' => $this->moduleName
                 ]);
-            }
-            $rand = rand(1, 7);
-            $mod->image()->create([
-                'url' => "/img/bg/bg($rand).jpg"
-            ]);
+                foreach ($this->moduleFiles as  $module) {
+                    $url = $module->store("", "google");
+                    $match = gdriver($url);
+                    $mod->files()->create([
+                        'google_id' => $match['id'],
+                        'name' => $module->getClientOriginalName(),
+                        'url' => $url
+                    ]);
+                }
+                $rand = rand(1, 7);
+                $mod->image()->create([
+                    'url' => "/img/bg/bg($rand).jpg"
+                ]);
+            });
         }
 
         $this->fileId++;

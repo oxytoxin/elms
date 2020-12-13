@@ -6,10 +6,13 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskTaker extends Component
 {
     use WithFileUploads;
+    use AuthorizesRequests;
+
     public $task;
     public $answers = [];
     public $task_content;
@@ -30,6 +33,7 @@ class TaskTaker extends Component
 
     public function mount(Task $task)
     {
+        $this->authorize('view', $task);
         $this->hasSubmission = $task->students->where('id', auth()->user()->student->id)->first();
         $this->task = $task;
         $this->task_content = json_decode($this->task->content, true);

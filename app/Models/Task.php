@@ -17,7 +17,8 @@ class Task extends Model
     protected $guarded = [];
 
     protected $dates = [
-        'deadline'
+        'deadline',
+        'open_on'
     ];
 
     public function getCourseAttribute()

@@ -11,13 +11,36 @@
     @error("task_name")
     <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
     @enderror
-    <h1>Date Due: <i class="fas fa-spin fa-spinner" wire:loading></i></h1>
-    <input type="date" wire:model.defer="date_due" class="m-2 form-input" name="date_due" id="date_due">
-    <input type="time" wire:model.defer="time_due" class="m-2 form-input" name="time_due" id="time_due">
-    <span class="inline-flex items-center">
-    <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
-    <label for="noDeadline" class="font-bold uppercase text-md">Do not set deadline</label>
-    </span>
+    <div>
+        <h1>Date Due: <i class="fas fa-spin fa-spinner" wire:loading></i></h1>
+        <div class="flex flex-col md:flex-row">
+            <input type="date" wire:model.defer="date_due" class="m-2 form-input" name="date_due" id="date_due">
+            <input type="time" wire:model.defer="time_due" class="m-2 form-input" name="time_due" id="time_due">
+            <div class="inline-flex flex-col justify-center">
+                <span class="inline-flex items-center">
+                <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
+                <label for="noDeadline" class="font-bold uppercase text-md">Do not set deadline</label>
+                </span>
+                <span class="inline-flex items-center">
+                <input type="checkbox" wire:model="openImmediately" class="mr-1 form-checkbox" name="openImmediately" id="openImmediately">
+                <label for="openImmediately" class="font-bold uppercase text-md">Task Opens Immediately</label>
+                </span>
+            </div>
+        </div>
+    </div>
+    @if (!$openImmediately)
+    <h1>Task Opens on:</h1>
+    <div class="flex flex-col md:flex-row">
+        <input type="date" wire:model.defer="date_open" class="m-2 form-input" name="date_open" id="date_open">
+        <input type="time" wire:model.defer="time_open" class="m-2 form-input" name="time_open" id="time_open">
+    </div>
+    @error("date_open")
+        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+    @enderror
+    @error("time_open")
+        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+    @enderror
+    @endif
     <hr class="border border-primary-600">
         @foreach ($items as $key => $item)
             <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-primary-500 text-white' : '' }} relative shadow-lg">
@@ -76,6 +99,9 @@
             <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:ml-3 md:w-auto">Total points: {{ $total_points }}</span>
             <button wire:click.prevent="saveTask" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
         </div>
+        @if (session('error'))
+        <h1 class="mx-4 text-sm italic font-bold text-red-600">{{ session('error') }}</h1>
+        @endif
         <div x-cloak x-show.transition="showrubric" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div class="relative mx-5 overflow-hidden bg-white rounded-lg shadow-lg md:w-1/2 min-h-halfscreen">
                 <div class="p-3">

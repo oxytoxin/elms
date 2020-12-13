@@ -13,6 +13,7 @@ class Sidelist extends Component
     public $events;
     public $todo = "";
     public $showAdd = false;
+    public $user_id;
 
     public function render()
     {
@@ -25,8 +26,16 @@ class Sidelist extends Component
         ]);
     }
 
+    public function getListeners()
+    {
+        return [
+            "echo-private:users.{$this->user_id},.Illuminate\Notifications\Events\BroadcastNotificationCreated" => '$refresh',
+        ];
+    }
+
     public function mount()
     {
+        $this->user_id = auth()->user()->id;
         $this->todos = auth()->user()->todos->sortByDesc('created_at');
         $this->events = CalendarEvent::where('level', 'all')->get()->take(4)->sortBy('start');
     }

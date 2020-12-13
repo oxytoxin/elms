@@ -51,7 +51,7 @@ class Student extends Model
     public function getAllTasksAttribute()
     {
         return $this->teachers->unique()->map(function ($t) {
-            return $t->tasks;
+            return $t->tasks()->where('open', true)->get();
         })->flatten();
     }
     public function tasksByType($task_type)

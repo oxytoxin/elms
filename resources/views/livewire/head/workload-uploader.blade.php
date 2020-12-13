@@ -4,7 +4,7 @@
         <h1>For faculty member: {{ $teacher->user->name }}</h1>
         <h1>College: {{ $teacher->college->name }}</h1>
         <h1>Department: {{ $teacher->department->name }}</h1>
-        <form action="#" method="GET" wire:submit.prevent="uploadWorkload">
+        <form action="#" class="flex space-x-2" method="GET" wire:submit.prevent="uploadWorkload">
             <input type="file" name="workload" id="workload{{ $fileId }}" required wire:model="workload" class="form-input">
             <button class="p-3 font-semibold text-white uppercase rounded-lg bg-primary-500">UPLOAD CSV</button>
         </form>
