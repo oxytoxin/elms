@@ -17,7 +17,7 @@
                     </div>
                     <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline ? $task->deadline->format('h:i a, m/d/Y') : 'No deadline set' }}</h1>
                     @if (!$task->open)
-                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->open_on->format('h:i a, m/d/Y') }}</h1>
+                    <h1 class="text-sm font-semibold text-red-600">Task Opens On: {{ $task->open_on->format('h:i a, m/d/Y') }}</h1>
                     @endif
                 </div>
             </a>
