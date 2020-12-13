@@ -16,6 +16,9 @@
                         <h1 class="mb-6 text-sm font-semibold">Section: {{ $task->section->code }}</h1>
                     </div>
                     <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->deadline ? $task->deadline->format('h:i a, m/d/Y') : 'No deadline set' }}</h1>
+                    @if (!$task->open)
+                    <h1 class="text-sm font-semibold text-red-600">Date due: {{ $task->opens_on->format('h:i a, m/d/Y') }}</h1>
+                    @endif
                 </div>
             </a>
             @empty
