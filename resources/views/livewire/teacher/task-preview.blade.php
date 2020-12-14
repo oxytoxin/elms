@@ -7,7 +7,7 @@
     <br>
     <label for="task_name">Task Name:</label>
     <span>{{ $task->name }}</span>
-    <h1>Date Due: {{ $task->deadline->format('M d, Y - h:i a') }}</h1>
+    <h1>Date Due: {{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : 'No deadline set.' }}</h1>
     @if (!$task->open && $task->open_on)
     <h1>Task Opens On: {{ $task->open_on->format('M d, Y - h:i a') }}</h1>
     @endif
@@ -66,7 +66,7 @@
 
         @endforelse
 
-        @if ($item['options'])
+        @if (isset($item['answer']))
         <br>
         <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
         @endif

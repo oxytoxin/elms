@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Task;
 use Carbon\Carbon;
+use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -41,21 +42,24 @@ class TaskTaker extends Component
 
     public function submitAnswers()
     {
+        if (auth()->user()->cannot('submit', $this->task)) return session()->flash('deadline', 'Unfortunately, this task has already been closed.');
         $count = count($this->task_content);
         $this->validate([
             'answers' => "size:$count|required",
         ]);
-        foreach ($this->answers as $key => $item) {
-            if (isset($item['files'])) {
-                foreach ($item['files'] as $id => $file) {
-                    $filename = $file->getClientOriginalName();
-                    $url = $file->store('tasks', 'public');
-                    $this->answers[$key]['files'] = [];
-                    array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
+        DB::transaction(function () {
+            foreach ($this->answers as $key => $item) {
+                if (isset($item['files'])) {
+                    foreach ($item['files'] as $id => $file) {
+                        $filename = $file->getClientOriginalName();
+                        $url = $file->store('tasks', 'public');
+                        $this->answers[$key]['files'] = [];
+                        array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
+                    }
                 }
             }
-        }
-        $this->task->students()->attach(auth()->user()->id, ['date_submitted' => Carbon::now()->format('Y-m-d H:i:s'), 'answers' => json_encode($this->answers)]);
+            $this->task->students()->attach(auth()->user()->student->id, ['section_id' => $this->task->section_id, 'date_submitted' => Carbon::now()->format('Y-m-d H:i:s'), 'answers' => json_encode($this->answers)]);
+        });
         return redirect()->route('student.tasks', ['task_type' => $this->task->task_type_id]);
     }
 }

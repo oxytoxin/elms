@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Head;
 use App\Models\Course;
 use App\Models\Section;
 use App\Models\Teacher;
+use App\Notifications\GeneralNotification;
 use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -49,6 +50,7 @@ class WorkloadUploader extends Component
         }
         array_splice($this->workloadArray, 0, 5);
         DB::transaction(function () {
+            $workloadChanged = false;
             foreach ($this->workloadArray as $key => $load) {
                 if (isset($load[1])) {
                     $code = $load[1];
@@ -58,9 +60,11 @@ class WorkloadUploader extends Component
                         if (!$course->teachers->contains($this->teacher))
                             $course->teachers()->attach($this->teacher);
                         $s = Section::create(['code' => $load[3], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[9], 'schedule' => $load[7]]);
+                        $workloadChanged = true;
                     }
                 }
             }
+            if ($workloadChanged) $this->teacher->user->notify(new GeneralNotification('Your workload has been updated.', route('teacher.faculty_workload')));
         });
         $this->workloadArray = [];
         $this->fileId += 1;

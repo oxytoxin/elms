@@ -123,6 +123,7 @@ class TaskMaker extends Component
     {
         $this->items[$key]['torf'] = !$this->items[$key]['torf'];
         $this->items[$key]['essay'] = false;
+        unset($this->items[$key]['answer']);
         // dd($this->items[$key]['TorF']);
         if ($this->items[$key]['torf']) {
             array_unshift($this->items[$key]['options'], "True", "False");
@@ -166,6 +167,9 @@ class TaskMaker extends Component
     }
     public function addOption($key)
     {
+        if (!count($this->items[$key]['options'])) {
+            unset($this->items[$key]['answer']);
+        }
         array_push($this->items[$key]['options'], '');
     }
     public function removeOption($key, $id)
@@ -204,7 +208,7 @@ class TaskMaker extends Component
 
 
         foreach ($this->items as  $key => $item) {
-            if (isset($item['answer'])) {
+            if (isset($item['answer']) && $item['options']) {
                 $this->items[$key]['answer'] = $item['options'][$item['answer']];
             }
             if ($item['essay'] && !$this->isRubricSet) {

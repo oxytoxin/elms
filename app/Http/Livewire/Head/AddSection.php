@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\Head;
 
 use App\Models\Course;
-use App\Models\Department;
 use App\Models\Section;
 use Livewire\Component;
+use App\Models\Department;
+use App\Notifications\GeneralNotification;
+use DB;
 
 class AddSection extends Component
 {
@@ -48,14 +50,17 @@ class AddSection extends Component
             'faculty_select' => 'required|numeric'
         ]);
 
-        Section::create([
-            'code' => $this->section_code,
-            'teacher_id' => $this->faculty_select,
-            'course_id' => $this->course_select,
-            'schedule' => $this->schedule,
-            'room' => $this->room
-        ]);
-        Course::find($this->course_select)->teachers()->attach($this->faculty_select);
+        DB::transaction(function () {
+            $section = Section::create([
+                'code' => $this->section_code,
+                'teacher_id' => $this->faculty_select,
+                'course_id' => $this->course_select,
+                'schedule' => $this->schedule,
+                'room' => $this->room
+            ]);
+            $section->teacher->user->notify(new GeneralNotification('Your workload has been updated.', route('teacher.faculty_workload')));
+            Course::find($this->course_select)->teachers()->attach($this->faculty_select);
+        });
         session()->flash('message', 'Section successfully added.');
         $this->section_code = '';
         $this->schedule = '';

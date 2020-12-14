@@ -67,11 +67,14 @@
 
                 <div>
                     <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="files.{{ $key }}.fileArray" multiple>
-                        <div class="flex flex-col items-center mt-2 text-white md:flex-row">
+                        <div class="flex flex-col items-center mt-2 text-white md:space-x-3 md:flex-row">
                             <button class="w-full p-2 my-1 whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
-                            <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 md:ml-3 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
-                            <button wire:click="Essaytrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 md:ml-3 hover:text-primary-600 bg-gray-500 {{ $item['essay'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-file-document"></i>Essay</button>
-                            <button wire:click="ExpectAttachment({{ $key }})" class="p-2 w-full md:w-auto my-1 md:ml-3 hover:text-primary-600 bg-gray-500 {{ $item['attachment'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-attachment"></i>Require File Attachment?</button>
+                            <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
+                            <button wire:click="Essaytrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['essay'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-file-document"></i>Essay</button>
+                            <button wire:click="ExpectAttachment({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['attachment'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-attachment"></i>Require File Attachment?</button>
+                            @if (!count($item['options']) && !$item['essay'] && !$item['torf'])
+                            <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model="items.{{ $key }}.answer" class="flex-grow text-black form-input" placeholder="Correct Answer (Optional)">
+                            @endif
                         </div>
                    <div class="flex flex-col">
                     @if (count($item['options']))

@@ -6,7 +6,9 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\College;
+use App\Models\Section;
 use App\Models\Teacher;
+use App\Models\Extension;
 use App\Models\Department;
 use App\Models\StudentTask;
 use App\Models\CourseTeacherStudent;
@@ -87,5 +89,9 @@ class Student extends Model
     public function ungradedTasks()
     {
         return $this->belongsToMany(Task::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers')->wherePivot('isGraded', 0);
+    }
+    public function extensions()
+    {
+        return $this->hasMany(Extension::class);
     }
 }

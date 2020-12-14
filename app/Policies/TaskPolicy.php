@@ -34,6 +34,26 @@ class TaskPolicy
     }
 
     /**
+     * Determine whether the user can submit answers to the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Task  $task
+     * @return mixed
+     */
+    public function submit(User $user, Task $task)
+    {
+        if (!$task->deadline) return true;
+        if ($task->deadline && $task->deadline > now()) {
+            return true;
+        } else {
+            $ext = $task->extensions()->where('student_id', $user->student->id)->first();
+            if (!$ext) return false;
+            return $ext->deadline > now();
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user

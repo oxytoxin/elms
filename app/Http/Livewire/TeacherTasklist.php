@@ -11,6 +11,7 @@ class TeacherTasklist extends Component
     use WithPagination;
     public $submissions;
     public $task;
+    public $showDeadlineExtension = false;
     public function render()
     {
         return view('livewire.teacher-tasklist', [

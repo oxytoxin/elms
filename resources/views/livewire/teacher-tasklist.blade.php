@@ -6,13 +6,18 @@
                     <div class="flex flex-col my-4 md:flex-row md:justify-between">
                         <div>
                             <h1><span class="font-semibold">COURSE: </span>{{ $task->course->name }}</h1>
+                            <h1><span class="font-semibold">DEADLINE: </span>{{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : 'No Deadline' }}</h1>
+                            @if (!$task->open)
+                            <h1><span class="font-semibold">TASK OPENS ON: </span>{{ $task->open_on ? $task->open_on->format('M d, Y - h:i a') : '' }}</h1>
+                            @endif
                             <h1><span class="font-semibold">Perfect Score: </span>{{ $task->max_score }}</h1>
                             <a href="{{ route('teacher.task_preview',['task' => $task->id]) }}" class="p-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">PREVIEW TASK</a>
                         </div>
-                        <div class="mt-4 md:text-right md:mt-0">
+                        <div x-data="{showDeadlineExtension:@entangle('showDeadlineExtension')}" class="mt-4 md:text-right md:mt-0">
                             <h1><span class="font-semibold">MODULE: </span>{{ $task->module->name }}</h1>
                             <h1><span class="font-semibold">TASK: </span>{{ $task->name }}</h1>
                             <h1 class="uppercase"><span class="font-semibold">TASK TYPE: </span>{{ $task->task_type->name }}</h1>
+                            <a href="{{ route('teacher.extend_deadline',['task' => $task]) }}" class="p-2 text-xs font-semibold text-white uppercase hover:bg-primary-600 bg-primary-500">EXTEND DEADLINE</a>
                         </div>
                     </div>
                 </div>

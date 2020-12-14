@@ -3,10 +3,12 @@
     <h1 class="px-5 italic font-semibold uppercase">Task: {{ $task->name }}</h1>
     <h1 class="px-5 italic font-semibold uppercase">Course: {{ $task->course->name }}</span></h1>
     <h1 class="px-5 italic font-semibold uppercase">Module: <span class="text-orange-500">{{ $task->module->name }}</span></h1>
+    <h1 class="px-5 italic font-semibold uppercase">Deadline: <span class="text-red-600">{{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : "No deadline set." }}</span></h1>
     @if (!$hasSubmission)
         @foreach ($task_content as $key => $item)
         <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
-            <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
+            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</span><span>({{ $item['points'] }} pt/s.)</span></h1>
+            <hr class="my-2 border-t-2 border-primary-600">
             <h1>{{ $item['question'] }}</h1>
             @if ($item['files'])
             <div class="flex justify-center my-3">
@@ -53,9 +55,12 @@
         @error('answers')
             <h1 class="mx-5 mt-2 text-sm italic text-right text-red-600">{{ $message }}</h1>
         @enderror
-        @if (!$task->deadline || $task->deadline > now())
-        <button wire:click.prevent="submitAnswers" class="float-right p-2 mx-5 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
+        @if(session('deadline'))
+            <h1 class="mx-5 mt-2 text-sm italic text-right text-red-600">{{ session('deadline') }}</h1>
         @endif
+        @can('submit', $task)
+        <button wire:click.prevent="submitAnswers" class="float-right p-2 mx-5 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
+        @endcan
     @else
         <div class="mx-5 mt-5">
             <h1>You have already submitted.</h1>

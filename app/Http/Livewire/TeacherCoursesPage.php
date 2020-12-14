@@ -9,6 +9,7 @@ use App\Models\Student;
 use Livewire\Component;
 use App\Models\Resource;
 use App\Models\Section;
+use App\Notifications\GeneralNotification;
 use DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
@@ -60,6 +61,7 @@ class TeacherCoursesPage extends Component
             auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->section->course->id, 'section_id' => $this->section->id]);
             $this->section =  $this->section;
             $this->email = "";
+            $student->user->notify(new GeneralNotification("You have been enrolled to " . $this->section->course->code . " (" . $this->section->code . ").", route('student.home')));
             session()->flash('message', 'Student succesfully enrolled.');
         } else
             session()->flash('message', 'Student already enrolled.');

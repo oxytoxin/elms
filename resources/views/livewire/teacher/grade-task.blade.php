@@ -4,6 +4,7 @@
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
             <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
             <hr class="my-1 border border-primary-600">
+            <h1 class="text-sm font-semibold">{{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
             <p class="text-sm">{{ $answers[$essay_item]['answer'] }}</p>
             <div class="w-full overflow-auto">
                 <table class="table w-full mt-3 border-2 border-collapse table-auto border-primary-600">
@@ -62,7 +63,7 @@
     <div class="p-2 mx-5 mt-3 {{ $items[$key] ? ($items[$key]['isCorrect'] ? 'bg-green-400 bg-opacity-50' : 'bg-red-400 bg-opacity-50') : 'bg-yellow-300 bg-opacity-50'  }} border border-gray-700 rounded-lg shadow-lg">
         @if ($item['essay'])
         <button wire:click="showEssayGrader({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">GRADE</button>
-        @elseif(!$item['options'])
+        @else
         <div>
             <button wire:click="markAsCorrect({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">CORRECT</button>
             <button wire:click="markAsWrong({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-800">WRONG</button>
@@ -101,8 +102,18 @@
     @endisset
     <hr class="my-2 border border-primary-600">
     @isset($answers[$key]['answer'])
-    <h1 class="text-sm font-semibold">Student answered: {{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
-    <p>{{ $answers[$key]['answer'] }}</p>
+    <div class="flex justify-around my-2">
+        @isset($item['answer'])
+        <div class="w-full">
+            <h1 class="text-sm font-semibold">Correct answer:</h1>
+            <p>{{ $item['answer'] }}</p>
+        </div>
+        @endisset
+        <div class="w-full">
+            <h1 class="text-sm font-semibold">Student answered: {{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
+            <p>{{ $answers[$key]['answer'] }}</p>
+        </div>
+    </div>
     @endisset
     <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pts</span>
 </div>

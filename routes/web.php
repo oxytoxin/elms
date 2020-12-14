@@ -1,37 +1,40 @@
 <?php
 
+use App\Models\File;
 use App\Models\Task;
 use App\Models\User;
 use App\Events\NewTask;
-use App\Http\Controllers\DeanPagesController;
 use App\Models\Teacher;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\TeacherTasklist;
 use App\Notifications\SomeNotification;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
 use App\Http\Livewire\PreviewSubmission;
 use App\Http\Livewire\Teacher\AddModule;
 use App\Http\Livewire\Teacher\Gradebook;
 use App\Http\Livewire\Teacher\GradeTask;
+use App\Http\Livewire\TeacherCoursesPage;
+use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Teacher\TaskPreview;
 use App\Notifications\AnotherNotification;
+use App\Http\Livewire\Student\EnrolViaCode;
+use App\Http\Livewire\Head\WorkloadUploader;
+use App\Http\Controllers\DeanPagesController;
+use App\Http\Livewire\Dean\ProgramHeadManager;
+use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\Dean\ProgramHeadManager;
-use App\Http\Livewire\Head\AddSection;
-use App\Http\Livewire\Head\FacultyManager;
-use App\Http\Livewire\Head\WorkloadUploader;
-use App\Http\Livewire\Student\EnrolViaCode;
-use App\Http\Livewire\Teacher\FacultyWorkload;
-use App\Http\Livewire\TeacherCoursesPage;
+use App\Http\Livewire\Teacher\ExtendDeadline;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +118,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/grade/{task}', GradeTask::class)->name('teacher.grade_task');
     Route::get('/gradebook', Gradebook::class)->name('teacher.gradebook');
     Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
+    Route::get('/extend-deadline/{task}', ExtendDeadline::class)->name('teacher.extend_deadline');
 });
 
 // Program Head Routes
@@ -137,4 +141,15 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
 Route::prefix('dean')->middleware(['auth', 'isDean'])->group(function () {
     Route::get('/home', [DeanPagesController::class, 'home'])->name('dean.home');
     Route::get('/manage-program-heads', ProgramHeadManager::class)->name('dean.programhead_manager');
+});
+
+
+
+Route::get('/dlist', function () {
+    $dir = '/';
+    $recursive = true; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+    // return $contents->where('type', '=', 'dir'); // directories
+    return $contents; // files
 });
