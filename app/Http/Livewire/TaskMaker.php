@@ -209,12 +209,14 @@ class TaskMaker extends Component
 
 
         foreach ($this->items as  $key => $item) {
-            if (isset($item['answer']) && $item['options']) {
-                $this->items[$key]['answer'] = $item['options'][$item['answer']];
-            }
             if ($item['essay'] && !$this->isRubricSet) {
                 $this->showrubric = true;
                 return false;
+            }
+        }
+        foreach ($this->items as  $key => $item) {
+            if (isset($item['answer']) && $item['options']) {
+                $this->items[$key]['answer'] = $item['options'][$item['answer']];
             }
             if (isset($this->files[$key]['fileArray']))
                 $this->items[$key]['files'] = $this->files[$key]['fileArray'];

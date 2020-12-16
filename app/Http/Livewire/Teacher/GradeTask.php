@@ -122,6 +122,7 @@ class GradeTask extends Component
         $this->submission->update([
             'score' => $this->getTotalScore(),
             'isGraded' => true,
+            'assessment' => json_encode($this->items),
         ]);
         return redirect()->route('teacher.task', ['task' => $this->task->id]);
     }

@@ -1,11 +1,14 @@
 <div class="m-5" x-data="{uiEssay:@entangle('uiEssay')}">
+    @dump($items)
     <div x-show.transition="uiEssay" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
         @if ($rubric && $essay_item)
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
-            <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
+            <div class="flex justify-between">
+                <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
+            <h1 class="text-sm font-semibold">{{ $task_content[$essay_item]['essay'] ? "(Student's answer word count: ".str_word_count($answers[$essay_item]['answer'])." word/s)" : '' }}</h1>
+            </div>
             <hr class="my-1 border border-primary-600">
-            <h1 class="text-sm font-semibold">{{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
-            <p class="text-sm">{{ $answers[$essay_item]['answer'] }}</p>
+            {{-- <p class="text-sm">{{ $answers[$essay_item]['answer'] }}</p> --}}
             <div class="w-full overflow-auto">
                 <table class="table w-full mt-3 border-2 border-collapse table-auto border-primary-600">
                     <thead>
@@ -35,7 +38,7 @@
             </div>
             <div class="my-2 text-sm">
                 <h1>Max score: <span class="font-semibold">{{ $essay_maxscore }} pts</span></h1>
-                <h1>Student score: <span class="font-semibold">{{ $essay_score }} pts</span></h1>
+                {{-- <h1>Student score: <span class="font-semibold">{{ $items[$essay_item]['score'] }} pts</span></h1> --}}
                 <div class="my-1">
                     <button @click="uiEssay=false" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-800">CANCEL</button>
                     <button @click="uiEssay=false" wire:click="gradeEssay" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">GRADE</button>
@@ -80,8 +83,8 @@
             {{ session("partialError$key") }}
         </div>
         @endif
-        <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : "" }}</h1>
-        <h1>{{ $item['question'] }}</h1>
+        <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : "" }}</span> <span>{{ $item['points'] }} pt/s.</span></h1>
+        <h1 class="px-5">{{ $item['question'] }}</h1>
         @if ($item['files'])
         <div class="flex justify-center my-3">
             @foreach ($item['files'] as $file)

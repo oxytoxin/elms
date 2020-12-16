@@ -8,6 +8,7 @@ use Livewire\Component;
 class PreviewSubmission extends Component
 {
     public $submission;
+    public $assessment;
     public $task;
     public $questions;
     public $answers;
@@ -25,5 +26,6 @@ class PreviewSubmission extends Component
         $this->task = $submission->task;
         $this->questions = json_decode($this->task->content, true);
         $this->answers = json_decode($this->submission->answers, true);
+        $this->assessment = json_decode($this->submission->assessment, true);
     }
 }
