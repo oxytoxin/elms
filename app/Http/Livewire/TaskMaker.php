@@ -190,6 +190,7 @@ class TaskMaker extends Component
         for ($i = 0; $i < count($this->items); $i++) {
             $this->items[$i]['item_no'] = $i + 1;
         }
+        if (!$this->noDeadline && Carbon::parse($this->date_due . ' ' . $this->time_due) < now()->addHour()) return session()->flash('error', 'Task deadline must at least be one hour from now.');
         if (!$this->openImmediately) {
             $this->validate([
                 'date_open' => 'required',

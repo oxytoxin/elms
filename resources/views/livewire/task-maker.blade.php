@@ -11,23 +11,31 @@
     @error("task_name")
     <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
     @enderror
+    <div class="flex flex-col justify-center my-3">
+        <span class="inline-flex items-center">
+        <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
+        <label for="noDeadline" class="font-bold uppercase text-md">Do not set deadline</label>
+        </span>
+        <span class="inline-flex items-center">
+        <input type="checkbox" wire:model="openImmediately" class="mr-1 form-checkbox" name="openImmediately" id="openImmediately">
+        <label for="openImmediately" class="font-bold uppercase text-md">Task Opens Immediately</label>
+        </span>
+    </div>
+    @if (!$noDeadline)
     <div>
         <h1>Date Due: <i class="fas fa-spin fa-spinner" wire:loading></i></h1>
         <div class="flex flex-col md:flex-row">
             <input type="date" wire:model.defer="date_due" class="m-2 form-input" name="date_due" id="date_due">
             <input type="time" wire:model.defer="time_due" class="m-2 form-input" name="time_due" id="time_due">
-            <div class="inline-flex flex-col justify-center">
-                <span class="inline-flex items-center">
-                <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
-                <label for="noDeadline" class="font-bold uppercase text-md">Do not set deadline</label>
-                </span>
-                <span class="inline-flex items-center">
-                <input type="checkbox" wire:model="openImmediately" class="mr-1 form-checkbox" name="openImmediately" id="openImmediately">
-                <label for="openImmediately" class="font-bold uppercase text-md">Task Opens Immediately</label>
-                </span>
-            </div>
         </div>
+        @error("date_due")
+        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+        @enderror
+        @error("time_due")
+            <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+        @enderror
     </div>
+    @endif
     @if (!$openImmediately)
     <h1>Task Opens on:</h1>
     <div class="flex flex-col md:flex-row">
@@ -142,7 +150,7 @@
                     <div class="mt-3 control-panel">
                         <div class="py-3 border-b-2 border-primary-600">
                             <h1 class="text-xs font-semibold"><i class="mr-1 icofont-info-circle text-yellow"></i>Note: Adding items resets their weights to equal percentages.</h1>
-                            @if (session()->has('max_criteria'))
+                            @if (session()->has('max_elements'))
                             <div class="text-xs italic text-red-600">
                                 {{ session('max_elements') }}
                             </div>
@@ -153,13 +161,13 @@
                             @error('new_performance_rating')
                             <h1 class="text-sm italic text-red-600">{{ $message }}</h1>
                             @enderror
-                            <div class="flex flex-col mt-2 md:flex-row">
+                            <div class="flex flex-col items-center mt-2 md:flex-row">
                                 <input wire:model.lazy="new_criterion" type="text" class="flex-1 mr-2 form-input" placeholder="Your new criterion...">
-                                <button wire:click.prevent="addCriterion" class="self-end w-full p-2 px-10 mt-2 font-semibold text-white md:mt-0 md:w-auto bg-primary-500 hover:bg-primary-600">ADD CRITERION</button>
+                                <button wire:click.prevent="addCriterion" class="w-full p-2 px-10 mt-2 font-semibold text-white md:mt-0 md:w-auto bg-primary-500 hover:bg-primary-600">ADD CRITERION</button>
                             </div>
-                            <div class="flex flex-col mt-2 md:flex-row">
-                                <input wire:model.lazy="new_performance_rating" type="text" class="flex-1 mr-2 form-input" placeholder="Your new performance rating...">
-                                <button wire:click.prevent="addPerformanceRating" class="self-end w-full p-2 px-10 mt-2 font-semibold text-white md:mt-0 md:w-auto bg-primary-500 hover:bg-primary-600">ADD PERFORMANCE RATING</button>
+                            <div class="flex flex-col items-center mt-2 md:flex-row">
+                                <input wire:model.lazy="new_performance_rating" type="text" class="flex-1 mr-2 md:mt-0 form-input" placeholder="Your new performance rating...">
+                                <button wire:click.prevent="addPerformanceRating" class="w-full p-2 px-10 mt-2 font-semibold text-white md:mt-0 md:w-auto bg-primary-500 hover:bg-primary-600">ADD PERFORMANCE RATING</button>
                             </div>
                         </div>
                         <div>
