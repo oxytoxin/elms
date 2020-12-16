@@ -192,6 +192,16 @@ class DeploySeeder extends Seeder
             'college_id' => 2
         ]);
         $u->roles()->attach(Role::find(3));
+        $u = User::create([
+            'name' => 'Cerilo Rubin',
+            'email' => 'cerilorubin@sksu.edu.ph',
+            'password' => bcrypt('password'),
+        ]);
+        Teacher::create([
+            'user_id' => $u->id,
+            'college_id' => 2
+        ]);
+        $u->roles()->attach(Role::find(3));
         Student::factory()->count(99)->create()->each(function ($s) {
             $s->user->roles()->attach(Role::find(2));
         });
