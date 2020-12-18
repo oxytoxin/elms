@@ -4,7 +4,9 @@ use App\Models\File;
 use App\Models\Task;
 use App\Models\User;
 use App\Events\NewTask;
+use App\Models\Student;
 use App\Models\Teacher;
+use App\Events\NewSubmission;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
 use Illuminate\Support\Facades\Crypt;
@@ -28,12 +30,12 @@ use App\Notifications\AnotherNotification;
 use App\Http\Livewire\Student\EnrolViaCode;
 use App\Http\Livewire\Head\WorkloadUploader;
 use App\Http\Controllers\DeanPagesController;
+use App\Http\Livewire\Teacher\ExtendDeadline;
 use App\Http\Livewire\Dean\ProgramHeadManager;
 use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\Teacher\ExtendDeadline;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 /*
@@ -51,17 +53,7 @@ Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('f
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
 
 Route::get('/command', function () {
-    // \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
-    // \Illuminate\Support\Facades\Artisan::call("view:cache");
-    // event(new NewTask(Task::find(1), Teacher::find(101)));\
-    $r = json_encode(['id' => 1, 'course' => 2]);
-    $test = Crypt::encryptString($r);
-    dump($test);
-    try {
-        dump(json_decode(Crypt::decryptString($test), true));
-    } catch (DecryptException $e) {
-        abort(404);
-    }
+    event(new NewSubmission(Student::find(84), 26));
 });
 
 Route::get('/', function () {

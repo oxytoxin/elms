@@ -8,7 +8,12 @@
     @stack('metas')
     {{-- <meta name="turbolinks-cache-control" content="no-cache"> --}}
     <title>{{ config('app.name', 'ELMS') }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> --}}
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fa-min.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
@@ -38,7 +43,7 @@
     @stack('styles')
 </head>
 
-<body class="antialiased bg-gray-200">
+<body class="antialiased bg-gray-100">
     <audio id="notifAudio">
         <source src="{{ asset('notification.ogg') }}" type="audio/ogg">
     </audio>

@@ -115,7 +115,7 @@ module.exports = {
                 halfscreen: "50vw"
             },
             fontFamily: {
-                sans: ["Montserrat", ...defaultTheme.fontFamily.sans]
+                sans: ["Poppins", "Montserrat", ...defaultTheme.fontFamily.sans]
             },
             screens:{
                 'xxl':'1920px'

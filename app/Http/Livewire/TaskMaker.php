@@ -37,6 +37,7 @@ class TaskMaker extends Component
     public $task_rubric = [];
     public $noDeadline = false;
 
+    protected $autocorrect = true;
 
     public $openImmediately = true;
     public $date_open = null;
@@ -53,9 +54,10 @@ class TaskMaker extends Component
 
 
     protected $messages = [
-        'items.*.question.required' => 'Question fields cannot be empty.',
+        'items.*.question.required' => 'Question fields are required.',
         'items.*.answer.required' => 'Please specify the correct answer.',
-        'items.*.options.*.required' => 'Option fields cannot be empty.',
+        'items.*.options.*.required' => 'Option fields are required.',
+        'items.*.enumerationItems.*.required' => 'Enumeration items are required.',
         'items.*.points.min' => 'Item scores must be greater than 0.',
         'items.*.points.max' => 'Item scores must not be greater than 100.',
         'items.*.points.required' => 'Item scores are required.',
@@ -81,8 +83,10 @@ class TaskMaker extends Component
             'question' => '',
             'points' => "1",
             'options' => [],
+            'enumerationItems' => [],
             'torf' => false,
             'essay' => false,
+            'enumeration' => false,
             'attachment' => false,
         ]);
         //
@@ -122,16 +126,41 @@ class TaskMaker extends Component
     public function TorFtrigger($key)
     {
         $this->items[$key]['torf'] = !$this->items[$key]['torf'];
-        $this->items[$key]['essay'] = false;
         unset($this->items[$key]['answer']);
-        // dd($this->items[$key]['TorF']);
         if ($this->items[$key]['torf']) {
+            $this->items[$key]['options'] = [];
             array_unshift($this->items[$key]['options'], "True", "False");
+            $this->items[$key]['essay'] = false;
+            $this->items[$key]['enumeration'] = false;
+            $this->items[$key]['enumerationItems'] = [];
         } else {
             array_splice($this->items[$key]['options'], 0, 2);
-            unset($this->items[$key]['answer']);
         }
     }
+
+    public function enumerationTrigger($key)
+    {
+        $this->items[$key]['enumeration'] = !$this->items[$key]['enumeration'];
+        if ($this->items[$key]['enumeration']) {
+            $this->items[$key]['options'] = [];
+            $this->items[$key]['torf'] = false;
+            $this->items[$key]['essay'] = false;
+            unset($this->items[$key]['answer']);
+            array_push($this->items[$key]['enumerationItems'], '');
+            array_push($this->items[$key]['enumerationItems'], '');
+        } else $this->items[$key]['enumerationItems'] = [];
+    }
+
+    public function removeEnumItem($key, $enum)
+    {
+        array_splice($this->items[$key]['enumerationItems'], $enum, 1);
+    }
+
+    public function addEnumerationItem($key)
+    {
+        array_push($this->items[$key]['enumerationItems'], '');
+    }
+
     public function Essaytrigger($key)
     {
         $this->items[$key]['essay'] = !$this->items[$key]['essay'];
@@ -139,9 +168,12 @@ class TaskMaker extends Component
             $this->items[$key]['options'] = [];
             unset($this->items[$key]['answer']);
         }
-        if ($this->items[$key]['torf']) {
+        if ($this->items[$key]['essay']) {
+            $this->items[$key]['enumeration'] = false;
+            $this->items[$key]['enumerationItems'] = [];
             $this->items[$key]['torf'] = false;
-            array_splice($this->items[$key]['options'], 0, 2);
+            $this->items[$key]['options'] = [];
+            unset($this->items[$key]['answer']);
         }
     }
 
@@ -160,8 +192,10 @@ class TaskMaker extends Component
             'question' => '',
             'points' => "1",
             'options' => [],
+            'enumerationItems' => [],
             'torf' => false,
             'essay' => false,
+            'enumeration' => false,
             'attachment' => false,
         ]);
     }
@@ -185,6 +219,15 @@ class TaskMaker extends Component
     }
     public function saveTask()
     {
+        $this->validate([
+            'task_name' => 'required',
+            'items.*.question' => 'required',
+            'items.*.options.*' => 'required',
+            'items.*.enumerationItems.*' => 'required',
+            'items.*.answer' => 'required_with:items.*.options',
+            'items.*.points' => 'required|numeric|min:1|max:100',
+        ]);
+
         $carbondue = Carbon::parse($this->date_due . ' ' . $this->time_due)->format('M d,Y - h:i a');
         $carbonopen = Carbon::parse($this->date_open . ' ' . $this->time_open)->format('M d,Y - h:i a');
         for ($i = 0; $i < count($this->items); $i++) {
@@ -199,13 +242,7 @@ class TaskMaker extends Component
             if (Carbon::now()->addMinutes(30) > Carbon::parse($this->date_open . ' ' . $this->time_open)) return session()->flash('error', 'Task opening must at least be 30 minutes later than the current time.');
             if ($carbondue < $carbonopen) return session()->flash('error', 'Cannot set the deadline before task opens.');
         }
-        $this->validate([
-            'task_name' => 'required',
-            'items.*.question' => 'required',
-            'items.*.options.*' => 'required',
-            'items.*.answer' => 'required_with:items.*.options',
-            'items.*.points' => 'required|numeric|min:1|max:100',
-        ]);
+
 
 
         foreach ($this->items as  $key => $item) {
@@ -222,7 +259,13 @@ class TaskMaker extends Component
                 $this->items[$key]['files'] = $this->files[$key]['fileArray'];
         }
         foreach ($this->items as $key => $item) {
+            if (!$item['enumeration'] && !isset($item['answer'])) $this->autocorrect = false;
+        }
+        foreach ($this->items as $key => $item) {
             $this->items[$key]['files'] = [];
+            foreach ($item['enumerationItems'] as $enumId => $enumItem) {
+                $this->items[$key]['enumerationItems'][$enumId] = sanitizeString($enumItem);
+            }
             foreach ($item['files'] as $id => $file) {
                 $filename = $file->getClientOriginalName();
                 $url = $file->store('tasks', 'public');
@@ -235,6 +278,7 @@ class TaskMaker extends Component
             if (!$this->openImmediately) $open_on = $this->date_open . ' ' . $this->time_open;
             else $open_on = null;
             $task = Task::create([
+                'autocorrect' => $this->autocorrect,
                 'module_id' => $this->module->id,
                 'section_id' => $this->module->section_id,
                 'teacher_id' => auth()->user()->teacher->id,
@@ -304,8 +348,8 @@ class TaskMaker extends Component
             'new_criterion' => 'required'
         ]);
 
-        if (count($this->rubric['criteria']) >= 4) {
-            session()->flash('max_elements', 'The rubric allows maximum of four criteria only.');
+        if (count($this->rubric['criteria']) >= 5) {
+            session()->flash('max_elements', 'The rubric allows maximum of five criteria only.');
             $this->new_criterion = "";
             return false;
         }
@@ -324,8 +368,8 @@ class TaskMaker extends Component
             'new_performance_rating' => 'required'
         ]);
 
-        if (count($this->rubric['performance_rating']) >= 4) {
-            session()->flash('max_elements', 'The rubric allows maximum of four performance ratings only.');
+        if (count($this->rubric['performance_rating']) >= 5) {
+            session()->flash('max_elements', 'The rubric allows maximum of five performance ratings only.');
             $this->new_performance_rating = "";
             return false;
         }
@@ -375,6 +419,7 @@ class TaskMaker extends Component
         $this->task_rubric = $this->rubric;
         $this->isRubricSet = true;
         $this->showrubric = false;
+        $this->saveTask();
     }
 
 

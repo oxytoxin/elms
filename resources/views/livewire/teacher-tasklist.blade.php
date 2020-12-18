@@ -110,7 +110,7 @@
                                             <span class="relative">{{ $student->pivot->isGraded ? 'Graded' : 'Ungraded' }}</span>
                                         </span>
                                     </td>
-                                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <td class="px-5 py-5 space-y-2 text-sm bg-white border-b border-gray-200">
                                         @if (!$student->pivot->isGraded)
                                         <button class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900 hover:bg-primary-500">
                                             <span aria-hidden
@@ -123,6 +123,11 @@
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-green-200 opacity-50"></span>
                                             <a href="{{ route('preview-submission',['submission' => $student->pivot->id]) }}"><span class="relative text-xs">Preview Submission</a>
+                                        </button>
+                                        <button class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900 hover:bg-primary-500">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50"></span>
+                                            <a href="{{ route('teacher.grade_task',['task' => $student->pivot->task_id, 'student' => $student->id]) }}"><span class="relative"><i class="mr-2 icofont-check-circled"></i>Grade</span></a>
                                         </button>
                                         @endif
                                     </td>

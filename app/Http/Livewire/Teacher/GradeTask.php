@@ -77,11 +77,29 @@ class GradeTask extends Component
     {
         foreach ($this->task_content as $key => $content) {
             if (array_key_exists('answer', $content)) {
-                if (strcasecmp(trim(preg_replace('/\s+/', ' ', $this->answers[$key]['answer'])), $content['answer'])  == 0) {
+                if (strcasecmp(sanitizeString($this->answers[$key]['answer']), $content['answer'])  == 0) {
                     array_push($this->items, $key = ['isCorrect' => true, 'score' => $content['points']]);
                 } else array_push($this->items, $key = ['isCorrect' => false, 'score' => 0]);
+            } else if ($content['enumeration']) {
+                $correctItems = 0;
+                $studentEnums = array_map('strtolower', json_decode($this->answers[$key]['answer']));
+                $correctEnums = array_map('strtolower', $content['enumerationItems']);
+                foreach ($correctEnums as $key => $enumItem) {
+                    if (in_array(sanitizeString($studentEnums[$key]), $correctEnums)) $correctItems++;
+                }
+                if (count($correctEnums) == $correctItems)
+                    array_push($this->items, $key = ['isCorrect' => true, 'score' => $content['points']]);
+                else if ($correctItems) array_push($this->items, $key = ['isCorrect' => 'partial', 'score' => $content['points'] * $correctItems]);
+                else array_push($this->items, $key = ['isCorrect' => false, 'score' => 0]);
             } else array_push($this->items, $key = null);
         }
+    }
+
+    public function enumeratorCheck($key, $id)
+    {
+        $studentEnums = array_map('strtolower', json_decode($this->answers[$key]['answer']));
+        $correctEnums = array_map('strtolower', $this->task_content[$key]['enumerationItems']);
+        return in_array(sanitizeString($studentEnums[$id]), $correctEnums);
     }
 
     public function markAsCorrect($key)

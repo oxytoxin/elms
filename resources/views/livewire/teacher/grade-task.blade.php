@@ -1,5 +1,4 @@
 <div class="m-5" x-data="{uiEssay:@entangle('uiEssay')}">
-    @dump($items)
     <div x-show.transition="uiEssay" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
         @if ($rubric && $essay_item)
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
@@ -68,8 +67,10 @@
         <button wire:click="showEssayGrader({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">GRADE</button>
         @else
         <div>
+            @if (!$item['enumeration'])
             <button wire:click="markAsCorrect({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">CORRECT</button>
             <button wire:click="markAsWrong({{ $key }})" class="px-2 py-1 mb-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-800">WRONG</button>
+            @endif
             @if($item['attachment'])
             <div>
                 <input type="number" placeholder="Partial Score..." wire:model="partial.{{ $key }}" class="py-1 text-xs form-input">
@@ -83,7 +84,7 @@
             {{ session("partialError$key") }}
         </div>
         @endif
-        <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : "" }}</span> <span>{{ $item['points'] }} pt/s.</span></h1>
+        <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : ($item['enumeration'] ? '(Enumeration)' : '') }}</span> <span>{{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' :'' }}</span></h1>
         <h1 class="px-5">{{ $item['question'] }}</h1>
         @if ($item['files'])
         <div class="flex justify-center my-3">
@@ -105,6 +106,26 @@
     @endisset
     <hr class="my-2 border border-primary-600">
     @isset($answers[$key]['answer'])
+    @if ($item['enumeration'])
+    <div class="flex justify-around my-2">
+        <div class="w-full">
+            <h1 class="text-sm font-semibold">Correct answers:</h1>
+            <ul class="space-y-2 list-disc list-inside">
+                @foreach ($item['enumerationItems'] as $enumItem)
+                <li>{{ $enumItem }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="w-full">
+            <h1 class="text-sm font-semibold">Student answered:</h1>
+            <ul class="space-y-2 list-disc list-inside">
+                @foreach (json_decode($answers[$key]['answer']) as $id => $answer)
+                <li class="{{ $this->enumeratorCheck($key, $id) ?: 'bg-red-400' }}">{{ $answer }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    @else
     <div class="flex justify-around my-2">
         @isset($item['answer'])
         <div class="w-full">
@@ -117,12 +138,13 @@
             <p>{{ $answers[$key]['answer'] }}</p>
         </div>
     </div>
+    @endif
     @endisset
-    <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pts</span>
+    <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pt(s)</span>
 </div>
 @endforeach
     @if($this->verifyItems())
-    <button wire:click="finishGrading" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
+    <button wire:click="finishGrading" onclick="confirm('Finish grading task?') || event.stopImmediatePropagation()" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
     @endif
 </div>
 

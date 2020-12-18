@@ -8,9 +8,11 @@
     <br>
     <label for="task_name">Task Name:</label>
     <input type="text" wire:model.defer="task_name" placeholder="Enter task name..." class="w-full form-input">
-    @error("task_name")
-    <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
-    @enderror
+    <div>
+        @error("task_name")
+        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+        @enderror
+    </div>
     <div class="flex flex-col justify-center my-3">
         <span class="inline-flex items-center">
         <input type="checkbox" wire:model="noDeadline" class="mr-1 form-checkbox" name="noDeadline" id="noDeadline">
@@ -51,7 +53,7 @@
     @endif
     <hr class="border border-primary-600">
         @foreach ($items as $key => $item)
-            <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-primary-500 text-white' : '' }} relative shadow-lg">
+            <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-green-400 text-white' : 'bg-white' }} relative shadow-lg">
                 @if ($key != 0)
                     <div class="absolute right-0 pr-2"><i wire:click.prevent="removeItem({{ $key }})" class="text-red-600 cursor-pointer icofont-close"></i></div>
                 @endif
@@ -62,28 +64,61 @@
                         <input type="text" placeholder="Enter your question or instruction..." wire:model.defer="items.{{ $key }}.question" class="w-full {{ $key%2 ? 'text-black' : '' }} form-input">
                     </div>
                     <div>
-                        <h1 class="font-semibold">POINTS</h1>
+                        <h1 class="font-semibold">{{ $item['enumeration'] ? "POINTS/ITEM" : "POINTS" }}</h1>
                         <input type="number" wire:model="items.{{ $key }}.points" class="w-28 {{ $key%2 ? 'text-black' : '' }} form-input">
                     </div>
                 </div>
-                @error("items.$key.question")
-                    <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
-                @enderror
-                @error("items.$key.points")
-                    <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
-                @enderror
-
                 <div>
-                    <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="files.{{ $key }}.fileArray" multiple>
+                    @error("items.$key.question")
+                        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+                    @enderror
+                </div>
+                <div>
+                    @error("items.$key.points")
+                        <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+                    @enderror
+                </div>
+
+                <div class="my-2">
+
+                    <div class="flex space-x-2">
+                        @if (!count($item['options']) && !$item['essay'] && !$item['torf'] && !$item['enumeration'])
+                        <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model.defer="items.{{ $key }}.answer" class="flex-grow text-black form-input" placeholder="Correct Answer (Optional)">
+                        @endif
+                        <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="files.{{ $key }}.fileArray" multiple>
+                    </div>
                         <div class="flex flex-col items-center mt-2 text-white md:space-x-3 md:flex-row">
-                            <button class="w-full p-2 my-1 whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
+                            <span>
+                                @if (!$item['essay'] && !$item['torf'] && !$item['enumeration'])
+                                <button class="w-full p-2 my-1 whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
+                                @endif
+                            </span>
                             <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
                             <button wire:click="Essaytrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['essay'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-file-document"></i>Essay</button>
                             <button wire:click="ExpectAttachment({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['attachment'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-attachment"></i>Require File Attachment?</button>
-                            @if (!count($item['options']) && !$item['essay'] && !$item['torf'])
-                            <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model="items.{{ $key }}.answer" class="flex-grow text-black form-input" placeholder="Correct Answer (Optional)">
-                            @endif
+                            <button wire:click="enumerationTrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['enumeration'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="mr-1 icofont-listing-number"></i>Enumeration</button>
                         </div>
+                        @if ($item['enumeration'])
+                        <div class="my-2 space-y-2">
+                            <h1 class="text-sm font-semibold">Enumeration Items <span wire:click="addEnumerationItem({{ $key }})" class="p-1 text-white rounded-full cursor-pointer hover:bg-primary-600 bg-primary-500"><i class="icofont-plus"></i></span></h1>
+
+                            <div class="flex flex-col space-y-2">
+                                @foreach ($item['enumerationItems'] as $enum => $enumItem)
+                                <div class="relative">
+                                    <input wire:key="item_{{ $key }}_enum_{{ $enum }}" wire:model.defer="items.{{ $key }}.enumerationItems.{{ $enum }}" type="text" name="items.{{ $key }}.enumerationItems.{{ $enum }}" class="w-full text-xs form-input" placeholder="Enumeration item..." id="items.{{ $key }}.enumerationItems.{{ $enum }}">
+                                    @if ($enum != 0 && $enum != 1)
+                                    <i class="absolute ml-2 text-2xl text-red-600 cursor-pointer inset-y-2 right-1 icofont-trash"
+                                    wire:click.prevent="removeEnumItem({{ $key}},{{ $enum }})"
+                                    ></i>
+                                    @endif
+                                </div>
+                                @error("items.$key.enumerationItems.$enum")
+                                <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+                                @enderror
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
                    <div class="flex flex-col">
                     @if (count($item['options']))
                         <h1 class="text-sm italic">Double check that the correct option is selected.</h1>
@@ -113,6 +148,11 @@
         @if (session('error'))
         <h1 class="mx-4 text-sm italic font-bold text-red-600">{{ session('error') }}</h1>
         @endif
+        <div>
+            @if ($errors->any())
+            <h1 class="mx-4 text-sm italic font-bold text-red-600">Please review each field for errors.</h1>
+            @endif
+        </div>
         <div x-cloak x-show.transition="showrubric" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div class="relative mx-5 overflow-hidden bg-white rounded-lg shadow-lg md:w-1/2 min-h-halfscreen">
                 <div class="p-3">

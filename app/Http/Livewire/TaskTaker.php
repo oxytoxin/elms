@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\NewSubmission;
 use App\Models\Task;
 use Carbon\Carbon;
 use DB;
@@ -16,6 +17,7 @@ class TaskTaker extends Component
 
     public $task;
     public $answers = [];
+    public $enumeration = [];
     public $task_content;
     public $hasSubmission;
 
@@ -38,15 +40,29 @@ class TaskTaker extends Component
         $this->hasSubmission = $task->students->where('id', auth()->user()->student->id)->first();
         $this->task = $task;
         $this->task_content = json_decode($this->task->content, true);
+        foreach ($this->task_content as $key => $content) {
+            array_push($this->answers, ['answer' => '']);
+            if ($content['enumeration']) $this->enumeration[$key] = [];
+        }
     }
 
     public function submitAnswers()
     {
         if (auth()->user()->cannot('submit', $this->task)) return session()->flash('deadline', 'Unfortunately, this task has already been closed.');
         $count = count($this->task_content);
+
+        foreach ($this->task_content as $key => $content) {
+            if ($content['enumeration']) {
+                if (count($this->enumeration[$key]) != count($content['enumerationItems'])) {
+                    return session()->flash("enumError.$key", "Please enumerate all items required.");
+                }
+                $this->answers[$key]['answer'] = json_encode($this->enumeration[$key]);
+            }
+        }
         $this->validate([
-            'answers' => "size:$count|required",
+            'answers.*.answer' => "required",
         ]);
+
         DB::transaction(function () {
             foreach ($this->answers as $key => $item) {
                 if (isset($item['files'])) {
@@ -59,6 +75,7 @@ class TaskTaker extends Component
                 }
             }
             $this->task->students()->attach(auth()->user()->student->id, ['section_id' => $this->task->section_id, 'date_submitted' => Carbon::now()->format('Y-m-d H:i:s'), 'answers' => json_encode($this->answers)]);
+            event(new NewSubmission(auth()->user()->student, $this->task->id));
         });
         return redirect()->route('student.tasks', ['task_type' => $this->task->task_type_id]);
     }

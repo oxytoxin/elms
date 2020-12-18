@@ -36,3 +36,10 @@ if (!function_exists('redirectTo')) {
         }
     }
 }
+
+if (!function_exists('sanitizeString')) {
+    function sanitizeString($str)
+    {
+        return trim(preg_replace('/\s+/', ' ', $str));
+    }
+}
