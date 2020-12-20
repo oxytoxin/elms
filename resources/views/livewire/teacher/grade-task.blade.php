@@ -1,6 +1,6 @@
 <div class="m-5" x-data="{uiEssay:@entangle('uiEssay')}">
     <div x-show.transition="uiEssay" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
-        @if ($rubric && $essay_item)
+        @if ($rubric && isset($essay_item))
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
             <div class="flex justify-between">
                 <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
