@@ -16,6 +16,7 @@ class TaskTaker extends Component
     use AuthorizesRequests;
 
     public $task;
+    public $hasExtension;
     public $answers = [];
     public $enumeration = [];
     public $task_content;
@@ -36,6 +37,7 @@ class TaskTaker extends Component
 
     public function mount(Task $task)
     {
+        $this->hasExtension = auth()->user()->student->extensions->where('task_id', $task->id);
         $this->authorize('view', $task);
         $this->hasSubmission = $task->students->where('id', auth()->user()->student->id)->first();
         $this->task = $task;

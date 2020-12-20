@@ -4,6 +4,9 @@
     <h1 class="px-5 italic font-semibold uppercase">Course: {{ $task->course->name }}</span></h1>
     <h1 class="px-5 italic font-semibold uppercase">Module: <span class="text-orange-500">{{ $task->module->name }}</span></h1>
     <h1 class="px-5 italic font-semibold uppercase">Deadline: <span class="text-red-600">{{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : "No deadline set." }}</span></h1>
+    @if ($hasExtension)
+    <h1 class="px-5 italic font-semibold uppercase">Extended until: <span class="text-red-600">{{ $hasExtension->deadline->format('M d, Y - h:i a') }}</span></h1>
+    @endif
     @if (!$hasSubmission)
         @foreach ($task_content as $key => $item)
         <div class="p-2 mx-5 @error("answers.$key.answer") @if(!$answers[$key]['answer'] && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
