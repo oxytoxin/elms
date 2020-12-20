@@ -179,7 +179,11 @@ class TaskMaker extends Component
 
     public function render()
     {
-        $this->total_points = array_sum(array_column($this->items, 'points'));
+        $this->total_points = array_sum(array_map(function ($i) {
+            if ($i['enumeration'])
+                return $i['points'] * count($i['enumerationItems']);
+            else return $i['points'];
+        }, $this->items));
         return view('livewire.task-maker')
             ->extends('layouts.master')
             ->section('content');

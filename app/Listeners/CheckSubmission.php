@@ -46,7 +46,7 @@ class CheckSubmission implements ShouldQueue
                         if (in_array(sanitizeString($studentEnums[$key]), $correctEnums)) $correctItems++;
                     }
                     if (count($correctEnums) == $correctItems)
-                        array_push($items, $key = ['isCorrect' => true, 'score' => $content['points']]);
+                        array_push($items, $key = ['isCorrect' => true, 'score' => $content['points'] * $correctItems]);
                     else if ($correctItems) array_push($items, $key = ['isCorrect' => 'partial', 'score' => $content['points'] * $correctItems]);
                     else array_push($items, $key = ['isCorrect' => false, 'score' => 0]);
                 } else array_push($items, $key = null);
