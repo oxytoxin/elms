@@ -62,7 +62,7 @@
                         @foreach ($tasks as $task)
                         @foreach ($task as $k => $t)
                         <td class="px-8 py-4 border {{ "row$student->id" }}">
-                            @if ($student->task_status($t->id) == 'ungraded')
+                            @if ($student->task_status($t->id) === 'ungraded')
                             <i class="text-xl text-yellow-300 icofont-question-circle"></i>
                             @else
                                 @if ($student->task_status($t->id) !== false)
