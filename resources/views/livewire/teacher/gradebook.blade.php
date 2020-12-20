@@ -65,7 +65,7 @@
                             @if ($student->task_status($t->id) == 'ungraded')
                             <i class="text-xl text-yellow-300 icofont-question-circle"></i>
                             @else
-                                @if ($student->task_status($t->id))
+                                @if ($student->task_status($t->id) !== false)
                                 {{ $student->task_status($t->id) }}
                                 @else
                                 <i class="text-xl text-red-600 icofont-exclamation-circle"></i>
