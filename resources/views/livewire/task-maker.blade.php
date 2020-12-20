@@ -1,4 +1,4 @@
-<div x-data="{showrubric: @entangle('showrubric')}" class="p-2 m-4 text-sm shadow">
+<div x-data="{showrubric: @entangle('showrubric'), showMatchingTypeOptions: @entangle('showMatchingTypeOptions'), showAddMatchingTypeOption: @entangle('showAddMatchingTypeOption')}" class="p-2 m-4 text-sm shadow">
     <h1 wire:click="test" class="text-xl font-semibold">TASK CREATOR</h1>
     <br>
     <h1>For Course: <span class="italic">{{ $module->course->name }}</span></h1>
@@ -51,6 +51,29 @@
         <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
     @enderror
     @endif
+    <button @click="showMatchingTypeOptions = !showMatchingTypeOptions" class="w-full p-2 my-1 text-white rounded-lg bg-primary-500 md:w-auto hover:text-primary-600 hover:bg-green-300">MATCHING TYPE OPTIONS</button>
+    <div class="relative py-3 my-3 bg-green-300" x-show.transition="showMatchingTypeOptions">
+        <div>
+            <form class="flex items-center p-2 my-2 space-x-2" wire:submit.prevent="addMatchingTypeOption">
+                <input wire:model.lazy="newMatchingTypeOption" placeholder="Enter new option..." type="text" name="newMatchingTypeOption" id="newMatchingTypeOption" class="flex-grow text-sm form-input">
+                <button type="submit" class="w-full p-2 my-1 text-white rounded-lg bg-primary-500 md:w-auto hover:text-primary-600 hover:bg-green-300">ADD</button>
+            </form>
+        </div>
+        <hr class="border-t-2 border-primary-600">
+        <div>
+            @error("newMatchingTypeOption")
+                <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
+            @enderror
+        </div>
+        <div class="relative flex flex-wrap p-2 my-2 justify-evenly">
+            @forelse ($matchingTypeOptions as $g => $option)
+                <h1 class="mx-5 my-2">{{ $option }}<i class="text-red-600 cursor-pointer icofont-close" wire:click="removeMatchingTypeOption({{ $g }})"></i></h1>
+            @empty
+                <h1>No matching type options added.</h1>
+            @endforelse
+        </div>
+        <i @click="showMatchingTypeOptions = false" class="absolute text-xl cursor-pointer hover:text-primary-500 icofont-eye top-1 right-1"></i>
+    </div>
     <hr class="border border-primary-600">
         @foreach ($items as $key => $item)
             <div wire:key="item_{{ $key }}" class="p-2 m-2 {{ $key%2 ? 'bg-green-400 text-white' : 'bg-white' }} relative shadow-lg">

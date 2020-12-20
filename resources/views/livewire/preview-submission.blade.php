@@ -9,6 +9,18 @@
     @elseif(auth()->user()->isTeacher())
     <h1>Student: {{ $submission->student->user->name }}</h1>
     @endif
+    @if ($matchingTypeOptions)
+    <div class="p-2 bg-green-300">
+        <h1 class="font-semibold">OPTIONS</h1>
+        <div class="flex flex-wrap p-2 my-2 justify-evenly">
+            @forelse ($matchingTypeOptions as $g => $option)
+                <h1 class="mx-5 my-2">{{ $option }}</h1>
+            @empty
+                <h1>No matching type options added.</h1>
+            @endforelse
+        </div>
+    </div>
+    @endif
     @if ($submission->isGraded)
     <h1 class="font-bold uppercase">Score: {{ $submission->score }}</h1>
     <div class="flex flex-col items-center justify-center md:flex-row">

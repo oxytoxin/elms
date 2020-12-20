@@ -11,12 +11,14 @@ class TaskPreview extends Component
     public $task;
     public $rubric;
     public $task_content;
+    public $matchingTypeOptions;
 
     public function mount(Task $task)
     {
         $this->task = $task;
         $this->rubric = json_decode($task->essay_rubric, true);
         $this->task_content = json_decode($this->task->content, true);
+        if ($task->matchingtype_options) $this->matchingTypeOptions = json_decode($task->matchingtype_options, true);
     }
 
 

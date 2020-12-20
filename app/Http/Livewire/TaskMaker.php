@@ -36,6 +36,10 @@ class TaskMaker extends Component
     public $showrubric = false;
     public $task_rubric = [];
     public $noDeadline = false;
+    public $matchingTypeOptions = [];
+    public $newMatchingTypeOption = "";
+    public $showAddMatchingTypeOption = false;
+    public $showMatchingTypeOptions = false;
 
     protected $autocorrect = true;
 
@@ -281,6 +285,8 @@ class TaskMaker extends Component
             else $deadline = null;
             if (!$this->openImmediately) $open_on = $this->date_open . ' ' . $this->time_open;
             else $open_on = null;
+            if (count($this->matchingTypeOptions)) $matchingtype_options = json_encode($this->matchingTypeOptions);
+            else $matchingtype_options = null;
             $task = Task::create([
                 'autocorrect' => $this->autocorrect,
                 'module_id' => $this->module->id,
@@ -290,6 +296,7 @@ class TaskMaker extends Component
                 'name' => $this->task_name,
                 'max_score' => $this->total_points,
                 'essay_rubric' => json_encode($this->task_rubric),
+                'matchingtype_options' => $matchingtype_options,
                 'content' => json_encode($this->items),
                 'deadline' => $deadline,
                 'open' => $this->openImmediately,
@@ -433,5 +440,19 @@ class TaskMaker extends Component
         foreach ($this->rubric['criteria'] as $key => $criterion) {
             $this->rubric['criteria'][$key]['weight'] = round(100 / $criterion_count, 2);
         }
+    }
+
+    public function addMatchingTypeOption()
+    {
+        $this->validate([
+            'newMatchingTypeOption' => 'required',
+        ]);
+        array_push($this->matchingTypeOptions, $this->newMatchingTypeOption);
+        $this->newMatchingTypeOption = "";
+    }
+
+    public function removeMatchingTypeOption($g)
+    {
+        array_splice($this->matchingTypeOptions, $g, 1);
     }
 }

@@ -21,6 +21,7 @@ class TaskTaker extends Component
     public $enumeration = [];
     public $task_content;
     public $hasSubmission;
+    public $matchingTypeOptions;
 
     protected $messages = [
         'answers.*.answer.required' => 'You forgot to answer this item.',
@@ -41,6 +42,7 @@ class TaskTaker extends Component
         $this->authorize('view', $task);
         $this->hasSubmission = $task->students->where('id', auth()->user()->student->id)->first();
         $this->task = $task;
+        if ($task->matchingtype_options) $this->matchingTypeOptions = json_decode($task->matchingtype_options, true);
         $this->task_content = json_decode($this->task->content, true);
         foreach ($this->task_content as $key => $content) {
             array_push($this->answers, ['answer' => '']);

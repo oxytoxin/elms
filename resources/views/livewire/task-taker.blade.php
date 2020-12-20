@@ -7,6 +7,18 @@
     @if ($hasExtension)
     <h1 class="px-5 italic font-semibold uppercase">Extended until: <span class="text-red-600">{{ $hasExtension->deadline->format('M d, Y - h:i a') }}</span></h1>
     @endif
+    @if ($matchingTypeOptions)
+    <div class="p-2 bg-green-300">
+        <h1 class="font-semibold">OPTIONS</h1>
+        <div class="flex flex-wrap p-2 my-2 justify-evenly">
+            @forelse ($matchingTypeOptions as $g => $option)
+                <h1 class="mx-5 my-2">{{ $option }}</h1>
+            @empty
+                <h1>No matching type options added.</h1>
+            @endforelse
+        </div>
+    </div>
+    @endif
     @if (!$hasSubmission)
         @foreach ($task_content as $key => $item)
         <div class="p-2 mx-5 @error("answers.$key.answer") @if(!$answers[$key]['answer'] && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">

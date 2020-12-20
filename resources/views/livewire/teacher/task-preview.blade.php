@@ -11,37 +11,49 @@
     @if (!$task->open && $task->open_on)
     <h1>Task Opens On: {{ $task->open_on->format('M d, Y - h:i a') }}</h1>
     @endif
-        @if ($rubric)
-        <hr class="border border-primary-600">
-        <div class="w-full my-2 overflow-auto">
-            <h1 class="font-semibold text-center">Rubrics for Grading Essay</h1>
-            <table class="table w-full mt-3 border-2 border-collapse table-auto border-primary-600">
-                <thead>
-                    <tr>
-                        <th rowspan="2" class="px-3 border-2 border-primary-600">Weight</th>
-                        <th rowspan="2" class="px-3 border-2 border-primary-600">Criteria</th>
-                        <th colspan="{{ count($rubric['performance_rating']) }}" class="border-2 border-primary-600">Performance Rating</th>
-                    </tr>
-                    <tr>
-                        @foreach ($rubric['performance_rating'] as $rating)
-                        <th class="px-3 border-2 border-primary-600">{{ $rating }}</th>
-                        @endforeach
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($rubric['criteria'] as $id => $criterion)
-                    <tr>
-                        <td class="px-2 py-4 text-center border-2 border-primary-600">{{ $criterion['weight'] }}%</td>
-                        <td class="text-center border-2 border-primary-600">{{ $criterion['name'] }}</td>
-                        @foreach ($rubric['performance_rating'] as $key => $rating)
-                            <td class="text-center border-2 border-primary-600">{{ $this->getRating($key) }}%</td>
-                        @endforeach
-                    </tr>
+    @if ($rubric)
+    <hr class="border border-primary-600">
+    <div class="w-full my-2 overflow-auto">
+        <h1 class="font-semibold text-center">Rubrics for Grading Essay</h1>
+        <table class="table w-full mt-3 border-2 border-collapse table-auto border-primary-600">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="px-3 border-2 border-primary-600">Weight</th>
+                    <th rowspan="2" class="px-3 border-2 border-primary-600">Criteria</th>
+                    <th colspan="{{ count($rubric['performance_rating']) }}" class="border-2 border-primary-600">Performance Rating</th>
+                </tr>
+                <tr>
+                    @foreach ($rubric['performance_rating'] as $rating)
+                    <th class="px-3 border-2 border-primary-600">{{ $rating }}</th>
                     @endforeach
-                </tbody>
-            </table>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($rubric['criteria'] as $id => $criterion)
+                <tr>
+                    <td class="px-2 py-4 text-center border-2 border-primary-600">{{ $criterion['weight'] }}%</td>
+                    <td class="text-center border-2 border-primary-600">{{ $criterion['name'] }}</td>
+                    @foreach ($rubric['performance_rating'] as $key => $rating)
+                        <td class="text-center border-2 border-primary-600">{{ $this->getRating($key) }}%</td>
+                    @endforeach
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
+    @if ($matchingTypeOptions)
+    <div class="p-2 bg-green-300">
+        <h1 class="font-semibold">OPTIONS</h1>
+        <div class="flex flex-wrap p-2 my-2 justify-evenly">
+            @forelse ($matchingTypeOptions as $g => $option)
+                <h1 class="mx-5 my-2">{{ $option }}</h1>
+            @empty
+                <h1>No matching type options added.</h1>
+            @endforelse
         </div>
-        @endif
+    </div>
+    @endif
     <hr class="border border-primary-600">
     <div class="py-5 bg-white">
         @foreach ($task_content as $key => $item)

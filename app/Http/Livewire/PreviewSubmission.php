@@ -12,6 +12,7 @@ class PreviewSubmission extends Component
     public $task;
     public $questions;
     public $answers;
+    public $matchingTypeOptions;
 
     public function render()
     {
@@ -24,6 +25,7 @@ class PreviewSubmission extends Component
     {
         $this->submission = $submission;
         $this->task = $submission->task;
+        if ($this->task->matchingtype_options) $this->matchingTypeOptions = json_decode($this->task->matchingtype_options, true);
         $this->questions = json_decode($this->task->content, true);
         $this->answers = json_decode($this->submission->answers, true);
         $this->assessment = json_decode($this->submission->assessment, true);
