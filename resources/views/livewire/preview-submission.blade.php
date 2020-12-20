@@ -53,7 +53,9 @@
             @endforeach
         </div>
         @endif
+        @if ($submission->isGraded)
         <h1 class="text-sm font-bold">SCORE: {{ $assessment[$key]['score'] }} pt(s)</h1>
+        @endif
     </div>
     @endforeach
 </div>
