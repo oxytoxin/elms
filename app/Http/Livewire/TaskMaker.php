@@ -8,14 +8,11 @@ use App\Models\Task;
 use App\Models\Course;
 use App\Models\Module;
 use App\Events\NewTask;
-use App\Models\Student;
-use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\TaskType;
 use App\Jobs\TaskOpening;
 use App\Models\CalendarEvent;
 use Livewire\WithFileUploads;
-use Illuminate\Database\Eloquent\Builder;
 
 class TaskMaker extends Component
 {

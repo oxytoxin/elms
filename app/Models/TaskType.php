@@ -15,4 +15,14 @@ class TaskType extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function getPluralNameAttribute()
+    {
+        return [
+            'assignment' => 'assignments',
+            'activity' => 'activities',
+            'quiz' => 'quizzes',
+            'exam' => 'exams',
+        ][$this->name] ?? 'tasks';
+    }
 }

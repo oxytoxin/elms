@@ -1,9 +1,8 @@
-<div class="px-5">
+<div>
+    <h1 class="text-2xl font-semibold uppercase">My Workload</h1>
     <div class="p-5 mt-5 bg-white shadow">
-        <h1 class="text-xl font-semibold">My Workload</h1>
-
         @if ($sections->count())
-        <div class="mt-5">
+        <div>
             <table class="w-full text-center border-2 divide-y-2 table-auto border-primary-600 divide-primary-600">
                 <thead>
                     <tr class="divide-x-2 divide-primary-600">

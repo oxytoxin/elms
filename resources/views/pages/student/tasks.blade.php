@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
-<div class="px-5 m-4">
+<div>
     <h1 class="text-2xl font-semibold uppercase">TASKS - {{ $task_type->name }}</h1>
-    <div class="grid gap-3 mt-4 md:grid-cols-3" style="grid-auto-rows: 1fr">
+    <div class="grid gap-3 mt-5 md:grid-cols-3" style="grid-auto-rows: 1fr">
         @forelse ($tasks as $task)
             <a href="{{ $task->students()->where('student_id',auth()->user()->student->id)->first() ? route('preview-submission',['submission' => $task->students()->where('student_id',auth()->user()->student->id)->first()->pivot->id]) : route('student.task',['task'=> $task->id])  }}">
                 <div class="relative flex flex-col h-full p-3 text-center {{ $task->deadline && now() > $task->deadline ? 'bg-red-400 bg-opacity-50' : 'bg-white' }} rounded-lg shadow-lg hover:bg-green-300 focus:outline-none min-h-24">

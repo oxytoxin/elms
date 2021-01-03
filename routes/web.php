@@ -1,21 +1,13 @@
 <?php
 
-use App\Models\File;
-use App\Models\Task;
-use App\Models\User;
-use App\Events\NewTask;
 use App\Models\Student;
-use App\Models\Teacher;
 use App\Events\NewSubmission;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\TeacherTasklist;
-use App\Notifications\SomeNotification;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
@@ -26,7 +18,6 @@ use App\Http\Livewire\Teacher\GradeTask;
 use App\Http\Livewire\TeacherCoursesPage;
 use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Teacher\TaskPreview;
-use App\Notifications\AnotherNotification;
 use App\Http\Livewire\Student\EnrolViaCode;
 use App\Http\Livewire\Head\WorkloadUploader;
 use App\Http\Controllers\DeanPagesController;
@@ -36,7 +27,8 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use Illuminate\Contracts\Encryption\DecryptException;
+use App\Http\Livewire\Student\StudentTasks;
+use App\Http\Livewire\Teacher\Tasks;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +78,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/preview/{file}', [StudentPagesController::class, 'preview'])->name('student.preview');
     Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
-    Route::get('/tasks/{task_type}', [StudentPagesController::class, 'tasks'])->name('student.tasks');
+    Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
 });
 
@@ -104,7 +96,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
     Route::get('/calendar', [TeacherPagesController::class, 'calendar'])->name('teacher.calendar');
     Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
-    Route::get('/tasks/{task_type}', [TeacherPagesController::class, 'tasks'])->name('teacher.tasks');
+    Route::get('/tasks/{task_type}', Tasks::class)->name('teacher.tasks');
     Route::get('/task/{task}', TeacherTasklist::class)->name('teacher.task');
     Route::get('/preview_task/{task}', TaskPreview::class)->name('teacher.task_preview');
     Route::get('/grade/{task}', GradeTask::class)->name('teacher.grade_task');

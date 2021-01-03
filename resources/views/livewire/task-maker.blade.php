@@ -103,7 +103,6 @@
                 </div>
 
                 <div class="my-2">
-
                     <div class="flex space-x-2">
                         @if (!count($item['options']) && !$item['essay'] && !$item['torf'] && !$item['enumeration'])
                         <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model.defer="items.{{ $key }}.answer" class="flex-grow text-black form-input" placeholder="Correct Answer (Optional)">
@@ -166,7 +165,7 @@
         <div class="flex flex-col items-center p-4 md:flex-row">
             <button class="w-full p-2 my-1 text-white whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto focus:outline-none hover:bg-green-300 hover:text-primary-600" wire:click.prevent="addItem({{ count($items) }})"><i class="mr-2 icofont-plus-circle"></i>Add Item</button>
             <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:ml-3 md:w-auto">Total points: {{ $total_points }}</span>
-            <button wire:click.prevent="saveTask" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
+            <button wire:click.prevent="saveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
         </div>
         @if (session('error'))
         <h1 class="mx-4 text-sm italic font-bold text-red-600">{{ session('error') }}</h1>

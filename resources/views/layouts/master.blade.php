@@ -21,25 +21,10 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
     @if (strpos(url()->full(),"calendar") === false)
-    <script src="{{ asset('js/tblinks.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/tblinks.js') }}" defer></script> --}}
     @endif
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
-    <style>
-        .fc-scroller{
-            overflow: auto !important;
-        }
-        button:focus{
-            outline: none;
-        }
-        *{
-            -ms-user-select: none;
-            user-select: none;
-        }
-        [data-tooltip="Pop-out"]{
-            display: none;
-        }
-    </style>
     @stack('styles')
 </head>
 
@@ -79,7 +64,7 @@
                 </nav>
             </header>
             <article class="flex w-full">
-                <section class="w-full pb-5 overflow-hidden">
+                <section class="w-full p-5 overflow-hidden">
                     @yield('content')
                 </section>
                 <section x-show.transition.duration.750ms.origin.center.right="showSidebar" class="relative flex-col flex-shrink-0 hidden w-64 p-3 lg:flex pinned-items">

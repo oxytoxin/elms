@@ -22,6 +22,15 @@ class Task extends Model
         'open_on'
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'ungraded',
+    ];
+
     public function getCourseAttribute()
     {
         return $this->module->course;
@@ -42,6 +51,11 @@ class Task extends Model
     public function students()
     {
         return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('id', 'score', 'date_submitted', 'isGraded', 'answers');
+    }
+
+    public function getStudentSubmissionAttribute()
+    {
+        return $this->students()->where('student_id',auth()->user()->student->id)->first();
     }
 
     public function getSubmissionsAttribute()

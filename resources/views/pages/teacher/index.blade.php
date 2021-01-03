@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('content')
-    <div class="px-5">
-        <h1 class="text-2xl font-semibold">Assigned Courses</h1>
-        <div class="grid gap-2 p-2 md:grid-cols-3 xxl:grid-cols-5 lg:grid-cols-4">
+    <div>
+        <h1 class="text-2xl font-semibold uppercase">Assigned Courses</h1>
+        <div class="grid gap-2 mt-5 md:grid-cols-3 xxl:grid-cols-5 xl:grid-cols-4">
             @forelse($sections as $section)
-            <div class="w-full overflow-hidden h-80">
+            <div class="w-full overflow-hidden transform border-4 hover:scale-105 border-primary-600 h-96">
                 <div class="h-1/2"><img src="{{ $section->course->image->url }}" class="object-cover w-full h-full"
                         alt="course"></div>
                 <div class="p-2 text-white h-4/12 bg-secondary-500">
@@ -19,7 +19,6 @@
                     </a>
                 </div>
             </div>
-
             @empty
             <h1>No Course Found</h1>
             @endforelse

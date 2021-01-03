@@ -1,9 +1,9 @@
-<div class="z-20 px-4">
-    <div class="m-2">
-        <h1 class="text-2xl font-semibold">Gradebook</h1>
-        <div>
-            <div class="flex flex-col mb-3 md:flex-row">
-                <div class="mx-5">
+<div class="z-20">
+    <div>
+        <h1 class="text-2xl font-semibold">GRADEBOOK</h1>
+        <div class="mt-5">
+            <div class="flex flex-col mb-3 md:space-x-3 md:flex-row">
+                <div>
                     <h1 class="text-xl font-semibold">For Course:</h1>
                     <select wire:change="updateCourse" wire:model="course_id" class="flex-grow truncate form-select" name="course_select" id="course_select">
                         @forelse ($courses as $c)
@@ -13,7 +13,7 @@
                         @endforelse
                     </select>
                 </div>
-                <div class="mx-5">
+                <div>
                     <h1 class="text-xl font-semibold">For Section:</h1>
                     <select wire:change="updateSection" wire:model="section_id" class="flex-growtruncate form-select" name="course_select" id="course_select">
                         @forelse ($course->sections as $section)
@@ -41,15 +41,15 @@
         <table id="table_id" class="inline-block m-2 text-center bg-gray-800 border-collapse table-fixed">
             <thead class="border">
                     <tr class="h-8">
-                        <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-500" rowspan="2">Student</th>
+                        <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>
                         @foreach ($tasks as $type => $task)
-                        <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-500 min-w-40" colspan="{{ $task->count() }}">{{ App\Models\TaskType::find($type)->name }}</th>
+                        <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $task->count() }}">{{ App\Models\TaskType::find($type)->name }}</th>
                         @endforeach
                     </tr>
                     <tr>
                         @foreach ($tasks as $task)
                             @foreach ($task as $k => $t)
-                            <td data-column="{{ $k}}" class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-500 top-8 score hover:text-white"><a title="{{ $t->name }}" class="w-full" href="{{ route('teacher.task',['task' => $t->id]) }}"><h1>{{ $k+1 }}</h1></a></td>
+                            <td data-column="{{ $k}}" class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score hover:text-white"><a title="{{ $t->name }}" class="w-full" href="{{ route('teacher.task',['task' => $t->id]) }}"><h1>{{ $k+1 }}</h1></a></td>
                             @endforeach
 
                         @endforeach
@@ -57,7 +57,7 @@
             </thead>
                 <tbody>
                     @forelse ($students as $student)
-                    <tr class="z-20 bg-white bg-gradient-to-b hover:from-green-400 to-green-500">
+                    <tr class="z-20 bg-white bg-gradient-to-b hover:from-green-400 to-green-400">
                         <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-no-wrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">{{ $student->user->name }}</th>
                         @foreach ($tasks as $task)
                         @foreach ($task as $k => $t)

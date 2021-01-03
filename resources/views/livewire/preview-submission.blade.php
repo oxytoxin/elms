@@ -1,14 +1,16 @@
-<div class="p-5">
-    <h1 class="mb-3 text-2xl font-semibold">Submission Preview</h1>
-    <h1>Course: {{ $task->course->name }}</h1>
-    <h1>Module: {{ $task->module->name }}</h1>
-    <h1>Task type: <span class="uppercase">{{ $task->task_type->name }}</span></h1>
-    <h1>Task Title: {{ $task->name }}</h1>
-    @if (auth()->user()->isStudent())
-    <h1>Teacher: {{ $task->teacher->user->name }}</h1>
-    @elseif(auth()->user()->isTeacher())
-    <h1>Student: {{ $submission->student->user->name }}</h1>
-    @endif
+<div>
+    <h1 class="text-2xl font-semibold">Submission Preview</h1>
+    <div class="mt-5">
+        <h1>Course: {{ $task->course->name }}</h1>
+        <h1>Module: {{ $task->module->name }}</h1>
+        <h1>Task type: <span class="uppercase">{{ $task->task_type->name }}</span></h1>
+        <h1>Task Title: {{ $task->name }}</h1>
+        @if (auth()->user()->isStudent())
+        <h1>Teacher: {{ $task->teacher->user->name }}</h1>
+        @elseif(auth()->user()->isTeacher())
+        <h1>Student: {{ $submission->student->user->name }}</h1>
+        @endif
+    </div>
     @if ($matchingTypeOptions)
     <div class="p-2 bg-green-300">
         <h1 class="font-semibold">OPTIONS</h1>

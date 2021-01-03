@@ -63,6 +63,28 @@ class Student extends Model
         });
     }
 
+    // Student tasks with submissions
+    public function hasSubmission($task_type)
+    {
+        return $this->all_tasks->filter(function ($t) use ($task_type) {
+            return $t->task_type_id == $task_type && $t->students()->where('student_id',auth()->user()->student->id)->first();
+        });
+    }
+    // Student tasks with no submissions
+    public function hasNoSubmission($task_type)
+    {
+        return $this->all_tasks->filter(function ($t) use ($task_type) {
+            return $t->task_type_id == $task_type && !$t->students()->where('student_id',auth()->user()->student->id)->first();
+        });
+    }
+    // Student tasks with no submissions
+    public function pastDeadline($task_type)
+    {
+        return $this->all_tasks->filter(function ($t) use ($task_type) {
+            return $t->task_type_id == $task_type && $t->deadline < now();
+        });
+    }
+
     public function course_tasks($course_id)
     {
         return $this->all_tasks->filter(function ($t) use ($course_id) {

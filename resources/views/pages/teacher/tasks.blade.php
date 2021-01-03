@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
-<div class="px-5 m-4">
-    <h1 class="text-2xl font-semibold uppercase">TASKS - {{ $task_type->name }}</h1>
-    <div class="grid gap-3 mt-4 md:grid-cols-3" style="grid-auto-rows: 1fr">
+<div>
+    <h1 class="text-2xl font-semibold uppercase">{{ $task_type->plural_name }}</h1>
+    <div class="grid gap-3 mt-5 md:grid-cols-3" style="grid-auto-rows: 1fr">
     @forelse ($tasks as $task)
             <a href="{{ route('teacher.task',['task'=> $task->id]) }}">
                 <div class="relative flex flex-col h-full p-3 text-center bg-white rounded-lg shadow-lg hover:bg-green-300 focus:outline-none min-h-24">
