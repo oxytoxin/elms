@@ -62,11 +62,12 @@ class EventCreator extends Component
             'description' => $this->event_description,
             'level' => $this->event_target,
             'start' => $start,
-            'url' => '/event/' . $code,
+            'url' => '/' . auth()->user()->role_string .'/event/' . $code,
             'end' => $end,
             'allDay' => $allDay,
         ]);
         $this->event_name = "";
+        $this->event_description = "";
         $this->event_target = "personal";
         $this->event_start_day = null;
         $this->event_start_time = null;
