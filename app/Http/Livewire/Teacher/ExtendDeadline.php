@@ -34,6 +34,7 @@ class ExtendDeadline extends Component
     {
         $u = User::where('email', $this->email)->first();
         if (!$u) return session()->flash('error', 'No student found with that email.');
+        if($u->cannot('view',$this->task)) return session()->flash('error', 'Student has no access to this task.');
         $this->selected_students->push($u->student);
         $this->email = "";
         return session()->flash('message', 'Student successfully added.');
