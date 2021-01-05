@@ -22,11 +22,11 @@
     <div class="flex flex-col my-2 md:flex-row">
         <div class="flex flex-row mb-1 sm:mb-0">
             <div class="relative">
-                <select
+                <select wire:model="submissionFilter"
                     class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                    <option>All</option>
-                    <option>Graded</option>
-                    <option>Ungraded</option>
+                    <option value="all">All</option>
+                    <option value="graded">Graded</option>
+                    <option value="ungraded">Ungraded</option>
                 </select>
                 <div
                     class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
@@ -44,7 +44,7 @@
                     </path>
                 </svg>
             </span>
-            <input placeholder="Search"
+            <input wire:model="search" placeholder="Search"
                 class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
         </div>
     </div>
