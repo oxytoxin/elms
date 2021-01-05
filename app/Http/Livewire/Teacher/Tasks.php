@@ -27,7 +27,7 @@ class Tasks extends Component
                 break;
             case 'toGrade':
                 $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function($t){
-                    return $t->ungraded == 0;
+                    return $t->ungraded == 1;
                 });
                 break;
             case 'pastDeadline':
