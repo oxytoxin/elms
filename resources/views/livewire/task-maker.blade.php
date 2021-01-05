@@ -207,6 +207,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="my-2">
+                        <h1 class="text-xs font-semibold">Total: {{ $rubrics_weight_total }}%</h1>
+                        <h1 class="text-xs font-semibold">(Weights should add up to 100.)</h1>
+                    </div>
                     <button wire:click.prevent="equalWeights" class="p-2 my-1 text-orange-600 bg-yellow-300 hover:bg-yellow-400">Set Equal Weights</button>
                     <button wire:click.prevent="resetRubric" class="p-2 my-1 text-white bg-red-600 hover:bg-red-700">Reset to default</button>
                     <div class="mt-3 control-panel">

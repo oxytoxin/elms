@@ -38,6 +38,7 @@ class TaskMaker extends Component
     public $showAddMatchingTypeOption = false;
     public $showMatchingTypeOptions = false;
 
+
     protected $autocorrect = true;
 
     public $openImmediately = true;
@@ -52,7 +53,6 @@ class TaskMaker extends Component
     public $editDialogTitle = "";
     public $editDialogInputValue = "";
     public $editing;
-
 
     protected $messages = [
         'items.*.question.required' => 'Question fields are required.',
@@ -185,7 +185,10 @@ class TaskMaker extends Component
                 return $i['points'] * count($i['enumerationItems']);
             else return $i['points'];
         }, $this->items));
-        return view('livewire.task-maker')
+        $rubrics_weight_total = array_sum(array_map(function ($r) {
+            return $r['weight'];
+        }, $this->rubric['criteria']));
+        return view('livewire.task-maker',['rubrics_weight_total' => $rubrics_weight_total])
             ->extends('layouts.master')
             ->section('content');
     }
@@ -247,8 +250,6 @@ class TaskMaker extends Component
             if (Carbon::now()->addMinutes(30) > Carbon::parse($this->date_open . ' ' . $this->time_open)) return session()->flash('error', 'Task opening must at least be 30 minutes later than the current time.');
             if ($carbondue < $carbonopen) return session()->flash('error', 'Cannot set the deadline before task opens.');
         }
-
-
 
         foreach ($this->items as  $key => $item) {
             if ($item['essay'] && !$this->isRubricSet) {
@@ -328,7 +329,6 @@ class TaskMaker extends Component
     {
         return $rating = round(100 * (1 / ($key + 1)), 2);
     }
-
 
     public function resetRubric()
     {
