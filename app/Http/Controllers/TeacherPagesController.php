@@ -16,6 +16,7 @@ class TeacherPagesController extends Controller
 {
     public function home()
     {
+        session(['whereami' => 'teacher']);
         $sections = auth()->user()->teacher->sections()->with('course')->get();
         return view('pages.teacher.index', compact('sections'));
     }

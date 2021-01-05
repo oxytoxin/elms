@@ -17,6 +17,7 @@ class ProgramHeadPagesController extends Controller
 {
     public function home()
     {
+        session(['whereami' => 'programhead']);
         $department = Auth::user()->program_head->department_id;
         $sections = Section::byDepartment($department)->with('course')->get();
         return view('pages.head.index', compact('sections'));

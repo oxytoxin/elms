@@ -17,6 +17,7 @@ class StudentPagesController extends Controller
 {
     public function home()
     {
+        session(['whereami' => 'student']);
         $sections = auth()->user()->student->sections()->paginate(20);
         return view('pages.student.index', compact('sections'));
     }

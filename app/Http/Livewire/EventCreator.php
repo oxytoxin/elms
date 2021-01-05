@@ -54,7 +54,7 @@ class EventCreator extends Component
             $end = null;
             $allDay = true;
         };
-        $code = Carbon::now()->timestamp;
+        $code = auth()->user()->id . Carbon::now()->timestamp;
         CalendarEvent::create([
             'user_id' => auth()->user()->id,
             'code' => $code,
@@ -62,7 +62,7 @@ class EventCreator extends Component
             'description' => $this->event_description,
             'level' => $this->event_target,
             'start' => $start,
-            'url' => '/' . auth()->user()->role_string .'/event/' . $code,
+            'url' => '/event/' . $code,
             'end' => $end,
             'allDay' => $allDay,
         ]);

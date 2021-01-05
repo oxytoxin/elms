@@ -4,6 +4,8 @@ use App\Models\Student;
 use App\Events\NewSubmission;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
+use App\Http\Livewire\EventCalendar;
+use App\Http\Livewire\Teacher\Tasks;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\TeacherTasklist;
@@ -19,6 +21,7 @@ use App\Http\Livewire\TeacherCoursesPage;
 use App\Http\Livewire\Head\FacultyManager;
 use App\Http\Livewire\Teacher\TaskPreview;
 use App\Http\Livewire\Student\EnrolViaCode;
+use App\Http\Livewire\Student\StudentTasks;
 use App\Http\Livewire\Head\WorkloadUploader;
 use App\Http\Controllers\DeanPagesController;
 use App\Http\Livewire\Teacher\ExtendDeadline;
@@ -27,8 +30,6 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\Student\StudentTasks;
-use App\Http\Livewire\Teacher\Tasks;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +44,10 @@ use App\Http\Livewire\Teacher\Tasks;
 
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
-
 Route::get('/command', function () {
     event(new NewSubmission(Student::find(84), 26));
 });
-
+Route::get('/eventcalendar/events',[MiscController::class, 'fetchEvents']);
 Route::get('/', function () {
     return redirect('/redirectMe');
 })->middleware('auth');
@@ -76,7 +76,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/module/{module}', [StudentPagesController::class, 'module'])->name('student.module');
     Route::get('/courses/create', [StudentPagesController::class, 'create_course'])->name('student.create_course');
     Route::get('/preview/{file}', [StudentPagesController::class, 'preview'])->name('student.preview');
-    Route::get('/calendar', [StudentPagesController::class, 'calendar'])->name('student.calendar');
+    Route::get('/calendar', EventCalendar::class)->name('student.calendar');
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
     Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
@@ -91,10 +91,8 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/course/{section}', TeacherCoursesPage::class)->name('teacher.course');
     Route::get('/module/{module}', [TeacherPagesController::class, 'module'])->name('teacher.module');
     Route::get('/addmodule/{section}', AddModule::class)->name('teacher.addmodule');
-    // Route::get('/courses', [TeacherPagesController::class, 'courses'])->name('teacher.courses');
-    // Route::get('/courses/create', [TeacherPagesController::class, 'create_course'])->name('teacher.create_course');
     Route::get('/preview/{file}', [TeacherPagesController::class, 'preview'])->name('teacher.preview');
-    Route::get('/calendar', [TeacherPagesController::class, 'calendar'])->name('teacher.calendar');
+    Route::get('/calendar',  EventCalendar::class)->name('teacher.calendar');
     Route::get('/taskmaker', TaskMaker::class)->name('teacher.taskmaker');
     Route::get('/tasks/{task_type}', Tasks::class)->name('teacher.tasks');
     Route::get('/task/{task}', TeacherTasklist::class)->name('teacher.task');
@@ -115,7 +113,7 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/courses', [ProgramHeadPagesController::class, 'courses'])->name('head.courses');
     Route::get('/courses/create', [ProgramHeadPagesController::class, 'create_course'])->name('head.create_course');
     Route::get('/preview/{file}', [ProgramHeadPagesController::class, 'preview'])->name('head.preview');
-    Route::get('/calendar', [ProgramHeadPagesController::class, 'calendar'])->name('head.calendar');
+    Route::get('/calendar',  EventCalendar::class)->name('head.calendar');
     Route::get('/add-section', AddSection::class)->name('head.add_section');
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');

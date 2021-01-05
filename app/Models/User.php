@@ -109,4 +109,17 @@ class User extends Authenticatable
     {
         return (bool)Auth::user()->roles()->find(5);
     }
+
+    public function getRoleStringAttribute()
+    {
+        if ($this->isStudent()) {
+            return 'student';
+        }else if ($this->isTeacher()) {
+            return 'teacher';
+        }else if ($this->isProgramHead()) {
+            return 'programhead';
+        }else if ($this->isDean()) {
+            return 'dean';
+        }
+    }
 }

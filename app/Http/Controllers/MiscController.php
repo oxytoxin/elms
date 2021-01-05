@@ -32,13 +32,19 @@ class MiscController extends Controller
     {
         $events = auth()->user()->calendar_events;
         $events = $events->merge(CalendarEvent::where('level', 'all')->get());
-        if(auth()->user()->isProgramHead()) return json_encode($events->toArray());
-        $events = $events->merge(CalendarEvent::where('level', 'faculty')->get());
-        if(auth()->user()->isTeacher()) return json_encode($events->toArray());
-        $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
-            return $t->user->calendar_events->where('level', 'students');
-        })->flatten());
-        if(auth()->user()->isStudent()) return json_encode($events->toArray());
+        if(!auth()->user()->isTeacher() && auth()->user()->isProgramHead()) {
+            return json_encode($events->toArray());
+        }
+        if(auth()->user()->isTeacher()) {
+            $events = $events->merge(CalendarEvent::where('level', 'faculty')->get());
+            return json_encode($events->toArray());
+        }
+        if(auth()->user()->isStudent()) {
+            $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
+                return $t->user->calendar_events->where('level', 'students');
+            })->flatten());
+            return json_encode($events->toArray());
+        }
         return json_encode([]);
     }
 }

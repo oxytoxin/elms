@@ -31,13 +31,16 @@
                     <label for="event_target">Event Target</label>
                     <select wire:model="event_target" name="level" class="block w-full mt-2 form-select" id="level">
                         <option value="personal">Personal</option>
-                        @if (auth()->user()->isProgramHead())
-                        <option value="all">All</option>
-                        <option value="faculty">Faculty Only</option>
-                        @endif
-                        @if (auth()->user()->isTeacher())
-                        <option value="students">Students Only</option>
-                        @endif
+                        @switch(session('whereami'))
+                            @case('teacher')
+                                <option value="students">Students Only</option>
+                                @break
+                            @case('programhead')
+                                <option value="all">All</option>
+                                <option value="faculty">Faculty Only</option>
+                                @break
+                                @default
+                        @endswitch
                     </select>
                 </div>
                 <div class="flex mt-2">
