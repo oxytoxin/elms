@@ -27,4 +27,18 @@ class MiscController extends Controller
         if (auth()->user()->student) return redirect("/student/task/$id");
         else if (auth()->user()->teacher) return redirect("/teacher/task/$id");
     }
+
+    public function fetchEvents()
+    {
+        $events = auth()->user()->calendar_events;
+        $events = $events->merge(CalendarEvent::where('level', 'all')->get());
+        if(auth()->user()->isProgramHead()) return json_encode($events->toArray());
+        $events = $events->merge(CalendarEvent::where('level', 'faculty')->get());
+        if(auth()->user()->isTeacher()) return json_encode($events->toArray());
+        $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
+            return $t->user->calendar_events->where('level', 'students');
+        })->flatten());
+        if(auth()->user()->isStudent()) return json_encode($events->toArray());
+        return json_encode([]);
+    }
 }
