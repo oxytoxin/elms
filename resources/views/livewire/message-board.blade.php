@@ -11,7 +11,7 @@
                 @forelse ($messages as $message)
                     @if ($message->user_role == "receiver")
                     <div class="flex items-start w-3/5 my-2 space-x-2">
-                        <img src="{{ auth()->user()->profile_photo_url }}" alt="profile_photo" class="w-8 h-8 border border-gray-500 rounded-full">
+                        <img src="{{ $message->complement_owner->profile_photo_url }}" alt="profile_photo" class="w-8 h-8 border border-gray-500 rounded-full">
                         <span class="flex p-2 break-words bg-gray-200 rounded-lg max-w-max-content">
                             <p class="overflow-x-hidden">{{ $message->message }}</p>
                         </span>
@@ -55,6 +55,9 @@
             @break
         @case('programhead')
             @include('includes.head.sidebar')
+            @break
+        @case('dean')
+            @include('includes.dean.sidebar')
             @break
         @default
     @endswitch
