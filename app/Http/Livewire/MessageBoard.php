@@ -12,12 +12,14 @@ class MessageBoard extends Component
 {
     public $contact;
     public $message = "";
+    public $messageCount = 10;
     protected $messages = [];
 
     public function getListeners()
     {
         return [
             "updatedConversation",
+            "moreMessage",
             "echo-private:messages.".Auth::id().",.new.message"  => '$refresh'
         ];
     }
@@ -32,8 +34,15 @@ class MessageBoard extends Component
             ->section('content');
     }
 
+
+    public function moreMessage()
+    {
+        $this->messageCount = $this->messageCount + 10;
+    }
+
     public function updatedConversation($contactId)
     {
+        $this->messageCount = 10;
         $this->contact = User::find($contactId);
     }
 
@@ -52,7 +61,7 @@ class MessageBoard extends Component
     public function readMessage()
     {
         if(auth()->user()->messages->count())
-            $this->messages = auth()->user()->contactMessages($this->contact->id)->orderByDesc('created_at')->get();
+            $this->messages = auth()->user()->contactMessages($this->contact->id)->orderByDesc('created_at')->get()->take($this->messageCount);
         else $this->messages = [];
     }
 }

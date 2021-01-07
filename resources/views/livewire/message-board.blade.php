@@ -7,7 +7,7 @@
                 <img src="{{ $contact->profile_photo_url }}" class="w-12 h-12 rounded-full">
                 <h1>{{ $contact->name }}</h1>
             </div>
-            <div class="flex flex-col-reverse flex-grow p-2 space-y-2 overflow-y-auto">
+            <div id="messagesContainer" class="flex flex-col-reverse flex-grow p-2 space-y-2 overflow-y-auto">
                 @forelse ($messages as $message)
                     @if ($message->user_role == "receiver")
                     <div class="flex items-start w-3/5 my-2 space-x-2">
@@ -36,7 +36,7 @@
                 <button wire:click="sendMessage" class="text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
             </div>
             @else
-            <div class="flex items-center justify-center flex-grow">
+            <div id="messagesContainer" class="flex items-center justify-center flex-grow">
                 <h1>Select a contact to view conversation</h1>
             </div>
             @endif
@@ -44,6 +44,18 @@
         @livewire('message-contacts')
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        let messagesContainer = document.querySelector("#messagesContainer")
+        messagesContainer.onscroll = function(ev) {
+            if(messagesContainer.scrollTop - messagesContainer.clientHeight <= ((messagesContainer.scrollHeight*-1) + 1))
+            {
+                Livewire.emit("moreMessage");
+            }
+        };
+    </script>
+@endpush
 
 @section('sidebar')
     @switch(session('whereami'))
