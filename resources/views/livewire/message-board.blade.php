@@ -32,7 +32,7 @@
                 @endforelse
             </div>
             <div class="grid grid-cols-6 gap-2 p-3 bg-primary-500">
-                <textarea wire:keydown.enter.prevent="sendMessage" wire:model.lazy="message" style="caret-color: green;" name="messagebox" id="messagebox" cols="30" rows="1" class="col-span-5 resize-none form-textarea"></textarea>
+                <textarea wire:key="messageInput" wire:keydown.enter.prevent="sendMessage" wire:model.defer="message" style="caret-color: green;" name="messagebox" id="messagebox" cols="30" rows="1" class="col-span-5 resize-none form-textarea"></textarea>
                 <button wire:click="sendMessage" class="text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
             </div>
             @else
