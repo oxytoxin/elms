@@ -6,9 +6,9 @@ if (!function_exists('gdriver')) {
     function gdriver($q = null)
     {
         $client = new \Google_Client();
-        $client->setClientId(env('GOOGLE_DRIVE_CLIENT_ID'));
-        $client->setClientSecret(env('GOOGLE_DRIVE_CLIENT_SECRET'));
-        $client->refreshToken(env('GOOGLE_DRIVE_REFRESH_TOKEN'));
+        $client->setClientId(config('helpers.google.clientId'));
+        $client->setClientSecret(config('helpers.google.clientSecret'));
+        $client->refreshToken(config('helpers.google.refreshToken'));
         $service = new \Google_Service_Drive($client);
         $optParams = array(
             'q' => "name contains '$q'"
