@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use App\Events\NewSubmission;
 use App\Events\NewTask;
+use App\Events\NewMessage;
+use App\Events\NewSubmission;
 use App\Listeners\CheckSubmission;
+use App\Listeners\NotifyRecipient;
 use App\Listeners\NotifyTaskStudents;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewTask::class => [
             NotifyTaskStudents::class,
+        ],
+        NewMessage::class => [
+            NotifyRecipient::class,
         ],
     ];
 
