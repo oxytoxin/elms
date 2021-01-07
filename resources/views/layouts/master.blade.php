@@ -18,7 +18,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
     {{-- @if (strpos(url()->full(),"calendar") === false) --}}
-    <script src="{{ asset('js/tblinks.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/tblinks.js') }}" defer></script> --}}
     {{-- @endif --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('styles')
@@ -41,14 +41,14 @@
         class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
                 @yield('sidebar')
         </aside>
-        <main class="w-full">
+        <main class="flex flex-col w-full min-h-screen">
             <header class="sticky top-0 z-40 flex flex-col items-center justify-between px-3 font-semibold text-white min-h-16 md:flex-row bg-primary-500">
                 <h1 class="flex items-center text-center"><div x-show="!showSidebar" class="w-12 mx-3 logo">
                     <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
                 </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS</h1>
                 <nav class="text-2xl whitespace-no-wrap">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
-                    <a><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
+                    <a href="{{ route("$whereami.messages") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
                     @livewire('notification-component')
                     <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>
@@ -59,8 +59,8 @@
                     </form>
                 </nav>
             </header>
-            <article class="flex w-full">
-                <section class="w-full p-5 overflow-hidden">
+            <article class="flex flex-1 w-full">
+                <section class="w-full h-full p-5 overflow-hidden">
                     @yield('content')
                 </section>
                 <section x-show.transition.duration.750ms.origin.center.right="showSidebar" class="relative flex-col flex-shrink-0 hidden w-64 p-3 lg:flex pinned-items">

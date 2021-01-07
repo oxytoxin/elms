@@ -10,7 +10,7 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
 <script>
-    document.addEventListener('turbolinks:load', function() {
+    document.addEventListener('livewire:load', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -35,6 +35,10 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
+@endpush
+
+@push('metas')
+    <meta name="turbolinks-cache-control" content="no-cache">
 @endpush
 
 @section('sidebar')
