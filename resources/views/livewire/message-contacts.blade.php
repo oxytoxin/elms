@@ -10,7 +10,7 @@
     @if ($showContactSearch)
     <ul id="latestMessagesContainer" class="overflow-y-auto divide-y divide-gray-400">
         @forelse ($contacts as $contact)
-        <li wire:click="contactClicked({{ $contact->id }})" class="p-2 bg-gray-100 cursor-pointer hover:bg-gray-200">
+        <li wire:key="{{ 'contact.'.$contact->id }}" wire:click="contactClicked({{ $contact->id }})" class="p-2 bg-gray-100 cursor-pointer hover:bg-gray-200">
             <div class="flex items-center space-x-2">
                 <div class="relative flex flex-col items-center flex-shrink-0 max-w-16">
                     <img class="w-12 h-12 border border-gray-500 rounded-full" src="{{ $contact->profile_photo_url }}" alt="contact photo">
