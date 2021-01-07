@@ -30,6 +30,7 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\MessageBoard;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,21 +45,18 @@ use App\Http\Controllers\ProgramHeadPagesController;
 
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
-Route::get('/command', function () {
-    event(new NewSubmission(Student::find(84), 26));
-});
+Route::get('/test', [MiscController::class, 'test']);
 Route::get('/eventcalendar/events',[MiscController::class, 'fetchEvents']);
-Route::get('/', function () {
-    return redirect('/redirectMe');
-})->middleware('auth');
+Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
+Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe');
 
-Route::get('/redirectMe', function () {
-    return "redirecting...";
-})->middleware('redirectMe');
+// Route::get('/redirectMe', function () {
+//     return "redirecting...";
+// })->middleware('redirectMe');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 Route::get('/task/{id}', [MiscController::class, 'taskRedirect'])->middleware(['auth']);
 Route::post('test', [TestController::class, 'test']);
@@ -80,6 +78,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
     Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
+    Route::get('/messages', MessageBoard::class)->name('student.messages');
 });
 
 
@@ -101,6 +100,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/gradebook', Gradebook::class)->name('teacher.gradebook');
     Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
     Route::get('/extend-deadline/{task}', ExtendDeadline::class)->name('teacher.extend_deadline');
+    Route::get('/messages', MessageBoard::class)->name('teacher.messages');
 });
 
 // Program Head Routes
@@ -117,6 +117,7 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/add-section', AddSection::class)->name('head.add_section');
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');
+    Route::get('/messages', MessageBoard::class)->name('programhead.messages');
 });
 
 // Dean Routes
