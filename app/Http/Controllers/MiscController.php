@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\CalendarEvent;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MiscController extends Controller
 {
+
+    public function homeRedirect()
+    {
+        return redirect('/redirectMe');
+    }
+
+    public function redirect()
+    {
+        return "redirecting...";
+    }
+
+    public function test()
+    {
+        dump(auth()->user()->unreadMessages());
+    }
+
     public function fileDownload(File $file)
     {
         // if ($file->google_id)
