@@ -5,10 +5,13 @@ namespace App\Models;
 use App\Models\Dean;
 use App\Models\Role;
 use App\Models\Todo;
+use App\Models\Message;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\ProgramHead;
 use App\Models\CalendarEvent;
+use Carbon\Carbon;
+use DB;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -121,5 +124,51 @@ class User extends Authenticatable
         }else if ($this->isDean()) {
             return 'dean';
         }
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class,'sender_id');
+    }
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class,'receiver_id');
+    }
+
+    public function getMessagesAttribute()
+    {
+        return $this->receivedMessages->merge($this->sentMessages)->sortByDesc('created_at');
+    }
+
+    public function contactMessages($contactId)
+    {
+        return $this->messages->toQuery()->where('sender_id', $contactId)->orWhere('receiver_id',$contactId);
+    }
+
+    public function sendMessage($message, $contactId)
+    {
+        DB::transaction(function() use($message,$contactId)
+        {
+            Message::create([
+                'sender_id' => Auth::id(),
+                'receiver_id' => $contactId,
+                'message' => $message,
+            ]);
+        });
+    }
+
+    public function getLastMessageAttribute()
+    {
+        return $this->messages->toQuery()->contact(Auth::id())->orderByDesc('created_at')->first();
+    }
+
+    public function unreadMessages()
+    {
+        return $this->messages->toQuery()->unread()->where('receiver_id', $this->id)->get();
+    }
+
+    public function getLatestMessagesAttribute()
+    {
+        return $this->messages->unique('complement_owner');
     }
 }
