@@ -52,10 +52,5 @@ class MessageBoard extends Component
     public function readMessage()
     {
         $this->messages = auth()->user()->contactMessages($this->contact->id)->orderByDesc('created_at')->get();
-        // $this->messages->unread()->get()->each(function($m)
-        // {
-        //     if(!$m->read_at) $m->update(['read_at' => Carbon::now()]);
-        // });
-        // $this->messages = $this->messages->get();
     }
 }

@@ -142,7 +142,8 @@ class User extends Authenticatable
 
     public function contactMessages($contactId)
     {
-        return $this->messages->toQuery()->where('sender_id', $contactId)->orWhere('receiver_id',$contactId);
+        if($this->messages)
+            return $this->messages->toQuery()->where('sender_id', $contactId)->orWhere('receiver_id',$contactId);
     }
 
     public function sendMessage($message, $contactId)
