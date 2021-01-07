@@ -18,15 +18,19 @@ class RedirectMe
     {
         switch (auth()->user()->roles()->first()->id) {
             case 2:
+                session(['whereami' => 'student']);
                 return redirect()->route('student.home');
                 break;
             case 3:
+                session(['whereami' => 'teacher']);
                 return redirect()->route('teacher.home');
                 break;
             case 4:
+                session(['whereami' => 'programhead']);
                 return redirect()->route('head.home');
                 break;
             case 5:
+                session(['whereami' => 'dean']);
                 return redirect()->route('dean.home');
                 break;
         }
