@@ -36,13 +36,13 @@
 button:focus{
     outline: none;
 }
-*:not(input.field) {
+/* *:not(input.field) {
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+} */
 
 [data-tooltip="Pop-out"]{
     display: none;
