@@ -14,7 +14,7 @@
     </div>
     <div class="grid gap-2 mt-5 xxl:grid-cols-5 xl:grid-cols-4">
         @forelse($courses as $course)
-        <div class="w-full overflow-hidden transform border-4 border-primary-600 hover:scale-105 h-96">
+        <div class="w-full overflow-hidden transition duration-500 transform border-4 border-primary-600 hover:scale-105 h-96">
             <div class="h-1/2"><img src="{{ $course->image->url }}" class="object-cover w-full h-full"
                     alt="course"></div>
             <div class="p-2 text-white h-4/12 bg-secondary-500">

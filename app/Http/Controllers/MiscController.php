@@ -24,7 +24,7 @@ class MiscController extends Controller
 
     public function test()
     {
-        dump(auth()->user()->unreadMessages());
+        dump(auth()->user()->messages->filter(fn($m)=>$m->complement_owner->id == 4));
     }
 
     public function fileDownload(File $file)

@@ -9,7 +9,7 @@
     </div>
     <div class="gap-2 md:grid-cols-3 xxl:grid-cols-5 xl:grid-cols-4 md:grid">
         @forelse($sections as $section)
-        <div class="w-full overflow-hidden transform border-4 hover:scale-105 border-primary-600 h-96">
+        <div class="w-full overflow-hidden transition duration-500 transform border-4 hover:scale-105 border-primary-600 h-96">
             <div class="h-1/2"><img src="{{ $section->course->image->url }}" class="object-cover w-full h-full"
                     alt="course"></div>
             <div class="p-2 text-white h-4/12 bg-secondary-500">
