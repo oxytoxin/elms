@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageContacts extends Component
 {
-    public $perpage = 10;
+    public $messagesPerPage = 10;
+    public $contactsPerPage = 10;
     public $showContactSearch = false;
     public $searchContact = "";
 
@@ -31,20 +32,23 @@ class MessageContacts extends Component
         if(!Auth::check()) return redirect('login');
         $contacts = User::query();
 
-        if($this->searchContact) $contacts = $contacts->where('name','like',"%$this->searchContact%")->get();
-        else $contacts = $contacts->get()->take(10);
+        if($this->searchContact) $contacts = $contacts->where('name','like',"%$this->searchContact%")->get()->take($this->contactsPerPage);
+        else $contacts = $contacts->get()->take($this->contactsPerPage);
 
         return view('livewire.message-contacts',[
-            'latest_messages' => auth()->user()->latest_messages->take($this->perpage),
+            'latest_messages' => auth()->user()->latest_messages->take($this->messagesPerPage),
             'contacts' => $contacts,
         ]);
     }
 
     public function loadMore()
     {
-        if($this->showContactSearch) return;
-        if(auth()->user()->latest_messages->count() <= $this->perpage) return;
-        $this->perpage = $this->perpage + 5;
+        if($this->showContactSearch) {
+            if(User::all()->count() <= $this->contactsPerPage) return;
+            $this->contactsPerPage = $this->contactsPerPage + 5;
+        }
+        if(auth()->user()->latest_messages->count() <= $this->messagesPerPage) return;
+        $this->messagesPerPage = $this->messagesPerPage + 5;
     }
 
     public function newMessage()
@@ -55,10 +59,12 @@ class MessageContacts extends Component
     public function openContactSearch()
     {
         $this->showContactSearch = true;
+        $this->messagesPerPage = 10;
     }
     public function closeContactSearch()
     {
         $this->showContactSearch = false;
+        $this->contactsPerPage = 10;
         $this->searchContact = "";
     }
 
