@@ -31,29 +31,39 @@
                     </div>
                 @endforelse
             </div>
-            <div class="grid grid-cols-6 gap-2 p-3 bg-primary-500">
-                <textarea wire:key="messageInput" wire:keydown.enter.prevent="sendMessage" wire:model.defer="message" style="caret-color: green;" name="messagebox" id="messagebox" cols="30" rows="1" class="col-span-5 resize-none form-textarea"></textarea>
-                <button wire:click="sendMessage" class="text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
-            </div>
             @else
             <div id="messagesContainer" class="flex items-center justify-center flex-grow">
                 <h1>Select a contact to view conversation</h1>
             </div>
             @endif
+            <div class="grid grid-cols-6 gap-2 p-3 bg-primary-500">
+                <div class="relative col-span-5">
+                    <textarea id="messageInput" wire:key="messageInput" wire:keydown.enter.prevent="sendMessage" wire:model="message" style="caret-color: green;" name="messagebox" id="messagebox" cols="30" rows="1" class="w-full h-full resize-none form-textarea">
+                    </textarea>
+                    <i class="absolute text-3xl text-gray-600 cursor-pointer right-2 top-2 icofont-simple-smile" id="emojibtn"></i>
+                </div>
+                <button wire:click="sendMessage" class="text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
+            </div>
         </div>
         @livewire('message-contacts')
     </div>
 </div>
 
 @push('scripts')
+    <script src="{{ asset('js/emojibtn.js') }}"></script>
     <script>
-        let messagesContainer = document.querySelector("#messagesContainer")
-        messagesContainer.onscroll = function(ev) {
-            if(messagesContainer.scrollTop - messagesContainer.clientHeight <= ((messagesContainer.scrollHeight*-1) + 1))
-            {
-                Livewire.emit("moreMessage");
-            }
-        };
+        document.addEventListener('livewire:load',()=>{
+            let messagesContainer = document.querySelector("#messagesContainer")
+            messagesContainer.onscroll = function(ev) {
+                if(messagesContainer.scrollTop - messagesContainer.clientHeight <= ((messagesContainer.scrollHeight*-1) + 1))
+                {
+                    Livewire.emit("moreMessage");
+                }
+            };
+            picker.on('emoji', selection => {
+                @this.message += selection.emoji;
+            });
+        });
     </script>
 @endpush
 

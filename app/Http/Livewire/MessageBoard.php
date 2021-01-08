@@ -48,14 +48,16 @@ class MessageBoard extends Component
 
     public function sendMessage()
     {
-        $this->validate([
-            'message' => 'required'
-        ]);
-        $message = sanitizeString($this->message);
-        Auth::user()->sendMessage($message,$this->contact->id);
-        broadcast(new NewMessage($this->contact));
-        $this->emit("refreshMessages");
-        $this->message = "";
+        if($this->contact){
+            $this->validate([
+                'message' => 'required'
+            ]);
+            $message = sanitizeString($this->message);
+            Auth::user()->sendMessage($message,$this->contact->id);
+            broadcast(new NewMessage($this->contact));
+            $this->emit("refreshMessages");
+            $this->message = "";
+        }
     }
 
     public function readMessage()

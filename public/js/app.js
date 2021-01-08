@@ -36894,9 +36894,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js"); // import $ from 'jquery';
-// import dt from 'datatables.net';
-
+window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

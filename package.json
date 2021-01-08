@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@joeattardi/emoji-button": "^4.6.0",
         "datatables.net": "^1.10.22",
         "datatables.net-dt": "^1.10.22",
         "jquery": "^3.5.1",
