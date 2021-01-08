@@ -70,7 +70,7 @@ class MessageContacts extends Component
 
     public function contactClicked($contactId)
     {
-        if(auth()->user()->messages->count())
+        if(auth()->user()->contactMessages($contactId)->count())
             Auth::user()->contactMessages($contactId)->update(['read_at' => Carbon::now()]);
         $this->emit("updatedConversation", $contactId);
     }

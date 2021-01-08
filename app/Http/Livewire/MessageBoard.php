@@ -60,7 +60,7 @@ class MessageBoard extends Component
 
     public function readMessage()
     {
-        if(auth()->user()->messages->count())
+        if(auth()->user()->contactMessages($this->contact->id)->count())
             $this->messages = auth()->user()->contactMessages($this->contact->id)->orderByDesc('created_at')->get()->take($this->messageCount);
         else $this->messages = [];
     }

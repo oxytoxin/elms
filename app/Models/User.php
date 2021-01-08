@@ -144,6 +144,7 @@ class User extends Authenticatable
     {
         $messages = $this->messages->filter(fn($m)=>$m->complement_owner->id == $contactId);
         if($messages->count()) return $messages->toQuery();
+        return collect();
     }
 
     public function sendMessage($message, $contactId)
