@@ -78,5 +78,6 @@ class Kernel extends HttpKernel
         'submissionPreview' => \App\Http\Middleware\SubmissionAuthorization::class,
         'studentIsEnrolled' => \App\Http\Middleware\StudentIsEnrolled::class,
         'teacherIsEnrolled' => \App\Http\Middleware\TeacherIsEnrolled::class,
+        'whereami' => \App\Http\Middleware\Whereami::class,
     ];
 }

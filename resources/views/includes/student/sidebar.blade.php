@@ -8,7 +8,7 @@
         </a>
         <div class="flex items-center justify-center py-3 mx-2 border-b-2 border-white">
             <div class="w-12 h-12 avatar">
-                <img class="object-cover h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="avatar">
+                <img class="object-cover w-full h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="avatar">
             </div>
             <div class="mx-4">
                 <h1>{{ auth()->user()->name }}</h1>

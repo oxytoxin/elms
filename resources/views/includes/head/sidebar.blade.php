@@ -8,7 +8,7 @@
         </a>
         <div class="flex items-center justify-center py-3 mx-2 border-b-2 border-white">
             <div class="w-12 h-12 avatar">
-                <img class="object-cover h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="avatar">
+                <img class="object-cover w-full h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="avatar">
             </div>
             <div class="mx-4">
                 <h1>{{ auth()->user()->name }}</h1>
@@ -38,8 +38,8 @@
                     <i class="mr-2 icofont-users-alt-1"></i>
                     <h1 class="text-sm font-semibold">Faculty Manager</h1>
                 </a>
-                <a href="{{ route('head.calendar') }}" data-turbolinks="false"  class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
-                {{-- <a href="{{ route('head.calendar') }}" class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item"> --}}
+                <a href="{{ route('programhead.calendar') }}" data-turbolinks="false"  class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+                {{-- <a href="{{ route('programhead.calendar') }}" class="flex {{ strpos(url()->current(),'calendar') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item"> --}}
                     <i class="mr-2 icofont-ui-calendar"></i>
                     <h1 class="text-sm font-semibold">Calendar</h1>
                 </a>

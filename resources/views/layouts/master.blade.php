@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
-    {{-- @if (strpos(url()->full(),"calendar") === false) --}}
-    {{-- <script src="{{ asset('js/tblinks.js') }}" defer></script> --}}
-    {{-- @endif --}}
+    @if (strpos(url()->full(),"calendar") === false)
+    <script src="{{ asset('js/tblinks.js') }}" defer></script>
+    @endif
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('styles')
 </head>
@@ -50,7 +50,7 @@
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
                     <a href="{{ route("$whereami.messages") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
                     @livewire('notification-component')
-                    <a href="{{ \Request()->route()->getPrefix().'/calendar' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
+                    <a data-turbolinks="false" href="{{ route("$whereami.calendar") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>
                     <a href="{{ route('profile.show') }}"><i
                             class="mx-2 cursor-pointer hover:text-primary-600 icofont-user-alt-4"></i></a>

@@ -12,8 +12,8 @@
         @forelse ($contacts as $contact)
         <li wire:key="{{ 'contact.'.$contact->id }}" wire:click="contactClicked({{ $contact->id }})" class="p-2 bg-gray-100 cursor-pointer hover:bg-gray-200">
             <div class="flex items-center space-x-2">
-                <div class="relative flex flex-col items-center flex-shrink-0 max-w-16">
-                    <img class="w-12 h-12 border border-gray-500 rounded-full" src="{{ $contact->profile_photo_url }}" alt="contact photo">
+                <div class="relative items-center flex-shrink-0 w-12 h-12 overflow-hidden border border-gray-500 rounded-full max-w-16">
+                    <img class="object-cover w-full h-full" src="{{ $contact->profile_photo_url }}" alt="contact photo">
                 </div>
                 <div class="flex-grow w-0">
                     <h1 class="text-black">{{ $contact->name }}</h1>
@@ -32,7 +32,9 @@
         <li wire:click="contactClicked({{ $latest_message->complement_owner->id }})" class="p-2 bg-gray-100 cursor-pointer hover:bg-gray-200">
             <div class="flex items-start space-x-2">
                 <div class="relative flex flex-col items-center flex-shrink-0 max-w-16">
-                    <img class="w-16 h-16 border border-gray-500 rounded-full" src="{{ $latest_message->complement_owner->profile_photo_url }}" alt="contact photo">
+                    <div class="w-12 h-12 overflow-hidden border border-gray-500 rounded-full">
+                        <img class="object-cover w-full h-full" src="{{ $latest_message->complement_owner->profile_photo_url }}" alt="contact photo">
+                    </div>
                     @if (!$latest_message->read_at && $latest_message->user_role == "receiver")
                     <div class="absolute w-3 h-3 bg-blue-600 rounded-full bottom-1 left-1"></div>
                     @endif

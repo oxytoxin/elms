@@ -22,7 +22,7 @@
                 <div class="overflow-hidden transform bg-white border-4 rounded-lg hover:scale-105 hover:bg-green-300 border-primary-600">
                     <div class="flex justify-around p-3 {{ $task->deadline < now() ? "bg-red-400" : "bg-green-400" }}">
                         <div class="w-16 h-16">
-                            <img class="object-cover w-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
+                            <img class="object-cover w-full h-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                         </div>
                         <div class="space-y-1 text-sm font-semibold text-center">
                             <h1>{{ $task->name }}</h1>

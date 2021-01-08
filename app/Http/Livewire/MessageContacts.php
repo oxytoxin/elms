@@ -32,8 +32,8 @@ class MessageContacts extends Component
         if(!Auth::check()) return redirect('login');
         $contacts = User::query();
 
-        if($this->searchContact) $contacts = $contacts->where('name','like',"%$this->searchContact%")->get()->take($this->contactsPerPage);
-        else $contacts = $contacts->get()->take($this->contactsPerPage);
+        if($this->searchContact) $contacts = $contacts->where('name','like',"%$this->searchContact%")->orderBy('name')->get()->take($this->contactsPerPage);
+        else $contacts = $contacts->orderBy('name')->get()->take($this->contactsPerPage);
 
         return view('livewire.message-contacts',[
             'latest_messages' => auth()->user()->latest_messages->take($this->messagesPerPage),

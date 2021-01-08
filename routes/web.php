@@ -48,11 +48,7 @@ Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('ev
 Route::get('/test', [MiscController::class, 'test']);
 Route::get('/eventcalendar/events',[MiscController::class, 'fetchEvents']);
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
-Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe');
-
-// Route::get('/redirectMe', function () {
-//     return "redirecting...";
-// })->middleware('redirectMe');
+Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -113,7 +109,7 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/courses', [ProgramHeadPagesController::class, 'courses'])->name('head.courses');
     Route::get('/courses/create', [ProgramHeadPagesController::class, 'create_course'])->name('head.create_course');
     Route::get('/preview/{file}', [ProgramHeadPagesController::class, 'preview'])->name('head.preview');
-    Route::get('/calendar',  EventCalendar::class)->name('head.calendar');
+    Route::get('/calendar',  EventCalendar::class)->name('programhead.calendar');
     Route::get('/add-section', AddSection::class)->name('head.add_section');
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');

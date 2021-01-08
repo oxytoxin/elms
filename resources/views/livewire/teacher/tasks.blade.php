@@ -22,7 +22,7 @@
                     <div class="pb-5 space-y-2 {{ $task->deadline < now() ? "bg-red-400" : "bg-green-400" }}">
                         <div class="flex justify-around p-3">
                             <div class="w-12 h-12">
-                                <img class="object-cover w-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
+                                <img class="object-cover w-full h-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                             </div>
                             <div class="space-y-1 text-sm font-semibold text-center">
                                 <h1>{{ $task->name }}</h1>
