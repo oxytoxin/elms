@@ -5,14 +5,14 @@
         <h1 class="my-2 text-2xl"><i class="mr-2 icofont-star"></i>{{ $module->name }}</h1>
         <h1 class="font-semibold uppercase">Module Resources</h1>
         @forelse ($module->files as $file)
-        <div class="flex items-center my-2">
-            <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank">
-                <h1 class="italic underline text-primary-600"><i
-                        class="mr-2 icofont-download-alt"></i>{{ $file->name }}
-                </h1>
+        <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
+            <a href="{{ route('student.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
+            <i class="icofont-ui-file"></i>
+            {{ $file->name }}
             </a>
-            <a href="{{ route('student.preview',['file'=> $file->id]) }}" target="_blank" rel="noopener noreferrer"
-                class="px-2 ml-3 text-white border hover:text-black border-primary-600 bg-primary-500">Preview</a>
+            <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
+                <i class="icofont-download-alt"></i>
+            </a>
         </div>
         @empty
         <h1>No modules found.</h1>
@@ -23,14 +23,14 @@
         <p class="my-2 italic text-justify"><span class="font-semibold">Description:
             </span>{{ $resource->description }}</p>
         @foreach ($resource->files as $file)
-        <div class="flex items-center my-2">
-            <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank">
-                <h1 class="italic underline text-primary-600"><i
-                        class="mr-2 icofont-download-alt"></i>{{ $file->name }}
-                </h1>
+        <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
+            <a href="{{ route('student.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
+            <i class="icofont-ui-file"></i>
+            {{ $file->name }}
             </a>
-            <a href="{{ route('student.preview',['file'=> $file->id]) }}" target="_blank" rel="noopener noreferrer"
-                class="px-2 ml-3 text-white border hover:text-black border-primary-600 bg-primary-500">Preview</a>
+            <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
+                <i class="icofont-download-alt"></i>
+            </a>
         </div>
         @endforeach
         @empty
