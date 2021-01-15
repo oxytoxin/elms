@@ -173,4 +173,5 @@ class User extends Authenticatable
     {
         return $this->messages->unique('complement_owner');
     }
+
 }

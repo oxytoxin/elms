@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\Models\File;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
+use App\Events\UsersPasswordReset;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Password;
 
 class MiscController extends Controller
 {
@@ -24,13 +30,18 @@ class MiscController extends Controller
 
     public function test()
     {
-        dump(auth()->user()->messages->filter(fn($m)=>$m->complement_owner->id == 4));
+       return 'test';
+    }
+    public function sendPasswordResets()
+    {
+        foreach (User::get()->random(30)->chunk(10) as $users) {
+            event(new UsersPasswordReset($users));
+        };
+       return 'password reset';
     }
 
     public function fileDownload(File $file)
     {
-        // if ($file->google_id)
-        //     return Storage::download($file->google_id);
         return Storage::disk('google')->download($file->google_id, $file->url);
     }
     public function event_details($event, Request $request)

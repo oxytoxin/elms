@@ -6,6 +6,8 @@ use App\Events\NewTask;
 use App\Events\NewMessage;
 use App\Events\NewSubmission;
 use App\Listeners\CheckSubmission;
+use App\Events\UsersPasswordReset;
+use App\Listeners\SendPasswordResets;
 use App\Listeners\NotifyRecipient;
 use App\Listeners\NotifyTaskStudents;
 use Illuminate\Support\Facades\Event;
@@ -32,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewMessage::class => [
             NotifyRecipient::class,
+        ],
+        UsersPasswordReset::class => [
+            SendPasswordResets::class,
         ],
     ];
 

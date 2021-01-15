@@ -43,12 +43,14 @@ use App\Http\Livewire\MessageBoard;
 |
 */
 
+// Route::get('/sendPasswordResets', [MiscController::class, 'sendPasswordResets'])->name('sendpassword.resets');
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
-Route::get('/test', [MiscController::class, 'test']);
 Route::get('/eventcalendar/events',[MiscController::class, 'fetchEvents']);
+Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
+Route::get('/test', [MiscController::class, 'test']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -59,7 +61,6 @@ Route::post('test', [TestController::class, 'test']);
 
 Route::view('/under_development', 'underdev')->name('soon_to_be_developed');
 
-Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 
 // Student Routes
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
