@@ -1,4 +1,4 @@
-<div class="flex flex-col col-span-3 row-span-1 text-gray-400 bg-white md:order-2 md:col-span-1 md:flex-row" x-data="{showContactSearch:@entangle('showContactSearch')}">
+<div class="flex flex-col col-span-3 row-span-1 text-gray-400 bg-white md:order-2 md:col-span-1" x-data="{showContactSearch:@entangle('showContactSearch')}">
     <div class="flex items-center justify-between flex-shrink-0 h-16 p-2 text-xl text-white bg-primary-600"><span class="flex items-center space-x-2"><i class="text-3xl icofont-address-book"></i><span>Contacts</span></span>
     @if ($showContactSearch)
     <i wire:click="closeContactSearch" class="cursor-pointer icofont-ui-close hover:text-gray-200"></i>
