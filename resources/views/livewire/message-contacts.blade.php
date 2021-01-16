@@ -61,7 +61,7 @@
     <script>
         let latestMessagesContainer = document.querySelector("#latestMessagesContainer")
         latestMessagesContainer.onscroll = function(ev) {
-            if(latestMessagesContainer.scrollTop + latestMessagesContainer.clientHeight >= latestMessagesContainer.scrollHeight - 1)
+            if(latestMessagesContainer.scrollTop + latestMessagesContainer.clientHeight >= latestMessagesContainer.scrollHeight - 20)
             {
                 Livewire.emit("loadMore");
             }
