@@ -1,7 +1,8 @@
 <div class="flex flex-col h-full">
     <h1 class="text-2xl font-semibold">MESSAGES</h1>
-    <div class="grid flex-grow h-0 grid-cols-3 grid-rows-1 mt-5 bg-gray-600 border border-primary-600">
-        <div class="flex flex-col col-span-2 row-span-1 bg-white">
+    <div class="grid flex-grow h-0 grid-cols-3 grid-rows-2 mt-5 bg-gray-600 border md:grid-rows-1 border-primary-600">
+        @livewire('message-contacts')
+        <div class="flex flex-col col-span-3 row-span-1 bg-white md:order-1 md:col-span-2">
             @if ($contact)
             <div class="flex items-center h-16 p-2 mb-3 space-x-2 text-xl text-white bg-primary-500">
                 <div class="w-12 h-12 overflow-hidden border border-gray-500 rounded-full">
@@ -51,7 +52,7 @@
                 <button wire:click="sendMessage" class="text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
-        @livewire('message-contacts')
+
     </div>
 </div>
 

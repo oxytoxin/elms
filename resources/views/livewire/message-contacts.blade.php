@@ -1,4 +1,4 @@
-<div class="flex flex-col col-span-1 row-span-1 text-gray-400 bg-white" x-data="{showContactSearch:@entangle('showContactSearch')}">
+<div class="flex flex-col col-span-3 row-span-1 text-gray-400 bg-white md:order-2 md:col-span-1 md:flex-row" x-data="{showContactSearch:@entangle('showContactSearch')}">
     <div class="flex items-center justify-between flex-shrink-0 h-16 p-2 text-xl text-white bg-primary-600"><span class="flex items-center space-x-2"><i class="text-3xl icofont-address-book"></i><span>Contacts</span></span>
     @if ($showContactSearch)
     <i wire:click="closeContactSearch" class="cursor-pointer icofont-ui-close hover:text-gray-200"></i>
@@ -6,7 +6,9 @@
     <i wire:click="openContactSearch" class="cursor-pointer icofont-search hover:text-gray-200"></i>
     @endif
     </div>
-    <input wire:model="searchContact" autocomplete="off" x-show.transition="showContactSearch" type="text" name="contactSearch" id="contactSearch" class="m-1 form-input" placeholder="Search for contacts...">
+    <div class="flex">
+    <input wire:model="searchContact" autocomplete="off" x-show.transition="showContactSearch" type="text" name="contactSearch" id="contactSearch" class="flex-grow m-1 form-input" placeholder="Search for contacts...">
+    </div>
     @if ($showContactSearch)
     <ul id="latestMessagesContainer" class="overflow-y-auto divide-y divide-gray-400">
         @forelse ($contacts as $contact)
@@ -27,7 +29,7 @@
         @endforelse
     </ul>
     @else
-    <ul id="latestMessagesContainer" class="overflow-y-auto divide-y divide-gray-400">
+    <ul id="latestMessagesContainer" class="overflow-y-auto divide-y divide-gray-400 h-">
         @forelse ($latest_messages as $latest_message)
         <li wire:click="contactClicked({{ $latest_message->complement_owner->id }})" class="p-2 bg-gray-100 cursor-pointer hover:bg-gray-200">
             <div class="flex items-start space-x-2">

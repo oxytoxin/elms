@@ -122,6 +122,7 @@ Route::prefix('dean')->middleware(['auth', 'isDean'])->group(function () {
     Route::get('/home', [DeanPagesController::class, 'home'])->name('dean.home');
     Route::get('/messages', MessageBoard::class)->name('dean.messages');
     Route::get('/manage-program-heads', ProgramHeadManager::class)->name('dean.programhead_manager');
+    Route::get('/calendar', EventCalendar::class)->name('dean.calendar');
 });
 
 

@@ -630,10 +630,7 @@ window.picker = new _joeattardi_emoji_button__WEBPACK_IMPORTED_MODULE_0__["Emoji
   autoHide: false
 });
 var trigger = document.querySelector('#emojibtn');
-var messageInput = document.querySelector('#messageInput'); // picker.on('emoji', selection => {
-//  messageInput.value += selection.emoji;
-// });
-
+var messageInput = document.querySelector('#messageInput');
 trigger.addEventListener('click', function () {
   return picker.togglePicker(trigger);
 });

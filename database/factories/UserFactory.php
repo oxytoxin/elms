@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Campus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -23,6 +24,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'campus_id' => Campus::get()->random()->id,
             'name' => $this->faker->name,
             'email' => 1000 + User::count() + 1 . '@gmail.com',
             'email_verified_at' => now(),
