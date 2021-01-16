@@ -104,7 +104,7 @@ class TeacherCoursesPage extends Component
         $this->title = "";
         $this->description = "";
         $this->module_id = null;
-        $this->moduleSelected = null;
+        // $this->moduleSelected = null;
         $this->resources = [];
         $this->section = $this->section;
         session()->flash('message', 'Resources have been added.');
