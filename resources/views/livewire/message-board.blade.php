@@ -17,8 +17,8 @@
                         <div class="flex-shrink-0 w-8 h-8 overflow-hidden border border-gray-500 rounded-full">
                             <img src="{{ $message->complement_owner->profile_photo_url }}" alt="profile_photo" class="object-cover w-full h-full">
                         </div>
-                        <span class="flex p-2 break-words bg-gray-200 rounded-lg max-w-max-content">
-                            <p class="overflow-x-hidden">{{ $message->message }}</p>
+                        <span class="flex p-2 break-all bg-gray-200 rounded-lg max-w-max-content">
+                            <p class="overflow-x-hidden break-all">{{ $message->message }}</p>
                         </span>
                     </div>
                     @else
@@ -27,7 +27,7 @@
                             <img src="{{ auth()->user()->profile_photo_url }}" alt="profile_photo" class="object-cover w-full h-full">
                         </div>
                         <span class="flex p-2 text-white break-words bg-blue-600 rounded-lg max-w-max-content">
-                            <p class="overflow-x-hidden">{{ $message->message }}</p>
+                            <p class="overflow-x-hidden break-all">{{ $message->message }}</p>
                         </span>
                     </div>
                     @endif
