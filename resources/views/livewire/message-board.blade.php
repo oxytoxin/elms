@@ -62,7 +62,7 @@
         document.addEventListener('livewire:load',()=>{
             let messagesContainer = document.querySelector("#messagesContainer")
             messagesContainer.onscroll = function(ev) {
-                if(messagesContainer.scrollTop - messagesContainer.clientHeight <= ((messagesContainer.scrollHeight*-1) + 20))
+                if(messagesContainer.scrollTop - messagesContainer.clientHeight <= ((messagesContainer.scrollHeight*-1) + 100))
                 {
                     Livewire.emit("moreMessage");
                 }

@@ -6,8 +6,8 @@
     <i wire:click="openContactSearch" class="cursor-pointer icofont-search hover:text-gray-200"></i>
     @endif
     </div>
-    <div class="flex">
-    <input wire:model="searchContact" autocomplete="off" x-show.transition="showContactSearch" type="text" name="contactSearch" id="contactSearch" class="flex-grow m-1 form-input" placeholder="Search for contacts...">
+    <div class="p-1">
+    <input wire:model="searchContact" autocomplete="off" x-show.transition="showContactSearch" type="text" name="contactSearch" id="contactSearch" class="w-full form-input" placeholder="Search...">
     </div>
     @if ($showContactSearch)
     <ul id="latestMessagesContainer" class="overflow-y-auto divide-y divide-gray-400">
