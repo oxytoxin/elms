@@ -18,7 +18,7 @@
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
     @if (strpos(url()->full(),"calendar") === false)
-    {{-- <script src="{{ asset('js/tblinks.js') }}" defer></script> --}}
+    <script src="{{ asset('js/tblinks.js') }}" defer></script>
     @endif
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('styles')
