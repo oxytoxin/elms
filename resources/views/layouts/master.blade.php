@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fa-min.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
     @if (strpos(url()->full(),"calendar") === false)
@@ -70,8 +72,8 @@
         </main>
     </div>
     @stack('modals')
-    @livewireScripts
     @stack('scripts')
+    @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
 </body>
 
