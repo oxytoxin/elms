@@ -7,7 +7,7 @@
             </div>
             <div><button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button></div>
         </div>
-        <div class="box-border mt-5 flex text-lg text-gray-300 border-2 border-black">
+        <div class="box-border flex mt-5 text-lg text-gray-300 border-2 border-black">
             <a href="#" data-turbolinks="false"  wire:click="$set('tab','student')"
                 class="flex items-center justify-center w-1/2 {{ $tab == 'student' ?  'bg-primary-500 text-gray-700' : '' }}">
                 <div class="font-bold text-center uppercase hover:text-gray-700">ENROL STUDENT</div>
@@ -36,6 +36,11 @@
                 @error('email')
                 <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
                 @enderror
+                <div class="text-xs italic text-red-600">
+                    @if (session()->has('error'))
+                    {{ session('error') }}
+                    @endif
+                </div>
             </form>
         </div>
         <h1 class="my-2 font-bold">Course Student List</h1>

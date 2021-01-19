@@ -56,7 +56,9 @@ class TeacherCoursesPage extends Component
         $this->validate([
             'email' => 'required|email',
         ]);
-        $student = User::has('student')->where('email', $this->email)->firstOrFail()->student;
+        $u = User::has('student')->where('email', $this->email)->first();
+        if($u) $student = $u->student;
+        else return session()->flash('error', 'Student not found.');
         if (!$this->section->students->contains($student)) {
             auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->section->course->id, 'section_id' => $this->section->id]);
             $this->section =  $this->section;
