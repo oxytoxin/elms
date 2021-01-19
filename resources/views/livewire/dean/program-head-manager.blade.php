@@ -6,6 +6,11 @@
         @error('email')
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
         @enderror
+        <div class="text-xs italic font-semibold text-red-600">
+            @if(session('error'))
+            {{ session('error') }}
+            @endif
+        </div>
         <select wire:model.lazy="department_id" name="department_select" class="form-select" id="department_select">
             <option value="0" selected hidden disabled>Select department</option>
             @foreach ($departments as $department)

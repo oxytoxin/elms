@@ -38,7 +38,8 @@ class ProgramHeadManager extends Component
             'email' => 'required|email',
             'department_id' => 'required|not_in:0'
         ]);
-        $u = User::where('email', $this->email)->firstOrFail();
+        $u = User::where('email', $this->email)->first();
+        if(!$u) return session()->flash('error', 'Faculty member not found.');
         DB::transaction(function () use ($u) {
             ProgramHead::create([
                 'user_id' => $u->id,

@@ -193,7 +193,7 @@ class DeploySeeder extends Seeder
         $u = User::create([
             'campus_id' => $c->id,
             'name' => 'Kristine Mae Ampas',
-            'email' => 'kristinemae.ampas@sksu.edu.ph',
+            'email' => 'kristinemaeampas@sksu.edu.ph',
             'password' => bcrypt('password'),
         ]);
         Teacher::create([

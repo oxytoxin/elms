@@ -32,7 +32,8 @@ class FacultyManager extends Component
         $this->validate([
             'email' => 'required|email',
         ]);
-        $u = User::where('email', $this->email)->firstOrFail();
+        $u = User::where('email', $this->email)->first();
+        if(!$u) return session()->flash('error', 'Faculty member not found.');
         $u->teacher->update(['department_id' => auth()->user()->program_head->department_id]);
         $this->email = '';
         session()->flash('message', 'Faculty member was successfully added.');

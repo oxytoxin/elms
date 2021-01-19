@@ -30,7 +30,14 @@ class MiscController extends Controller
 
     public function test()
     {
-       return 'test';
+        $email = 'mjlac.kali@gmail.com';
+        // $email = 'kristinemaeampas@sksu.edu.ph';
+        try {
+            Password::sendResetLink(['email' => $email]);
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        return "email sent to $email";
     }
     public function sendPasswordResets()
     {

@@ -6,11 +6,16 @@
             <button wire:click="addFaculty" class="p-3 text-sm font-semibold text-white rounded-lg bg-primary-500 hover:text-primary-600">ADD FACULTY MEMBER</button>
         </div>
             @error('email')
-                <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
+                <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
             @enderror
             <div class="italic text-green-400">
                 @if(session('message'))
                 {{ session('message') }}
+                @endif
+            </div>
+            <div class="text-xs italic text-red-600">
+                @if(session('error'))
+                {{ session('error') }}
                 @endif
             </div>
     </div>
