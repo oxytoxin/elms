@@ -28,10 +28,12 @@ class MiscController extends Controller
         return "redirecting...";
     }
 
-    public function test()
+    public function test(Request $request)
     {
-        $email = 'mjlac.kali@gmail.com';
-        // $email = 'kristinemaeampas@sksu.edu.ph';
+        if($request['email']){
+            $email = $request['email'];
+        }else $email = 'mjlac.kali@gmail.com';
+        $email = 'kristinemaeampas@sksu.edu.ph';
         try {
             Password::sendResetLink(['email' => $email]);
         } catch (\Throwable $th) {
