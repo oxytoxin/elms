@@ -8,8 +8,10 @@ class VideoCalling extends Component
 {
     public $name;
     public $email;
+    public $room;
     public function mount($room)
     {
+        $this->room = $room;
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
     }

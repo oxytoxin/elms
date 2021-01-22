@@ -7,7 +7,7 @@
     document.addEventListener('livewire:load', ()=>{
         const domain = 'jitsi.toxinsgrace.me';
         const options = {
-            roomName: 'asdklawdkal;w',
+            roomName: @this.room,
             userInfo: {
                 email: @this.email,
                 displayName: @this.name,
