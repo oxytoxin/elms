@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Section;
 use Livewire\Component;
 
 class VideoCalling extends Component
@@ -11,7 +12,8 @@ class VideoCalling extends Component
     public $room;
     public function mount($room)
     {
-        $this->room = $room;
+        $section = Section::find(request('section_id'));
+        $this->room = $section->id.'-'.$section->course->name.'-'.$section->code;
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
     }
