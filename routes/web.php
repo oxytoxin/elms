@@ -31,6 +31,7 @@ use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
 use App\Http\Livewire\MessageBoard;
+use App\Http\Livewire\VideoConference;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middle
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
 Route::get('/test', [MiscController::class, 'test']);
+Route::get('/video-call', VideoConference::class);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
