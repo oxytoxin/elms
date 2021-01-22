@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class VideoConference extends Component
 {
+    public $name;
 
     public function getListeners()
     {
@@ -15,6 +16,10 @@ class VideoConference extends Component
         ];
     }
 
+    public function mount()
+    {
+        $this->name = auth()->user()->name;
+    }
     public function render()
     {
         return view('livewire.video-conference')
