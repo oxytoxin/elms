@@ -2,19 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use DB;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Section;
 use App\Models\Student;
 use Livewire\Component;
 use App\Models\Resource;
-use App\Models\Section;
-use App\Notifications\GeneralNotification;
-use DB;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\GeneralNotification;
 
 class TeacherCoursesPage extends Component
 {
@@ -37,6 +38,20 @@ class TeacherCoursesPage extends Component
         return view('livewire.teacher-courses-page')
             ->extends('layouts.master')
             ->section('content');
+    }
+
+    public function createMeeting()
+    {
+        if($this->section->videoroom) return;
+        $this->section->videoroom()->create([
+            'code' => base64_encode($this->section->id.$this->section->code. Str::random(40)),
+        ]);
+        $this->section = Section::find($this->section->id);
+    }
+
+    public function joinMeeting()
+    {
+        return redirect()->route('teacher.meeting', ['room' => $this->section->videoroom->code, 'section_id' => $this->section->id]);
     }
 
     public function mount(Section $section)

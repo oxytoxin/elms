@@ -31,6 +31,7 @@ use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
 use App\Http\Livewire\MessageBoard;
+use App\Http\Livewire\VideoCalling;
 use App\Http\Livewire\VideoConference;
 
 /*
@@ -52,7 +53,6 @@ Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middle
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
 Route::get('/test', [MiscController::class, 'test']);
-Route::get('/video-call', VideoConference::class);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -78,6 +78,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
     Route::get('/messages', MessageBoard::class)->name('student.messages');
+    Route::get('/video-call/{room}', VideoCalling::class)->name('student.meeting')->middleware('meetingAuth');
 });
 
 
@@ -100,6 +101,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
     Route::get('/extend-deadline/{task}', ExtendDeadline::class)->name('teacher.extend_deadline');
     Route::get('/messages', MessageBoard::class)->name('teacher.messages');
+    Route::get('/video-call/{room}', VideoCalling::class)->name('teacher.meeting')->middleware('meetingAuth');
 });
 
 // Program Head Routes
@@ -117,6 +119,7 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');
     Route::get('/messages', MessageBoard::class)->name('programhead.messages');
+    Route::get('/video-call/{room}', VideoCalling::class)->name('head.meeting');
 });
 
 // Dean Routes

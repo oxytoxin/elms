@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
+use App\Http\Middleware\MeetingAuth;
 use App\Http\Middleware\StudentIsEnrolled;
 use App\Http\Middleware\TeacherIsEnrolled;
 use Illuminate\Session\Middleware\StartSession;
@@ -80,5 +81,6 @@ class Kernel extends HttpKernel
         'studentIsEnrolled' => \App\Http\Middleware\StudentIsEnrolled::class,
         'teacherIsEnrolled' => \App\Http\Middleware\TeacherIsEnrolled::class,
         'whereami' => \App\Http\Middleware\Whereami::class,
+        'meetingAuth' => \App\Http\Middleware\MeetingAuth::class,
     ];
 }

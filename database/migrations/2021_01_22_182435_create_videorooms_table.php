@@ -15,7 +15,8 @@ class CreateVideoroomsTable extends Migration
     {
         Schema::create('videorooms', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('active_streams');
+            $table->foreignId('section_id')->constrained();
+            $table->string('code');
             $table->timestamps();
         });
     }

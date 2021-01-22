@@ -5,7 +5,14 @@
                 <h1 class="mt-3 text-xl font-semibold">{{ $section->course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
                 <h1 class="mb-3 font-semibold">Section: {{ $section->code }}</h1>
             </div>
-            <div><button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button></div>
+            <div>
+                <button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button>
+                @if ($section->videoroom)
+                <button wire:click="joinMeeting" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">JOIN MEETING</button>
+                @else
+                <button wire:click="createMeeting" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">CREATE MEETING</button>
+                @endif
+            </div>
         </div>
         <div class="box-border flex mt-5 text-lg text-gray-300 border-2 border-black">
             <a href="#" data-turbolinks="false"  wire:click="$set('tab','student')"

@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Module;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Videoroom;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,11 @@ class Section extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function videoroom()
+    {
+        return $this->hasOne(Videoroom::class);
     }
 
     public function modules()
