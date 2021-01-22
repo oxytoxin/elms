@@ -24,7 +24,6 @@
     },
     "dependencies": {
         "@joeattardi/emoji-button": "^4.6.0",
-        "agora-rtc-sdk-ng": "^4.2.1",
         "datatables.net": "^1.10.22",
         "datatables.net-dt": "^1.10.22",
         "jquery": "^3.5.1",
