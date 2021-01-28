@@ -143,9 +143,9 @@
     <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pt(s)</span>
 </div>
 @endforeach
-    @if($this->verifyItems())
-    <button wire:click="finishGrading" onclick="confirm('Finish grading task?') || event.stopImmediatePropagation()" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
-    @endif
+@if($this->verifyItems())
+<button wire:click="finishGrading" onclick="confirm('Finish grading task?') || event.stopImmediatePropagation()" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
+@endif
 </div>
 
 @section('sidebar')

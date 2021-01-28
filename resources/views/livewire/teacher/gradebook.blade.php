@@ -73,7 +73,7 @@
                             @endif
                         </td>
                         @endforeach
-                    @endforeach
+                        @endforeach
                     </tr>
                     @empty
                     @endforelse

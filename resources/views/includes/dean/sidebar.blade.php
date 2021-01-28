@@ -1,5 +1,5 @@
-<div class="relative min-h-screen">
-    <div class="relative z-20">
+<div class="relative flex flex-col min-h-screen">
+    <div class="relative z-20 flex flex-col flex-1">
         <a href="/" class="flex items-center justify-center h-16 p-2 border-2 border-white banner bg-primary-500">
             <div class="w-12 logo">
                 <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
@@ -15,7 +15,7 @@
                 <h1 class="flex items-center"><div class="w-3 h-3 mr-1 rounded-full bg-primary-500"></div>Online</h1>
             </div>
         </div>
-        <div class="p-3 font-semibold bg-opacity-75 min-h-halfscreen links bg-primary-600">
+        <div class="flex flex-col flex-1 p-3 font-semibold bg-opacity-75 min-h-halfscreen links bg-primary-600">
             <h1 class="text-sm font-semibold">Dean</h1>
             <div class="actions">
                 <a href="{{ route('dean.home') }}"

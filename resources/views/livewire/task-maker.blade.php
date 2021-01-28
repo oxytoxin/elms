@@ -127,7 +127,7 @@
                             <div class="flex flex-col space-y-2">
                                 @foreach ($item['enumerationItems'] as $enum => $enumItem)
                                 <div class="relative">
-                                    <input wire:key="item_{{ $key }}_enum_{{ $enum }}" wire:model.defer="items.{{ $key }}.enumerationItems.{{ $enum }}" type="text" name="items.{{ $key }}.enumerationItems.{{ $enum }}" class="w-full text-xs form-input" placeholder="Enumeration item..." id="items.{{ $key }}.enumerationItems.{{ $enum }}">
+                                    <input wire:key="item_{{ $key }}_enum_{{ $enum }}" wire:model.defer="items.{{ $key }}.enumerationItems.{{ $enum }}" type="text" name="items.{{ $key }}.enumerationItems.{{ $enum }}" class="w-full text-xs text-black form-input" placeholder="Enumeration item..." id="items.{{ $key }}.enumerationItems.{{ $enum }}">
                                     @if ($enum != 0 && $enum != 1)
                                     <i class="absolute ml-2 text-2xl text-red-600 cursor-pointer inset-y-2 right-1 icofont-trash"
                                     wire:click.prevent="removeEnumItem({{ $key}},{{ $enum }})"

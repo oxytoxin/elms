@@ -1,4 +1,5 @@
 <div x-data="{showInviteCode : @entangle('showInviteCode')}">
+    <x-loading wire:loading.grid wire:target="addResources,resources" message="Uploading files..."/>
     <div class="w-full">
         <div class="flex flex-col items-center justify-between my-3 md:my-0 md:flex-row">
             <div>
@@ -110,10 +111,6 @@
                 @error('resources.*')
                 <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
                 @enderror
-                <div wire:loading wire:target="addResources,resources">
-                    <h1 class="italic text-green-400">Uploading resources. Please wait...<i
-                            class="fa fa-spinner fa-spin"></i></h1>
-                </div>
             </form>
         </div>
         <div class="italic text-green-400">

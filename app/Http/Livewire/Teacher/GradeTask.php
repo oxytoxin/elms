@@ -31,9 +31,12 @@ class GradeTask extends Component
         $this->task = $task;
         $this->rubric = json_decode($task->essay_rubric, true);
         $this->task_content = json_decode($task->content, true);
-        $this->submission = $task->students->where('id', request('student'))->first()->pivot;
+        $this->submission = $task->students->where('id', request('student'))->first();
+        if($this->submission) $this->submission = $this->submission->pivot;
+        else abort(404);
         $this->answers = json_decode($this->submission->answers, true);
         $this->getCorrect();
+        if($this->submission->assessment) $this->items = json_decode($this->submission->assessment,true);
     }
 
     public function render()

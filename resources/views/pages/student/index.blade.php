@@ -16,6 +16,7 @@
                 <h1 class="text-sm text-center">{{ $section->course->name }}</h1>
                 <h1 class="font-semibold text-center text-orange-500">{{ $section->course->code }}</h1>
                 <h1 class="text-center">{{ $section->code }}</h1>
+                <h1 class="text-sm text-center">Instructor:<br>{{ $section->teacher->user->name }}</h1>
             </div>
             <div class="h-2/12">
                 <a href="{{ route('student.course_modules',['section'=>$section->id]) }}"

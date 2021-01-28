@@ -24,14 +24,14 @@ class MiscSeeder extends Seeder
     {
         // Enroll student with id 1 and teacher with id 101
         // $s = Student::find(1);
-        $t = Teacher::find(101);
+        $t = Teacher::find(4);
         $students = Student::where('department_id', $t->department_id)->get();
         // $courses = Course::where('department_id', $t->department_id)->get();
-        $courses = Course::get()->take(100);
+        $courses = Course::get()->take(5);
         foreach ($courses as  $c) {
-            $section1 = Section::create(['code' => strtoupper($faker->bothify('??-#?')), 'teacher_id' => 101, 'course_id' => $c->id, 'room' => strtoupper($faker->bothify('??? Bldg. Rm. ??#')), 'schedule' => $faker->randomElement(['MWF', 'TTH']) . ' 0' . $faker->numberBetween(7, 9) . ' AM- 0' . $faker->numberBetween(1, 5) . ' PM']);
-            $section2 = Section::create(['code' => strtoupper($faker->bothify('??-#?')), 'teacher_id' => 101, 'course_id' => $c->id, 'room' => strtoupper($faker->bothify('??? Bldg. Rm. ??#')), 'schedule' => $faker->randomElement(['MWF', 'TTH']) . ' 0' . $faker->numberBetween(7, 9) . ' AM- 0' . $faker->numberBetween(1, 5) . ' PM']);
-            $c->teachers()->attach(101);
+            $section1 = Section::create(['code' => strtoupper($faker->bothify('??-#?')), 'teacher_id' => 4, 'course_id' => $c->id, 'room' => strtoupper($faker->bothify('??? Bldg. Rm. ??#')), 'schedule' => $faker->randomElement(['MWF', 'TTH']) . ' 0' . $faker->numberBetween(7, 9) . ' AM- 0' . $faker->numberBetween(1, 5) . ' PM']);
+            $section2 = Section::create(['code' => strtoupper($faker->bothify('??-#?')), 'teacher_id' => 4, 'course_id' => $c->id, 'room' => strtoupper($faker->bothify('??? Bldg. Rm. ??#')), 'schedule' => $faker->randomElement(['MWF', 'TTH']) . ' 0' . $faker->numberBetween(7, 9) . ' AM- 0' . $faker->numberBetween(1, 5) . ' PM']);
+            $c->teachers()->attach(4);
             foreach ($students as  $s) {
                 if ($faker->numberBetween(0, 1))
                     $t->students()->attach($s->id, ['course_id' => $c->id, 'section_id' => $section1->id]);
@@ -60,7 +60,7 @@ class MiscSeeder extends Seeder
                 ]);
             }
         }
-        Task::factory()->count(200)->create(['teacher_id' => 101]);
+        Task::factory()->count(100)->create(['teacher_id' => 4]);
         $tasks = Task::get();
         foreach ($tasks as $task) {
             $code = Carbon::now()->timestamp;

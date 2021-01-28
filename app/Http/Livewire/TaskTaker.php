@@ -70,10 +70,10 @@ class TaskTaker extends Component
         DB::transaction(function () {
             foreach ($this->answers as $key => $item) {
                 if (isset($item['files'])) {
+                    $this->answers[$key]['files'] = [];
                     foreach ($item['files'] as $id => $file) {
                         $filename = $file->getClientOriginalName();
                         $url = $file->store('tasks', 'public');
-                        $this->answers[$key]['files'] = [];
                         array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
                     }
                 }

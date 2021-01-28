@@ -22,12 +22,12 @@ class Gradebook extends Component
 
     public function render()
     {
-        $this->tasks = Section::find($this->section_id)->tasks->filter(function ($t) {
-            return $t->course->id == $this->course_id;
-        })->groupBy('task_type_id');
         if (!$this->section_id) {
             $this->section_id = $this->course->sections->first()->id;
         }
+        $this->tasks = Section::find($this->section_id)->tasks->filter(function ($t) {
+            return $t->course->id == $this->course_id;
+        })->groupBy('task_type_id');
         $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
         return view('livewire.teacher.gradebook', [
             'tasks' => $this->tasks,
@@ -43,11 +43,6 @@ class Gradebook extends Component
         $this->course = auth()->user()->teacher->courses()->first();
         if (!$this->course) abort(404);
         $this->course_id = $this->course->id;
-        $this->section_id = $this->course->sections->first()->id;
-
-        $this->tasks = Section::find($this->section_id)->tasks->filter(function ($t) {
-            return $t->course->id == $this->course_id;
-        })->groupBy('task_type_id');
     }
     public function updateCourse()
     {
