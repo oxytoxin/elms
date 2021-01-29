@@ -17,21 +17,22 @@ class TeacherTasklist extends Component
     public $showDeadlineExtension = false;
     public function render()
     {
+        if ($this->search) $this->resetPage();
         $query = $this->task->students();
-        if($this->search) $query = $query->whereHas('user',function($q){
-            $q->where('name','like',"%$this->search%");
+        if ($this->search) $query = $query->whereHas('user', function ($q) {
+            $q->where('name', 'like', "%$this->search%");
         });
         switch ($this->submissionFilter) {
             case 'graded':
-                $query = $query->where('isGraded',true);
+                $query = $query->where('isGraded', true);
                 break;
             case 'ungraded':
-                $this->students = $query->where('isGraded',false);
+                $this->students = $query->where('isGraded', false);
                 break;
             default:
                 break;
         }
-        $this->students = $query->orderBy('date_submitted', 'desc')->paginate(10);
+        $this->students = $query->withName()->with(['department', 'user'])->orderBy('name')->paginate(5);
         return view('livewire.teacher-tasklist', [
             'students' => $this->students,
         ])

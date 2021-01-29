@@ -1,4 +1,4 @@
-<div x-data="{showInviteCode : @entangle('showInviteCode')}">
+<div x-data="{showInviteCode : @entangle('showInviteCode'), showQuery : @entangle('showQuery')}">
     <x-loading wire:loading.grid wire:target="addResources,resources" message="Uploading files..."/>
     <div class="w-full">
         <div class="flex flex-col items-center justify-between my-3 md:my-0 md:flex-row">
@@ -34,12 +34,20 @@
                     {{ session('message') }}
                     @endif
                 </div>
-                <div class="flex flex-col items-center mt-2 md:flex-row">
+                <div class="relative flex flex-col items-center mt-2 md:flex-row">
                     <input wire:model="email" type="email" class="w-full form-input" placeholder="student@email.com"
                         autocomplete="off" autofocus name="email">
                     <button
                         class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:ml-3 md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Enrol
                         Student</button>
+                    <div x-show="showQuery" class="absolute top-0 w-full overflow-y-auto bg-white divide-y-2 max-h-48 mt-14">
+                        @foreach ($students as $stud)
+                            <div  wire:click="setEmail('{{ $stud->email }}')" wire:key="student-{{ $stud->id }}" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
+                                <h1>{{ $stud->name }}</h1>
+                                <h1>{{ $stud->email }}</h1>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 @error('email')
                 <h1 class="text-xs italic text-red-600">{{ $message }}</h1>

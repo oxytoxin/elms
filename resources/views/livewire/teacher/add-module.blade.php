@@ -1,4 +1,5 @@
 <div class="px-5">
+    <x-loading wire:target="moduleFiles, addModule" wire:loading.grid message="Uploading files..."/>
     <div class="mt-2">
         <h1 class="flex items-center justify-between text-xl font-semibold"><span>ADD MODULE</span><span class="text-sm font-normal"><input type="checkbox" wire:model="allSections" class="form-checkbox" name="addforall" id="addforall"><label for="addforall" class="ml-1 font-bold uppercase">Add for all your sections</label></span></h1>
         <div>
@@ -8,8 +9,7 @@
                 <h1>Section: {{ $section->code }}</h1>
             </div>
             <div class="flex-grow">
-                <label class="font-semibold" for="title">Module Title<i wire:loading wire:target="addModule"
-                    class="fa fa-spinner fa-spin"></i></label>
+                <label class="font-semibold" for="title">Module Title</label>
                 <input wire:model="moduleName" type="text" class="block w-full form-input" autocomplete="off"
                     placeholder="Module Title" autofocus name="moduleName">
                 @error('moduleName')
@@ -27,11 +27,6 @@
                 <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
                 @enderror
         </div>
-    </div>
-
-    <div wire:target="moduleFiles" wire:loading>
-        <h1 class="italic font-semibold text-green-400">Uploading Module. Please
-            wait...<i class="fa fa-spinner fa-spin"></i></h1>
     </div>
     <div class="italic text-green-400">
         @if (session()->has('message'))

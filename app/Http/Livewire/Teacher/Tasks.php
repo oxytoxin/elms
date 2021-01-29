@@ -23,23 +23,27 @@ class Tasks extends Component
     {
         switch ($this->filter) {
             case 'all':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get();
+                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->get();
                 break;
             case 'toGrade':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function($t){
-                    return $t->ungraded == 1;
+                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->get()->filter(function ($t) {
+                    return $t->ungraded > 0;
                 });
                 break;
             case 'pastDeadline':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline','<',now())->get();
+                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->where('deadline', '<', now())->get();
                 break;
         }
         $page = Paginator::resolveCurrentPage() ?: 1;
         $perPage = 10;
         $this->tasks = new LengthAwarePaginator(
-        $this->tasks->forPage($page, $perPage), $this->tasks->count(), $perPage, $page, ['path' => Paginator::resolveCurrentPath()]
+            $this->tasks->forPage($page, $perPage),
+            $this->tasks->count(),
+            $perPage,
+            $page,
+            ['path' => Paginator::resolveCurrentPath()]
         );
-        return view('livewire.teacher.tasks',[
+        return view('livewire.teacher.tasks', [
             'tasks' => $this->tasks,
         ])
             ->extends('layouts.master')
@@ -59,12 +63,12 @@ class Tasks extends Component
                 $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get();
                 break;
             case 'toGrade':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function($t){
+                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function ($t) {
                     return $t->ungraded == 0;
                 });
                 break;
             case 'pastDeadline':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline','<',now())->get();
+                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline', '<', now())->get();
                 break;
         }
     }
@@ -76,12 +80,12 @@ class Tasks extends Component
                 $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get();
                 break;
             case 'toGrade':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function($t){
+                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function ($t) {
                     return $t->ungraded == 0;
                 });
                 break;
             case 'pastDeadline':
-                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline','<',now())->get();
+                $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline', '<', now())->get();
                 break;
         }
     }
@@ -96,15 +100,14 @@ class Tasks extends Component
     {
         $this->resetPage();
         $this->filter = "toGrade";
-        $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function($t){
+        $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->get()->filter(function ($t) {
             return $t->ungraded == 0;
         });
-
     }
     public function filterPastDeadline()
     {
         $this->resetPage();
         $this->filter = "pastDeadline";
-        $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline','<',now())->get();
+        $this->tasks = auth()->user()->teacher->tasks()->where('task_type_id', $this->task_type->id)->where('deadline', '<', now())->get();
     }
 }

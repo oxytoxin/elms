@@ -21,8 +21,8 @@
                 <div class="overflow-hidden transform bg-white border-4 rounded-lg hover:scale-105 hover:bg-green-300 border-primary-600">
                     <div class="pb-5 space-y-2 {{ $task->deadline < now() ? "bg-red-400" : "bg-green-400" }}">
                         <div class="flex justify-around p-3">
-                            <div class="w-12 h-12">
-                                <img class="object-cover w-full h-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
+                            <div class="flex-shrink-0 w-12 h-12">
+                                <img class="object-cover w-full h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="teacher avatar">
                             </div>
                             <div class="space-y-1 text-sm font-semibold text-center">
                                 <h1>{{ $task->name }}</h1>
@@ -36,7 +36,7 @@
                             </div>
                             <div>
                                 <h1 class="text-sm font-semibold">Ungraded: {{ $task->ungraded }}</h1>
-                                <h1 class="px-2 text-xs text-white bg-gray-500 rounded-lg">Section: {{ $task->section->code }}</h1>
+                                <h1 class="px-2 text-xs text-white bg-gray-500 rounded-lg">Section: {{ $task->section_code }}</h1>
                             </div>
                         </div>
                     </div>

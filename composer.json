@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.0",
         "nao-pon/flysystem-google-drive": "~1.1",
-        "pusher/pusher-php-server": "~4.0"
+        "pusher/pusher-php-server": "~4.0",
+        "spatie/laravel-backup": "^6.14"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

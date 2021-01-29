@@ -68,7 +68,7 @@ class AddModule extends Component
                 ]);
             }
             foreach ($this->moduleFiles as  $k => $module) {
-                $url = $module->store("", "google");
+                $url = $module->store("", "tasks");
                 $match = gdriver($url);
                 foreach ($modulesArray as  $moduleItem) {
                     $moduleItem->files()->create([
@@ -86,7 +86,7 @@ class AddModule extends Component
                     'name' => $this->moduleName
                 ]);
                 foreach ($this->moduleFiles as  $module) {
-                    $url = $module->store("", "google");
+                    $url = $module->store("", "modules");
                     $match = gdriver($url);
                     $mod->files()->create([
                         'google_id' => $match['id'],

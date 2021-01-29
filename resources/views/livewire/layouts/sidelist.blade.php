@@ -28,7 +28,7 @@
             </ul>
         </div>
     </div>
-    @if (auth()->user()->isStudent())
+    @if ($isStudent)
     <div class="mt-5 bg-white rounded-sm shadow-md card">
         <div class="flex justify-between px-3 py-1 border-b border-gray-500 title">
             <h1 class="text-sm font-semibold">Upcoming Tasks</h1>

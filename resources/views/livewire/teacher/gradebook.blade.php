@@ -38,12 +38,12 @@
     </div>
     @if ($students->count())
     <div class="max-h-screen overflow-auto text-gray-700">
-        <table id="table_id" class="inline-block m-2 text-center bg-gray-800 border-collapse table-fixed">
+        <table id="table_id" class="inline-block w-0 m-2 text-center border-collapse table-fixed">
             <thead class="border">
                     <tr class="h-8">
                         <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>
-                        @foreach ($tasks as $type => $task)
-                        <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $task->count() }}">{{ App\Models\TaskType::find($type)->name }}</th>
+                        @foreach ($task_types as $type)
+                        <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $type->task_count }}">{{ $type->name }}</th>
                         @endforeach
                     </tr>
                     <tr>
@@ -58,21 +58,20 @@
                 <tbody>
                     @forelse ($students as $student)
                     <tr class="z-20 bg-white bg-gradient-to-b hover:from-green-400 to-green-400">
-                        <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-no-wrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">{{ $student->user->name }}</th>
-                        @foreach ($tasks as $task)
-                        @foreach ($task as $k => $t)
+                        <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-no-wrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">{{ $student->name }}</th>
+                        @foreach ($student->allTasks($section,$tasks) as $student_task)
                         <td class="px-8 py-4 border {{ "row$student->id" }}">
-                            @if ($student->task_status($t->id) === 'ungraded')
-                            <i class="text-xl text-yellow-300 icofont-question-circle"></i>
-                            @else
-                                @if ($student->task_status($t->id) !== false)
-                                {{ $student->task_status($t->id) }}
+                            @if ($student_task)
+                                @if($student_task->pivot->isGraded)
+                                    {{ $student_task->pivot->score }}
                                 @else
-                                <i class="text-xl text-red-600 icofont-exclamation-circle"></i>
+                                    <i class="text-xl text-yellow-300 icofont-question-circle"></i>
                                 @endif
+                            @else
+                                <i class="text-xl text-red-600 icofont-exclamation-circle"></i>
+
                             @endif
                         </td>
-                        @endforeach
                         @endforeach
                     </tr>
                     @empty

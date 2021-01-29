@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\Http\Kernel;
 
 define('LARAVEL_START', microtime(true));
 
@@ -16,8 +17,8 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
-    require __DIR__.'/../storage/framework/maintenance.php';
+if (file_exists(__DIR__ . '/../storage/framework/maintenance.php')) {
+    require __DIR__ . '/../storage/framework/maintenance.php';
 }
 
 /*
@@ -31,7 +32,7 @@ if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
@@ -53,3 +54,11 @@ $response = tap($kernel->handle(
 ))->send();
 
 $kernel->terminate($request, $response);
+
+// function convert($size)
+// {
+//     $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
+//     return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
+// }
+
+// Log::info(convert(memory_get_usage()));

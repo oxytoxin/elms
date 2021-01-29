@@ -41,7 +41,7 @@
             <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Question Attachments</h1>
             <div class="px-4 py-2">
             @foreach ($question['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
+            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
             @endforeach
             </div>
         @endif
@@ -63,7 +63,7 @@
         <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Answer Attachments</h1>
             <div class="px-4 py-2">
             @foreach ($answers[$key]['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
+            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
             @endforeach
         </div>
         @endif

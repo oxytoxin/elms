@@ -20,6 +20,14 @@ class Student extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function scopeWithName($query)
+    {
+        $query->addSelect(['name' => User::select('name')
+            ->whereColumn('user_id', 'users.id')
+            ->limit(1)]);
+    }
+
     public function college()
     {
         return $this->belongsTo(College::class);
@@ -48,7 +56,7 @@ class Student extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers','assessment');
+        return $this->belongsToMany(Task::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers', 'assessment');
     }
     public function getAllTasksAttribute()
     {
@@ -67,14 +75,14 @@ class Student extends Model
     public function hasSubmission($task_type)
     {
         return $this->all_tasks->filter(function ($t) use ($task_type) {
-            return $t->task_type_id == $task_type && $t->students()->where('student_id',auth()->user()->student->id)->first();
+            return $t->task_type_id == $task_type && $t->students()->where('student_id', auth()->user()->student->id)->first();
         });
     }
     // Student tasks with no submissions
     public function hasNoSubmission($task_type)
     {
         return $this->all_tasks->filter(function ($t) use ($task_type) {
-            return $t->task_type_id == $task_type && !$t->students()->where('student_id',auth()->user()->student->id)->first();
+            return $t->task_type_id == $task_type && !$t->students()->where('student_id', auth()->user()->student->id)->first();
         });
     }
     // Student tasks with no submissions
@@ -115,5 +123,18 @@ class Student extends Model
     public function extensions()
     {
         return $this->hasMany(Extension::class);
+    }
+
+    public function allTasks(Section $section, $tasks)
+    {
+        $tasks = $tasks->flatten();
+        $student_tasks = $this->tasks->groupBy('task_type_id')->sortKeys()->flatten();
+        $tasks = $tasks->map(function ($k) use ($student_tasks) {
+            $st = $student_tasks->first(function ($v) use ($k) {
+                return $v->id == $k->id;
+            });
+            return $st;
+        });
+        return $tasks;
     }
 }

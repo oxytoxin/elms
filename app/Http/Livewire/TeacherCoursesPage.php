@@ -15,6 +15,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 use App\Notifications\GeneralNotification;
 
 class TeacherCoursesPage extends Component
@@ -32,10 +33,25 @@ class TeacherCoursesPage extends Component
     public $fileId = 0;
     public $showInviteCode = false;
     public $inviteCode = '';
+    public $showQuery = false;
+    protected $students = [];
 
     public function render()
     {
-        return view('livewire.teacher-courses-page')
+        if($this->email){
+            $this->showQuery = true;
+            $this->students = User::where('name','like',"%$this->email%")->whereHas('roles',function(Builder $query){
+                $query->where('role_id',2);
+                })->orWhere('email','like',"%$this->email%")->whereHas('roles',function(Builder $query){
+            $query->where('role_id',2);
+            })->get();
+        }else {
+            $this->showQuery = false;
+            $this->students = [];
+        }
+        return view('livewire.teacher-courses-page',[
+            'students' => $this->students,
+        ])
             ->extends('layouts.master')
             ->section('content');
     }
@@ -59,6 +75,12 @@ class TeacherCoursesPage extends Component
         $this->section = $section;
         // $this->inviteCode = Crypt::encrypt(['course_id' => $section->course_id, 'section_id' => $section->id, 'teacher_id' => auth()->user()->teacher->id]);
         $this->inviteCode = base64_encode(json_encode(['course_id' => $section->course_id, 'section_id' => $section->id, 'teacher_id' => auth()->user()->teacher->id]));
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->enrolStudent();
     }
 
     public function updateModule()
@@ -107,7 +129,7 @@ class TeacherCoursesPage extends Component
             ]);
             foreach ($this->resources as $resource) {
                 // $url = $resource->store("", Carbon::now()->format('Ymdhis') . $resource->getClientOriginalName(), 'google');
-                $url = $resource->store("", 'google');
+                $url = $resource->store("", 'resources');
                 $match = gdriver($url);
                 $res->files()->create([
                     'google_id' => $match['id'],

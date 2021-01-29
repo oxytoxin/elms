@@ -47,6 +47,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
+        'backups' => [
+            'driver' => 'local',
+            'root' => storage_path('backups'),
+        ],
 
         'public' => [
             'driver' => 'local',
@@ -71,6 +75,20 @@ return [
             'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
             'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
             'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        ],
+        'modules' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID2'),
+        ],
+        'resources' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID3'),
         ],
 
     ],

@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\TaskType;
 use App\Models\StudentTask;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,9 +28,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $appends = [
-        'ungraded',
-    ];
+    protected $appends = [];
 
     public function getCourseAttribute()
     {
@@ -50,25 +49,35 @@ class Task extends Model
     }
     public function students()
     {
-        return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('id', 'score', 'date_submitted', 'isGraded', 'answers','assessment');
+        return $this->belongsToMany(Student::class)->using(StudentTask::class)->withPivot('id', 'score', 'date_submitted', 'isGraded', 'answers', 'assessment');
     }
 
     public function getStudentSubmissionAttribute()
     {
-        return $this->students()->where('student_id',auth()->user()->student->id)->first();
+        return $this->students()->where('student_id', auth()->user()->student->id)->first();
     }
 
-    public function getSubmissionsAttribute()
+    public function scopeWithUngraded($query)
     {
-        return $this->students->count();
+        $query->withCount([
+            'students as ungraded' => function (Builder $q) {
+                $q->where('isGraded', false);
+            }
+        ]);
     }
-    public function getUngradedAttribute()
+    public function scopeWithGraded($query)
     {
-        return $this->students()->wherePivot('isGraded', false)->count();
+        $query->withCount([
+            'students as graded' => function (Builder $q) {
+                $q->where('isGraded', true);
+            }
+        ]);
     }
-    public function getGradedAttribute()
+    public function scopeWithSubmissions($query)
     {
-        return $this->students()->wherePivot('isGraded', true)->count();
+        $query->withCount([
+            'students as submissions'
+        ]);
     }
 
     public function scopeByType($query, $task_type)
@@ -84,5 +93,12 @@ class Task extends Model
     public function extensions()
     {
         return $this->hasMany(Extension::class);
+    }
+
+    public function scopeWithSectionCode($query)
+    {
+        $query->addSelect(['section_code' => Section::select('code')
+            ->whereColumn('section_id', 'sections.id')
+            ->limit(1)]);
     }
 }

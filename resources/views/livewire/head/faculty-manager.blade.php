@@ -1,9 +1,19 @@
-<div class="px-5">
+<div class="px-5" x-data="{showQuery : @entangle('showQuery')}">
     <h1 class="text-2xl font-semibold">FACULTY MANAGER</h1>
     <div>
-        <div class="flex space-x-2 space-y-2 md:space-y-0">
-            <input type="text" name="faculty_email" wire:model.lazy="email" placeholder="firstname.lastname@sksu.edu.ph" id="faculty_email" class="flex-grow form-input" autofocus>
-            <button wire:click="addFaculty" class="p-3 text-sm font-semibold text-white rounded-lg bg-primary-500 hover:text-primary-600">ADD FACULTY MEMBER</button>
+        <div class="relative">
+            <div class="flex flex-col space-x-2 space-y-2 md:flex-row md:space-y-0">
+                <input autocomplete="off" type="text" name="faculty_email" wire:model="email" placeholder="firstname.lastname@sksu.edu.ph" id="faculty_email" class="flex-grow form-input" autofocus>
+                <button wire:click="addFaculty" class="p-3 text-sm font-semibold text-white rounded-lg bg-primary-500 hover:text-primary-600">ADD FACULTY MEMBER</button>
+            </div>
+             <div x-show="showQuery" class="absolute top-0 w-full overflow-y-auto bg-white divide-y-2 max-h-48 mt-14">
+                @foreach ($users as $u)
+                    <div  wire:click="setEmail('{{ $u->email }}')" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
+                        <h1>{{ $u->name }}</h1>
+                        <h1>{{ $u->email }}</h1>
+                    </div>
+                @endforeach
+            </div>
         </div>
             @error('email')
                 <h1 class="text-xs italic text-red-600">{{ $message }}</h1>
@@ -19,7 +29,7 @@
                 @endif
             </div>
     </div>
-    <div class="w-full p-5">
+    <div class="w-full my-5">
         <table class="table w-full text-center bg-white border-2 border-collapse divide-y-2 table-auto divide-primary-600 border-primary-600">
             <thead>
                 <tr class="divide-x-2 divide-primary-600">

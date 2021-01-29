@@ -76,7 +76,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($students->sortBy('user.name') as $key => $student)
+                    @forelse ($students->sortBy('name') as $key => $student)
                     <tr>
                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $student->user->name }}
+                                        {{ $student->name }}
                                     </p>
                                 </div>
                             </div>

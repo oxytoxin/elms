@@ -16,6 +16,11 @@ class TaskType extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function scopeWithTaskCount($query)
+    {
+        $query->withCount(['tasks as task_count']);
+    }
+
     public function getPluralNameAttribute()
     {
         return [

@@ -35,11 +35,11 @@ class TaskFactory extends Factory
             'section_id' => Section::get()->random()->id,
             'task_type_id' => rand(1, $k),
             'name' => $this->faker->catchPhrase,
-            'max_score' => intdiv(rand(20, 100), 10) * 10,
+            'max_score' => 88,
             'essay_rubric' => '{"criteria":[{"name":"Structure (Spelling, Grammar, etc.)","weight":50},{"name":"Content (Relevance to theme, coherence, etc.)","weight":50}],"performance_rating":["Excellent","Good","Satisfactory"]}',
-            'content' => '[{"files":[],"question":"What is my name?","points":"10","options":[],"torf":false,"essay":false,"attachment":false,"item_no":1},{"files":[],"question":"Solve the following and submit a picture of your solutions","points":"20","options":[],"torf":false,"essay":false,"attachment":true,"item_no":2},{"files":[],"question":"Explain why I am important.","points":"30","options":[],"torf":false,"essay":true,"attachment":false,"item_no":3},{"files":[],"question":"Which of the following is correct?","points":"5","options":["This is not correct.","The others are mistakes.","None of the above."],"torf":false,"essay":false,"attachment":false,"answer":"The others are mistakes.","item_no":4},{"files":[],"question":"I am an important question.","points":"10","options":["True","False"],"torf":true,"essay":false,"attachment":false,"answer":"True","item_no":5}]',
-            'deadline' => Carbon::tomorrow()->format('Y-m-d H:i:s')
-
+            'matchingtype_options' => '["Option1","Option2","Option3","Option4","Option5"]',
+            'content' => '[{"files":[],"question":"What is question 1?","points":"10","options":[],"enumerationItems":[],"torf":false,"essay":false,"enumeration":false,"attachment":false,"answer":"Option1","item_no":1},{"files":[],"question":"Which is question 2?","points":"5","options":["This is option 1","This is option 2","This is option 3"],"enumerationItems":[],"torf":false,"essay":false,"enumeration":false,"attachment":false,"answer":"This is option 1","item_no":2},{"files":[],"question":"This is question 3?","points":"10","options":["True","False"],"enumerationItems":[],"torf":true,"essay":false,"enumeration":false,"attachment":false,"answer":"True","item_no":3},{"files":[],"question":"This is question 4?","points":"30","options":[],"enumerationItems":[],"torf":false,"essay":true,"enumeration":false,"attachment":false,"item_no":4},{"files":[],"question":"This is question 5?","points":"30","options":[],"enumerationItems":[],"torf":false,"essay":false,"enumeration":false,"attachment":true,"item_no":5},{"files":[],"question":"This is question 6?","points":"1","options":[],"enumerationItems":["Item 1","Item 2","Item 3"],"torf":false,"essay":false,"enumeration":true,"attachment":false,"item_no":6}]',
+            'deadline' => Carbon::now()->addDays(2),
         ];
     }
 }
