@@ -1,7 +1,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "toastr";
 
 @media (max-width: 480px) {
     .fc-header-toolbar {
