@@ -15,6 +15,7 @@ use App\Models\CourseTeacherStudent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 
 class Student extends Model
 {
@@ -127,16 +128,18 @@ class Student extends Model
 
     public function allTasks(Section $section, $tasks)
     {
-        $tasks = $tasks->flatten();
-        $student_tasks = $this->tasks->groupBy('task_type_id')->sortKeys()->flatten();
-        $tasks = $tasks->map(function ($k) use ($student_tasks) {
-            $st = $student_tasks->first(function ($v) use ($k) {
-                return $v->id == $k->id;
+        return Cache::remember("$this->id-allTasks", 120, function () use ($tasks, $section) {
+            $tasks = $tasks->flatten();
+            $student_tasks = $this->tasks->where('section_id', $section->id)->groupBy('task_type_id')->sortKeys()->flatten();
+            $tasks = $tasks->map(function ($k) use ($student_tasks) {
+                $st = $student_tasks->first(function ($v) use ($k) {
+                    return $v->id == $k->id;
+                });
+                // return $st;
+                if ($st) return $st;
+                return ['task_type_id' => $k->task_type_id];
             });
-            // return $st;
-            if ($st) return $st;
-            return ['task_type_id' => $k->task_type_id];
+            return $tasks->groupBy('task_type_id');
         });
-        return $tasks->groupBy('task_type_id');
     }
 }
