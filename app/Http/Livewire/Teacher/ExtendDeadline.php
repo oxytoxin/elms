@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Teacher;
 
-use App\Models\Extension;
-use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Student;
 use Livewire\Component;
+use App\Models\Extension;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class ExtendDeadline extends Component
 {
@@ -16,10 +17,23 @@ class ExtendDeadline extends Component
     public $scope = 'all';
     public $days = 1;
     public $email;
-
+    public $showQuery = false;
     public function render()
     {
-        return view('livewire.teacher.extend-deadline')
+        if ($this->email) {
+            $this->showQuery = true;
+            $this->students = User::where('name', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 2);
+            })->orWhere('email', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 2);
+            })->get();
+        } else {
+            $this->showQuery = false;
+            $this->students = [];
+        }
+        return view('livewire.teacher.extend-deadline', [
+            'students' => $this->students,
+        ])
             ->extends('layouts.master')
             ->section('content');;
     }
@@ -30,11 +44,17 @@ class ExtendDeadline extends Component
         $this->selected_students = new Collection();
     }
 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->addStudent();
+    }
+
     public function addStudent()
     {
         $u = User::where('email', $this->email)->first();
         if (!$u) return session()->flash('error', 'No student found with that email.');
-        if($u->cannot('view',$this->task)) return session()->flash('error', 'Student has no access to this task.');
+        if ($u->cannot('view', $this->task)) return session()->flash('error', 'Student has no access to this task.');
         $this->selected_students->push($u->student);
         $this->email = "";
         return session()->flash('message', 'Student successfully added.');
@@ -42,6 +62,9 @@ class ExtendDeadline extends Component
 
     public function extendDeadline()
     {
+        $this->validate([
+            'days' => 'numeric|min:1',
+        ]);
         switch ($this->scope) {
             case 'all':
                 $this->task->update([

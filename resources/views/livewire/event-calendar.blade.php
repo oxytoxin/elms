@@ -42,15 +42,18 @@
 @endpush
 
 @section('sidebar')
-    @switch(request()->route()->getPrefix())
-        @case('/student')
+    @switch(session('whereami'))
+        @case('student')
             @include('includes.student.sidebar')
             @break
-        @case('/teacher')
+        @case('teacher')
             @include('includes.teacher.sidebar')
             @break
-        @case('/programhead')
+        @case('programhead')
             @include('includes.head.sidebar')
+            @break
+        @case('dean')
+            @include('includes.dean.sidebar')
             @break
         @default
     @endswitch

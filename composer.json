@@ -12,11 +12,13 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "jantinnerezo/livewire-alert": "^2.1",
         "laravel/framework": "^8.0",
         "laravel/jetstream": "^1.2",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.0",
+        "maatwebsite/excel": "^3.1",
         "nao-pon/flysystem-google-drive": "~1.1",
         "pusher/pusher-php-server": "~4.0",
         "spatie/laravel-backup": "^6.14"

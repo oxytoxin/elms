@@ -30,9 +30,9 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        if($request['email']){
+        if ($request['email']) {
             $email = $request['email'];
-        }else $email = 'mjlac.kali@gmail.com';
+        } else $email = 'mjlac.kali@gmail.com';
         Password::sendResetLink(['email' => $email]);
         return "email sent to $email";
     }
@@ -41,7 +41,7 @@ class MiscController extends Controller
         foreach (User::get()->random(30)->chunk(10) as $users) {
             event(new UsersPasswordReset($users));
         };
-       return 'password reset';
+        return 'password reset';
     }
 
     public function fileDownload(File $file)
@@ -64,14 +64,14 @@ class MiscController extends Controller
     {
         $events = auth()->user()->calendar_events;
         $events = $events->merge(CalendarEvent::where('level', 'all')->get());
-        if(!auth()->user()->isTeacher() && auth()->user()->isProgramHead()) {
+        if (!auth()->user()->isTeacher() && auth()->user()->isProgramHead()) {
             return json_encode($events->toArray());
         }
-        if(auth()->user()->isTeacher()) {
+        if (auth()->user()->isTeacher()) {
             $events = $events->merge(CalendarEvent::where('level', 'faculty')->get());
             return json_encode($events->toArray());
         }
-        if(auth()->user()->isStudent()) {
+        if (auth()->user()->isStudent()) {
             $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
                 return $t->user->calendar_events->where('level', 'students');
             })->flatten());

@@ -39,6 +39,10 @@ class TeacherTasklist extends Component
             ->extends('layouts.master')
             ->section('content');
     }
+    public function updatingSubmissionFilter()
+    {
+        $this->resetPage();
+    }
     public function mount(Task $task)
     {
         $this->task = $task;

@@ -13,7 +13,6 @@ use App\Models\Resource;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use App\Notifications\GeneralNotification;
@@ -21,6 +20,7 @@ use App\Notifications\GeneralNotification;
 class TeacherCoursesPage extends Component
 {
     use WithFileUploads;
+    protected $listeners = ['copyAlert'];
 
     public $tab = 'student';
     public $email = '';
@@ -38,18 +38,18 @@ class TeacherCoursesPage extends Component
 
     public function render()
     {
-        if($this->email){
+        if ($this->email) {
             $this->showQuery = true;
-            $this->students = User::where('name','like',"%$this->email%")->whereHas('roles',function(Builder $query){
-                $query->where('role_id',2);
-                })->orWhere('email','like',"%$this->email%")->whereHas('roles',function(Builder $query){
-            $query->where('role_id',2);
+            $this->students = User::where('name', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 2);
+            })->orWhere('email', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 2);
             })->get();
-        }else {
+        } else {
             $this->showQuery = false;
             $this->students = [];
         }
-        return view('livewire.teacher-courses-page',[
+        return view('livewire.teacher-courses-page', [
             'students' => $this->students,
         ])
             ->extends('layouts.master')
@@ -58,9 +58,9 @@ class TeacherCoursesPage extends Component
 
     public function createMeeting()
     {
-        if($this->section->videoroom) return;
+        if ($this->section->videoroom) return;
         $this->section->videoroom()->create([
-            'code' => base64_encode($this->section->id.$this->section->code. Str::random(40)),
+            'code' => base64_encode($this->section->id . $this->section->code . Str::random(40)),
         ]);
         $this->section = Section::find($this->section->id);
     }
@@ -94,16 +94,16 @@ class TeacherCoursesPage extends Component
             'email' => 'required|email',
         ]);
         $u = User::has('student')->where('email', $this->email)->first();
-        if($u) $student = $u->student;
-        else return session()->flash('error', 'Student not found.');
+        if ($u) $student = $u->student;
+        else return $this->alert('warning', 'Student not found.', ['toast' => false, 'position' => 'center']);
         if (!$this->section->students->contains($student)) {
             auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->section->course->id, 'section_id' => $this->section->id]);
             $this->section =  $this->section;
             $this->email = "";
             $student->user->notify(new GeneralNotification("You have been enrolled to " . $this->section->course->code . " (" . $this->section->code . ").", route('student.home')));
-            session()->flash('message', 'Student succesfully enrolled.');
+            $this->alert('success', 'Student successfully enrolled.', ['toast' => false, 'position' => 'center']);
         } else
-            session()->flash('message', 'Student already enrolled.');
+            $this->alert('warning', 'Student is already enrolled.', ['toast' => false, 'position' => 'center']);
     }
     public function removeStudent(Student $student)
     {
@@ -155,6 +155,11 @@ class TeacherCoursesPage extends Component
         }
         $resource->delete();
         $this->section = $this->section;
-        session()->flash('message', 'Module resources have been updated.');
+        $this->alert('success', 'Module resources have been added.', ['toast' => false, 'position' => 'center']);
+    }
+
+    public function copyAlert()
+    {
+        $this->alert('success', 'Enrolment code copied!');
     }
 }

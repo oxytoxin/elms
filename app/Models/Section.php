@@ -23,6 +23,11 @@ class Section extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function grading_system()
+    {
+        return $this->hasOne(GradingSystem::class);
+    }
+
     public function videoroom()
     {
         return $this->hasOne(Videoroom::class);
@@ -45,7 +50,7 @@ class Section extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'student_teacher')->withPivot(['course_id', 'teacher_id']);
+        return $this->belongsToMany(Student::class, 'student_teacher')->withPivot(['course_id', 'teacher_id', 'days_present']);
     }
 
     public function scopeByDepartment($query, $department)
@@ -53,5 +58,12 @@ class Section extends Model
         return $query->whereHas('teacher', function (Builder $q) use ($department) {
             $q->where('department_id', $department);
         });
+    }
+
+    public function getUngradedAttribute()
+    {
+        return $this->tasks->map(function ($t) {
+            return $t->students->pluck('pivot');
+        })->flatten()->where('isGraded', false)->count();
     }
 }

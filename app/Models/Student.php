@@ -133,8 +133,10 @@ class Student extends Model
             $st = $student_tasks->first(function ($v) use ($k) {
                 return $v->id == $k->id;
             });
-            return $st;
+            // return $st;
+            if ($st) return $st;
+            return ['task_type_id' => $k->task_type_id];
         });
-        return $tasks;
+        return $tasks->groupBy('task_type_id');
     }
 }

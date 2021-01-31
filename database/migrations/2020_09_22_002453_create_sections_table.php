@@ -20,6 +20,7 @@ class CreateSectionsTable extends Migration
             $table->foreignId('course_id')->constrained();
             $table->string('schedule');
             $table->string('room');
+            $table->integer('total_days')->default(1);
             $table->timestamps();
         });
     }

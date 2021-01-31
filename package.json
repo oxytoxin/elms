@@ -29,7 +29,6 @@
         "jquery": "^3.5.1",
         "laravel-echo": "^1.9.0",
         "pusher-js": "^7.0.1",
-        "toastr": "^2.1.4",
         "turbolinks": "^5.2.0"
     }
 }

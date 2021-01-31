@@ -90,7 +90,7 @@
         <div class="flex justify-center my-3">
             @foreach ($item['files'] as $file)
             <div class="flex flex-col items-center">
-                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
+                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
             </div>
         @endforeach
         </div>
@@ -100,7 +100,7 @@
         <div class="p-3 my-2 bg-white border shadow">
             <h1 class="text-sm font-semibold uppercase">Student Attachments:</h1>
             @foreach ($answers[$key]['files'] as $file)
-                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</a>
+                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</a>
             @endforeach
         </div>
     @endisset
