@@ -63,7 +63,7 @@
                 @foreach ($task_types as $t_type)
                 <div class="relative flex items-center justify-center space-x-3">
                     <label for="{{ $t_type->plural_name }}" class="w-1/2 uppercase">{{ $t_type->plural_name }}</label>
-                    <input :readonly="readWeights" wire:model="grading_system.{{ $t_type->name }}_weight" name="{{ $t_type->plural_name }}" type="number" id="{{ $t_type->plural_name }}" class="w-1/2 text-xs form-input">
+                    <input :readonly="readWeights" wire:model.lazy="grading_system.{{ $t_type->name }}_weight" name="{{ $t_type->plural_name }}" type="number" id="{{ $t_type->plural_name }}" class="w-1/2 text-xs form-input">
                     <i class="absolute fas fa-percent top-3 right-2 "></i>
                 </div>
                 @endforeach
