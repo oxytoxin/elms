@@ -15,15 +15,24 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fa-min.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.js" defer></script>
-    @if (strpos(url()->full(),"calendar") === false)
+    @if (strpos(url()->full(),"calendar") != false || strpos(url()->full(),"gradebook") != false)
+    @else
     <script src="{{ asset('js/tblinks.js') }}" defer></script>
     @endif
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('styles')
+    <style>
+        .filepond--credits {
+            display: none;
+        }
+
+    </style>
 </head>
 
 <body class="antialiased bg-gray-100">
@@ -70,6 +79,8 @@
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <x-livewire-alert::scripts />
 
 </body>

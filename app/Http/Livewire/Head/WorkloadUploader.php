@@ -60,6 +60,7 @@ class WorkloadUploader extends Component
                         if (!$course->teachers->contains($this->teacher))
                             $course->teachers()->attach($this->teacher);
                         $s = Section::create(['code' => $load[3], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[9], 'schedule' => $load[7]]);
+                        $s->grading_system()->create();
                         $workloadChanged = true;
                     }
                 }

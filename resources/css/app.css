@@ -48,5 +48,5 @@ button:focus{
 }
 
 .selected-row {
-    @apply bg-gradient-to-b from-green-400 to-green-500;
+    @apply bg-gradient-to-b from-green-400 to-green-500 border-2 border-primary-600 !important;
 }

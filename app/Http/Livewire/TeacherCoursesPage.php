@@ -146,7 +146,8 @@ class TeacherCoursesPage extends Component
         $this->moduleSelected = null;
         $this->resources = [];
         $this->section = $this->section;
-        session()->flash('message', 'Resources have been added.');
+        $this->alert('success', 'Resources have been added.');
+        $this->dispatchBrowserEvent('remove-files');
     }
     public function removeResource(Resource $resource)
     {

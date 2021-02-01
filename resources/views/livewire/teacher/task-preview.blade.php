@@ -34,7 +34,7 @@
                     <td class="px-2 py-4 text-center border-2 border-primary-600">{{ $criterion['weight'] }}%</td>
                     <td class="text-center border-2 border-primary-600">{{ $criterion['name'] }}</td>
                     @foreach ($rubric['performance_rating'] as $key => $rating)
-                        <td class="text-center border-2 border-primary-600">{{ $this->getRating($key) }}%</td>
+                    <td class="text-center border-2 border-primary-600">{{ $this->getRating($key) }}%</td>
                     @endforeach
                 </tr>
                 @endforeach
@@ -47,9 +47,9 @@
         <h1 class="font-semibold">OPTIONS</h1>
         <div class="flex flex-wrap p-2 my-2 justify-evenly">
             @forelse ($matchingTypeOptions as $g => $option)
-                <h1 class="mx-5 my-2">{{ $option }}</h1>
+            <h1 class="mx-5 my-2">{{ $option }}</h1>
             @empty
-                <h1>No matching type options added.</h1>
+            <h1>No matching type options added.</h1>
             @endforelse
         </div>
     </div>
@@ -58,52 +58,60 @@
     <div class="py-5 bg-white">
         @foreach ($task_content as $key => $item)
         <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
-        <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
-        <h1>{{ $item['question'] }}</h1>
-        @if ($item['files'])
-        <div class="flex justify-center my-3">
-            <div class="flex flex-col items-center">
-                @foreach ($item['files'] as $file)
-                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
-                @endforeach
+            <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
+            <h1>{{ $item['question'] }}</h1>
+            @if ($item['files'])
+            <div class="flex justify-center my-3">
+                <div class="flex flex-col items-center">
+                    @foreach ($item['files'] as $file)
+                    <a href="{{ asset('storage'.'/'.$file['url']) }}" target="_blank" class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
+                        <span class="p-3" target="_blank">
+                            <i class="icofont-ui-file"></i>
+                            {{ $file['name'] }}
+                        </span>
+                        <span class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
+                            <i class="icofont-download-alt"></i>
+                        </span>
+                    </a>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        @endif
-        @forelse ($item['options'] as $id=>$option)
+            @endif
+            @forelse ($item['options'] as $id=>$option)
             <div class="flex items-center">
                 <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="mr-1 form-radio">
                 <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
             </div>
-        @empty
+            @empty
 
-        @endforelse
+            @endforelse
 
-        @if (isset($item['answer']))
-        <br>
-        <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
-        @endif
-        <br>
-        @isset($answers[$key]['files'])
+            @if (isset($item['answer']))
+            <br>
+            <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
+            @endif
+            <br>
+            @isset($answers[$key]['files'])
             <div class="p-3 mb-1 bg-white border shadow">
                 <h1 class="text-sm font-semibold uppercase">Your Attachments:</h1>
                 @foreach ($answers[$key]['files'] as $file)
-                    <h1 class="text-sm italic">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</h1>
+                <h1 class="text-sm italic">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</h1>
                 @endforeach
             </div>
-        @endisset
-        @if ($item['attachment'])
-        <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-        <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
-        @endif
-        @if ($item['essay'])
-        <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
-        @else
-        @if (!$item['options'])
-        <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
-        @endif
-        @endif
+            @endisset
+            @if ($item['attachment'])
+            <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
+            <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
+            @endif
+            @if ($item['essay'])
+            <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+            @else
+            @if (!$item['options'])
+            <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
+            @endif
+            @endif
         </div>
-@endforeach
+        @endforeach
     </div>
     <div class="flex flex-col items-center p-4 md:flex-row">
         <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:w-auto">Total points: {{ $task->max_score }}</span>
@@ -111,5 +119,5 @@
 </div>
 
 @section('sidebar')
-    @include('includes.teacher.sidebar')
+@include('includes.teacher.sidebar')
 @endsection

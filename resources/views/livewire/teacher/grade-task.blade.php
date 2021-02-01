@@ -4,7 +4,7 @@
         <div @click.away="uiEssay=false" id="essay_gradesheet" class="p-4 mx-3 overflow-auto bg-white rounded-lg shadow md:mx-0 md:w-1/2 min-h-halfscreen">
             <div class="flex justify-between">
                 <h1 class="italic">Question: {{ $task_content[$essay_item]['question'] }}</h1>
-            <h1 class="text-sm font-semibold">{{ $task_content[$essay_item]['essay'] ? "(Student's answer word count: ".str_word_count($answers[$essay_item]['answer'])." word/s)" : '' }}</h1>
+                <h1 class="text-sm font-semibold">{{ $task_content[$essay_item]['essay'] ? "(Student's answer word count: ".str_word_count($answers[$essay_item]['answer'])." word/s)" : '' }}</h1>
             </div>
             <hr class="my-1 border border-primary-600">
             {{-- <p class="text-sm">{{ $answers[$essay_item]['answer'] }}</p> --}}
@@ -28,7 +28,7 @@
                             <td class="px-2 py-4 text-center border-2 border-primary-600">{{ $criterion['weight'] }}%</td>
                             <td class="text-center border-2 border-primary-600">{{ $criterion['name'] }}</td>
                             @foreach ($rubric['performance_rating'] as $key => $rating)
-                                <td class="text-center border-2 border-primary-600"><input wire:model="weights.{{ $id }}" {{ $loop->index == 0 ? 'checked' : '' }} type="radio" name="{{ $criterion['name']."-rating" }}" value="{{ $this->getRating($key) }}" class="mr-1 border border-gray-600 cursor-pointer form-radio" id="">{{ $this->getRating($key) }}%</td>
+                            <td class="text-center border-2 border-primary-600"><input wire:model="weights.{{ $id }}" {{ $loop->index == 0 ? 'checked' : '' }} type="radio" name="{{ $criterion['name']."-rating" }}" value="{{ $this->getRating($key) }}" class="mr-1 border border-gray-600 cursor-pointer form-radio" id="">{{ $this->getRating($key) }}%</td>
                             @endforeach
                         </tr>
                         @endforeach
@@ -90,64 +90,72 @@
         <div class="flex justify-center my-3">
             @foreach ($item['files'] as $file)
             <div class="flex flex-col items-center">
-                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">View Attachment: {{ $file['name'] }}</a>
+                <a href="{{ asset('storage'.'/'.$file['url']) }}" target="_blank" class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
+                    <span class="p-3" target="_blank">
+                        <i class="icofont-ui-file"></i>
+                        {{ $file['name'] }}
+                    </span>
+                    <span class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
+                        <i class="icofont-download-alt"></i>
+                    </span>
+                </a>
             </div>
-        @endforeach
+            @endforeach
         </div>
-    @endif
+        @endif
 
-    @isset($answers[$key]['files'])
+        @isset($answers[$key]['files'])
         <div class="p-3 my-2 bg-white border shadow">
             <h1 class="text-sm font-semibold uppercase">Student Attachments:</h1>
             @foreach ($answers[$key]['files'] as $file)
-                <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</a>
+            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</a>
             @endforeach
         </div>
-    @endisset
-    <hr class="my-2 border border-primary-600">
-    @isset($answers[$key]['answer'])
-    @if ($item['enumeration'])
-    <div class="flex justify-around my-2">
-        <div class="w-full">
-            <h1 class="text-sm font-semibold">Correct answers:</h1>
-            <ul class="space-y-2 list-disc list-inside">
-                @foreach ($item['enumerationItems'] as $enumItem)
-                <li>{{ $enumItem }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="w-full">
-            <h1 class="text-sm font-semibold">Student answered:</h1>
-            <ul class="space-y-2 list-disc list-inside">
-                @foreach (json_decode($answers[$key]['answer']) as $id => $answer)
-                <li class="{{ $this->enumeratorCheck($key, $id) ?: 'bg-red-400' }}">{{ $answer }}</li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-    @else
-    <div class="flex justify-around my-2">
-        @isset($item['answer'])
-        <div class="w-full">
-            <h1 class="text-sm font-semibold">Correct answer:</h1>
-            <p>{{ $item['answer'] }}</p>
-        </div>
         @endisset
-        <div class="w-full">
-            <h1 class="text-sm font-semibold">Student answered: {{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
-            <p>{{ $answers[$key]['answer'] }}</p>
+        <hr class="my-2 border border-primary-600">
+        @isset($answers[$key]['answer'])
+        @if ($item['enumeration'])
+        <div class="flex justify-around my-2">
+            <div class="w-full">
+                <h1 class="text-sm font-semibold">Correct answers:</h1>
+                <ul class="space-y-2 list-disc list-inside">
+                    @foreach ($item['enumerationItems'] as $enumItem)
+                    <li>{{ $enumItem }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="w-full">
+                <h1 class="text-sm font-semibold">Student answered:</h1>
+                <ul class="space-y-2 list-disc list-inside">
+                    @foreach (json_decode($answers[$key]['answer']) as $id => $answer)
+                    <li class="{{ $this->enumeratorCheck($key, $id) ?: 'bg-red-400' }}">{{ $answer }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
+        @else
+        <div class="flex justify-around my-2">
+            @isset($item['answer'])
+            <div class="w-full">
+                <h1 class="text-sm font-semibold">Correct answer:</h1>
+                <p>{{ $item['answer'] }}</p>
+            </div>
+            @endisset
+            <div class="w-full">
+                <h1 class="text-sm font-semibold">Student answered: {{ $item['essay'] ? "(Word count: ".str_word_count($answers[$key]['answer']).")" : '' }}</h1>
+                <p>{{ $answers[$key]['answer'] }}</p>
+            </div>
+        </div>
+        @endif
+        @endisset
+        <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pt(s)</span>
     </div>
+    @endforeach
+    @if($this->verifyItems())
+    <button wire:click="finishGrading" onclick="confirm('Finish grading task?') || event.stopImmediatePropagation()" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
     @endif
-    @endisset
-    <span class="p-1 text-xs font-bold text-white bg-primary-500">Score: {{ $items[$key]['score'] ?? 0 }} pt(s)</span>
-</div>
-@endforeach
-@if($this->verifyItems())
-<button wire:click="finishGrading" onclick="confirm('Finish grading task?') || event.stopImmediatePropagation()" class="float-right p-3 mt-5 mr-5 font-semibold text-white bg-primary-500 hover:bg-primary-600">FINISH GRADING</button>
-@endif
 </div>
 
 @section('sidebar')
-    @include('includes.teacher.sidebar')
+@include('includes.teacher.sidebar')
 @endsection

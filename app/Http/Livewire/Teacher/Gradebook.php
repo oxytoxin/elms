@@ -26,17 +26,19 @@ class Gradebook extends Component
     public GradingSystem $grading_system;
     public $editing = '';
     public $showEditDays = false;
-    public $editValue;
+    public $editValue = 0;
     public $activeStudent;
+    public $colors = ['bg-red-200', 'bg-pink-200', 'bg-yellow-200', 'bg-orange-200', 'bg-indigo-200'];
 
     protected $listeners = ['confirmed', 'cancelled', 'refresh' => '$refresh'];
 
     protected $rules = [
-        'grading_system.attendance_weight' => 'required',
-        'grading_system.assignment_weight' => 'required',
-        'grading_system.activity_weight' => 'required',
-        'grading_system.quiz_weight' => 'required',
-        'grading_system.exam_weight' => 'required',
+        'grading_system.attendance_weight' => 'required|numeric|min:0',
+        'grading_system.assignment_weight' => 'required|numeric|min:0',
+        'grading_system.activity_weight' => 'required|numeric|min:0',
+        'grading_system.quiz_weight' => 'required|numeric|min:0',
+        'grading_system.exam_weight' => 'required|numeric|min:0',
+        'editValue' => "numeric",
     ];
 
     protected $validationAttributes = [
@@ -45,17 +47,26 @@ class Gradebook extends Component
 
     public function render()
     {
+        $weights = [
+            'assignment' => $this->grading_system->assignment_weight,
+            'activity' => $this->grading_system->activity_weight,
+            'quiz' => $this->grading_system->quiz_weight,
+            'exam' => $this->grading_system->exam_weight,
+            'attendance' => $this->grading_system->attendance_weight,
+        ];
         if (!$this->section_id) {
             $this->section_id = $this->course->sections->first()->id;
         }
         $this->task_types = TaskType::withTaskCount()->get();
         $this->section = Section::find($this->section_id);
+        $this->grading_system = $this->section->grading_system;
         $this->tasks = $this->section->tasks()->with('task_type')->get()->groupBy('task_type_id')->sortKeys();
         $this->students = $this->section->students()->withName()->get()->sortBy('name');
         return view('livewire.teacher.gradebook', [
             'tasks' => $this->tasks,
             'students' => $this->students,
             'task_types' => $this->task_types,
+            'weights' => $weights,
         ])
             ->extends('layouts.master')
             ->section('content');
@@ -80,7 +91,7 @@ class Gradebook extends Component
         if ($this->editing == "Total Days") {
 
             $this->validate([
-                'editValue' => "numeric",
+                'editValue' => "required|min:1|numeric",
             ]);
             $this->section->update([
                 'total_days' => $this->editValue,
@@ -91,7 +102,7 @@ class Gradebook extends Component
         } else {
             $max = $this->section->total_days;
             $this->validate([
-                'editValue' => "numeric|max:$max",
+                'editValue' => "required|min:1|numeric|max:$max",
             ]);
             $this->section->students->where('id', $this->activeStudent)->first()->pivot->update([
                 'days_present' => $this->editValue,
@@ -115,6 +126,7 @@ class Gradebook extends Component
 
     public function saveWeights()
     {
+        $this->validate();
         $sum = collect($this->grading_system)->filter(function ($value, $key) {
             return strpos($key, 'weight');
         })->sum();

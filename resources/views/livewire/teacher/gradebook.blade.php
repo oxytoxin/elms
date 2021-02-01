@@ -59,28 +59,35 @@
         </div>
         <div x-cloak x-show.transition="showGradingSystem" class="p-5 mx-auto my-5 border shadow-lg md:w-3/4">
             <h1 class="font-semibold text-center uppercase">Grading System</h1>
-            <div class="grid gap-2 my-3 text-xs md:grid-cols-2 gap-x-10">
-                @foreach ($task_types as $t_type)
-                <div class="relative flex items-center justify-center space-x-3">
-                    <label for="{{ $t_type->plural_name }}" class="w-1/2 uppercase">{{ $t_type->plural_name }}</label>
-                    <input :readonly="readWeights" wire:model.lazy="grading_system.{{ $t_type->name }}_weight" name="{{ $t_type->plural_name }}" type="number" id="{{ $t_type->plural_name }}" class="w-1/2 text-xs form-input">
-                    <i class="absolute fas fa-percent top-3 right-2 "></i>
+            <form wire:submit.prevent="saveWeights">
+                <div class="grid gap-2 my-3 text-xs md:grid-cols-2 gap-x-10">
+                    @foreach ($task_types as $t_type)
+                    <div class="relative flex items-center justify-center space-x-3">
+                        <label for="{{ $t_type->plural_name }}" class="w-1/2 uppercase">{{ $t_type->plural_name }}</label>
+                        <input :readonly="readWeights" wire:model.defer="grading_system.{{ $t_type->name }}_weight" name="{{ $t_type->plural_name }}" type="number" id="{{ $t_type->plural_name }}" class="w-1/2 text-xs form-input">
+                        <i class="absolute fas fa-percent top-3 right-2 "></i>
+                    </div>
+                    @endforeach
+                    <div class="relative flex items-center justify-center space-x-3">
+                        <label for="attendance" class="w-1/2 uppercase">attendance</label>
+                        <input :readonly="readWeights" wire:model.defer="grading_system.attendance_weight" name="attendance" type="number" id="attendance" class="w-1/2 text-xs form-input">
+                        <i class="absolute top-3 right-2 fas fa-percent"></i>
+                    </div>
+                    @if ($readWeights)
+                    <button wire:click="$set('readWeights',false)" type="button" class="p-2 px-10 text-sm font-semibold text-white hover:text-primary-600 bg-primary-500">EDIT VALUES</button>
+                    @else
+                    <div class="flex">
+                        <button type="submit" class="flex-1 p-2 text-sm font-semibold text-white hover:text-primary-600 bg-primary-500">SAVE</button>
+                        <button type="button" wire:click="cancelEdit" class="flex-1 p-2 text-sm font-semibold text-white bg-red-600 hover:text-red-800">CANCEL</button>
+                    </div>
+                    @endif
+                    <div>
+                        @error('grading_system.*')
+                        <h1 class="text-red-600">{{ $message }}</h1>
+                        @enderror
+                    </div>
                 </div>
-                @endforeach
-                <div class="relative flex items-center justify-center space-x-3">
-                    <label for="attendance" class="w-1/2 uppercase">attendance</label>
-                    <input :readonly="readWeights" wire:model="grading_system.attendance_weight" name="attendance" type="number" id="attendance" class="w-1/2 text-xs form-input">
-                    <i class="absolute top-3 right-2 fas fa-percent"></i>
-                </div>
-                @if ($readWeights)
-                <button wire:click="$set('readWeights',false)" class="p-2 px-10 text-sm font-semibold text-white hover:text-primary-600 bg-primary-500">EDIT VALUES</button>
-                @else
-                <div class="flex">
-                    <button wire:click="saveWeights" class="flex-1 p-2 text-sm font-semibold text-white hover:text-primary-600 bg-primary-500">SAVE</button>
-                    <button wire:click="cancelEdit" class="flex-1 p-2 text-sm font-semibold text-white bg-red-600 hover:text-red-800">CANCEL</button>
-                </div>
-                @endif
-            </div>
+            </form>
         </div>
     </div>
     @if ($students->count())
@@ -90,9 +97,9 @@
                 <tr class="h-8">
                     <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>
                     @foreach ($task_types as $type)
-                    <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $type->task_count+2 }}">{{ $type->name }}</th>
+                    <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $type->task_count+2 }}">{{ $type->name }} ({{ $weights[$type->name] }} %)</th>
                     @endforeach
-                    <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="2">ATTENDANCE</th>
+                    <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="2">ATTENDANCE ({{ $weights['attendance'] }} %)</th>
                     <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-20" rowspan="2">% TOTAL</th>
                     <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-20" rowspan="2">GRADE</th>
                 </tr>
@@ -133,7 +140,7 @@
                     @endphp
                     @foreach ($student->allTasks($section, $tasks) as $index=>$student_task_type)
                     @foreach ($student_task_type as $student_task)
-                    <td class="p-2 border {{ "row$student->id" }}">
+                    <td class="p-2 border {{ $colors[$index] }} {{ "row$student->id" }}">
                         @if (is_subclass_of($student_task, 'Illuminate\Database\Eloquent\Model'))
                         @if ($student_task->pivot->isGraded)
                         {{ $student_task->pivot->score }}
@@ -149,9 +156,10 @@
                         {{ $student_task_type->sum('pivot.score') }}
                     </td>
                     <td class="p-2 border {{ "row$student->id" }}">
-                        {{ round($student_task_type->sum('pivot.score')/$tasks[$index]->sum('max_score')  * $grading_system->getWeightValue($index) , 2) }}
+                        {{ $grading_system->getWeightValue($index) ? round($student_task_type->sum('pivot.score')/$tasks[$index]->sum('max_score')  * $grading_system->getWeightValue($index) , 2) : 'N/A'}}
                     </td>
                     @php
+                    if($grading_system->getWeightValue($index))
                     $totalScore += round($student_task_type->sum('pivot.score')/$tasks[$index]->sum('max_score') * $grading_system->getWeightValue($index) , 2);
                     @endphp
                     @endforeach
@@ -159,13 +167,13 @@
                         <span>{{ $student->pivot->days_present }}</span> <button wire:click="editDays('Days Present for {{ $student->name }}', {{ $student->id }})" class="text-xs underline hover:text-white">Edit</button>
                     </td>
                     <td class="p-2 border {{ "row$student->id" }}">
-                        {{ round($student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) }}
+                        {{ $grading_system->attendance_weight ? round($student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) : 'N/A'}}
                     </td>
                     <td class="p-2 border {{ "row$student->id" }}">
-                        {{ round($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) }}
+                        {{ $grading_system->attendance_weight ? round($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) : 'N/A'}}
                     </td>
                     <td class="p-2 border {{ "row$student->id" }}">
-                        {{ $grading_system->getGradeValue($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight )}}
+                        {{ $grading_system->attendance_weight ? $grading_system->getGradeValue($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight ) : 'N/A'}}
                     </td>
                 </tr>
                 @empty
@@ -246,10 +254,6 @@
     }
 
 </style>
-@endpush
-
-@push('metas')
-<meta name="turbolinks-cache-control" content="no-cache">
 @endpush
 
 @section('sidebar')

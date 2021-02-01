@@ -11,25 +11,26 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
 <script>
     document.addEventListener('livewire:load', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridDay'
-        },
-        droppable:true,
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+            , headerToolbar: {
+                left: 'prev,next today'
+                , center: 'title'
+                , right: 'dayGridMonth,timeGridDay'
+            }
+            , droppable: true,
 
-      });
-      calendar.addEventSource({
+        });
+        calendar.addEventSource({
             url: '/eventcalendar/events'
         });
-      calendar.render();
-      window.addEventListener('event-created',()=>{
-        calendar.refetchEvents();
+        calendar.render();
+        window.addEventListener('event-created', () => {
+            calendar.refetchEvents();
+        });
     });
-});
+
 </script>
 @endpush
 
@@ -38,23 +39,23 @@
 @endpush
 
 @push('metas')
-    <meta name="turbolinks-cache-control" content="no-cache">
+<meta name="turbolinks-cache-control" content="no-cache">
 @endpush
 
 @section('sidebar')
-    @switch(session('whereami'))
-        @case('student')
-            @include('includes.student.sidebar')
-            @break
-        @case('teacher')
-            @include('includes.teacher.sidebar')
-            @break
-        @case('programhead')
-            @include('includes.head.sidebar')
-            @break
-        @case('dean')
-            @include('includes.dean.sidebar')
-            @break
-        @default
-    @endswitch
+@switch(session('whereami'))
+@case('student')
+@include('includes.student.sidebar')
+@break
+@case('teacher')
+@include('includes.teacher.sidebar')
+@break
+@case('programhead')
+@include('includes.head.sidebar')
+@break
+@case('dean')
+@include('includes.dean.sidebar')
+@break
+@default
+@endswitch
 @endsection

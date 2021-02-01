@@ -38,6 +38,7 @@ class TaskMaker extends Component
     public $showAddMatchingTypeOption = false;
     public $showMatchingTypeOptions = false;
 
+    public $fileItems = [];
 
     protected $autocorrect = true;
 
@@ -79,6 +80,7 @@ class TaskMaker extends Component
         $this->module = Module::findOrFail(request('module'));
         $this->course = Course::findOrFail(request('course'));
         $this->type = request('type');
+        array_push($this->files, ['fileArray' => []]);
         array_push($this->items, [
             'files' => [],
             'question' => '',
@@ -188,13 +190,14 @@ class TaskMaker extends Component
         $rubrics_weight_total = array_sum(array_map(function ($r) {
             return $r['weight'];
         }, $this->rubric['criteria']));
-        return view('livewire.task-maker',['rubrics_weight_total' => $rubrics_weight_total])
+        return view('livewire.task-maker', ['rubrics_weight_total' => $rubrics_weight_total])
             ->extends('layouts.master')
             ->section('content');
     }
     public function addItem($key)
     {
         $this->emit('item-added');
+        array_push($this->files, ['fileArray' => []]);
         array_push($this->items, [
             'files' => [],
             'question' => '',

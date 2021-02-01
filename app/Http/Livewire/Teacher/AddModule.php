@@ -68,7 +68,7 @@ class AddModule extends Component
                 ]);
             }
             foreach ($this->moduleFiles as  $k => $module) {
-                $url = $module->store("", "tasks");
+                $url = $module->store("", "modules");
                 $match = gdriver($url);
                 foreach ($modulesArray as  $moduleItem) {
                     $moduleItem->files()->create([
@@ -105,6 +105,7 @@ class AddModule extends Component
         $this->moduleName = "";
         $this->moduleFiles = [];
         $this->section = Section::find($this->section->id);
-        session()->flash('message', 'Module has been added.');
+        $this->alert('success', 'Module has been added.');
+        $this->dispatchBrowserEvent('remove-files');
     }
 }
