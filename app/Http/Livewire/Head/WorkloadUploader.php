@@ -61,6 +61,15 @@ class WorkloadUploader extends Component
                             $course->teachers()->attach($this->teacher);
                         $s = Section::create(['code' => $load[3], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[9], 'schedule' => $load[7]]);
                         $s->grading_system()->create();
+                        $chatroom = $s->chatroom()->create([
+                            'name' => $s->course->name . ' - (' . $s->code . ')',
+                            'isGroup' => true,
+                        ]);
+                        $chatroom->messages()->create([
+                            'sender_id' => null,
+                            'message' => $this->teacher->user->name . ' has joined the group.'
+                        ]);
+                        $chatroom->members()->attach($this->teacher->user_id);
                         $workloadChanged = true;
                     }
                 }

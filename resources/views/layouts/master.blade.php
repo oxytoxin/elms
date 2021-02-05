@@ -39,6 +39,9 @@
     <audio id="notifAudio">
         <source src="{{ asset('notification.ogg') }}" type="audio/ogg">
     </audio>
+    <audio id="messageAudio">
+        <source src="{{ asset('message.wav') }}" type="audio/wav">
+    </audio>
     <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
         if(window.matchMedia('(max-width: 768px)').matches){mobile=true; showSidebar=false;}
     }">

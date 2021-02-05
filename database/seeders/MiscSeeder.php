@@ -48,9 +48,22 @@ class MiscSeeder extends Seeder
             'schedule' => 'MWF 08:00am-11:00am',
             'room' => ' Rm. FIELD 7',
         ]);
+        $chatroom = $sec->chatroom()->create([
+            'name' => $sec->course->name . ' - (' . $sec->code . ')',
+            'isGroup' => true,
+        ]);
         $sec->grading_system()->create();
         // Enrol student to faculty workload
         $s = Student::find(83);
+        $chatroom->members()->attach([$u->id, $s->user_id]);
+        $chatroom->messages()->create([
+            'sender_id' => null,
+            'message' => $u->name . ' has joined the group.'
+        ]);
+        $chatroom->messages()->create([
+            'sender_id' => null,
+            'message' => $s->user->name . ' has joined the group.'
+        ]);
         $ss = Student::get()->take(30);
         foreach ($ss as $key => $st) {
             if ($key == 0) {
@@ -81,7 +94,7 @@ class MiscSeeder extends Seeder
             'url' => "/img/bg/bg($rand).jpg"
         ]);
         // create tasks and create submissions
-        $tasks = Task::factory()->count(100)->create([
+        $tasks = Task::factory()->count(20)->create([
             'module_id' => $mod->id,
             'teacher_id' => $u->teacher->id,
             'section_id' => $sec->id,

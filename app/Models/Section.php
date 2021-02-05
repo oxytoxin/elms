@@ -33,6 +33,11 @@ class Section extends Model
         return $this->hasOne(Videoroom::class);
     }
 
+    public function chatroom()
+    {
+        return $this->hasOne(Chatroom::class);
+    }
+
     public function modules()
     {
         return $this->hasMany(Module::class);

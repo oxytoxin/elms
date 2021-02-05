@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TaskTypeSeeder::class);
         $this->call(MiscSeeder::class);
         // $this->call(Bootstrapper::class);
+        $this->call(ChatSeeder::class);
     }
 }

@@ -17,6 +17,7 @@ class NewMessage implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $recipient;
+
     /**
      * The name of the queue connection to use when broadcasting the event.
      *
@@ -30,11 +31,7 @@ class NewMessage implements ShouldBroadcast
      * @var string
      */
     public $queue = 'messages';
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+
     public function __construct(User $recipient)
     {
         $this->recipient = $recipient;
@@ -47,10 +44,10 @@ class NewMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel("messages.".$this->recipient->id);
+        return new PrivateChannel("messages." . $this->recipient->id);
     }
 
-        /**
+    /**
      * The event's broadcast name.
      *
      * @return string

@@ -1,15 +1,14 @@
 <?php
 
-use App\Models\Student;
-use App\Events\NewSubmission;
+use App\Http\Livewire\Chat;
 use App\Http\Livewire\TaskMaker;
 use App\Http\Livewire\TaskTaker;
+use App\Http\Livewire\VideoCalling;
 use App\Http\Livewire\EventCalendar;
 use App\Http\Livewire\Teacher\Tasks;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Head\AddSection;
 use App\Http\Livewire\TeacherTasklist;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\TestController;
@@ -30,9 +29,6 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
-use App\Http\Livewire\MessageBoard;
-use App\Http\Livewire\VideoCalling;
-use App\Http\Livewire\VideoConference;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +44,7 @@ use App\Http\Livewire\VideoConference;
 // Route::get('/sendPasswordResets', [MiscController::class, 'sendPasswordResets'])->name('sendpassword.resets');
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
-Route::get('/eventcalendar/events',[MiscController::class, 'fetchEvents']);
+Route::get('/eventcalendar/events', [MiscController::class, 'fetchEvents']);
 Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
@@ -77,13 +73,13 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/task/{task}', TaskTaker::class)->name('student.task');
     Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
-    Route::get('/messages', MessageBoard::class)->name('student.messages');
+    Route::get('/messages', Chat::class)->name('student.messages');
     Route::get('/video-call/{room}', VideoCalling::class)->name('student.meeting')->middleware('meetingAuth');
 });
 
 
 // Teacher Routes
-Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
+Route::prefix('teacher')->middleware(['auth', 'verified', 'isTeacher'])->group(function () {
     Route::get('/home', [TeacherPagesController::class, 'home'])->name('teacher.home');
     Route::get('/modules', [TeacherPagesController::class, 'modules'])->name('teacher.modules');
     Route::get('/section/{section}/modules', [TeacherPagesController::class, 'course_modules'])->middleware('teacherIsEnrolled')->name('teacher.course_modules');
@@ -100,7 +96,7 @@ Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
     Route::get('/gradebook', Gradebook::class)->name('teacher.gradebook');
     Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
     Route::get('/extend-deadline/{task}', ExtendDeadline::class)->name('teacher.extend_deadline');
-    Route::get('/messages', MessageBoard::class)->name('teacher.messages');
+    Route::get('/messages', Chat::class)->name('teacher.messages');
     Route::get('/video-call/{room}', VideoCalling::class)->name('teacher.meeting')->middleware('meetingAuth');
 });
 
@@ -118,14 +114,14 @@ Route::prefix('programhead')->middleware(['auth', 'isProgramHead'])->group(funct
     Route::get('/add-section', AddSection::class)->name('head.add_section');
     Route::get('/faculty-manager', FacultyManager::class)->name('head.faculty_manager');
     Route::get('/workload-uploader/{teacher}', WorkloadUploader::class)->name('head.workload_uploader');
-    Route::get('/messages', MessageBoard::class)->name('programhead.messages');
+    Route::get('/messages', Chat::class)->name('programhead.messages');
     Route::get('/video-call/{room}', VideoCalling::class)->name('head.meeting');
 });
 
 // Dean Routes
 Route::prefix('dean')->middleware(['auth', 'isDean'])->group(function () {
     Route::get('/home', [DeanPagesController::class, 'home'])->name('dean.home');
-    Route::get('/messages', MessageBoard::class)->name('dean.messages');
+    Route::get('/messages', Chat::class)->name('dean.messages');
     Route::get('/manage-program-heads', ProgramHeadManager::class)->name('dean.programhead_manager');
     Route::get('/calendar', EventCalendar::class)->name('dean.calendar');
 });

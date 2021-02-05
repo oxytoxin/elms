@@ -36332,6 +36332,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 document.addEventListener('notification', function (e) {
   document.querySelector('#notifAudio').play();
 });
+document.addEventListener('message', function (e) {
+  document.querySelector('#messageAudio').play();
+});
 
 /***/ }),
 

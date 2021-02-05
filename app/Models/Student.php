@@ -128,7 +128,7 @@ class Student extends Model
 
     public function allTasks(Section $section, $tasks)
     {
-        return Cache::remember("$this->id-allTasks", 120, function () use ($tasks, $section) {
+        return Cache::remember("$this->id-allTasks", 5, function () use ($tasks, $section) {
             $tasks = $tasks->flatten();
             $student_tasks = $this->tasks->where('section_id', $section->id)->groupBy('task_type_id')->sortKeys()->flatten();
             $tasks = $tasks->map(function ($k) use ($student_tasks) {

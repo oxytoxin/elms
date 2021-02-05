@@ -35,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
         NewMessage::class => [
             NotifyRecipient::class,
         ],
+        SendMessage::class => [
+            SendtoRecipient::class,
+        ],
         UsersPasswordReset::class => [
             SendPasswordResets::class,
         ],

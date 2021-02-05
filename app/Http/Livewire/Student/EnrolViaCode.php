@@ -27,8 +27,14 @@ class EnrolViaCode extends Component
         if (!$code) return session()->flash('error', 'No course found with this invite code.');
         DB::transaction(function () use ($code) {
             $section = Section::find($code['section_id']);
-            if (!$section->students->contains(auth()->user()->student))
+            if (!$section->students->contains(auth()->user()->student)) {
                 Teacher::find($code['teacher_id'])->students()->attach(auth()->user()->student, ['course_id' => $code['course_id'], 'section_id' => $code['section_id']]);
+                $section->chatroom->members()->attach(auth()->id());
+                $section->chatroom->messages()->create([
+                    'sender_id' => null,
+                    'message' => auth()->user()->name . ' has joined the group.'
+                ]);
+            }
         });
         $this->invite_code = '';
         return redirect()->route('student.home');

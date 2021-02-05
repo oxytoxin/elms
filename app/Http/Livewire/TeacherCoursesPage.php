@@ -101,12 +101,14 @@ class TeacherCoursesPage extends Component
             $this->section =  $this->section;
             $this->email = "";
             $student->user->notify(new GeneralNotification("You have been enrolled to " . $this->section->course->code . " (" . $this->section->code . ").", route('student.home')));
+            $this->section->chatroom->members()->attach($u->id);
             $this->alert('success', 'Student successfully enrolled.', ['toast' => false, 'position' => 'center']);
         } else
             $this->alert('warning', 'Student is already enrolled.', ['toast' => false, 'position' => 'center']);
     }
     public function removeStudent(Student $student)
     {
+        $this->section->chatroom->members()->detach($student->user_id);
         $this->section->students()->detach($student);
         $this->section =  $this->section;
         session()->flash('message', 'Student succesfully unenrolled.');

@@ -60,11 +60,17 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'shortname',
     ];
 
     public function receivesBroadcastNotificationsOn()
     {
         return "users.$this->id";
+    }
+
+    public function getShortnameAttribute()
+    {
+        return explode(" ", $this->name)[0];
     }
 
     public function todos()
@@ -96,6 +102,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(CalendarEvent::class);
     }
+    public function chatrooms()
+    {
+        return $this->belongsToMany(Chatroom::class);
+    }
     public function scopeIsStudent()
     {
         return (bool)Auth::user()->roles()->find(2);
@@ -117,22 +127,22 @@ class User extends Authenticatable
     {
         if ($this->isStudent()) {
             return 'student';
-        }else if ($this->isTeacher()) {
+        } else if ($this->isTeacher()) {
             return 'teacher';
-        }else if ($this->isProgramHead()) {
+        } else if ($this->isProgramHead()) {
             return 'programhead';
-        }else if ($this->isDean()) {
+        } else if ($this->isDean()) {
             return 'dean';
         }
     }
 
     public function sentMessages()
     {
-        return $this->hasMany(Message::class,'sender_id');
+        return $this->hasMany(Message::class, 'sender_id');
     }
     public function receivedMessages()
     {
-        return $this->hasMany(Message::class,'receiver_id');
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
     public function getMessagesAttribute()
@@ -142,15 +152,14 @@ class User extends Authenticatable
 
     public function contactMessages($contactId)
     {
-        $messages = $this->messages->filter(fn($m)=>$m->complement_owner->id == $contactId);
-        if($messages->count()) return $messages->toQuery();
+        $messages = $this->messages->filter(fn ($m) => $m->complement_owner->id == $contactId);
+        if ($messages->count()) return $messages->toQuery();
         return collect();
     }
 
     public function sendMessage($message, $contactId)
     {
-        DB::transaction(function() use($message,$contactId)
-        {
+        DB::transaction(function () use ($message, $contactId) {
             Message::create([
                 'sender_id' => Auth::id(),
                 'receiver_id' => $contactId,
@@ -173,5 +182,4 @@ class User extends Authenticatable
     {
         return $this->messages->unique('complement_owner');
     }
-
 }

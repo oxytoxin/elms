@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class MessageBoard extends Component
 {
     public $contact;
-    public $message = "";
+    public $messageValue = "";
     public $messageCount = 10;
     protected $messages = [];
 
@@ -20,14 +20,14 @@ class MessageBoard extends Component
         return [
             "updatedConversation",
             "moreMessage",
-            "echo-private:messages.".Auth::id().",.new.message"  => '$refresh'
+            "echo-private:messages." . Auth::id() . ",.new.message"  => '$refresh'
         ];
     }
     public function render()
     {
-        if(!$this->contact)$this->messages = [];
+        if (!$this->contact) $this->messages = [];
         else $this->readMessage();
-        return view('livewire.message-board',[
+        return view('livewire.message-board', [
             'messages' => $this->messages,
         ])
             ->extends('layouts.master')
@@ -48,21 +48,21 @@ class MessageBoard extends Component
 
     public function sendMessage()
     {
-        if($this->contact){
+        if ($this->contact) {
             $this->validate([
-                'message' => 'required'
+                'messageValue' => 'required'
             ]);
-            $message = sanitizeString($this->message);
-            Auth::user()->sendMessage($message,$this->contact->id);
+            $message = sanitizeString($this->messageValue);
+            Auth::user()->sendMessage($message, $this->contact->id);
             broadcast(new NewMessage($this->contact));
             $this->emit("refreshMessages");
-            $this->message = "";
+            $this->messageValue = "";
         }
     }
 
     public function readMessage()
     {
-        if(auth()->user()->contactMessages($this->contact->id)->count())
+        if (auth()->user()->contactMessages($this->contact->id)->count())
             $this->messages = auth()->user()->contactMessages($this->contact->id)->orderByDesc('created_at')->get()->take($this->messageCount);
         else $this->messages = [];
     }

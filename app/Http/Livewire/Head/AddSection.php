@@ -58,6 +58,16 @@ class AddSection extends Component
                 'schedule' => $this->schedule,
                 'room' => $this->room
             ]);
+            $chatroom = $section->chatroom->create([
+                'name' => $section->course->name . ' - (' . $section->code . ')',
+                'isGroup' => true,
+            ]);
+            $t = Teacher::find($this->faculty_select);
+            $chatroom->members()->attach($t->user_id);
+            $chatroom->messages()->create([
+                'sender_id' => null,
+                'message' => $t->user->name . ' has joined the group.'
+            ]);
             $section->teacher->user->notify(new GeneralNotification('Your workload has been updated.', route('teacher.faculty_workload')));
             Course::find($this->course_select)->teachers()->attach($this->faculty_select);
         });
