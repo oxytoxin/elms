@@ -29,7 +29,7 @@
                 @endforelse
             </div>
             <form wire:submit.prevent="sendMessage" class="flex p-2 space-x-2">
-                <textarea wire:keydown.enter="sendMessage" wire:model.defer="messageContent" x-ref="messageBox" autofocus placeholder="Say something..." class="flex-grow resize-none form-textarea" cols="30" rows="1"></textarea>
+                <textarea wire:keydown.enter.prevent="sendMessage" wire:model.defer="messageContent" x-ref="messageBox" autofocus placeholder="Say something..." class="flex-grow resize-none form-textarea" cols="30" rows="1"></textarea>
                 <button type="submit" class="px-3 text-white bg-blue-600 rounded-lg hover:bg-blue-500">SEND <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
