@@ -72,9 +72,9 @@ class Chat extends Component
             'sender_id' => auth()->id(),
             'message' => sanitizeString($this->messageContent),
         ]);
+        $this->messageContent = '';
         if ($this->current_chatroom->isGroup) event(new SendMessage($this->current_chatroom->members, auth()->id()));
         else broadcast(new NewMessage($this->current_chatroom->receiver));
-        $this->messageContent = '';
         $this->current_chatroom = Chatroom::find($this->current_chatroom->id);
     }
 

@@ -10,8 +10,11 @@
                     <h1 class="p-2 text-white break-all bg-blue-500 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
                 </div>
                 @else
-                <div wire:key="{{ $message->id }}" class="flex">
-                    <h1 class="p-2 break-all bg-gray-300 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
+                <div>
+                    <h1 class="text-xs">{{ $message->sender->name }}</h1>
+                    <div wire:key="{{ $message->id }}" class="flex">
+                        <h1 class="p-2 break-all bg-gray-300 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
+                    </div>
                 </div>
                 @endif
                 @else
