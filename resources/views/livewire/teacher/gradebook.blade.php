@@ -140,6 +140,7 @@
                     @endphp
                     @foreach ($student->allTasks($section, $tasks) as $index=>$student_task_type)
                     @foreach ($student_task_type as $student_task)
+                    <input type="hidden" class="bg-red-200 bg-orange-200 bg-yellow-200 bg-indigo-200 bg-pink-200" />
                     <td class="p-2 border {{ $colors[$index] }} {{ "row$student->id" }}">
                         @if (is_subclass_of($student_task, 'Illuminate\Database\Eloquent\Model'))
                         @if ($student_task->pivot->isGraded)
