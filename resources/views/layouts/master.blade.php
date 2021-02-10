@@ -78,6 +78,7 @@
         </main>
     </div>
     @stack('modals')
+    <script src='https://meet.jit.si/external_api.js'></script>
     @stack('scripts')
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>

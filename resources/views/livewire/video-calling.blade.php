@@ -2,7 +2,6 @@
 </div>
 
 @push('scripts')
-<script src='https://meet.jit.si/external_api.js'></script>
 <script>
     document.addEventListener('livewire:load', ()=>{
         const domain = 'jitsi.toxinsgrace.me';
