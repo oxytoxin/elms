@@ -18,6 +18,7 @@
                 , disableProfile: true
                 , prejoinPageEnabled: false
                 , disableProfile: true
+                , disableDeepLinking: true
                 , disableInviteFunctions: true
                 , doNotStoreRoom: true
                 , remoteVideoMenu: {
