@@ -3,41 +3,59 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('livewire:load', ()=>{
+    document.addEventListener('livewire:load', () => {
+        // const domain = 'meet.jit.si';
         const domain = 'jitsi.toxinsgrace.me';
         const options = {
-            roomName: @this.room,
-            userInfo: {
-                email: @this.email,
-                displayName: @this.name,
-            },
-            configOverwrite:{
-                disableProfile: true,
-                disableInviteFunctions: true,
-                doNotStoreRoom: true,
-                remoteVideoMenu:
-                {
-                    disableKick: true,
-                },
-            },
-            interfaceConfigOverwrite:{
-                HIDE_INVITE_MORE_HEADER: true,
-                JITSI_WATERMARK_LINK: 'https://elms.toxinsgrace.me'
-            },
-            parentNode: document.querySelector('#meet'),
-            apiLogLevels: ['error'],
-        };
+            roomName: @this.room
+            , userInfo: {
+                email: @this.email
+                , displayName: @this.name
+            , }
+            , configOverwrite: {
+                enableWelcomePage: false
+                , enableClosePage: true
+                , disableProfile: true
+                , prejoinPageEnabled: false
+                , disableProfile: true
+                , disableInviteFunctions: true
+                , doNotStoreRoom: true
+                , remoteVideoMenu: {
+                    disableKick: true
+                , }
+            , }
+            , interfaceConfigOverwrite: {
+                HIDE_INVITE_MORE_HEADER: true
+                , JITSI_WATERMARK_LINK: 'https://elms.toxinsgrace.me'
+                , BRAND_WATERMARK_LINK: 'https://elms.toxinsgrace.me'
+                , TOOLBAR_BUTTONS: [
+                    'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen'
+                    , 'fodeviceselection', 'hangup', 'profile', 'chat', 'recording'
+                    , 'sharedvideo', 'settings', 'raisehand'
+                    , 'videoquality', 'filmstrip', 'stats', 'shortcuts'
+                    , 'tileview', 'videobackgroundblur', 'download'
+                ]
+            , }
+            , parentNode: document.querySelector('#meet')
+            , apiLogLevels: ['error']
+        , };
         const api = new JitsiMeetExternalAPI(domain, options);
     })
+
 </script>
 @endpush
 
 @push('styles')
-    <style>
-        .welcome-page{
-        display:none;
-        }
-    </style>
+<style>
+    .welcome-page {
+        display: none;
+    }
+
+</style>
+@endpush
+
+@push('metas')
+<meta name="turbolinks-cache-control" content="no-cache">
 @endpush
 
 @section('sidebar')
