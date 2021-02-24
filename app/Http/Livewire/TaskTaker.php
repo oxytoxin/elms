@@ -45,7 +45,7 @@ class TaskTaker extends Component
         if ($task->matchingtype_options) $this->matchingTypeOptions = json_decode($task->matchingtype_options, true);
         $this->task_content = json_decode($this->task->content, true);
         foreach ($this->task_content as $key => $content) {
-            array_push($this->answers, ['answer' => '']);
+            array_push($this->answers, ['answer' => '', 'files' => []]);
             if ($content['enumeration']) $this->enumeration[$key] = [];
         }
     }

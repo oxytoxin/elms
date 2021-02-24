@@ -14,5 +14,5 @@
         });
         pond = FilePond.create($refs.input);
     " x-on:remove-files.window="pond.removeFiles()">
-    <input {{ $attributes }} type="file" name="{{$inputname}}" x-ref="input">
+    <input {{ $attributes }} x-cloak type="file" name="{{$inputname}}" x-ref="input">
 </div>

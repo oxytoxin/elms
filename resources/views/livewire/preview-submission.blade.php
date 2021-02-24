@@ -16,9 +16,9 @@
         <h1 class="font-semibold">OPTIONS</h1>
         <div class="flex flex-wrap p-2 my-2 justify-evenly">
             @forelse ($matchingTypeOptions as $g => $option)
-                <h1 class="mx-5 my-2">{{ $option }}</h1>
+            <h1 class="mx-5 my-2">{{ $option }}</h1>
             @empty
-                <h1>No matching type options added.</h1>
+            <h1>No matching type options added.</h1>
             @endforelse
         </div>
     </div>
@@ -38,12 +38,12 @@
         <h1 class="px-3">{{ $question['question'] }}</h1>
         <hr class="border-t-2 border-primary-600">
         @if(!empty($question['files']))
-            <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Question Attachments</h1>
-            <div class="px-4 py-2">
+        <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Question Attachments</h1>
+        <div class="px-4 py-2">
             @foreach ($question['files'] as $file)
             <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
             @endforeach
-            </div>
+        </div>
         @endif
         @if ($question['enumeration'])
         <ul class="mx-3 my-5 space-y-2 list-disc list-inside">
@@ -60,10 +60,12 @@
         @endif
 
         @if(!empty($answers[$key]['files']))
-        <h1 class="mt-2 text-sm italic border-b-2 border-primary-600">Answer Attachments</h1>
-            <div class="px-4 py-2">
+        <h1 class="mt-2 text-sm border-b-2 border-primary-600">Answer Attachments</h1>
+        <div class="flex flex-col px-4 py-2 space-y-2 place-items-center">
             @foreach ($answers[$key]['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-xs italic font-semibold underline text-primary-500">{{ $file['name'] }}</a>
+            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
+                <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
+            </a>
             @endforeach
         </div>
         @endif
@@ -75,9 +77,9 @@
 </div>
 
 @section('sidebar')
-    @if (auth()->user()->isStudent())
-    @include('includes.student.sidebar')
-    @elseif(auth()->user()->isTeacher())
-    @include('includes.teacher.sidebar')
-    @endif
+@if (auth()->user()->isStudent())
+@include('includes.student.sidebar')
+@elseif(auth()->user()->isTeacher())
+@include('includes.teacher.sidebar')
+@endif
 @endsection

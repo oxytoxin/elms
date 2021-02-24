@@ -157,10 +157,12 @@ class Gradebook extends Component
     {
         $this->course = Course::find($this->course_id);
         $this->section_id = $this->course->sections->first()->id;
+        $this->dispatchBrowserEvent('livewire:load');
     }
 
     public function updateSection()
     {
         $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
+        $this->dispatchBrowserEvent('livewire:load');
     }
 }

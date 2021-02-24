@@ -90,8 +90,8 @@
             </form>
         </div>
     </div>
-    @if ($students->count())
-    <div id="table-container" class="overflow-auto text-gray-700" style="max-height:75vh;">
+    @if ($tasks->count())
+    <div x-ref="tablecontainer" id="table-container" class="overflow-auto text-gray-700" style="max-height:75vh;">
         <table id="table_id" class="inline-block w-0 m-2 text-sm text-center border-collapse table-fixed">
             <thead class="text-black border">
                 <tr class="h-8">
@@ -183,7 +183,7 @@
         </table>
     </div>
     @else
-    <h1 class="text-xl font-semibold text-center">No Students Enrolled in this section.</h1>
+    <h1 class="text-xl font-semibold text-center">No tasks assigned in this section.</h1>
     @endif
 </div>
 

@@ -6,19 +6,19 @@
                 @forelse ($messages as $message)
                 @if ($message->sender_id)
                 @if ($message->sender_id == auth()->id())
-                <div wire:key="{{ $message->id }}" class="flex justify-end ">
+                <div wire:key="message-{{ $message->id }}" class="flex justify-end ">
                     <h1 class="p-2 text-white break-all bg-blue-500 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
                 </div>
                 @else
-                <div>
+                <div wire:key="message-{{ $message->id }}">
                     <h1 class="text-xs">{{ $message->sender->name }}</h1>
-                    <div wire:key="{{ $message->id }}" class="flex">
+                    <div class="flex">
                         <h1 class="p-2 break-all bg-gray-300 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
                     </div>
                 </div>
                 @endif
                 @else
-                <div class="flex justify-center">
+                <div wire:key="message-{{ $message->id }}" class="flex justify-center">
                     <h1 class="text-xs text-gray-600">{{ $message->message }}</h1>
                 </div>
                 @endif
@@ -45,27 +45,29 @@
                 <input wire:model="search" x-ref="searchComponent" autocomplete="off" type="text" name="contactSearch" id="contactSearch" class="w-full form-input" placeholder="Search for name or email...">
             </div>
             <ul x-ref="contactsContainer" @scroll="if($refs.contactsContainer.scrollTop + $refs.contactsContainer.clientHeight >= $refs.contactsContainer.scrollHeight - 5) @this.perContacts += 10" class="relative flex-grow h-0 overflow-y-auto divide-y-2">
-                @if ($search)
-                <div class="absolute top-0 z-30 w-full h-full bg-green-200 divide-y-2">
-                    @forelse ($contacts as $contact)
-                    <div @click="$nextTick(()=>{$refs.messageBox.focus()})" wire:click="sendToNewContact({{ $contact }})" class="p-2 bg-gray-200 cursor-pointer hover:bg-gray-400">
-                        <div class="flex items-center space-x-2">
-                            <div class="relative items-center flex-shrink-0 w-12 h-12 overflow-hidden border border-gray-500 rounded-full max-w-16">
-                                <img class="object-cover w-full h-full" src="{{ $contact->profile_photo_url }}" alt="contact photo">
-                            </div>
-                            <div class="flex-grow w-0">
-                                <h1 class="text-black">{{ $contact->name }}</h1>
-                                <h1 class="w-full text-sm text-gray-700 truncate">{{ $contact->email }}</h1>
+                <div>
+                    @if ($search)
+                    <div class="absolute top-0 z-30 w-full h-full bg-green-200 divide-y-2">
+                        @forelse ($contacts as $contact)
+                        <div wire:key="contact-{{ $contact->id }}" @click="$nextTick(()=>{$refs.messageBox.focus()})" wire:click="sendToNewContact({{ $contact }})" class="p-2 bg-gray-200 cursor-pointer hover:bg-gray-400">
+                            <div class="flex items-center space-x-2">
+                                <div class="relative items-center flex-shrink-0 w-12 h-12 overflow-hidden border border-gray-500 rounded-full max-w-16">
+                                    <img class="object-cover w-full h-full" src="{{ $contact->profile_photo_url }}" alt="contact photo">
+                                </div>
+                                <div class="flex-grow w-0">
+                                    <h1 class="text-black">{{ $contact->name }}</h1>
+                                    <h1 class="w-full text-sm text-gray-700 truncate">{{ $contact->email }}</h1>
+                                </div>
                             </div>
                         </div>
+                        @empty
+                        <div class="grid h-full p-3 text-center place-items-center">
+                            <h1>No contacts matched your search...</h1>
+                        </div>
+                        @endforelse
                     </div>
-                    @empty
-                    <div class="grid h-full p-3 text-center place-items-center">
-                        <h1>No contacts matched your search...</h1>
-                    </div>
-                    @endforelse
+                    @endif
                 </div>
-                @endif
                 @forelse ($chatrooms as $chatroom)
                 <li @click="
                     $nextTick(()=>{

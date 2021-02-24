@@ -2,13 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Campus;
 use App\Models\Dean;
-use App\Models\ProgramHead;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Campus;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\ProgramHead;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -226,5 +227,25 @@ class DeploySeeder extends Seeder
         Student::factory()->count(99)->create()->each(function ($s) {
             $s->user->roles()->attach(Role::find(2));
         });
+        $students = [];
+        $handle = fopen(storage_path("app/emails.csv"), "r");
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            array_push($students, $data);
+        }
+        foreach ($students as $key => $student) {
+            $u = User::create([
+                'campus_id' => Campus::get()->random()->id,
+                'name' => ucwords($student[0]),
+                'email' => $student[1],
+                'email_verified_at' => now(),
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'remember_token' => Str::random(10),
+            ]);
+            $u->roles()->attach(Role::find(2));
+            $u->student()->create([
+                'college_id' => 2,
+                'department_id' => 5,
+            ]);
+        }
     }
 }

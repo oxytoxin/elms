@@ -108,7 +108,9 @@
         <div class="p-3 my-2 bg-white border shadow">
             <h1 class="text-sm font-semibold uppercase">Student Attachments:</h1>
             @foreach ($answers[$key]['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block text-sm italic underline text-primary-500">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</a>
+            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
+                <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
+            </a>
             @endforeach
         </div>
         @endisset

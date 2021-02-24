@@ -30,11 +30,17 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        if ($request['email']) {
-            $email = $request['email'];
-        } else $email = 'mjlac.kali@gmail.com';
-        Password::sendResetLink(['email' => $email]);
-        return "email sent to $email";
+        // if ($request['email']) {
+        //     $email = $request['email'];
+        // } else $email = 'mjlac.kali@gmail.com';
+        // Password::sendResetLink(['email' => $email]);
+        // return "email sent to $email";
+        $emails = [];
+        $handle = fopen(storage_path("app/emails.csv"), "r");
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            array_push($emails, $data);
+        }
+        dd(ucwords($emails[0][0]));
     }
     public function sendPasswordResets()
     {
