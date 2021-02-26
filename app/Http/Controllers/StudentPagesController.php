@@ -23,8 +23,8 @@ class StudentPagesController extends Controller
     }
     public function modules()
     {
-        $courses = auth()->user()->student->courses()->paginate(5);
-        return view('pages.student.modules.index', compact('courses'));
+        $sections = auth()->user()->student->sections()->paginate(5);
+        return view('pages.student.modules.index', compact('sections'));
     }
     public function course_modules(Section $section)
     {
