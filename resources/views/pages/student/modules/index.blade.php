@@ -27,7 +27,7 @@
         @endforelse
     </div>
     <div class="mt-3">
-        {{ $courses->links() }}
+        {{ $sections->links() }}
     </div>
 </div>
 @endsection
