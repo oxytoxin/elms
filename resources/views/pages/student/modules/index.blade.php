@@ -9,7 +9,7 @@
             <div class="h-1/2"><img src="{{ $module->image->url }}" class="object-cover w-full h-full" alt="course"></div>
             <div class="p-2 text-white h-4/12 bg-secondary-500">
                 <h1 class="text-xs italic text-center">{{ $section->course->name }}</h1>
-                <h1 class="text-xs italic font-bold text-center text-orange-500">{{ $course->code }}</h1>
+                <h1 class="text-xs italic font-bold text-center text-orange-500">{{ $section->course->code }}</h1>
                 <h1 class="text-xs text-center">{{ $module->section->code }}</h1>
                 <h1 class="text-sm text-center">{{ $module->name }}</h1>
             </div>
