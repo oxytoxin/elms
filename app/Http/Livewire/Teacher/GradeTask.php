@@ -32,11 +32,11 @@ class GradeTask extends Component
         $this->rubric = json_decode($task->essay_rubric, true);
         $this->task_content = json_decode($task->content, true);
         $this->submission = $task->students->where('id', request('student'))->first();
-        if($this->submission) $this->submission = $this->submission->pivot;
+        if ($this->submission) $this->submission = $this->submission->pivot;
         else abort(404);
         $this->answers = json_decode($this->submission->answers, true);
         $this->getCorrect();
-        if($this->submission->assessment) $this->items = json_decode($this->submission->assessment,true);
+        if ($this->submission->assessment) $this->items = json_decode($this->submission->assessment, true);
     }
 
     public function render()
@@ -117,11 +117,15 @@ class GradeTask extends Component
 
     public function partialPoints($key)
     {
-        if ($this->partial[$key] > 0 && $this->partial[$key] <= $this->task_content[$key]['points']) {
-            $this->items[$key] = ['isCorrect' => 'partial', 'score' => $this->partial[$key]];
-            $this->partial[$key] = null;
-        } else
-            session()->flash("partialError$key", "Please provide a valid score.");
+        try {
+            if ($this->partial[$key] > 0 && $this->partial[$key] <= $this->task_content[$key]['points']) {
+                $this->items[$key] = ['isCorrect' => 'partial', 'score' => $this->partial[$key]];
+                $this->partial[$key] = null;
+            } else
+                session()->flash("partialError$key", "Please provide a valid score.");
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     public function getTotalScore()
