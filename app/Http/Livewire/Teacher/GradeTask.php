@@ -80,7 +80,7 @@ class GradeTask extends Component
     {
         foreach ($this->task_content as $key => $content) {
             if (array_key_exists('answer', $content)) {
-                if (strcasecmp(sanitizeString($this->answers[$key]['answer']), $content['answer'])  == 0) {
+                if (strcasecmp(sanitizeString($this->answers[$key]['answer']), sanitizeString($content['answer']))  == 0) {
                     array_push($this->items, $key = ['isCorrect' => true, 'score' => $content['points']]);
                 } else array_push($this->items, $key = ['isCorrect' => false, 'score' => 0]);
             } else if ($content['enumeration']) {
