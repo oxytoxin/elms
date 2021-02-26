@@ -59,12 +59,19 @@ class Student extends Model
     {
         return $this->belongsToMany(Task::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers', 'assessment');
     }
+    // public function getAllTasksAttribute()
+    // {
+    //     return $this->teachers->unique()->map(function ($t) {
+    //         return $t->tasks()->where('open', true)->get();
+    //     })->flatten();
+    // }
     public function getAllTasksAttribute()
     {
-        return $this->teachers->unique()->map(function ($t) {
+        return $this->sections->map(function ($t) {
             return $t->tasks()->where('open', true)->get();
         })->flatten();
     }
+
     public function tasksByType($task_type)
     {
         return $this->all_tasks->filter(function ($t) use ($task_type) {

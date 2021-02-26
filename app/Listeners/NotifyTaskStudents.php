@@ -28,7 +28,7 @@ class NotifyTaskStudents implements ShouldQueue
      */
     public function handle(NewTask $event)
     {
-        $students = $event->teacher->courseStudents($event->task->course->id)->get()->map(function ($s) {
+        $students = $event->task->students->map(function ($s) {
             return $s->user;
         });
         Notification::send($students, new NewTaskNotification($event->teacher->user, route('student.task', ['task' => $event->task->id])));

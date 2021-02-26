@@ -236,7 +236,7 @@ class DeploySeeder extends Seeder
             $u = User::create([
                 'campus_id' => Campus::get()->random()->id,
                 'name' => ucwords($student[0]),
-                'email' => $student[1],
+                'email' => strtolower($student[1]),
                 'email_verified_at' => now(),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
