@@ -83,10 +83,9 @@
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <x-livewire-alert::scripts />
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    <x-livewire-alert::scripts />
-
 </body>
 
 </html>

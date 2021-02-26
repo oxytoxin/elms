@@ -107,11 +107,13 @@
         @isset($answers[$key]['files'])
         <div class="p-3 my-2 bg-white border shadow">
             <h1 class="text-sm font-semibold uppercase">Student Attachments:</h1>
-            @foreach ($answers[$key]['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
-                <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
-            </a>
-            @endforeach
+            <div class="flex flex-col space-y-2">
+                @foreach ($answers[$key]['files'] as $fileKey => $file)
+                <a wire:key="{{ $key }}-file_attachment-{{ $fileKey }}" target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
+                    <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
+                </a>
+                @endforeach
+            </div>
         </div>
         @endisset
         <hr class="my-2 border border-primary-600">
@@ -129,7 +131,7 @@
             <div class="w-full">
                 <h1 class="text-sm font-semibold">Student answered:</h1>
                 <ul class="space-y-2 list-disc list-inside">
-                    @foreach (json_decode($answers[$key]['answer']) as $id => $answer)
+                    @foreach (json_decode($answers[$key]['answer'],true)['items'] as $id => $answer)
                     <li class="{{ $this->enumeratorCheck($key, $id) ?: 'bg-red-400' }}">{{ $answer }}</li>
                     @endforeach
                 </ul>

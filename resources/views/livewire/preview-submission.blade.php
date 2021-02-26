@@ -47,7 +47,7 @@
         @endif
         @if ($question['enumeration'])
         <ul class="mx-3 my-5 space-y-2 list-disc list-inside">
-            @foreach (json_decode($answers[$key]['answer']) as $answer)
+            @foreach (json_decode($answers[$key]['answer'],true)['items'] as $answer)
             <li>{{ $answer }}</li>
             @endforeach
 

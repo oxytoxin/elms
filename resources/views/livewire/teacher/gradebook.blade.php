@@ -30,8 +30,8 @@
                 <div class="md:col-span-1">
                     <h1 class="text-xl font-semibold">For Section:</h1>
                     <select wire:change="updateSection" wire:model="section_id" class="w-full truncate form-select" name="course_select" id="course_select">
-                        @forelse ($course->sections as $section)
-                        <option value="{{ $section->id }}">{{ $section->code }}</option>
+                        @forelse ($course->sections as $course_section)
+                        <option value="{{ $course_section->id }}">{{ $course_section->code }}</option>
                         @empty
                         <option value="0" selected disabled hidden>No Courses Found.</option>
                         @endforelse
@@ -97,7 +97,9 @@
                 <tr class="h-8">
                     <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>
                     @foreach ($task_types as $type)
-                    <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $type->task_count+2 }}">{{ $type->name }} ({{ $weights[$type->name] }} %)</th>
+                    @if (in_array($type->id, $tasks->keys()->all()))
+                    <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $tasks[$type->id]->count() +2 }}">{{ $type->name }} ({{ $weights[$type->name] }} %)</th>
+                    @endif
                     @endforeach
                     <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="2">ATTENDANCE ({{ $weights['attendance'] }} %)</th>
                     <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-20" rowspan="2">% TOTAL</th>

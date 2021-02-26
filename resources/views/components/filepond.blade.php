@@ -1,7 +1,8 @@
 @props(['inputname'])
 <div class="my-2" wire:ignore x-data="{pond: null}" x-init="
         FilePond.registerPlugin(FilePondPluginImagePreview);
-        FilePond.setOptions({
+        pond = FilePond.create($refs.input);
+        pond.setOptions({
             allowMultiple: {{ isset($attributes['multiple']) ? 'true' : 'false' }},
             server: {
                 process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
@@ -12,7 +13,7 @@
                 },
             },
         });
-        pond = FilePond.create($refs.input);
+
     " x-on:remove-files.window="pond.removeFiles()">
     <input {{ $attributes }} x-cloak type="file" name="{{$inputname}}" x-ref="input">
 </div>

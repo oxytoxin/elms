@@ -57,8 +57,9 @@
     <hr class="border border-primary-600">
     <div class="py-5 bg-white">
         @foreach ($task_content as $key => $item)
-        <div class="p-2 mx-5 @error('answers') @if(!isset($answers[$key]['answer']) && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
-            <h1 class="font-semibold text-orange-500">({{ $item['points'] }} pt/s.) Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : '' }}</h1>
+        <div class="p-2 mt-3 border border-gray-700 rounded-lg shadow-lg">
+            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $key+1 }}. {{ $item['essay'] ? '(Essay)' : ($item['enumeration'] ? '(Enumeration)' : '') }}</span><span>({{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' : '' }})</span></h1>
+            <hr class="my-2 border-t-2 border-primary-600">
             <h1>{{ $item['question'] }}</h1>
             @if ($item['files'])
             <div class="flex justify-center my-3">
@@ -78,36 +79,31 @@
             </div>
             @endif
             @forelse ($item['options'] as $id=>$option)
-            <div class="flex items-center">
-                <input type="radio" readonly id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="mr-1 form-radio">
+            <div>
+                <input disabled type="radio" wire:model="answers.{{ $key }}.answer" id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="form-radio">
                 <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
             </div>
             @empty
 
             @endforelse
-
-            @if (isset($item['answer']))
-            <br>
-            <h1>Correct Answer: <span class="font-semibold">{{ $item['answer'] }}</span></h1>
-            @endif
-            <br>
-            @isset($answers[$key]['files'])
-            <div class="p-3 mb-1 bg-white border shadow">
-                <h1 class="text-sm font-semibold uppercase">Your Attachments:</h1>
-                @foreach ($answers[$key]['files'] as $file)
-                <h1 class="text-sm italic">{{ is_array($file) ? $file['name'] : $file->getClientOriginalName() }}</h1>
-                @endforeach
-            </div>
-            @endisset
             @if ($item['attachment'])
             <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-            <input type="file" disabled name="answer_{{ $key }}_files" id="answer_{{ $key }}_files" multiple class="w-full my-2 form-input">
+            <x-filepond disabled wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
             @endif
             @if ($item['essay'])
-            <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+            <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer" cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+            @elseif($item['enumeration'])
+            @if (session("enumError.$key"))
+            <h1 class="my-2 text-sm italic text-red-600">{{ session("enumError.$key") }}</h1>
+            @endif
+            <div class="flex flex-col space-y-2">
+                @foreach ($item['enumerationItems'] as $enum => $enumItem)
+                <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model.lazy="enumeration.{{ $key }}.items.{{ $enum }}">
+                @endforeach
+            </div>
             @else
             @if (!$item['options'])
-            <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
+            <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer">
             @endif
             @endif
         </div>

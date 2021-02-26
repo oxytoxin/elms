@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Teacher;
 
 use App\Models\Task;
 use Livewire\Component;
+use Illuminate\Support\Facades\URL;
 
 class GradeTask extends Component
 {
@@ -16,6 +17,7 @@ class GradeTask extends Component
     public $answers;
     public $items = [];
     public $partial = [];
+    public $previous;
 
 
     // Essay Grading
@@ -28,6 +30,7 @@ class GradeTask extends Component
 
     public function mount(Task $task)
     {
+        $this->previous = URL::previous();
         $this->task = $task;
         $this->rubric = json_decode($task->essay_rubric, true);
         $this->task_content = json_decode($task->content, true);
@@ -85,13 +88,13 @@ class GradeTask extends Component
                 } else array_push($this->items, $key = ['isCorrect' => false, 'score' => 0]);
             } else if ($content['enumeration']) {
                 $correctItems = 0;
-                $studentEnums = array_map('strtolower', json_decode($this->answers[$key]['answer']));
+                $studentEnums = array_unique(array_map('strtolower', json_decode($this->answers[$key]['answer'], true)['items']));
                 $correctEnums = array_map('strtolower', $content['enumerationItems']);
-                foreach ($correctEnums as $key => $enumItem) {
-                    if (in_array(sanitizeString($studentEnums[$key]), $correctEnums)) $correctItems++;
+                foreach ($studentEnums as $key => $enumItem) {
+                    if (in_array(sanitizeString($enumItem), $correctEnums)) $correctItems++;
                 }
                 if (count($correctEnums) == $correctItems)
-                    array_push($this->items, $key = ['isCorrect' => true, 'score' => $content['points']]);
+                    array_push($this->items, $key = ['isCorrect' => true, 'score' => $content['points'] * count($correctEnums)]);
                 else if ($correctItems) array_push($this->items, $key = ['isCorrect' => 'partial', 'score' => $content['points'] * $correctItems]);
                 else array_push($this->items, $key = ['isCorrect' => false, 'score' => 0]);
             } else array_push($this->items, $key = null);
@@ -100,7 +103,7 @@ class GradeTask extends Component
 
     public function enumeratorCheck($key, $id)
     {
-        $studentEnums = array_map('strtolower', json_decode($this->answers[$key]['answer']));
+        $studentEnums = array_map('strtolower', json_decode($this->answers[$key]['answer'], true)['items']);
         $correctEnums = array_map('strtolower', $this->task_content[$key]['enumerationItems']);
         return in_array(sanitizeString($studentEnums[$id]), $correctEnums);
     }
@@ -149,6 +152,6 @@ class GradeTask extends Component
             'isGraded' => true,
             'assessment' => json_encode($this->items),
         ]);
-        return redirect()->route('teacher.task', ['task' => $this->task->id]);
+        return redirect($this->previous);
     }
 }

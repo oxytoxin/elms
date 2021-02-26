@@ -24,8 +24,12 @@
     <div>
         @if (!$hasSubmission)
         @foreach ($task_content as $key => $item)
-        <div class="p-2 @error(" answers.$key.answer") @if(!$answers[$key]['answer'] && !isset($answers[$key]['files'])) {{ 'bg-red-300' }} @endif @enderror mt-3 border border-gray-700 rounded-lg shadow-lg">
-            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $item['item_no'] }}. {{ $item['essay'] ? '(Essay)' : ($item['enumeration'] ? '(Enumeration)' : '') }}</span><span>({{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' : '' }})</span></h1>
+        <div class="p-2
+        @if ($hasAttempted && in_array($item['item_no'],$unanswered))
+        {{ 'bg-red-300' }}
+        @endif
+         mt-3 border border-gray-700 rounded-lg shadow-lg">
+            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $key+1 }}. {{ $item['essay'] ? '(Essay)' : ($item['enumeration'] ? '(Enumeration)' : '') }}</span><span>({{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' : '' }})</span></h1>
             <hr class="my-2 border-t-2 border-primary-600">
             <h1>{{ $item['question'] }}</h1>
             @if ($item['files'])
@@ -53,14 +57,9 @@
             @empty
 
             @endforelse
-
-            <br>
-            <h1 wire:loading wire:target="answers.{{ $key }}.files" class="text-center"><i class="fas fa-spin fa-spinner"></i>Uploading...</h1>
-            <br wire:loading wire:target="answers.{{ $key }}.files">
-
             @if ($item['attachment'])
             <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-            <x-filepond inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
+            <x-filepond wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
             @endif
             @if ($item['essay'])
             <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer" cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
@@ -70,7 +69,7 @@
             @endif
             <div class="flex flex-col space-y-2">
                 @foreach ($item['enumerationItems'] as $enum => $enumItem)
-                <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model.lazy="enumeration.{{ $key }}.{{ $enum }}">
+                <input type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model.lazy="enumeration.{{ $key }}.items.{{ $enum }}">
                 @endforeach
             </div>
             @else
@@ -80,18 +79,14 @@
             @endif
         </div>
         @endforeach
-        <h1 class="mx-5 mt-2 text-sm italic text-right text-red-600">
-            @error("answers.$key.answer")
-            {{ $message }}
-            @enderror
-        </h1>
+
         <h1 class="mx-5 mt-2 text-sm italic text-right text-red-600">
             @if(session('deadline'))
             {{ session('deadline') }}
             @endif
         </h1>
         @can('submit', $task)
-        <button onclick="confirm('Submit your answers?') || event.stopImmediatePropagation() " wire:click.prevent="submitAnswers" class="float-right p-2 mx-5 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
+        <button onclick="confirm('Submit your answers?') || event.stopImmediatePropagation() " wire:click.prevent="submitAnswers" class="float-right p-2 mt-3 font-semibold text-white hover:text-primary-600 bg-primary-500">Submit Answers</button>
         @endcan
         @else
         <div class="mx-5 mt-5">
