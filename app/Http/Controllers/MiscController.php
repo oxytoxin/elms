@@ -38,7 +38,7 @@ class MiscController extends Controller
         // Password::sendResetLink(['email' => $email]);
         // return "email sent to $email";
         $students = [];
-        $handle = fopen(storage_path("app/emails6.csv"), "r");
+        $handle = fopen(storage_path("app/emails7.csv"), "r");
         while (($data = fgetcsv($handle)) !== FALSE) {
             array_push($students, $data);
         }
