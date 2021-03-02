@@ -37,52 +37,26 @@ class MiscController extends Controller
         // } else $email = 'mjlac.kali@gmail.com';
         // Password::sendResetLink(['email' => $email]);
         // return "email sent to $email";
-        // $students = [];
-        // $handle = fopen(storage_path("app/emails4.csv"), "r");
-        // while (($data = fgetcsv($handle)) !== FALSE) {
-        //     array_push($students, $data);
-        // }
-        // foreach ($students as $key => $student) {
-        //     $u = User::create([
-        //         'campus_id' => Campus::get()->random()->id,
-        //         'name' => ucwords($student[0]),
-        //         'email' => strtolower($student[1]),
-        //         'email_verified_at' => now(),
-        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        //         'remember_token' => Str::random(10),
-        //     ]);
-        //     $u->roles()->attach(Role::find(2));
-        //     $u->student()->create([
-        //         'college_id' => 2,
-        //         'department_id' => 5,
-        //     ]);
-        // }
-        $u = User::create([
-            'campus_id' => Campus::get()->random()->id,
-            'name' => 'Francis Villarino',
-            'email' => 'francisvillarino@sksu.edu.ph',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-        ]);
-        $u->roles()->attach(Role::find(2));
-        $u->student()->create([
-            'college_id' => 2,
-            'department_id' => 5,
-        ]);
-        $u = User::create([
-            'campus_id' => Campus::get()->random()->id,
-            'name' => 'Lovelyn Huertas',
-            'email' => 'lovelynhuertas@sksu.edu.ph',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-        ]);
-        $u->roles()->attach(Role::find(2));
-        $u->student()->create([
-            'college_id' => 2,
-            'department_id' => 5,
-        ]);
+        $students = [];
+        $handle = fopen(storage_path("app/emails5.csv"), "r");
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            array_push($students, $data);
+        }
+        foreach ($students as $key => $student) {
+            $u = User::create([
+                'campus_id' => Campus::get()->random()->id,
+                'name' => ucwords($student[0]),
+                'email' => strtolower($student[1]),
+                'email_verified_at' => now(),
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'remember_token' => Str::random(10),
+            ]);
+            $u->roles()->attach(Role::find(2));
+            $u->student()->create([
+                'college_id' => 2,
+                'department_id' => 5,
+            ]);
+        }
     }
     public function sendPasswordResets()
     {
