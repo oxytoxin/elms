@@ -106,24 +106,28 @@ class TaskTaker extends Component
         $this->hasAttempted = true;
         $this->task_content = $tc;
         $this->answers = $ta;
-        DB::transaction(function () {
-            foreach ($this->answers as $key => $item) {
-                if (isset($item['files'])) {
-                    $this->answers[$key]['files'] = [];
-                    foreach ($item['files'] as $id => $file) {
-                        $filename = $file->getClientOriginalName();
-                        $url = $file->store('tasks', 'public');
-                        array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
-                    }
+        foreach ($this->answers as $key => $item) {
+            if (isset($item['files'])) {
+                $this->answers[$key]['files'] = [];
+                foreach ($item['files'] as $id => $file) {
+                    $filename = $file->getClientOriginalName();
+                    $url = $file->store('tasks', 'public');
+                    array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
                 }
             }
-            $this->task->students()->attach(auth()->user()->student->id, [
-                'section_id' => $this->task->section_id,
-                'date_submitted' => Carbon::now()->format('Y-m-d H:i:s'),
-                'answers' => json_encode($this->answers)
-            ]);
+        }
+        $submission = (bool) $this->task->students()->wherePivot('student_id', auth()->user()->student->id)->wherePivot('task_id', $this->task->id)->first();
+        if (!$submission) {
+            DB::transaction(function () {
+                $this->task->students()->attach(auth()->user()->student->id, [
+                    'section_id' => $this->task->section_id,
+                    'date_submitted' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'answers' => json_encode($this->answers)
+                ]);
+            });
             event(new NewSubmission(auth()->user()->student, $this->task->id));
-        });
+        }
+        session()->flash('message', 'Task was successfully submitted.');
         return redirect()->route('student.tasks', ['task_type' => $this->task->task_type_id]);
     }
 }

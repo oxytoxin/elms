@@ -19,6 +19,7 @@ class TaskMaker extends Component
     use WithFileUploads;
     public $type;
     public $task_name = "";
+    public $task_instructions;
     public $module;
     public $modules;
     public $course;
@@ -125,6 +126,8 @@ class TaskMaker extends Component
     public function ExpectAttachment($key)
     {
         $this->items[$key]['attachment'] = !$this->items[$key]['attachment'];
+        if ($this->items[$key]['attachment']) $this->alert('success', 'Question ' . ($key + 1) . ' will require file attachment.', ['position' => 'center', 'timer' => 1000]);
+        else $this->alert('success', 'Question ' . ($key + 1) . ' will not require file attachment.', ['position' => 'center', 'timer' => 1000]);
     }
     public function TorFtrigger($key)
     {
@@ -136,6 +139,7 @@ class TaskMaker extends Component
             $this->items[$key]['essay'] = false;
             $this->items[$key]['enumeration'] = false;
             $this->items[$key]['enumerationItems'] = [];
+            $this->alert('success', 'Question ' . ($key + 1) . ' is a True or False type.', ['position' => 'center', 'timer' => 1000]);
         } else {
             array_splice($this->items[$key]['options'], 0, 2);
         }
@@ -151,6 +155,7 @@ class TaskMaker extends Component
             unset($this->items[$key]['answer']);
             array_push($this->items[$key]['enumerationItems'], '');
             array_push($this->items[$key]['enumerationItems'], '');
+            $this->alert('success', 'Question ' . ($key + 1) . ' is an Enumeration type.', ['position' => 'center', 'timer' => 1000]);
         } else $this->items[$key]['enumerationItems'] = [];
     }
 
@@ -176,6 +181,7 @@ class TaskMaker extends Component
             $this->items[$key]['enumerationItems'] = [];
             $this->items[$key]['torf'] = false;
             $this->items[$key]['options'] = [];
+            $this->alert('success', 'Question ' . ($key + 1) . ' is an essay type.', ['position' => 'center', 'timer' => 1000]);
             unset($this->items[$key]['answer']);
         }
     }
@@ -282,6 +288,7 @@ class TaskMaker extends Component
             }
         }
         DB::transaction(function () {
+            if (!$this->task_instructions) $this->task_instructions = null;
             if (!$this->noDeadline) $deadline = $this->date_due . ' ' . $this->time_due;
             else $deadline = null;
             if (!$this->openImmediately) $open_on = $this->date_open . ' ' . $this->time_open;
@@ -295,6 +302,7 @@ class TaskMaker extends Component
                 'teacher_id' => auth()->user()->teacher->id,
                 'task_type_id' => TaskType::where('name', $this->type)->firstOrFail()->id,
                 'name' => $this->task_name,
+                'instructions' => $this->task_instructions,
                 'max_score' => $this->total_points,
                 'essay_rubric' => json_encode($this->task_rubric),
                 'matchingtype_options' => $matchingtype_options,
@@ -325,6 +333,7 @@ class TaskMaker extends Component
                 TaskOpening::dispatch($task)->delay(Carbon::parse($this->date_open . ' ' . $this->time_open));
             }
         });
+        session()->flash('message', 'Task was successfully created.');
         return redirect()->route('teacher.module', ['module' => $this->module]);
     }
 

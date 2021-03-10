@@ -94,6 +94,8 @@ class MiscController extends Controller
             return json_encode($events->toArray());
         }
         if (auth()->user()->isStudent()) {
+            $sections = auth()->user()->student->sections->pluck('id')->all();
+            $events = $events->merge(CalendarEvent::where('level', 'section')->whereIn('section_id', $sections)->get());
             $events = $events->merge(auth()->user()->student->teachers->map(function ($t) {
                 return $t->user->calendar_events->where('level', 'students');
             })->flatten());

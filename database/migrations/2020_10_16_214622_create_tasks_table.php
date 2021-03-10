@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('teacher_id')->constrained();
             $table->foreignId('task_type_id')->constrained();
             $table->string('name');
+            $table->mediumText('instructions')->nullable()->default(null);
             $table->integer('max_score');
             $table->text('essay_rubric')->nullable()->default(null);
             $table->longText('content');

@@ -109,7 +109,7 @@
             <h1 class="text-sm font-semibold uppercase">Student Attachments:</h1>
             <div class="flex flex-col space-y-2">
                 @foreach ($answers[$key]['files'] as $fileKey => $file)
-                <a wire:key="{{ $key }}-file_attachment-{{ $fileKey }}" target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
+                <a download="{{ $file['name'] }}" wire:key="{{ $key }}-file_attachment-{{ $fileKey }}" target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
                     <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
                 </a>
                 @endforeach

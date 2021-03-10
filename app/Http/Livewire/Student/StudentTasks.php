@@ -16,6 +16,9 @@ class StudentTasks extends Component
     public $display_grid = true;
     public $filter = "all";
 
+
+    public $listeners = ['selfAlert'];
+
     public function render()
     {
         switch ($this->filter) {
@@ -35,9 +38,13 @@ class StudentTasks extends Component
         $page = Paginator::resolveCurrentPage() ?: 1;
         $perPage = 10;
         $this->tasks = new LengthAwarePaginator(
-        $this->tasks->forPage($page, $perPage), $this->tasks->count(), $perPage, $page, ['path' => Paginator::resolveCurrentPath()]
+            $this->tasks->forPage($page, $perPage),
+            $this->tasks->count(),
+            $perPage,
+            $page,
+            ['path' => Paginator::resolveCurrentPath()]
         );
-        return view('livewire.student.student-tasks',[
+        return view('livewire.student.student-tasks', [
             'tasks' => $this->tasks,
         ])
             ->extends('layouts.master')

@@ -1,13 +1,15 @@
 <div>
     <h1 class="text-2xl font-semibold uppercase">{{ $task->task_type->name }}</h1>
-    <div class="mt-5 italic font-semibold uppercase">
-        <h1>Task: {{ $task->name }}</h1>
-        <h1>Course: {{ $task->course->name }}</span></h1>
-        <h1>Module: <span class="text-orange-500">{{ $task->module->name }}</span></h1>
-        <h1>Deadline: <span class="text-red-600">{{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : "No deadline set." }}</span></h1>
+    <div class="mt-5 uppercase">
+        <h1><span class="font-semibold">Task: </span>{{ $task->name }}</h1>
+        <h1><span class="font-semibold">Course: </span>{{ $task->course->name }}</span></h1>
+        <h1><span class="font-semibold">Module: </span><span class="text-orange-500">{{ $task->module->name }}</span></h1>
+        <h1><span class="font-semibold">Deadline: </span><span class="text-red-600">{{ $task->deadline ? $task->deadline->format('M d, Y - h:i a') : "No deadline set." }}</span></h1>
         @if ($hasExtension)
-        <h1>Extended until: <span class="text-red-600">{{ $hasExtension->deadline->format('M d, Y - h:i a') }}</span></h1>
+        <h1><span class="font-semibold">Extended until: </span><span class="text-red-600">{{ $hasExtension->deadline->format('M d, Y - h:i a') }}</span></h1>
         @endif
+        <h1 class="font-semibold">Instructions:</h1>
+        <p class="not-italic font-normal normal-case">{{ $task->instructions }}</p>
     </div>
     @if ($matchingTypeOptions)
     <div class="p-2 bg-green-300">

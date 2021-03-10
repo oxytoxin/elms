@@ -11,10 +11,18 @@ class TeacherTasklist extends Component
     use WithPagination;
     public $submissions;
     public $task;
-    public $submissionFilter = "all";
+    public $submissionFilter;
     protected $students;
     public $search = "";
     public $showDeadlineExtension = false;
+
+    public function mount(Task $task)
+    {
+        $this->task = $task;
+        if (session("task" . $task->id . "filter")) $this->submissionFilter = session("task" . $task->id . "filter");
+        else $this->submissionFilter = "all";
+    }
+
     public function render()
     {
         if ($this->search) $this->resetPage();
@@ -39,12 +47,11 @@ class TeacherTasklist extends Component
             ->extends('layouts.master')
             ->section('content');
     }
-    public function updatingSubmissionFilter()
+
+    public function updatingSubmissionFilter($value)
     {
+        session(["task" . $this->task->id . "filter" => $value]);
+        $this->submissionFilter = session("task" . $this->task->id . "filter");
         $this->resetPage();
-    }
-    public function mount(Task $task)
-    {
-        $this->task = $task;
     }
 }

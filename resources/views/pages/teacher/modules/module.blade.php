@@ -2,6 +2,7 @@
 @section('content')
 <div>
     <div class="w-full px-2 m-4">
+        <x-flash-notification />
         <h1 class="my-2 text-2xl uppercase"><i class="mr-2 icofont-star"></i>{{ $module->name }}</h1>
         <div class="flex flex-col items-center justify-between py-3 mb-5 border-t-2 border-b-2 md:flex-row border-primary-600">
             <h1 class="font-semibold">CREATE A TASK</h1>
@@ -15,8 +16,8 @@
         @forelse ($module->files as $file)
         <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
             <a href="{{ route('teacher.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
-            <i class="icofont-ui-file"></i>
-            {{ $file->name }}
+                <i class="icofont-ui-file"></i>
+                {{ $file->name }}
             </a>
             <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
                 <i class="icofont-download-alt"></i>
@@ -33,8 +34,8 @@
         @foreach ($resource->files as $file)
         <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
             <a href="{{ route('teacher.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
-            <i class="icofont-ui-file"></i>
-            {{ $file->name }}
+                <i class="icofont-ui-file"></i>
+                {{ $file->name }}
             </a>
             <a href="{{ route('file.download',['file'=> $file->id]) }}" target="blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
                 <i class="icofont-download-alt"></i>
@@ -48,5 +49,5 @@
 </div>
 @endsection
 @section('sidebar')
-    @include('includes.teacher.sidebar')
+@include('includes.teacher.sidebar')
 @endsection
