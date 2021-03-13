@@ -228,10 +228,10 @@ class DeploySeeder extends Seeder
             $s->user->roles()->attach(Role::find(2));
         });
         $students = [];
-        $handle = fopen(storage_path("app/emails.csv"), "r");
-        while (($data = fgetcsv($handle)) !== FALSE) {
-            array_push($students, $data);
-        }
+        // $handle = fopen(storage_path("app/emails.csv"), "r");
+        // while (($data = fgetcsv($handle)) !== FALSE) {
+        //     array_push($students, $data);
+        // }
         foreach ($students as $key => $student) {
             $u = User::create([
                 'campus_id' => Campus::get()->random()->id,

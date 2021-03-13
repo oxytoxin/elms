@@ -145,7 +145,7 @@ class Gradebook extends Component
     public function export()
     {
         if ($this->section->ungraded) return $this->confirm('You have ungraded task submissions.', ['timer' => 0, 'toast' => false, 'position' => 'center', 'onConfirmed' => 'confirmed', 'showConfirmButton' => true, 'confirmButtonText' => 'Proceed', 'showCancelButton' => true]);
-        $this->confirmed();
+        $this->emitSelf('confirmed');
     }
 
     public function confirmed()
