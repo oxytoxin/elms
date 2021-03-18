@@ -34,11 +34,12 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        if ($request['email']) {
-            $email = $request['email'];
-        } else $email = 'mjlac.kali@gmail.com';
-        Password::sendResetLink(['email' => $email]);
-        return "email sent to $email";
+        // if ($request['email']) {
+        //     $email = $request['email'];
+        // } else $email = 'mjlac.kali@gmail.com';
+        // Password::sendResetLink(['email' => $email]);
+        // return "email sent to $email";
+        Mail::to(User::find(1))->send(new PasswordMail(base64_encode(strtoupper(explode(' ', trim(User::find(1)->name))[0]))));
     }
     public function sendPasswordResets()
     {
