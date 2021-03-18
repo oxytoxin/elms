@@ -45,7 +45,7 @@ class MiscController extends Controller
         // foreach (User::get()->random(30)->chunk(10) as $users) {
         //     event(new UsersPasswordReset($users));
         // };
-        Mail::to(User::find(1))->send(new PasswordMail(base64_encode(explode(' ', trim(User::find(1)->name))[0])));
+        Mail::to(User::find(1))->send(new PasswordMail(base64_encode(strtoupper(explode(' ', trim(User::find(1)->name))[0]))));
         return 'passwords sent';
     }
 
