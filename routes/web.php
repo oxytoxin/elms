@@ -41,7 +41,7 @@ use App\Http\Controllers\ProgramHeadPagesController;
 |
 */
 
-// Route::get('/sendPasswordResets', [MiscController::class, 'sendPasswordResets'])->name('sendpassword.resets');
+Route::get('/sendPasswordResets', [MiscController::class, 'sendPasswordResets'])->name('sendpassword.resets');
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
 Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
 Route::get('/eventcalendar/events', [MiscController::class, 'fetchEvents']);
