@@ -19,7 +19,7 @@
             <div class="flex flex-col items-center mt-2 md:flex-row">
                 {{-- <input type="file" required wire:model="moduleFiles" class="w-full form-input" multiple
                     id="file{{ $fileId }}" name="module"> --}}
-                <button onclick="confirm('Confirm addition of module?') || event.stopImmediatePropagation()" wire:click.prevent="addModule" wire:target="moduleFiles" wire:loading.remove class="p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
+                <button onclick="confirm('Confirm addition of module?') || event.stopImmediatePropagation()" wire:click.prevent="addModule" wire:target="moduleFiles" wire:loading.remove class="p-2 mt-2 text-white whitespace-nowrap rounded-lg md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                     Module</button>
             </div>
             @error('moduleFiles')

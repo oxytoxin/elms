@@ -15,7 +15,7 @@
                 @foreach ($task as $k => $t)
                 <td wire:key="item-header-{{ $t->id }}" class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score">
                     <h1>{{ $k + 1 }}</h1>
-                    <h1 class="whitespace-no-wrap">({{ $t->max_score }}) pts.</h1>
+                    <h1 class="whitespace-nowrap">({{ $t->max_score }}) pts.</h1>
                 </td>
                 @endforeach
                 <td class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score hover:text-white">
@@ -37,7 +37,7 @@
         <tbody>
             @forelse ($students as $student)
             <tr wire:key="student-row-{{ $student->id }}" class="z-20 bg-white bg-gradient-to-b hover:from-green-400 to-green-400">
-                <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-no-wrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">
+                <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-nowrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">
                     {{ $student->name }}
                 </th>
                 @php

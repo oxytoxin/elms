@@ -115,7 +115,7 @@
                 <div class="flex flex-col items-center mt-2 text-white md:space-x-3 md:flex-row">
                     <span>
                         @if (!$item['essay'] && !$item['torf'] && !$item['enumeration'])
-                        <button class="w-full p-2 my-1 whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
+                        <button class="w-full p-2 my-1 whitespace-nowrap bg-gray-500 rounded-lg md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
                         @endif
                     </span>
                     <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
@@ -164,7 +164,7 @@
         </div>
         @endforeach
         <div class="flex flex-col items-center p-4 md:flex-row">
-            <button class="w-full p-2 my-1 text-white whitespace-no-wrap bg-gray-500 rounded-lg md:w-auto focus:outline-none hover:bg-green-300 hover:text-primary-600" wire:click.prevent="addItem({{ count($items) }})"><i class="mr-2 icofont-plus-circle"></i>Add Item</button>
+            <button class="w-full p-2 my-1 text-white whitespace-nowrap bg-gray-500 rounded-lg md:w-auto focus:outline-none hover:bg-green-300 hover:text-primary-600" wire:click.prevent="addItem({{ count($items) }})"><i class="mr-2 icofont-plus-circle"></i>Add Item</button>
             <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:ml-3 md:w-auto">Total points: {{ $total_points }}</span>
             <button wire:click.prevent="saveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
         </div>

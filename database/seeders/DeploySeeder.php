@@ -22,9 +22,7 @@ class DeploySeeder extends Seeder
      */
     public function run()
     {
-        $c = Campus::create([
-            'name' => 'Isulan Campus',
-        ]);
+        $c = Campus::find(2);
         $u = User::create([
             'campus_id' => $c->id,
             'name' => 'Cecilia E. Gener',

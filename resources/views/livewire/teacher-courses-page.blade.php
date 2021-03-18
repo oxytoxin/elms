@@ -35,7 +35,7 @@
                     </div>
                     <div class="relative flex flex-col items-center mt-2 md:flex-row">
                         <input wire:model="email" type="email" class="w-full form-input" placeholder="student@email.com" autocomplete="off" autofocus name="email">
-                        <button class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:ml-3 md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Enrol
+                        <button class="w-full p-2 mt-2 text-white whitespace-nowrap rounded-lg md:ml-3 md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Enrol
                             Student</button>
                         <div x-show="showQuery" class="absolute top-0 w-full overflow-y-auto bg-white divide-y-2 max-h-48 mt-14">
                             @foreach ($students as $stud)
@@ -106,7 +106,7 @@
                     </div>
                     <div class="flex flex-col items-center mt-2 md:flex-row">
                         {{-- <input type="file" wire:model="resources" id="file{{ $fileId }}" class="w-full form-input" autocomplete="off" required multiple name="resources"> --}}
-                        <button wire:click="addResources" wire:loading.remove wire:target="resources" class="w-full p-2 mt-2 text-white whitespace-no-wrap rounded-lg md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
+                        <button wire:click="addResources" wire:loading.remove wire:target="resources" class="w-full p-2 mt-2 text-white whitespace-nowrap rounded-lg md:w-auto md:mt-0 hover:text-black focus:outline-none bg-primary-500">Upload
                             Resource</button>
                     </div>
                     @error('resources.*')

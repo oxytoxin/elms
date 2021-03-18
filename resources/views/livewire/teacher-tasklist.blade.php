@@ -75,7 +75,7 @@
                                     <img class="w-full h-full rounded-full" src="{{ $student->user->profile_photo_url }}" alt="student_img" />
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-gray-900 whitespace-no-wrap">
+                                    <p class="text-gray-900 whitespace-nowrap">
                                         {{ $student->name }}
                                     </p>
                                 </div>
@@ -85,7 +85,7 @@
                             <p class="text-gray-900">{{ $student->department->name }}</p>
                         </td>
                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <p class="text-gray-900 whitespace-no-wrap">
+                            <p class="text-gray-900 whitespace-nowrap">
                                 {{ $student->pivot->date_submitted->format('M d, Y-h:i a') }}
                             </p>
                         </td>
@@ -117,7 +117,7 @@
                     @empty
                     <td colspan="5" class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
+                            <p class="text-gray-900 whitespace-nowrap">
                                 No submissions yet.
                             </p>
                         </div>
