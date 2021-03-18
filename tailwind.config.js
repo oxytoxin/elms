@@ -1,5 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-
+const colors = require('tailwindcss/colors')
 module.exports = {
     purge: [
         "./storage/framework/views/*.php",
@@ -9,6 +9,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                orange: colors.orange,
                 primary: {
                     500: "#28A745",
                     600: "#1E5631"
@@ -126,10 +127,7 @@ module.exports = {
     variants: {
         opacity: ["responsive", "hover", "focus", "disabled"]
     },
-
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true
-    },
-    plugins: [require("@tailwindcss/ui")]
+    plugins: [
+        require('@tailwindcss/forms'),
+    ]
 };

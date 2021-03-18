@@ -15,8 +15,7 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/tblinks.js", "public/js")
     .js("resources/js/emojibtn.js", "public/js")
     .postCss("resources/css/app.css", "public/css", [
-        require("postcss-import"),
-        require("tailwindcss")
+        require("tailwindcss"),
     ])
     .browserSync({
         notify: false,

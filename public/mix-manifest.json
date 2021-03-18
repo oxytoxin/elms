@@ -1,6 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
+    "/js/tblinks.js": "/js/tblinks.js",
     "/js/emojibtn.js": "/js/emojibtn.js",
-    "/js/tblinks.js": "/js/tblinks.js"
+    "/css/app.css": "/css/app.css"
 }

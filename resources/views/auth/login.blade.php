@@ -1,47 +1,71 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+    <div class="flex min-h-screen bg-white">
+        <div class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="w-full max-w-sm mx-auto lg:w-96">
+                <div>
+                    <img class="w-auto h-12" src="{{ asset('img/sksulogo.png') }}" alt="Workflow">
+                    <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                        Sign in to your accountssss
+                    </h2>
+                    <x-jet-validation-errors class="mb-4" />
+                    @if (session('status'))
+                    <div class="mb-4 text-sm font-medium text-green-600">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                </div>
 
-        <x-jet-validation-errors class="mb-4" />
+                <div class="mt-8">
+                    <div class="mt-6">
+                        <form action="#" method="POST" class="space-y-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">
+                                    Email address
+                                </label>
+                                <div class="mt-1">
+                                    <input id="email" autofocus value="{{ old('email') }}" name="email" type="email" autocomplete="email" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </div>
+                            </div>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+                            <div class="space-y-1">
+                                <label for="password" class="block text-sm font-medium text-gray-700">
+                                    Password
+                                </label>
+                                <div class="mt-1">
+                                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember" name="remember" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <label for="remember" class="block ml-2 text-sm text-gray-900">
+                                        Remember me
+                                    </label>
+                                </div>
+
+                                @if (Route::has('password.request'))
+                                <div class="text-sm">
+                                    <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                        Forgot your password?
+                                    </a>
+                                </div>
+                                @endif
+
+                            </div>
+
+                            <div>
+                                <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        @endif
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <div>
-                <x-jet-label value="{{ __('Email') }}" />
-                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label value="{{ __('Password') }}" />
-                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
+        </div>
+        <div class="relative flex-1 hidden w-0 lg:block">
+            <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset('img/bg.jpg') }}" alt="">
+        </div>
+    </div>
 </x-guest-layout>

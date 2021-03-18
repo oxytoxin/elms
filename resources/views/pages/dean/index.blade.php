@@ -9,8 +9,8 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 @endsection
 @section('sidebar')
-    @include('includes.dean.sidebar')
+@include('includes.dean.sidebar')
 @endsection

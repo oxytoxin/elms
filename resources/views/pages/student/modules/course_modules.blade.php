@@ -11,10 +11,10 @@
         @forelse($modules as $module)
         <div class="w-full overflow-hidden border-4 border-primary-600 h-96">
             <div class="h-1/2"><img src="{{ $module->image->url }}" class="object-cover w-full h-full" alt="module"></div>
-            <div class="p-2 text-white h-4/12 bg-secondary-500">
+            <div class="p-2 text-white h-2/6 bg-secondary-500">
                 <h1 class="text-sm text-center">{{ $module->name }}</h1>
             </div>
-            <div class="h-2/12">
+            <div class="h-1/6">
                 <a href="{{ route('student.module',['module'=>$module->id]) }}" class="flex items-center justify-center w-full h-full p-1 text-white hover:text-black bg-primary-600">
                     View Module
                 </a>
