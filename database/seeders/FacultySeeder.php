@@ -36,10 +36,10 @@ class FacultySeeder extends Seeder
         foreach ($teachers as $key => $teacher) {
             $u = User::create([
                 'campus_id' => Campus::get()->random()->id,
-                'name' => ucwords($teacher[0]),
+                'name' => ucwords(strtolower($teacher[0])),
                 'email' => strtolower($teacher[1]),
                 'email_verified_at' => now(),
-                'password' => bcrypt(explode(' ', trim($teacher[0]))[0]), // password
+                'password' => bcrypt(base64_encode(explode(' ', trim($teacher[0]))[0])), // password
                 'remember_token' => Str::random(10),
             ]);
             $u->roles()->attach(Role::find(3));

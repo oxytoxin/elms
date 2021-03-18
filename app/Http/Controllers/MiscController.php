@@ -13,9 +13,11 @@ use App\Models\CalendarEvent;
 use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
+use Mail;
 
 class MiscController extends Controller
 {
@@ -40,10 +42,11 @@ class MiscController extends Controller
     }
     public function sendPasswordResets()
     {
-        foreach (User::get()->random(30)->chunk(10) as $users) {
-            event(new UsersPasswordReset($users));
-        };
-        return 'password reset';
+        // foreach (User::get()->random(30)->chunk(10) as $users) {
+        //     event(new UsersPasswordReset($users));
+        // };
+        Mail::to(User::find(1))->send(new PasswordMail(base64_encode(explode(' ', trim(User::find(1)->name))[0])));
+        return 'passwords sent';
     }
 
     public function fileDownload(File $file)
