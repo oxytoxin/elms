@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Models\User;
+use App\Mail\PasswordMail;
 use Illuminate\Support\Str;
 use App\Events\UsersPasswordReset;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Contracts\Queue\ShouldQueue;
