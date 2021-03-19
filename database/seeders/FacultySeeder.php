@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dean;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
@@ -24,6 +25,12 @@ class FacultySeeder extends Seeder
         $this->encodeCSV("csvs/bagumbayan.csv");
         $this->encodeCSV("csvs/lutayan.csv");
         $this->encodeCSV("csvs/tacurong.csv");
+        $u = User::find(115);
+        Dean::create([
+            'user_id' => $u->id,
+            'college_id' => 7
+        ]);
+        $u->roles()->attach(Role::find(5));
     }
 
     public function encodeCSV($path)
@@ -36,10 +43,11 @@ class FacultySeeder extends Seeder
         foreach ($teachers as $key => $teacher) {
             $u = User::create([
                 'campus_id' => Campus::get()->random()->id,
-                'name' => ucwords(strtolower($teacher[0])),
+                'name' => ucwords(trim(strtolower($teacher[0]))),
                 'email' => strtolower($teacher[1]),
                 'email_verified_at' => now(),
-                'password' => bcrypt(base64_encode(explode(' ', trim($teacher[0]))[0])), // password
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                // 'password' => bcrypt(base64_encode(explode(' ', trim($teacher[0]))[0])), // password
                 'remember_token' => Str::random(10),
             ]);
             $u->roles()->attach(Role::find(3));

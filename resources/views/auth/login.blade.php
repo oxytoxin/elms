@@ -66,6 +66,7 @@
         </div>
         <div class="relative flex-1 hidden w-0 lg:block">
             <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset('img/bg.jpg') }}" alt="">
+            <img src="{{ asset('img/leina.png') }}" alt="leina image" class="absolute w-44 top-5 right-10">
         </div>
     </div>
 </x-guest-layout>

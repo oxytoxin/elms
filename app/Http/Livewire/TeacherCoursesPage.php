@@ -36,6 +36,10 @@ class TeacherCoursesPage extends Component
     public $showQuery = false;
     protected $students = [];
 
+    public $messages = [
+        'resources.filled' => 'A file is required for module resources.',
+    ];
+
     public function render()
     {
         if ($this->email) {
@@ -83,10 +87,12 @@ class TeacherCoursesPage extends Component
         $this->enrolStudent();
     }
 
+
     public function updateModule()
     {
         $this->moduleSelected = Module::find($this->module_id);
     }
+
 
     public function enrolStudent()
     {
@@ -119,9 +125,8 @@ class TeacherCoursesPage extends Component
             'module_id' => ['required', 'not_in:0'],
             'title' => 'required|string',
             'description' => 'required|string',
-            'resources.*' => 'required|file'
+            'resources' => 'filled'
         ]);
-
         DB::transaction(function () {
             $res = Resource::create([
                 'teacher_id' => auth()->user()->teacher->id,
@@ -144,8 +149,8 @@ class TeacherCoursesPage extends Component
         $this->fileId++;
         $this->title = "";
         $this->description = "";
-        $this->module_id = null;
-        $this->moduleSelected = null;
+        // $this->module_id = null;
+        $this->updateModule();
         $this->resources = [];
         $this->section = $this->section;
         $this->alert('success', 'Resources have been added.');
@@ -158,7 +163,7 @@ class TeacherCoursesPage extends Component
         }
         $resource->delete();
         $this->section = $this->section;
-        $this->alert('success', 'Module resources have been added.', ['toast' => false, 'position' => 'center']);
+        $this->alert('success', 'Module resources have been removed.', ['toast' => false, 'position' => 'center']);
     }
 
     public function copyAlert()

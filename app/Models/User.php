@@ -106,6 +106,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Chatroom::class);
     }
+    public function supports()
+    {
+        return $this->hasMany(Support::class)->orderByDesc('created_at');
+    }
     public function scopeIsStudent()
     {
         return (bool)Auth::user()->roles()->find(2);
@@ -134,6 +138,18 @@ class User extends Authenticatable
         } else if ($this->isDean()) {
             return 'dean';
         }
+    }
+
+    public function getUnreadSupportAttribute()
+    {
+        return $this->supports()->whereReadAt(null)->get();
+    }
+
+    public function readSupports()
+    {
+        $this->unread_support->toQuery()->update([
+            'read_at' => Carbon::now()
+        ]);
     }
 
     public function sentMessages()

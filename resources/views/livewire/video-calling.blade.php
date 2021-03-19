@@ -1,11 +1,12 @@
-<div id="meet" class="w-full h-full">
+<div id="meet" class="relative w-full h-full">
+    <div class="absolute top-0 left-0 w-32 h-32 bg-transparent"></div>
 </div>
 
 @push('scripts')
 <script>
     document.addEventListener('livewire:load', () => {
-        // const domain = 'meet.jit.si';
-        const domain = 'jitsi.toxinsgrace.me';
+        const domain = 'meet.jit.si';
+        // const domain = 'jitsi.toxinsgrace.me';
         const options = {
             roomName: @this.room
             , userInfo: {
@@ -14,9 +15,9 @@
             , }
             , configOverwrite: {
                 enableWelcomePage: false
-                , enableClosePage: true
+                , enableClosePage: false
                 , disableProfile: true
-                , prejoinPageEnabled: false
+                , prejoinPageEnabled: true
                 , disableProfile: true
                 , disableDeepLinking: true
                 , disableInviteFunctions: true
@@ -41,6 +42,9 @@
             , apiLogLevels: ['error']
         , };
         const api = new JitsiMeetExternalAPI(domain, options);
+        api.on('videoConferenceLeft', (e) => {
+            Livewire.emit('endmeeting');
+        })
     })
 
 </script>

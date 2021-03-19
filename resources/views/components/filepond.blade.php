@@ -1,5 +1,5 @@
 @props(['inputname'])
-<div class="my-2" wire:ignore x-data="{pond: null}" x-init="
+<div class="my-2 border border-primary-600" wire:ignore x-data="{pond: null}" x-init="
         FilePond.registerPlugin(FilePondPluginImagePreview);
         pond = FilePond.create($refs.input);
         pond.setOptions({

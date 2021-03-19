@@ -14,6 +14,7 @@ use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Mail\PasswordMail;
+use App\Models\Support;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
@@ -39,7 +40,19 @@ class MiscController extends Controller
         // } else $email = 'mjlac.kali@gmail.com';
         // Password::sendResetLink(['email' => $email]);
         // return "email sent to $email";
-        Mail::to(User::find(1))->send(new PasswordMail(base64_encode(strtoupper(explode(' ', trim(User::find(1)->name))[0]))));
+        // $users = User::whereIn('email', ['joeselayro@sksu.edu.ph'])->get();
+        // foreach ($users as $user) {
+        //     Mail::to($user)->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper($user->name)))[0])));
+        // }
+        // for ($i = 0; $i < 10; $i++) {
+        //     $r = rand(0, 1);
+        //     User::find(1)->supports()->create([
+        //         'message' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, deserunt?.',
+        //         'isQuery' => $r ? true : false,
+        //     ]);
+        // }
+        // User::find(1)->readSupports();
+        Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper('oxytoxinsgrace')))[0])));
     }
     public function sendPasswordResets()
     {

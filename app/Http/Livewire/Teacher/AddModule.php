@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Teacher;
 
+use DB;
 use App\Models\Course;
 use App\Models\Module;
 use App\Models\Section;
-use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class AddModule extends Component
 {
@@ -40,9 +41,12 @@ class AddModule extends Component
 
     public function deleteModule(Module $module)
     {
+        foreach ($module->files as $f) {
+            Storage::cloud()->delete($f->google_id);
+        }
         $module->delete();
         $this->section = Section::find($this->section->id);
-        session()->flash('module_deleted', 'Module resources has been updated.');
+        $this->alert('success', 'Module has been removed.', ['toast' => false, 'position' => 'center']);
     }
 
     public function addModule()
