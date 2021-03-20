@@ -89,7 +89,9 @@
                 @endforelse
                 @if ($item['attachment'])
                 <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
-                <x-filepond disabled wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
+                <div wire:key="filepond-{{ $key }}">
+                    <x-filepond disabled wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
+                </div>
                 @endif
                 @if ($item['essay'])
                 <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer" cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>

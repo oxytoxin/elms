@@ -1,4 +1,4 @@
-<div class="z-20" x-data="{ showGradingSystem : false, readWeights : @entangle('readWeights'), showEditDays : @entangle('showEditDays') }">
+<div class="z-20 w-full" x-data="{ showGradingSystem : false, readWeights : @entangle('readWeights'), showEditDays : @entangle('showEditDays') }">
     <div x-show.transition="showEditDays" x-cloak class="fixed inset-0 z-50 grid bg-gray-500 bg-opacity-50 place-items-center">
         <div @click.away="showEditDays = false" class="p-5 bg-white rounded-lg shadow-lg ">
             <h1 class="mb-2 text-center">{{ $editing }}</h1>
@@ -37,9 +37,9 @@
                         @endforelse
                     </select>
                 </div>
-                <button onclick="clearSelections()" class="p-3 text-xs font-bold text-white uppercase rounded-lg md:col-span-1 hover:bg-primary-600 bg-primary-500">Clear
-                    highlighted</button>
             </div>
+            <button onclick="clearSelections()" class="p-3 text-xs font-bold text-white uppercase rounded-lg md:col-span-1 hover:bg-primary-600 bg-primary-500">Clear
+                highlighted</button>
         </div>
         <div class="flex flex-col items-center justify-center my-3 md:flex-row">
             <div class="mx-5">
@@ -91,8 +91,8 @@
         </div>
     </div>
     @if ($tasks->count())
-    <div x-ref="tablecontainer" id="table-container" class="overflow-auto text-gray-700" style="max-height:75vh;">
-        <table id="table_id" class="inline-block w-0 m-2 text-sm text-center border-collapse table-fixed">
+    <div x-ref="tablecontainer" id="table-container" class="overflow-auto lg:w-[60vw] mx-auto text-gray-700 max-h-[75vh]">
+        <table id="table_id" class="inline-block text-sm text-center border-collapse table-fixed">
             <thead class="text-black border">
                 <tr class="h-8">
                     <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>

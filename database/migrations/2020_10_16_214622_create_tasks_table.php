@@ -15,6 +15,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('quarter_id')->default(1)->constrained();
             $table->boolean('open')->default(true);
             $table->dateTime('open_on')->nullable()->default(null);
             $table->foreignId('module_id')->constrained();

@@ -7,23 +7,26 @@
     }
 }
 
+.selected-row {
+    @apply bg-gradient-to-b from-green-400 to-green-500 border-2 border-primary-600 !important;
+}
+
+@tailwind utilities;
+
 [x-cloak] {
     display: none !important;
 }
-/* width */
+
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 3px;
+    height: 7px;
 }
-/* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    @apply bg-primary-600;
 }
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888;
 }
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
@@ -45,9 +48,3 @@ button:focus {
 [data-tooltip="Pop-out"] {
     display: none;
 }
-
-.selected-row {
-    @apply bg-gradient-to-b from-green-400 to-green-500 border-2 border-primary-600 !important;
-}
-
-@tailwind utilities;

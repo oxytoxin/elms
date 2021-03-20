@@ -46,7 +46,7 @@
     <div class="flex w-full" x-data="{showSidebar:true, mobile: false}" x-init="()=>{
         if(window.matchMedia('(max-width: 768px)').matches){mobile=true; showSidebar=false;}
     }">
-        <aside @click.away="if(mobile)showSidebar = false" x-show="showSidebar" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-x-40" x-transition:enter-end="opacity-100 transform" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="opacity-0 transform -translate-x-40" class="fixed top-0 z-50 flex-shrink-0 h-screen text-white md:sticky max-w-72 bg-primary-600">
+        <aside @click.away="if(mobile)showSidebar = false" x-show="showSidebar" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-x-40" x-transition:enter-end="opacity-100 transform" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="opacity-0 transform -translate-x-40" class="fixed top-0 left-0 z-50 flex-shrink-0 h-screen overflow-y-hidden text-white md:sticky max-w-72 bg-primary-600">
             @yield('sidebar')
         </aside>
         <main class="flex flex-col w-full min-h-screen">

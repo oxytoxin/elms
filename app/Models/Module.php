@@ -27,6 +27,11 @@ class Module extends Model
         return $this->belongsTo(Course::class);
     }
 
+    public function quarter()
+    {
+        return $this->belongsTo(Quarter::class);
+    }
+
     public function section()
     {
         return $this->belongsTo(Section::class);

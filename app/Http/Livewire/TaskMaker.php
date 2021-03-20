@@ -296,6 +296,7 @@ class TaskMaker extends Component
             if (count($this->matchingTypeOptions)) $matchingtype_options = json_encode($this->matchingTypeOptions);
             else $matchingtype_options = null;
             $task = Task::create([
+                'quarter_id' => $this->module->quarter_id,
                 'autocorrect' => $this->autocorrect,
                 'module_id' => $this->module->id,
                 'section_id' => $this->module->section_id,

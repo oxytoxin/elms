@@ -16,7 +16,7 @@
                     @enderror
                 </div>
             </div>
-            <div>
+            <div wire:key="filepond">
                 <x-filepond inputname="module_files" type="file" required wire:model="moduleFiles" class="w-full form-input" multiple id="file{{ $fileId }}" name="module" />
             </div>
             <div>

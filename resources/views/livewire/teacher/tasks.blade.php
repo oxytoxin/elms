@@ -16,7 +16,7 @@
         </div>
     </div>
     @if ($display_grid)
-    <div class="grid gap-3 mt-3 md:grid-cols-3" style="grid-auto-rows: 1fr">
+    <div class="grid gap-3 mt-3 auto-rows-[1fr] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         @forelse ($tasks as $task)
         <a href="{{ route('teacher.task', ['task' => $task->id]) }}">
             <div class="flex flex-col h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
@@ -63,7 +63,7 @@
     <div class="flex flex-col mt-5 space-y-2">
         @forelse ($tasks as $task)
         <a href="{{ route('teacher.task', ['task' => $task->id]) }}">
-            <div class="flex items-center justify-between p-3 hover:bg-green-400 rounded-md  {{ $task->deadline < now() ? 'bg-red-400' : ($loop->iteration % 2 ? 'bg-green-300' : 'bg-green-200') }}">
+            <div class="flex flex-col md:flex-row items-center justify-between p-3 hover:bg-green-400 rounded-md  {{ $task->deadline < now() ? 'bg-red-400' : ($loop->iteration % 2 ? 'bg-green-300' : 'bg-green-200') }}">
                 <div class="flex items-center space-x-2">
                     <img class="w-12 h-12 rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                     <div class="text-sm font-semibold">

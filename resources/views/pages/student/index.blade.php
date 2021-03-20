@@ -7,7 +7,7 @@
             <a href="{{ route('student.enrol_via_code') }}" class="inline-block p-3 font-semibold text-white bg-primary-500 hover:text-primary-600">ENROLL CODE</a>
         </div>
     </div>
-    <div class="gap-2 md:grid-cols-3 xxl:grid-cols-5 xl:grid-cols-4 md:grid">
+    <div class="gap-2 grid-cols-[repeat(auto-fill,minmax(200px,1fr))] md:grid">
         @forelse($sections as $section)
         <div class="w-full overflow-hidden border-4 border-primary-600 h-96">
             <div class="h-1/2"><img src="{{ $section->course->image->url }}" class="object-cover w-full h-full" alt="course"></div>

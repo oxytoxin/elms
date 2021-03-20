@@ -60,6 +60,7 @@ class AddModule extends Component
             $modulesArray = [];
             foreach ($sections as  $sect) {
                 $mod = Module::create([
+                    'quarter_id' => $sect->quarter_id,
                     'section_id' => $sect->id,
                     'course_id' => $sect->course->id,
                     'name' => $this->moduleName

@@ -15,10 +15,10 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/tblinks.js", "public/js")
     .js("resources/js/emojibtn.js", "public/js")
     .postCss("resources/css/app.css", "public/css", [
-        require("tailwindcss"),
-    ])
-    .browserSync({
-        notify: false,
-        proxy: "elms.test",
-        port: 3000
-    });
+        require("@tailwindcss/jit"),
+    ]);
+    // .browserSync({
+    //     notify: false,
+    //     proxy: "https://sksu-eleads.com",
+    //     port: 3000
+    // });

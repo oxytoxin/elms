@@ -7,7 +7,7 @@
         <a data-turbolinks="false" href="{{ route('student.meeting',['room' => $section->videoroom->code, 'section_id' => $section->id]) }}" class="inline-block p-2 border-2 border-white rounded-lg hover:bg-primary-600">JOIN MEETING</a>
         @endif
     </h1>
-    <div class="grid gap-2 mt-5 md:grid-cols-3 xxl:grid-cols-5 xl:grid-cols-4">
+    <div class="grid gap-2 mt-5 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
         @forelse($modules as $module)
         <div class="w-full overflow-hidden border-4 border-primary-600 h-96">
             <div class="h-1/2"><img src="{{ $module->image->url }}" class="object-cover w-full h-full" alt="module"></div>

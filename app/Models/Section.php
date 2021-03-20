@@ -23,6 +23,11 @@ class Section extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function quarter()
+    {
+        return $this->belongsTo(Quarter::class);
+    }
+
     public function grading_system()
     {
         return $this->hasOne(GradingSystem::class);

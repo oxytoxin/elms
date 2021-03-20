@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Quarter;
 use App\Models\TaskType;
 use Illuminate\Database\Seeder;
 
@@ -26,5 +27,8 @@ class TaskTypeSeeder extends Seeder
         TaskType::create([
             'name' => 'exam'
         ]);
+
+        Quarter::create(['name' => 'midterm']);
+        Quarter::create(['name' => 'finals']);
     }
 }

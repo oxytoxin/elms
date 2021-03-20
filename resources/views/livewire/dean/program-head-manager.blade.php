@@ -1,17 +1,25 @@
-<div class="px-5">
+<div class="px-5" x-data="{showQuery : @entangle('showQuery')}">
     <h1 class="text-2xl font-semibold">MANAGE PROGRAM HEADS</h1>
     <div class="mt-5">
-        <div class="flex flex-col space-y-2">
-            <input type="text" name="programhead_email" wire:model.lazy="email" placeholder="firstname.lastname@sksu.edu.ph" id="programhead_email" class="flex-grow min-w-80 form-input" autofocus>
+        <div class="relative flex flex-col space-y-2">
+            <input type="text" name="programhead_email" wire:model="email" placeholder="firstnamelastname@sksu.edu.ph" id="programhead_email" class="flex-grow min-w-80 form-input" autofocus>
             @error('email')
             <h1 class="text-xs italic font-semibold text-red-600">{{ $message }}</h1>
             @enderror
+            <div x-show="showQuery" class="absolute w-full overflow-y-auto bg-white border divide-y-2 shadow top-12 max-h-48 mt-14">
+                @foreach ($teachers as $teacher)
+                <div wire:click="setEmail('{{ $teacher->email }}')" wire:key="teacher-{{ $teacher->id }}" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
+                    <h1>{{ $teacher->name }}</h1>
+                    <h1>{{ $teacher->email }}</h1>
+                </div>
+                @endforeach
+            </div>
             <div class="text-xs italic font-semibold text-red-600">
                 @if(session('error'))
                 {{ session('error') }}
                 @endif
             </div>
-            <select wire:model.lazy="department_id" name="department_select" class="form-select" id="department_select">
+            <select wire:model="department_id" name="department_select" class="form-select" id="department_select">
                 <option value="0" selected hidden disabled>Select department</option>
                 @foreach ($departments as $department)
                 <option value="{{ $department->id }}">{{ $department->name }}</option>

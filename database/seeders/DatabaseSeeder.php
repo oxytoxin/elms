@@ -30,13 +30,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CollegeSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(CampusSeeder::class);
-        $this->call(FacultySeeder::class);
         // $this->call(DepartmentSeeder::class);
         // $this->call(DeploySeeder::class);
         DB::unprepared(file_get_contents('database/seeders/subjects.sql'));
         $this->call(CoursesSeeder::class);
         DB::unprepared(file_get_contents('database/seeders/prospectus.sql'));
         $this->call(TaskTypeSeeder::class);
+        $this->call(FacultySeeder::class);
         // $this->call(MiscSeeder::class);
         // $this->call(ChatSeeder::class);
     }

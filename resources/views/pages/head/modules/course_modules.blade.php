@@ -4,7 +4,7 @@
     <div>
         <h1 class="text-2xl font-semibold">MODULES MANAGER</h1>
         <h1 class="flex justify-between p-2 my-2 italic font-semibold text-white bg-primary-500"><span>{{ $section->course->name }}</span><span class="not-italic">{{ $section->code }}</span></h1>
-        <div class="grid gap-2 md:grid-cols-3 xxl:grid-cols-5 xl:grid-cols-4">
+        <div class="grid gap-2 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
             @forelse($modules as $module)
             <div class="w-full overflow-hidden transition duration-500 transform border-4 hover:scale-105 border-primary-600 h-96">
                 <div class="h-1/2"><img src="{{ $module->image->url ?? asset('img/bg/bg(2).jpg') }}" class="object-cover w-full h-full" alt="course"></div>

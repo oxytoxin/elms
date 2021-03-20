@@ -35,6 +35,11 @@ class Task extends Model
         return $this->module->course;
     }
 
+    public function quarter()
+    {
+        return $this->belongsTo(Quarter::class);
+    }
+
     public function task_type()
     {
         return $this->belongsTo(TaskType::class);
