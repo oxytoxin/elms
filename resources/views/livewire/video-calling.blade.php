@@ -16,6 +16,7 @@
             , configOverwrite: {
                 enableWelcomePage: false
                 , enableClosePage: false
+                , disableAudioLevels: true
                 , disableProfile: true
                 , prejoinPageEnabled: true
                 , disableProfile: true

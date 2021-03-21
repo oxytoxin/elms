@@ -59,6 +59,12 @@ class Student extends Model
     {
         return $this->belongsToMany(Task::class)->using(StudentTask::class)->withPivot('score', 'date_submitted', 'isGraded', 'answers', 'assessment');
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
     // public function getAllTasksAttribute()
     // {
     //     return $this->teachers->unique()->map(function ($t) {
@@ -133,10 +139,11 @@ class Student extends Model
         return $this->hasMany(Extension::class);
     }
 
-    public function allTasks(Section $section, $tasks)
+    public function allTasksBySection(Section $section, $quarter_id)
     {
-        return Cache::remember("$this->id-allTasks", 5, function () use ($tasks, $section) {
-            $tasks = $tasks->flatten();
+        return Cache::remember("$this->id-allTasks", 5, function () use ($section, $quarter_id) {
+            // $tasks = $tasks->flatten();
+            $tasks = $this->getSectionTasks($section, $quarter_id)->flatten();
             $student_tasks = $this->tasks->where('section_id', $section->id)->groupBy('task_type_id')->sortKeys()->flatten();
             $tasks = $tasks->map(function ($k) use ($student_tasks) {
                 $st = $student_tasks->first(function ($v) use ($k) {
@@ -148,5 +155,42 @@ class Student extends Model
             });
             return $tasks->groupBy('task_type_id');
         });
+    }
+
+    public function getDaysPresentAttribute()
+    {
+        if ($this->pivot && $this->pivot->days_present) return $this->pivot->days_present;
+        else return 0;
+    }
+
+    public function getGrades(Section $section, $quarter_id)
+    {
+        $grades = collect();
+        $section_tasks = $this->getSectionTasks($section, $quarter_id);
+        $alltasks = $this->allTasksBySection($section, $quarter_id);
+        foreach ($alltasks as  $key => $tasks) {
+            $grades[] = round($tasks->sum('pivot.score') / $section_tasks[$key]->sum('max_score') * $section->grading_system->getWeightValue($key), 3);
+        }
+        return $grades;
+    }
+
+    public function getGradeByTaskType(Section $section, $quarter_id, $task_type)
+    {
+        $section_tasks = $this->getSectionTasks($section, $quarter_id);
+        $alltasks = $this->allTasksBySection($section, $quarter_id);
+        if ($alltasks) {
+            $grade = round($alltasks[$task_type]->sum('pivot.score') / $section_tasks[$task_type]->sum('max_score') * $section->grading_system->getWeightValue($task_type), 3);
+        } else $grade = 0;
+        return $grade;
+    }
+
+    public function getSectionTasks(Section $section, $quarter_id)
+    {
+        return $section->tasks()->where('quarter_id', $quarter_id)->with('task_type')->get()->groupBy('task_type_id')->sortKeys();
+    }
+
+    public function getAttendanceGrade(Section $section)
+    {
+        return round($this->days_present / $section->total_days * $section->grading_system->attendance_weight, 2);
     }
 }

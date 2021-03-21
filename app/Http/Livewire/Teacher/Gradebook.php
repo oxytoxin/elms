@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Teacher;
 use App\Exports\GradesExport;
 use App\Models\Course;
 use App\Models\GradingSystem;
+use App\Models\Quarter;
 use App\Models\Section;
 use Livewire\Component;
 use App\Models\TaskType;
@@ -28,6 +29,10 @@ class Gradebook extends Component
     public $showEditDays = false;
     public $editValue = 0;
     public $activeStudent;
+    public $quarters;
+    public $quarter_id = "";
+
+
     public $colors = ['bg-red-200', 'bg-pink-200', 'bg-yellow-200', 'bg-orange-200', 'bg-indigo-200'];
 
     protected $listeners = ['confirmed', 'cancelled', 'refresh' => '$refresh'];
@@ -45,6 +50,18 @@ class Gradebook extends Component
         'editValue' => 'days present'
     ];
 
+
+    public function mount()
+    {
+        $this->courses  = auth()->user()->teacher->courses;
+        $this->quarters = Quarter::get();
+        $this->course = auth()->user()->teacher->courses()->first();
+        if (!$this->course) abort(404);
+        $this->course_id = $this->course->id;
+        $this->grading_system = Section::find($this->course->sections->first()->id)->grading_system;
+        $this->quarter_id = $this->course->sections->first()->quarter_id;
+    }
+
     public function render()
     {
         $weights = [
@@ -60,7 +77,7 @@ class Gradebook extends Component
         $this->task_types = TaskType::withTaskCount()->get();
         $this->section = Section::find($this->section_id);
         $this->grading_system = $this->section->grading_system;
-        $this->tasks = $this->section->tasks()->with('task_type')->get()->groupBy('task_type_id')->sortKeys();
+        $this->tasks = $this->section->tasks()->where('quarter_id', $this->quarter_id)->with('task_type')->get()->groupBy('task_type_id')->sortKeys();
         $this->students = $this->section->students()->withName()->get()->sortBy('name');
         return view('livewire.teacher.gradebook', [
             'tasks' => $this->tasks,
@@ -114,15 +131,6 @@ class Gradebook extends Component
         $this->emitSelf('refresh');
     }
 
-    public function mount()
-    {
-        $this->courses  = auth()->user()->teacher->courses;
-        $this->course = auth()->user()->teacher->courses()->first();
-        if (!$this->course) abort(404);
-        $this->course_id = $this->course->id;
-        $this->grading_system = Section::find($this->course->sections->first()->id)->grading_system;
-    }
-
 
     public function saveWeights()
     {
@@ -163,6 +171,7 @@ class Gradebook extends Component
     public function updateSection()
     {
         $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
+        $this->quarter_id = Section::find($this->section_id)->quarter_id;
         $this->dispatchBrowserEvent('livewire:load');
     }
 }

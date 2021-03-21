@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Teacher;
 
+use App\Models\Course;
 use Livewire\Component;
 use App\Models\TaskType;
 use Livewire\WithPagination;
@@ -15,23 +16,39 @@ class Tasks extends Component
     use WithPagination;
 
     public $task_type;
+    public $courses;
+    public $course_id = "";
+    public $sections;
+    public $section_id = "";
     protected $tasks;
     public $display_grid = true;
     public $filter = "all";
 
     public function render()
     {
+        $this->courses = auth()->user()->teacher->courses;
+        $this->sections = auth()->user()->teacher->sections;
+        $this->tasks = $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id);
+        if ($this->course_id) {
+            $this->tasks = $this->tasks->whereHas('section', function ($query) {
+                $query->where('course_id', $this->course_id);
+            });
+            $this->sections = auth()->user()->teacher->sections->where('course_id', $this->course_id);
+        }
+        if ($this->section_id) {
+            $this->tasks = $this->tasks->where('section_id', $this->section_id);
+        }
         switch ($this->filter) {
             case 'all':
-                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->get();
+                $this->tasks = $this->tasks->get();
                 break;
             case 'toGrade':
-                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->get()->filter(function ($t) {
+                $this->tasks = $this->tasks->get()->filter(function ($t) {
                     return $t->ungraded > 0;
                 });
                 break;
             case 'pastDeadline':
-                $this->tasks = auth()->user()->teacher->tasks()->with('module')->withSectionCode()->withUngraded()->withGraded()->withSubmissions()->where('task_type_id', $this->task_type->id)->where('deadline', '<', now())->get();
+                $this->tasks = $this->tasks->where('deadline', '<', now())->get();
                 break;
         }
         $page = Paginator::resolveCurrentPage() ?: 1;
@@ -48,6 +65,11 @@ class Tasks extends Component
         ])
             ->extends('layouts.master')
             ->section('content');
+    }
+
+    public function updatedCourseId()
+    {
+        $this->section_id = "";
     }
 
     public function mount($task_type)

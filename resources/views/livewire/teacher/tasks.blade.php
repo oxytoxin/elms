@@ -15,6 +15,30 @@
             <span wire:click="filterPastDeadline" class="text-red-600 px-2 font-semibold {{ $filter == 'pastDeadline' ? 'bg-green-500' : 'bg-gray-300' }} rounded-lg cursor-pointer hover:bg-gray-400"><i class="mr-2 icofont-warning"></i>DUE</span>
         </div>
     </div>
+    <div class="flex flex-col my-2 text-sm md:space-x-2 md:flex-row">
+        <div class="w-full">
+            <h1 class="font-semibold">Course:</h1>
+            <select wire:change="resetPage" wire:model="course_id" class="w-full text-sm truncate form-select" name="course_select" id="course_select">
+                <option value="" selected>All courses</option>
+                @forelse ($courses as $c)
+                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                @empty
+                <option value="0" selected disabled hidden>No Courses Found.</option>
+                @endforelse
+            </select>
+        </div>
+        <div class="w-full">
+            <h1 class="font-semibold">Course:</h1>
+            <select wire:change="resetPage" wire:model="section_id" class="w-full text-sm truncate form-select" name="course_select" id="course_select">
+                <option value="" selected>All sections.</option>
+                @forelse ($sections as $section)
+                <option value="{{ $section->id }}">{{ $section->code }}</option>
+                @empty
+                <option value="0" selected disabled hidden>No Sections Found.</option>
+                @endforelse
+            </select>
+        </div>
+    </div>
     @if ($display_grid)
     <div class="grid gap-3 mt-3 auto-rows-[1fr] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         @forelse ($tasks as $task)
