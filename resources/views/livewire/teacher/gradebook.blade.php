@@ -1,5 +1,5 @@
 <div class="z-20 w-full" x-data="{ showGradingSystem : false, readWeights : @entangle('readWeights'), showEditDays : @entangle('showEditDays') }">
-    <x-loading wire:loading.delay wire:loading.class="grid" />
+    <x-loading message="Please wait..." wire:loading.delay />
     <div x-show.transition="showEditDays" x-cloak class="fixed inset-0 z-50 grid bg-gray-500 bg-opacity-50 place-items-center">
         <div @click.away="showEditDays = false" class="p-5 bg-white rounded-lg shadow-lg ">
             <h1 class="mb-2 text-center">{{ $editing }}</h1>
