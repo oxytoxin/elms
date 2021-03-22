@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dean;
 
+use App\Models\Department;
 use DB;
 use App\Models\Role;
 use App\Models\User;
@@ -62,21 +63,33 @@ class ProgramHeadManager extends Component
         $u = User::where('email', $this->email)->first();
         if (!$u) return session()->flash('error', 'Faculty member not found.');
         DB::transaction(function () use ($u) {
-            ProgramHead::create([
-                'user_id' => $u->id,
-                'department_id' => $this->department_id,
-                'college_id' => auth()->user()->dean->college_id,
-            ]);
+            $p = null;
+            if (!$u->program_head) {
+                $p = ProgramHead::create([
+                    'user_id' => $u->id,
+                    'college_id' => auth()->user()->dean->college_id,
+                ]);
+            } else {
+                $p = $u->program_head;
+            }
+            $d = Department::find($this->department_id);
+            $d->program_head()->associate($p);
+            $d->save();
             $u->roles()->attach(Role::find(4));
         });
         $this->email = '';
         $this->department_id = 0;
         session()->flash('message', "Program head successfully assigned.");
     }
-    public function removeProgramHead(ProgramHead $programhead)
+    public function removeProgramHead(Department $department, ProgramHead $programhead)
     {
-        $programhead->user->roles()->detach(Role::find(4));
-        $programhead->delete();
+        $department->program_head()->disassociate($programhead);
+        $department->save();
+        $programhead->refresh();
+        if (!$programhead->departments->count()) {
+            $programhead->user->roles()->detach(Role::find(4));
+            $programhead->delete();
+        }
         session()->flash('message', "Program head successfully removed.");
     }
 }

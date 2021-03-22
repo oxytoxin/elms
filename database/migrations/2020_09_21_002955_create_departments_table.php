@@ -18,6 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->foreignId('college_id')->constrained();
+            $table->foreignId('program_head_id')->nullable()->default(null)->constrained();
             $table->timestamps();
         });
     }

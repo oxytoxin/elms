@@ -13,6 +13,7 @@ use App\Models\Student;
 use App\Models\StudentTask;
 use Illuminate\Support\Str;
 use App\Models\CalendarEvent;
+use App\Models\Department;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -39,7 +40,9 @@ class FacultySeeder extends Seeder
             'college_id' => 7
         ]);
         $u->roles()->attach(Role::find(5));
-        $this->mockSeed($faker);
+        if (app()->environment('local')) {
+            $this->mockSeed($faker);
+        }
     }
 
     public function encodeCSV($path, $campus_id)
@@ -61,8 +64,8 @@ class FacultySeeder extends Seeder
             ]);
             $u->roles()->attach(Role::find(3));
             $u->teacher()->create([
-                'college_id' => 2,
-                'department_id' => 5,
+                'college_id' => null,
+                'department_id' => null,
             ]);
         }
     }
@@ -72,8 +75,10 @@ class FacultySeeder extends Seeder
         $u = User::whereEmail('cyrusrael@sksu.edu.ph')->first();
         $u->program_head()->create([
             'college_id' => 7,
-            'department_id' => 19
         ]);
+        $d = Department::find(19);
+        $d->program_head()->associate($u->program_head);
+        $d->save();
         $u->roles()->attach(Role::find(4));
         $u->teacher->update(['department_id' => 10]);
 
@@ -83,7 +88,7 @@ class FacultySeeder extends Seeder
 
         $c = Course::find(144);
         $c->teachers()->attach($u->teacher);
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $sec = $c->sections()->create([
                 'code' => 'IS - 4A',
                 'teacher_id' => $u->teacher->id,

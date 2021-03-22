@@ -49,12 +49,14 @@
             </thead>
             <tbody class="divide-y-2 divide-primary-600">
                 @forelse ($programheads as $programhead)
+                @foreach ($programhead->departments as $department)
                 <tr class="divide-x-2 divide-primary-600">
                     <td class="whitespace-nowrap">{{ $programhead->user->name }}</td>
                     <td>{{ $programhead->user->email }}</td>
-                    <td>{{ $programhead->department->name }}</td>
-                    <td><i onclick="confirm('Confirm removal of program head?') || event.stopImmediatePropagation()" wire:click.prevent="removeProgramHead({{ $programhead->id }})" class="text-red-600 cursor-pointer icofont-trash"></i></td>
+                    <td>{{ $department->name }}</td>
+                    <td><i onclick="confirm('Confirm removal of program head?') || event.stopImmediatePropagation()" wire:click.prevent="removeProgramHead({{ $department->id }},{{ $programhead->id }})" class="text-red-600 cursor-pointer icofont-trash"></i></td>
                 </tr>
+                @endforeach
                 @empty
                 <tr>
                     <td colspan="4">

@@ -15,7 +15,7 @@ class Department extends Model
     }
     public function program_head()
     {
-        return $this->hasOne(ProgramHead::class);
+        return $this->belongsTo(ProgramHead::class);
     }
     public function courses()
     {

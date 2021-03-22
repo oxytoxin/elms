@@ -15,22 +15,29 @@ class FacultyManager extends Component
     protected $teachers;
     protected $users;
     public $email = '';
+    public $department_id;
     public $showQuery = false;
+
+
+    public function mount()
+    {
+        $this->department_id = auth()->user()->program_head->departments->first()->id;
+    }
 
     public function render()
     {
-        $department = auth()->user()->program_head->department;
+        $department = auth()->user()->program_head->departments->first();
         $this->teachers = $department ? $department->teachers()->addSelect([
             'name' => User::select('name')->whereColumn('id', 'user_id')->limit(1)
         ])->orderBy('name')->paginate(10) : collect([]);
-        if($this->email){
+        if ($this->email) {
             $this->showQuery = true;
-            $this->users = User::where('name','like',"%$this->email%")->whereHas('roles',function(Builder $query){
-                $query->where('role_id',3);
-                })->orWhere('email','like',"%$this->email%")->whereHas('roles',function(Builder $query){
-            $query->where('role_id',3);
+            $this->users = User::where('name', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 3);
+            })->orWhere('email', 'like', "%$this->email%")->whereHas('roles', function (Builder $query) {
+                $query->where('role_id', 3);
             })->get();
-        }else {
+        } else {
             $this->showQuery = false;
             $this->users = [];
         }
@@ -51,10 +58,11 @@ class FacultyManager extends Component
     {
         $this->validate([
             'email' => 'required|email',
+            'department_id' => 'required'
         ]);
         $u = User::where('email', $this->email)->first();
-        if(!$u) return session()->flash('error', 'Faculty member not found.');
-        $u->teacher->update(['department_id' => auth()->user()->program_head->department_id]);
+        if (!$u) return session()->flash('error', 'Faculty member not found.');
+        $u->teacher->update(['department_id' => $this->department_id]);
         $this->email = '';
         session()->flash('message', 'Faculty member was successfully added.');
     }

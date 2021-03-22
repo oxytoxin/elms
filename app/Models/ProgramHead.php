@@ -17,9 +17,9 @@ class ProgramHead extends Model
     {
         return $this->belongsTo(College::class);
     }
-    public function department()
+    public function departments()
     {
-        return $this->belongsTo(Department::class);
+        return $this->hasMany(Department::class);
     }
     public function user()
     {

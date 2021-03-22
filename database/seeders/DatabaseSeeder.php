@@ -14,6 +14,7 @@ use Database\Seeders\DeploySeeder;
 use Database\Seeders\CollegeSeeder;
 use Database\Seeders\CoursesSeeder;
 use Database\Seeders\FacultySeeder;
+use Database\Seeders\StudentsSeeder;
 use Database\Seeders\TaskTypeSeeder;
 use Database\Seeders\DepartmentSeeder;
 
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents('database/seeders/prospectus.sql'));
         $this->call(TaskTypeSeeder::class);
         $this->call(FacultySeeder::class);
+        $this->call(StudentsSeeder::class);
         // $this->call(MiscSeeder::class);
         // $this->call(ChatSeeder::class);
     }
