@@ -2,7 +2,7 @@
 @section('content')
 <div>
     <h1 class="text-2xl font-semibold">MODULES MANAGER</h1>
-    <div class="grid gap-2 mt-5 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
+    <div class="grid gap-2 mt-5 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
         @forelse($sections as $section)
         <div class="w-full overflow-hidden border-4 border-primary-600 h-96">
             <div class="h-1/2"><img src="{{ $section->course->image->url }}" class="object-cover w-full h-full" alt="course"></div>

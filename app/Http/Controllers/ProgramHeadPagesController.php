@@ -12,20 +12,31 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProgramHeadPagesController extends Controller
 {
     public function home()
     {
         session(['whereami' => 'programhead']);
-        $department = Auth::user()->program_head->department_id;
-        $sections = Section::byDepartment($department)->with('course')->get();
+        $sections = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        });
         return view('pages.head.index', compact('sections'));
     }
     public function modules()
     {
-        $department = Auth::user()->program_head->department_id;
-        $modules = Module::byDepartment($department)->paginate(20);
+        $modules = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        })->flatMap(function ($section) {
+            return $section->modules;
+        });
+        $modules = $modules->count() ? Collection::make($modules)->toQuery()->paginate(20) : collect();
+
         return view('pages.head.modules.index', compact('modules'));
     }
     public function course_modules(Section $section)
@@ -40,8 +51,13 @@ class ProgramHeadPagesController extends Controller
     }
     public function courses()
     {
-        $department = Auth::user()->program_head->department_id;
-        $courses = auth()->user()->program_head->courses;
+        $courses = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        })->map(function ($section) {
+            return $section->course;
+        })->unique('id');
         return view('pages.head.courses.index', compact('courses'));
     }
     public function course(Course $course)

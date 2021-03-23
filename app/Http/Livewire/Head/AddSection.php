@@ -2,23 +2,27 @@
 
 namespace App\Http\Livewire\Head;
 
+use DB;
 use App\Models\Course;
 use App\Models\Section;
+use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\Department;
 use App\Notifications\GeneralNotification;
-use DB;
 
 class AddSection extends Component
 {
 
     protected $courses;
+    public $department_id = "";
+    public $course_query = "";
     protected $teachers;
     public $section_code = '';
     public $schedule = '';
     public $room = '';
-    public $course_select = "null";
-    public $faculty_select = "null";
+    public $course_select = "";
+    public $faculty_select = "";
+    public $showQuery = false;
 
 
     protected $messages = [
@@ -29,9 +33,15 @@ class AddSection extends Component
 
     public function render()
     {
-        $this->courses = auth()->user()->program_head->courses;
-        $department = Department::find(auth()->user()->program_head->department_id);
+        $this->courses = Course::query();
+        if ($this->course_query) {
+            $this->showQuery = true;
+            $this->courses = $this->courses->where('name', 'like', "%{$this->course_query}%")->orWhere('code', 'like', "%{$this->course_query}%");
+        } else $this->showQuery = false;
+        $this->courses = $this->courses->get()->take(20);
+        $department = Department::find($this->department_id);
         $this->teachers = $department ? $department->teachers : collect();
+        if ($this->courses->count() == 1 && $this->courses->first()->name == $this->course_query) $this->showQuery = false;
         return view('livewire.head.add-section', [
             'teachers' => $this->teachers,
             'courses' => $this->courses
@@ -40,9 +50,17 @@ class AddSection extends Component
             ->section('content');
     }
 
+
+    public function setCourse($course, $name)
+    {
+        $this->course_select = $course;
+        $this->course_query = $name;
+    }
+
     public function addSection()
     {
         $this->validate([
+            'department_id' => 'required',
             'section_code' => 'required',
             'schedule' => 'required',
             'room' => 'required',
@@ -58,7 +76,7 @@ class AddSection extends Component
                 'schedule' => $this->schedule,
                 'room' => $this->room
             ]);
-            $chatroom = $section->chatroom->create([
+            $chatroom = $section->chatroom()->create([
                 'name' => $section->course->name . ' - (' . $section->code . ')',
                 'isGroup' => true,
             ]);

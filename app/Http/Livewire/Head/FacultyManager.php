@@ -62,7 +62,10 @@ class FacultyManager extends Component
         ]);
         $u = User::where('email', $this->email)->first();
         if (!$u) return session()->flash('error', 'Faculty member not found.');
-        $u->teacher->update(['department_id' => $this->department_id]);
+        $u->teacher->update([
+            'department_id' => $this->department_id,
+            'college_id' => auth()->user()->program_head->college_id,
+        ]);
         $this->email = '';
         session()->flash('message', 'Faculty member was successfully added.');
     }

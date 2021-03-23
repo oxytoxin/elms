@@ -15,6 +15,7 @@ class CreateCourse extends Component
     public $course_units = 3.00;
     public $course_image;
     public $fileId = 0;
+    public $department_id = "";
 
     protected $messages = [
         'course_code.regex' => "The format is invalid. Please follow \"ABC123\" pattern."
@@ -27,6 +28,7 @@ class CreateCourse extends Component
     public function addCourse()
     {
         $this->validate([
+            'department_id' => 'required',
             'course_title' => 'required|string',
             'course_code' => ['required', 'regex:/^[a-zA-Z]{3}\d{3}$/'],
             'course_units' => ['required', 'numeric', 'min:1'],
@@ -35,7 +37,7 @@ class CreateCourse extends Component
             'code' => strtoupper($this->course_code),
             'name' => strtoupper($this->course_title),
             'units' => $this->course_units,
-            'department_id' => Auth::user()->program_head->department_id,
+            'department_id' => $this->department_id,
             // 'college_id' => Auth::user()->program_head->college_id,
         ]);
         $rand = rand(1, 7);

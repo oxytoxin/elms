@@ -2,7 +2,7 @@
 @section('content')
 <div>
     <h1 class="text-2xl font-semibold uppercase">Modules</h1>
-    <div class="grid gap-2 mt-5 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
+    <div class="grid gap-2 mt-5 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
         @forelse($sections as $section)
         @forelse ($section->modules as $module)
         <div class="w-full overflow-hidden border-4 border-primary-600 h-96">
