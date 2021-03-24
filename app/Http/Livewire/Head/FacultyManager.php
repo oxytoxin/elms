@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Head;
 
+use App\Models\Department;
 use App\Models\User;
 use App\Models\Teacher;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class FacultyManager extends Component
 
     public function render()
     {
-        $department = auth()->user()->program_head->departments->first();
+        $department = Department::find($this->department_id);
         $this->teachers = $department ? $department->teachers()->addSelect([
             'name' => User::select('name')->whereColumn('id', 'user_id')->limit(1)
         ])->orderBy('name')->paginate(10) : collect([]);

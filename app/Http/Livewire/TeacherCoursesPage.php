@@ -106,7 +106,7 @@ class TeacherCoursesPage extends Component
             auth()->user()->teacher->students()->attach($student->id, ['course_id' => $this->section->course->id, 'section_id' => $this->section->id]);
             $this->section =  $this->section;
             $this->email = "";
-            $student->user->notify(new GeneralNotification("You have been enrolled to " . $this->section->course->code . " (" . $this->section->code . ").", route('student.home')));
+            $student->user->notify(new GeneralNotification("You have been enrolled to " . str_replace(' ', '', $this->section->course->code) . "(" . str_replace(' ', '', $this->section->code) . ").", route('student.home')));
             $this->section->chatroom->members()->attach($u->id);
             $this->alert('success', 'Student successfully enrolled.', ['toast' => false, 'position' => 'center']);
         } else

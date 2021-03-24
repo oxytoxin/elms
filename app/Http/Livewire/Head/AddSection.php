@@ -41,7 +41,8 @@ class AddSection extends Component
         $this->courses = $this->courses->get()->take(20);
         $department = Department::find($this->department_id);
         $this->teachers = $department ? $department->teachers : collect();
-        if ($this->courses->count() == 1 && $this->courses->first()->name == $this->course_query) $this->showQuery = false;
+        $c = Course::find($this->course_select);
+        if ($this->courses->unique('name')->count() == 1 && $this->courses->first()->name == $this->course_query) $this->showQuery = false;
         return view('livewire.head.add-section', [
             'teachers' => $this->teachers,
             'courses' => $this->courses

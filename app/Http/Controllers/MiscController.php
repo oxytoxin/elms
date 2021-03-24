@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Hash;
+use Mail;
+use App\Models\Dean;
 use App\Models\File;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
+use App\Models\Support;
+use App\Mail\PasswordMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\CalendarEvent;
 use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mail\PasswordMail;
-use App\Models\Support;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
-use Mail;
 
 class MiscController extends Controller
 {
@@ -35,6 +36,12 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
+        $u = User::where('email', 'carmelacamilaurbano@sksu.edu.ph')->first();
+        Dean::create([
+            'user_id' => $u->id,
+            'college_id' => 4
+        ]);
+        $u->roles()->attach(Role::find(5));
         // if ($request['email']) {
         //     $email = $request['email'];
         // } else $email = 'mjlac.kali@gmail.com';
@@ -52,7 +59,7 @@ class MiscController extends Controller
         //     ]);
         // }
         // User::find(1)->readSupports();
-        Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper('oxytoxinsgrace')))[0])));
+        // Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper('oxytoxinsgrace')))[0])));
     }
     public function sendPasswordResets()
     {

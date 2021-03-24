@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Section;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class StudentIsEnrolled
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->route('section')->students->where('id', auth()->user()->student->id)->first())
+        if (Section::find($request->route('section'))->students()->where('student_id', auth()->user()->student->id)->first())
             return $next($request);
         return redirect()->route('student.home');
     }

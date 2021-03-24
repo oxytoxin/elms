@@ -54,7 +54,7 @@
                 <h1 class="flex items-center text-center">
                     <div x-cloak x-show="!showSidebar" class="w-12 mx-3 logo">
                         <img src="{{ asset('img/sksulogo.png') }}" alt="logo">
-                    </div>SULTAN KUDARAT STATE UNIVERSITY - ISULAN CAMPUS
+                    </div><span class="uppercase">SULTAN KUDARAT STATE UNIVERSITY{{ auth()->user()->campus ? ' - ' . auth()->user()->campus->name : '' }}</span>
                 </h1>
                 <nav class="text-2xl whitespace-nowrap">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>

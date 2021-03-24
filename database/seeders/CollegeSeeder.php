@@ -27,24 +27,8 @@ class CollegeSeeder extends Seeder
             'code' => 'BEED'
         ]);
         $c->departments()->create([
-            'name' => 'Bachelor in Secondary Education major in English',
+            'name' => 'Bachelor in Secondary Education',
             'code' => 'BSEd-English'
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Secondary Education major in Filipino',
-            'code' => 'BSEd-Filipino'
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Secondary Education major in Science',
-            'code' => 'BSEd-Science'
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Secondary Education major in Social Studies',
-            'code' => 'BSEd-Social Studies'
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Secondary Education major in Mathematics',
-            'code' => 'BSEd-Mathematics'
         ]);
         $c->departments()->create([
             'name' => 'Diploma in Teaching',
@@ -131,27 +115,7 @@ class CollegeSeeder extends Seeder
             'name' => 'College of Industrial Technology'
         ]);
         $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Food Service Management',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Drafting Technology',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Automotive Technology',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Electrical Technology',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Electronic Technology',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd), major in Civil Technology',
+            'name' => 'Bachelor in Technical-Vocational Teacher Education (BTVTEd)',
             'code' => ''
         ]);
         $c = College::create([
@@ -207,33 +171,14 @@ class CollegeSeeder extends Seeder
             'name' => 'College of Education'
         ]);
         $c->departments()->create([
-            'name' => 'Master of Arts in Educational Management',
-            'code' => 'MAEM'
-        ]);
-        $c->departments()->create([
-            'name' => 'Master in Management major in Educational Management',
-            'code' => ''
-        ]);
-        $c->departments()->create([
-            'name' => 'Master in Management major in Public Management',
-            'code' => ''
-        ]);
-        $c->departments()->create([
             'name' => 'Diploma in Teaching',
             'code' => 'DIT'
         ]);
         $c->departments()->create([
-            'name' => 'Bachelor of Science in Secondary Education major in English',
-            'code' => 'BSED-English'
+            'name' => 'Bachelor of Science in Secondary Education',
+            'code' => ''
         ]);
-        $c->departments()->create([
-            'name' => 'Bachelor of Science in Secondary Education major in Filipino',
-            'code' => 'BSED-Filipino'
-        ]);
-        $c->departments()->create([
-            'name' => 'Bachelor of Science in Secondary Education major in Science',
-            'code' => 'BSED-Science'
-        ]);
+
         $c->departments()->create([
             'name' => 'Bachelor in Elementary Education ',
             'code' => 'BEED'

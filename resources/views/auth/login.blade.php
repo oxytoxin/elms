@@ -5,7 +5,7 @@
                 <div>
                     <img class="w-auto h-12" src="{{ asset('img/sksulogo.png') }}" alt="Workflow">
                     <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                        Sign in to your accountss
+                        Sign in to your accounts
                     </h2>
                     <x-jet-validation-errors class="mb-4" />
                     @if (session('status'))

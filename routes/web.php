@@ -29,6 +29,8 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\Student\CourseModules;
+use App\Http\Livewire\Student\OrientationForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +66,7 @@ Route::view('/under_development', 'underdev')->name('soon_to_be_developed');
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/home', [StudentPagesController::class, 'home'])->name('student.home');
     Route::get('/modules', [StudentPagesController::class, 'modules'])->name('student.modules');
-    Route::get('/course/{section}/modules', [StudentPagesController::class, 'course_modules'])->middleware('studentIsEnrolled')->name('student.course_modules');
+    Route::get('/course/{section}/modules', CourseModules::class)->middleware('studentIsEnrolled')->name('student.course_modules');
     Route::get('/course/{course}', [StudentPagesController::class, 'course'])->name('student.course');
     Route::get('/module/{module}', [StudentPagesController::class, 'module'])->name('student.module');
     Route::get('/courses/create', [StudentPagesController::class, 'create_course'])->name('student.create_course');
@@ -74,6 +76,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('/tasks/{task_type}', StudentTasks::class)->name('student.tasks');
     Route::get('/enrol/viacode', EnrolViaCode::class)->name('student.enrol_via_code');
     Route::get('/messages', Chat::class)->name('student.messages');
+    Route::get('/orientation/{section}', OrientationForm::class)->name('student.orientation');
     Route::get('/video-call/{room}', VideoCalling::class)->name('student.meeting')->middleware('meetingAuth');
 });
 

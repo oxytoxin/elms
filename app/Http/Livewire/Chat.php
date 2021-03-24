@@ -65,9 +65,9 @@ class Chat extends Component
 
     public function sendMessage()
     {
+        $this->validate();
         if (!$this->current_chatroom && !$this->newMessage) return;
         if ($this->newMessage) $this->createNewContact();
-        $this->validate();
         $this->current_chatroom->messages()->create([
             'sender_id' => auth()->id(),
             'message' => sanitizeString($this->messageContent),

@@ -77,7 +77,7 @@
                             </div>
                         </td>
                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <p class="text-gray-900">{{ $student->department->name }}</p>
+                            <p class="text-gray-900">{{ $student->department ? $student->department->name : 'N/A' }}</p>
                         </td>
                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                             <p class="text-gray-900 whitespace-nowrap">

@@ -69,8 +69,14 @@
             </div>
             @if (auth()
             ->user()
-            ->isProgramHead())
+            ->isProgramHead() || auth()
+            ->user()
+            ->isDean())
             <h1 class="mt-5 text-sm font-semibold">Actions</h1>
+            @endif
+            @if (auth()
+            ->user()
+            ->isProgramHead())
             <div class="actions">
                 <a href="{{ route('head.home') }}" class="flex items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
                     <i class="mr-2 icofont-external"></i>
@@ -81,7 +87,6 @@
             @if (auth()
             ->user()
             ->isDean())
-            <h1 class="mt-5 text-sm font-semibold">Actions</h1>
             <div class="actions">
                 <a href="{{ route('dean.home') }}" class="flex items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
                     <i class="mr-2 icofont-external"></i>

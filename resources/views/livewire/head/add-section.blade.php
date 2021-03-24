@@ -18,9 +18,9 @@
                 <div class="relative flex-1">
                     <div class="flex flex-col">
                         <label for="course_query">Course</label>
-                        <input type="text" name="course_query" wire:model="course_query" placeholder="firstnamelastname@sksu.edu.ph" id="course_query" class="flex-grow min-w-80 form-input" autofocus>
+                        <input type="text" placeholder="CC112" name="course_query" wire:model="course_query" id="course_query" class="flex-grow min-w-80 form-input">
                     </div>
-                    <div x-show="showQuery" class="absolute w-full overflow-y-auto bg-white border divide-y-2 shadow top-[20] max-h-48">
+                    <div x-cloak x-show="showQuery" class="absolute w-full overflow-y-auto bg-white border divide-y-2 shadow top-[20] max-h-48">
                         @foreach ($courses as $course)
                         <div wire:click="setCourse({{ $course->id }},'{{ $course->name }}')" wire:key="course-item-{{ $course->id }}" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
                             <h1>{{ $course->code }}</h1>

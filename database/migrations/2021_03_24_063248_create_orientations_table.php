@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChatroomsTable extends Migration
+class CreateOrientationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateChatroomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chatrooms', function (Blueprint $table) {
+        Schema::create('orientations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->nullable()->default(null)->onDelete('cascade')->constrained();
-            $table->string('name')->nullable()->default(null);
-            $table->boolean('isGroup')->default(false);
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('section_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateChatroomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chatrooms');
+        Schema::dropIfExists('orientations');
     }
 }

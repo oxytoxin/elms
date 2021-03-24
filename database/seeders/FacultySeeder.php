@@ -29,11 +29,11 @@ class FacultySeeder extends Seeder
     {
         $this->encodeCSV("csvs/access.csv", 1);
         $this->encodeCSV("csvs/isulan.csv", 2);
-        $this->encodeCSV("csvs/palimbang.csv", 3);
+        $this->encodeCSV("csvs/tacurong.csv", 3);
         $this->encodeCSV("csvs/kalamansig.csv", 4);
         $this->encodeCSV("csvs/bagumbayan.csv", 5);
-        $this->encodeCSV("csvs/lutayan.csv", 6);
-        $this->encodeCSV("csvs/tacurong.csv", 7);
+        $this->encodeCSV("csvs/palimbang.csv", 6);
+        $this->encodeCSV("csvs/lutayan.csv", 7);
         $u = User::find(115);
         Dean::create([
             'user_id' => $u->id,

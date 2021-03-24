@@ -17,6 +17,7 @@ class CreateDeansTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('college_id')->constrained();
+            $table->boolean('is_oic')->default(false);
             $table->timestamps();
         });
     }

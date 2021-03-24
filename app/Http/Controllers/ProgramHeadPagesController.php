@@ -52,12 +52,8 @@ class ProgramHeadPagesController extends Controller
     public function courses()
     {
         $courses = auth()->user()->program_head->departments->flatMap(function ($department) {
-            return $department->teachers;
-        })->flatMap(function ($teacher) {
-            return $teacher->sections;
-        })->map(function ($section) {
-            return $section->course;
-        })->unique('id');
+            return $department->courses;
+        });
         return view('pages.head.courses.index', compact('courses'));
     }
     public function course(Course $course)

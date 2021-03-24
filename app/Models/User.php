@@ -2,14 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Dean;
-use App\Models\Role;
-use App\Models\Todo;
-use App\Models\Message;
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\ProgramHead;
-use App\Models\CalendarEvent;
 use Carbon\Carbon;
 use DB;
 use Laravel\Sanctum\HasApiTokens;
@@ -94,6 +86,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Student::class);
     }
+
+    public function campus()
+    {
+        return $this->belongsTo(Campus::class);
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);
