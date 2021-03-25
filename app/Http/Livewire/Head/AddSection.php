@@ -77,6 +77,7 @@ class AddSection extends Component
                 'schedule' => $this->schedule,
                 'room' => $this->room
             ]);
+            $section->grading_system()->create();
             $chatroom = $section->chatroom()->create([
                 'name' => $section->course->name . ' - (' . $section->code . ')',
                 'isGroup' => true,

@@ -94,6 +94,8 @@ class Chat extends Component
             $c = Chatroom::create();
             $c->members()->attach([auth()->id(), $this->newMessageContact['id']]);
             $this->current_chatroom = $c;
+            $this->newMessage = false;
+            $this->newMessageContact = null;
         }
     }
 }
