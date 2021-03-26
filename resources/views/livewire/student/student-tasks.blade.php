@@ -22,7 +22,7 @@
         <a href="{{ $task->student_submission ? route('preview-submission', ['submission' => $task->student_submission->pivot->id]) : route('student.task', ['task' => $task->id]) }}">
             <div class="h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
                 <div class="flex justify-around p-3 {{ $task->deadline < now() && !auth()->user()->student->tasks->where('id', $task->id)->first() ? 'bg-red-400' : 'bg-green-400' }}">
-                    <div class="w-16 h-16">
+                    <div class="flex-shrink-0 w-16 h-16">
                         <img class="object-cover w-full h-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                     </div>
                     <div class="space-y-1 text-sm font-semibold text-center">
