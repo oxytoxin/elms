@@ -43,23 +43,38 @@ class WorkloadUploader extends Component
 
     public function uploadWorkload()
     {
-        $workload = $this->workload->storeAs('workloads', $this->workload->getClientOriginalName(), 'local');
-        $handle = fopen(storage_path("app/$workload"), "r");
+        $workloadpath = $this->workload->storeAs('workloads', $this->workload->getClientOriginalName(), 'local');
+        $handle = fopen(storage_path("app/$workloadpath"), "r");
         while (($data = fgetcsv($handle)) !== FALSE) {
             array_push($this->workloadArray, $data);
         }
         array_splice($this->workloadArray, 0, 5);
+        foreach ($this->workloadArray as  $key => $workload) {
+            $this->workloadArray[$key] = array_values(array_filter($workload, fn ($value) => !is_null($value) && $value !== ''));
+        }
+        // foreach ($this->workloadArray as $key => $wload) {
+        //     $course = Course::where('code', $wload[1])->first();
+        //     if (!$course) {
+        //         $this->alert('error', 'Error: Some courses were not found in the database.', [
+        //             'toast' => false,
+        //             'position' => 'center'
+        //         ]);
+        //         $this->workloadArray = [];
+        //         // $this->fileId += 1;
+        //         return session()->flash('error', 'Error: Some courses were not found in the database.');
+        //     }
+        // }
         DB::transaction(function () {
             $workloadChanged = false;
             foreach ($this->workloadArray as $key => $load) {
                 if (isset($load[1])) {
-                    $code = $load[1];
+                    $code = trim($load[1]);
                     $code = str_replace([' ', '-'], '', $code);
                     $course = Course::where('code', $code)->first();
-                    if ($course && !$course->sections->contains('code', $load[3])) {
+                    if ($course && !$course->sections->contains('code', $load[2])) {
                         if (!$course->teachers->contains($this->teacher))
                             $course->teachers()->attach($this->teacher);
-                        $s = Section::create(['code' => $load[3], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[9], 'schedule' => $load[7]]);
+                        $s = Section::create(['code' => $load[2], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[5], 'schedule' => $load[4]]);
                         $s->grading_system()->create();
                         $chatroom = $s->chatroom()->create([
                             'name' => $s->course->name . ' - (' . $s->code . ')',
@@ -79,6 +94,6 @@ class WorkloadUploader extends Component
         $this->workloadArray = [];
         $this->fileId += 1;
         $this->hasWorkload = true;
-        session()->flash('message', 'Workload was successfully added to faculty member.');
+        return session()->flash('message', 'Workload was successfully added to faculty member.');
     }
 }

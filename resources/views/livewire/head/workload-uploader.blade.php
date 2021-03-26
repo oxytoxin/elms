@@ -4,13 +4,19 @@
         <h1>For faculty member: {{ $teacher->user->name }}</h1>
         <h1>College: {{ $teacher->college->name }}</h1>
         <h1>Department: {{ $teacher->department->name }}</h1>
-        <form action="#" class="flex space-x-2" method="GET" wire:submit.prevent="uploadWorkload">
+        <form class="flex space-x-2" method="GET" wire:submit.prevent="uploadWorkload">
             <input type="file" name="workload" id="workload{{ $fileId }}" required wire:model="workload" class="form-input">
             <button class="p-3 font-semibold text-white uppercase rounded-lg bg-primary-500">UPLOAD CSV</button>
         </form>
         <div class="italic text-green-400">
             @if(session('message'))
             {{ session('message') }}
+            @endif
+        </div>
+        <div class="italic text-red-600">
+            @if(session('error'))
+            {{ session('error') }}
+            <h1>Click <a class="font-semibold underline text-primary-500" href="{{ route('head.add_section') }}">here</a> for manual encoding.</h1>
             @endif
         </div>
     </div>
@@ -53,5 +59,5 @@
 </div>
 
 @section('sidebar')
-    @include('includes.head.sidebar')
+@include('includes.head.sidebar')
 @endsection

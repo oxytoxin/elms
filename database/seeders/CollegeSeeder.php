@@ -39,6 +39,10 @@ class CollegeSeeder extends Seeder
             'name' => 'College of Agriculture'
         ]);
         $c->departments()->create([
+            'name' => 'Bachelor of Science in Agriculture',
+            'code' => 'BA'
+        ]);
+        $c->departments()->create([
             'name' => 'Bachelor of Science in Agricultural Technology',
             'code' => 'BAT'
         ]);
@@ -49,6 +53,10 @@ class CollegeSeeder extends Seeder
         $c->departments()->create([
             'name' => 'Bachelor of Science in Criminology',
             'code' => 'BSCriminology'
+        ]);
+        $c->departments()->create([
+            'name' => 'Bachelor of Science in Industrial Security Management',
+            'code' => 'BSISM'
         ]);
         $c = College::create([
             'campus_id' => 1,

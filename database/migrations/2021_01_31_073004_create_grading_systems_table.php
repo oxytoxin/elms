@@ -16,7 +16,7 @@ class CreateGradingSystemsTable extends Migration
 
         Schema::create('grading_systems', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained();
+            $table->foreignId('section_id')->onDelete('cascade')->constrained();
             $table->integer('attendance_weight')->default(5);
             $table->integer('assignment_weight')->default(15);
             $table->integer('quiz_weight')->default(15);
