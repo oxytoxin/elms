@@ -36,6 +36,7 @@
 </head>
 
 <body class="antialiased bg-gray-100">
+    <h1 class="fixed text-gray-400 left-1 text-xs bottom-1 z-[100]">Version: Beta 0.7.28</h1>
     <div x-ref="loading" x-data x-init="
         $(window).on('load',()=>{
             $refs.loading.classList.add('hidden');
