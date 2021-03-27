@@ -120,10 +120,10 @@
                         <button class="w-full p-2 my-1 bg-gray-500 rounded-lg whitespace-nowrap md:w-auto hover:bg-green-300 focus:outline-none hover:text-primary-600" wire:click.prevent="addOption({{ $key }})"><i class="mr-1 icofont-plus-circle"></i>Add Option</button>
                         @endif
                     </span>
-                    <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
-                    <button wire:click="Essaytrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['essay'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-file-document"></i>Essay</button>
-                    <button wire:click="ExpectAttachment({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['attachment'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-attachment"></i>Require File Attachment?</button>
-                    <button wire:click="enumerationTrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 bg-gray-500 {{ $item['enumeration'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="mr-1 icofont-listing-number"></i>Enumeration</button>
+                    <button wire:click="TorFtrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 {{ $item['torf'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-check"></i>True or False?</button>
+                    <button wire:click="Essaytrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 {{ $item['essay'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-file-document"></i>Essay</button>
+                    <button wire:click="ExpectAttachment({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 {{ $item['attachment'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="icofont-attachment"></i>Require File Attachment?</button>
+                    <button wire:click="enumerationTrigger({{ $key }})" class="p-2 w-full md:w-auto my-1 hover:text-primary-600 {{ $item['enumeration'] ? 'bg-primary-600' : 'bg-gray-500' }} rounded-lg hover:bg-green-300"><i class="mr-1 icofont-listing-number"></i>Enumeration</button>
                 </div>
                 @if ($item['enumeration'])
                 <div class="my-2 space-y-2">

@@ -36,6 +36,15 @@
 </head>
 
 <body class="antialiased bg-gray-100">
+    <div x-ref="loading" x-data x-init="
+        $(window).on('load',()=>{
+            $refs.loading.classList.add('hidden');
+        })
+    " class="fixed inset-0 z-[100]">
+        <div class="grid w-full h-full bg-primary-500 place-items-center">
+            <h1 class="text-xl text-white animate-bounce">Please wait while we load some things...</h1>
+        </div>
+    </div>
     @livewire('leina.chatbot', key('leina-chatbot'))
     <audio id="notifAudio">
         <source src="{{ asset('notification.ogg') }}" type="audio/ogg">

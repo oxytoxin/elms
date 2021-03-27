@@ -26,7 +26,7 @@
                     </div>
 
                 </form>
-                <img src="{{ asset('img/leina.png') }}" alt="leina" class="self-end h-full animate-pulse w-44">
+                <img src="{{ asset('img/leina.webp') }}" alt="leina" class="self-end h-full animate-pulse w-44">
             </div>
         </div>
     </div>
