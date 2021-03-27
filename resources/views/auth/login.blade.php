@@ -17,7 +17,7 @@
 
                 <div class="mt-8">
                     <div class="mt-6">
-                        <form action="#" method="POST" class="space-y-6">
+                        <form action="{{ route('login') }}" method="POST" class="space-y-6">
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">
                                     Email address
