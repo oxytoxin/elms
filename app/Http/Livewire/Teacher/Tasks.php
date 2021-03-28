@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Teacher;
 
 use App\Models\Course;
+use App\Models\Task;
 use Livewire\Component;
 use App\Models\TaskType;
 use Livewire\WithPagination;
@@ -70,6 +71,16 @@ class Tasks extends Component
     public function updatedCourseId()
     {
         $this->section_id = "";
+    }
+
+    public function deleteTask($task_id)
+    {
+        $task = Task::find($task_id);
+        if ($task->students()->count())
+            return $this->alert('error', 'Task already has submissions.', ['toast' => false, 'position' => 'center']);
+        $task->calendar_event()->delete();
+        $task->delete();
+        return $this->alert('success', 'Task was successfully deleted.', ['toast' => false, 'position' => 'center']);
     }
 
     public function mount($task_type)

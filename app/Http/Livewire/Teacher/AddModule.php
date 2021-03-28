@@ -34,6 +34,7 @@ class AddModule extends Component
             ->extends('layouts.master')
             ->section('content');;
     }
+
     public function mount(Section $section)
     {
         $this->section = $section;

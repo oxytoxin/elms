@@ -15,4 +15,14 @@ class CalendarEvent extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

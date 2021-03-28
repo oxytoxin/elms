@@ -196,7 +196,11 @@ class CollegeSeeder extends Seeder
             'name' => 'College of Fisheries'
         ]);
         $c->departments()->create([
-            'name' => 'Bachelor in Marine Biology',
+            'name' => 'Bachelor in Biology',
+            'code' => ''
+        ]);
+        $c->departments()->create([
+            'name' => 'Bachelor in Fisheries',
             'code' => ''
         ]);
         $c = College::create([

@@ -1,4 +1,5 @@
 <div>
+    <x-loading wire:loading.grid message="Uploading files..." />
     <h1 class="text-2xl font-semibold">TASK CREATOR</h1>
     <div x-data="{showrubric: @entangle('showrubric'), showMatchingTypeOptions: @entangle('showMatchingTypeOptions'), showAddMatchingTypeOption: @entangle('showAddMatchingTypeOption')}" class="p-2 m-4 text-sm shadow">
         <h1>For Course: <span class="italic">{{ $module->course->name }}</span></h1>
@@ -168,7 +169,7 @@
         <div class="flex flex-col items-center p-4 md:flex-row">
             <button class="w-full p-2 my-1 text-white bg-gray-500 rounded-lg whitespace-nowrap md:w-auto focus:outline-none hover:bg-green-300 hover:text-primary-600" wire:click.prevent="addItem({{ count($items) }})"><i class="mr-2 icofont-plus-circle"></i>Add Item</button>
             <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:ml-3 md:w-auto">Total points: {{ $total_points }}</span>
-            <button wire:click.prevent="saveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
+            <button wire:loading.attr="disabled" wire:click.prevent="saveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
         </div>
         @if (session('error'))
         <h1 class="mx-4 text-sm italic font-bold text-red-600">{{ session('error') }}</h1>

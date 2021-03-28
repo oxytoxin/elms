@@ -154,7 +154,9 @@ class FacultySeeder extends Seeder
                     'code' => $code,
                     'title' => $task->name,
                     'description' => $task->name . ' for module: ' . $task->module->name,
-                    'level' => 'students',
+                    'level' => 'tasks',
+                    'section_id' => $task->section_id,
+                    'task_id' => $task->id,
                     'start' => $task->deadline,
                     'end' => Carbon::parse($task->deadline)->addDay()->format('Y-m-d'),
                     'url' => '/task/' . $task->id,
@@ -169,9 +171,9 @@ class FacultySeeder extends Seeder
                                 'task_id' => $task->id,
                                 'isGraded' => true,
                                 'score' => 44,
-                                'answers' => '[{"answer":"Answer1"},{"answer":"This is option 1"},{"answer":"False"},{"answer":"Lorem ipsum doler siadat alsdkts."},{"answer":"My answer","files":[{"name":"qMpBEYRJzY4UI8cLC4mCogrwQc0D7gRT33nCt1Jr.txt","url":"tasks\/TpmhxA36FlVpDyEYyC96db6FOgKLB1GS7pMAUwDc.txt"},{"name":"home.html","url":"tasks\/cXIp8OmPDaLGQVvWlKxRLIhHAfOBvXMPuxEJQPnk.html"}]},{"answer":"[\"Item 1\",\"Item2\",\"Item 3\"]"}]',
+                                'answers' => '[{"answer":"True","files":[],"item_no":1},{"answer":"Some things are meant to be","files":[],"item_no":2}]',
                                 'date_submitted' => Carbon::now(),
-                                'assessment' => '[{"isCorrect":false,"score":0},{"isCorrect":true,"score":"5"},{"isCorrect":false,"score":0},{"isCorrect":"partial","score":15},{"isCorrect":"partial","score":"22"},{"isCorrect":"partial","score":2}]'
+                                'assessment' => null
                             ]);
                         } else {
                             if (rand(0, 3)) {

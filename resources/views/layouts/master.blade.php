@@ -43,7 +43,7 @@
         })
     " class="fixed inset-0 z-[100]">
         <div class="grid w-full h-full bg-primary-500 place-items-center">
-            <h1 class="text-xl text-white animate-bounce">Please wait while we load some things...</h1>
+            <h1 class="text-xl text-center mx-auto text-white animate-bounce">Please wait while we load some things...</h1>
         </div>
     </div>
     @livewire('leina.chatbot', key('leina-chatbot'))

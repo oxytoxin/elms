@@ -2,6 +2,7 @@
     @livewire('event-creator')
     <h1 class="mb-3 text-2xl font-semibold uppercase">Calendar of Events</h1>
     <button @click="Livewire.emit('openEventCreator')" class="p-2 text-white rounded-md bg-primary-500"><i class="mr-2 icofont-plus"></i>Create an Event</button>
+    <button @click="Livewire.emit('openEventCreator')" class="p-2 text-white rounded-md bg-primary-500"><i class="mr-2 icofont-plus"></i>View Events</button>
     <div class="flex overflow-x-auto">
         <div id='calendar' class="w-full mt-5 overflow-x-auto"></div>
     </div>

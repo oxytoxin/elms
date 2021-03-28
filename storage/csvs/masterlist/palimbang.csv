@@ -1,0 +1,522 @@
+﻿First Name [Required],Last Name [Required],Email Address [Required],Password [Required],Password Hash Function [UPLOAD ONLY],Org Unit Path [Required],New Primary Email [UPLOAD ONLY],Home Secondary Email,Work Secondary Email,Work Phone,Home Phone,Mobile Phone,Work Address,Home Address,Employee ID,Employee Type,Employee Title,Manager Email,Department,Cost Center,Building ID,Floor Name,Floor Section,Change Password at Next Sign-In
+MAYRANE,ABAD,mayraneabad@sksu.edu.ph,sksu@1234,,/,,,,,,9552639139,,"Kolong kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RASUL,ABDUL,rasulabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9262057843,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORPA,ABDULKARIM,norpaabdulkarim@sksu.edu.ph,sksu@1234,,/,,,,,,9357135818,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDULBASIR,ABDULKARIM,abdulbasirabdulkarim@sksu.edu.ph,sksu@1234,,/,,,,,,9550813285,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+OMAYA,ABDULRAKMAN,omayaabdulrakman@sksu.edu.ph,sksu@1234,,/,,,,,,9067493822,,"Maguid, Palimbang, Sultan Kudarat ",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ELGIE MAE,AGLOSULOS,elgiemaeaglosulos@sksu.edu.ph,sksu@1234,,/,,,,,,9676400665,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JYMARIE,AGTANG,jymarieagtang@sksu.edu.ph,sksu@1234,,/,,,,,,9358731299,,"Kolong-kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAMRAINA,AKMAD,samrainaakmad@sksu.edu.ph,sksu@1234,,/,,,,,,9677814019,,"Wal, Palimbang, Sultan Kudarat ",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAMSER,ALAMADA,hamseralamada@sksu.edu.ph,sksu@1234,,/,,,,,,9265607014,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RITCH,ALBA,ritchalba@sksu.edu.ph,sksu@1234,,/,,,,,,9679576656,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAIDA,ALBANI,raidaalbani@sksu.edu.ph,sksu@1234,,/,,,,,,9367747175,,"Kolong kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CRISTAL MAE,ALCONES,cristalmaealcones@sksu.edu.ph,sksu@1234,,/,,,,,,9367208260,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ELMIN,ALFONSO,elminalfonso@sksu.edu.ph,sksu@1234,,/,,,,,,9552668160,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHALID,ALFONSO,mohalidalfonso@sksu.edu.ph,sksu@1234,,/,,,,,,9262418145,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHANA,ALI,norhanaali@sksu.edu.ph,sksu@1234,,,,,,,,9755558055,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GLYKA FIE,AMORTE,glykafieamorte@sksu.edu.ph,sksu@1234,,/,,,,,,9553896770,,"Kanipaan, Palimbang, Sultan Kudarat",,,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KARUDIN,AMPAO,karudinampao@sksu.edu.ph,sksu@1234,,/,,,,,,9269221995,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOMAR,ANDAB,jomarandab@sksu.edu.ph,sksu@1234,,/,,,,,,9654099612,,,,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FARMIYA,ANDAL,farmiyaandal@sksu.edu.ph,sksu@1234,,/,,,,,,9750615474,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ESMAEL,ANDI,esmaelandi@sksu.edu.ph,sksu@1234,,/,,,,,,9365881471,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KING FAHAD,ANDI,kingfahadandi@sksu.edu.ph,sksu@1234,,/,,,,,,9353647306,,Kraan Palimbang Sultan Kudarat,,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JORDAN,ANI袿N,jordananinon@sksu.edu.ph,sksu@1234,,/,,,,,,9753986400,,"Malatunol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARAH MAE,ANOG,sarahmaeanog@sksu.edu.ph,sksu@1234,,/,,,,,,9534027847,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAIREN,ANSON,mohairenanson@sksu.edu.ph,sksu@1234,,/,,,,,,9269242978,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABEGAIL,ARCAMO,abegailarcamo@sksu.edu.ph,sksu@1234,,/,,,,,,9265569657,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RODNEY,ARTICUNA,rodneyarticuna@sksu.edu.ph,sksu@1234,,/,,,,,,9357163551,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GRACE-CHRES,ASOY,grace-chresasoy@sksu.edu.ph,sksu@1234,,/,,,,,,9356423744,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAODAH,AYOB,raodahayob@sksu.edu.ph,sksu@1234,,/,,,,,,9654610991,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AISA,AYUNAN,aisaayunan@sksu.edu.ph,sksu@1234,,/,,,,,,9756189508,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+REZELL JEAN,BABOR,rezelljeanbabor@sksu.edu.ph,sksu@1234,,/,,,,,,9263207294,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NI袿,BA袮S,ninobanas@sksu.edu.ph,sksu@1234,,/,,,,,,9355584367,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MAISARAH,BARAGUIR,maisarahbaraguir@sksu.edu.ph,sksu@1234,,/,,,,,,9067629438,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JEYSERR,BIALA,jeyserrbiala@sksu.edu.ph,sksu@1234,,/,,,,,,9069781250,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUMAIRA,BINAGO,jumairabinago@sksu.edu.ph,sksu@1234,,/,,,,,,9366395485,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+"RENATO, JR.",BONES,renatobones@sksu.edu.ph,sksu@1234,,/,,,,,,9552432450,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARY GRACE,CABANGON,marygracecabangon@sksu.edu.ph,sksu@1234,,/,,,,,,9058418560,,"Baranayan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ZENAIDA,CADIL,zenaidacadil@sksu.edu.ph,sksu@1234,,/,,,,,,9655915643,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KEENA,CAOILE,keenacaoile@sksu.edu.ph,sksu@1234,,/,,,,,,9353684871,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARY JOY,CONEJAR,maryjoyconejar@sksu.edu.ph,sksu@1234,,/,,,,,,9652403184,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GUIAZARIE,CORONEL,guiazariecoronel@sksu.edu.ph,sksu@1234,,/,,,,,,9067495567,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KEVIN,CRUSANI,kevincrusani@sksu.edu.ph,sksu@1234,,/,,,,,,9557125075,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABUBAKAR,DAGO,abubakardago@sksu.edu.ph,sksu@1234,,/,,,,,,9059494643,,"Akol, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+PHILIP LOURENCE,DALIDA,philiplourencedalida@sksu.edu.ph,sksu@1234,,/,,,,,,9750796246,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AL HASAN,DEGANDANG,alhasandegandang@sksu.edu.ph,sksu@1234,,/,,,,,,9068537589,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ZAINODEN,DILAGAN,zainodendilagan@sksu.edu.ph,sksu@1234,,/,,,,,,965463881,,"Lupuken, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHIMA,DIMALAO,norhimadimalao@sksu.edu.ph,sksu@1234,,/,,,,,,9750798746,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DATU RAFFY,DIMATINGKAL,daturaffydimatingkal@sksu.edu.ph,sksu@1234,,/,,,,,,9753643294,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALPA,DRAH,alpadrah@sksu.edu.ph,sksu@1234,,/,,,,,,9973964006,,"Butril, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RYAN,DUKA,ryanduka@sksu.edu.ph,sksu@1234,,/,,,,,,9265608600,,"Langali, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARK JUHN,DURAN,markjuhnduran@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JILLIAN RIKKI,ELECHICON,jillianrikkielechicon@sksu.edu.ph,sksu@1234,,/,,,,,,9051777638,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LAILANIE,EMBANG,lailanieembang@sksu.edu.ph,sksu@1234,,/,,,,,,9154027013,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARINA,ENOG,marinaenog@sksu.edu.ph,sksu@1234,,/,,,,,,9355730610,,"Maganao,Palimbang,Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JIYRANGER,FARNAN,jiyrangerfarnan@sksu.edu.ph,sksu@1234,,/,,,,,,9262021463,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAMIRA,GANI,samiragani@sksu.edu.ph,sksu@1234,,/,,,,,,9679588485,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GENELYN,GARCIA,genelyngarcia@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KEZZBOY,GAYAK,kezzboygayak@sksu.edu.ph,sksu@1234,,/,,,,,,9554819891,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAYRA,GUIAMADEL,hayraguiamadel@sksu.edu.ph,sksu@1234,,/,,,,,,9056826044,,"Medol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARIPUDIN,GUIAMAL,saripudinguiamal@sksu.edu.ph,sksu@1234,,/,,,,,,9651581547,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORAINIE,GUIAMEL,norainieguiamel@sksu.edu.ph,sksu@1234,,/,,,,,,9364167820,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMILODEN,GUIAMEL,amilodenguiamel@sksu.edu.ph,sksu@1234,,/,,,,,,9758898327,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOMAR,GUIAPAL,jomarguiapal@sksu.edu.ph,sksu@1234,,/,,,,,,9361608055,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JAYSON,GUILLERMO,jaysonguillermo@sksu.edu.ph,sksu@1234,,/,,,,,,9658613724,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+REMAY-ANN,GUIMALAO,remay-annguimalao@sksu.edu.ph,sksu@1234,,/,,,,,,9352163088,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOCTAR,GUINDA,moctarguinda@sksu.edu.ph,sksu@1234,,/,,,,,,9753643294,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HERIA LUZ,GUIRA,herialuzguira@sksu.edu.ph,sksu@1234,,/,,,,,,9350524587,,"Wal, Palimbang, Sultan Kudarat ",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ROHEDA,HARON,rohedaharon@sksu.edu.ph,sksu@1234,,/,,,,,,9750780232,,"Maganaao, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAZIL,IBRAHIM,razilibrahim@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Akol, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ANOR,JUANDAY,anorjuanday@sksu.edu.ph,sksu@1234,,/,,,,,,9758470861,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RASHED,KAGUILAK,rashedkaguilak@sksu.edu.ph,sksu@1234,,/,,,,,,9751290329,,"Malisbong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DEKINA,KAMANSA,dekinakamansa@sksu.edu.ph,sksu@1234,,/,,,,,,9122770266,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAMSA,KAMID,hamsakamid@sksu.edu.ph,sksu@1234,,/,,,,,,9058414452,,"Lupoken, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BEN-NADIR,KAMSI,ben-nadirkamsi@sksu.edu.ph,sksu@1234,,/,,,,,,9453263218,,"Malatunol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAIHANA,KANDA,raihanakanda@sksu.edu.ph,sksu@1234,,/,,,,,,9658613701,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORALDIN,KANSI,noraldinkansi@sksu.edu.ph,sksu@1234,,/,,,,,,9658613921,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMORAGI,KAPINA,amoragikapina@sksu.edu.ph,sksu@1234,,/,,,,,,9651867583,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-IN,KUMPA,nor-inkumpa@sksu.edu.ph,sksu@1234,,/,,,,,,9557437947,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ASRIA,KUSAIN,asriakusain@sksu.edu.ph,sksu@1234,,/,,,,,,9269243961,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GEOHAIMIN,LABUAN,geohaiminlabuan@sksu.edu.ph,sksu@1234,,/,,,,,,9168742898,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JEASIR,LABUNGAN,jeasirlabungan@sksu.edu.ph,sksu@1234,,/,,,,,,9262059399,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CATHEREN,LAWAS,catherenlawas@sksu.edu.ph,sksu@1234,,/,,,,,,9262383134,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHN REYSIE,LEDESMA,johnreysieledesma@sksu.edu.ph,sksu@1234,,/,,,,,,9654500600,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAHIMA,LUCITO,rahimalucito@sksu.edu.ph,sksu@1234,,/,,,,,,9754737523,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BAI RAIZA,MAMADRA,bairaizamamadra@sksu.edu.ph,sksu@1234,,/,,,,,,9554451062,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+EBRAHIM,MAMALANGKAS,ebrahimmamalangkas@sksu.edu.ph,sksu@1234,,/,,,,,,9678434849,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DATU TENG,MANAMPAN,datutengmanampan@sksu.edu.ph,sksu@1234,,/,,,,,,9262000723,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JASON,MANGACOY,jasonmangacoy@sksu.edu.ph,sksu@1234,,/,,,,,,9756396519,,"Wasag, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHANA,MANGACOY,mohanamangacoy@sksu.edu.ph,sksu@1234,,/,,,,,,9357916408,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DANNY,MANGILEN,dannymangilen@sksu.edu.ph,sksu@1234,,/,,,,,,9657519522,,"Wasag, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALFATA,MARIANO,alfatamariano@sksu.edu.ph,sksu@1234,,/,,,,,,9550130580,,"Lupoken, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+PRINCESS STEPHANIE,MARIANO,princessstephaniemariano@sksu.edu.ph,sksu@1234,,/,,,,,,9676922326,,"Kisek, Palimbang,sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAZEL MAE,MARIANO,hazelmaemariano@sksu.edu.ph,sksu@1234,,/,,,,,,9269252433,,"Kisek, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MONER,MARQUEZ,monermarquez@sksu.edu.ph,sksu@1234,,/,,,,,,9759864868,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAUF JAKE,MARTIN,raufjakemartin@sksu.edu.ph,sksu@1234,,/,,,,,,9976919754,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARAH JANE,MARTIN,sarahjanemartin@sksu.edu.ph,sksu@1234,,/,,,,,,9262058092,,,,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NATHANIEL,MATUNOG,nathanielmatunog@sksu.edu.ph,sksu@1234,,/,,,,,,9272044799,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAIHANA,MAULANA,raihanamaulana@sksu.edu.ph,sksu@1234,,/,,,,,,9051370643,,"Kolong kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORJANA,MAULANA,norjanamaulana@sksu.edu.ph,sksu@1234,,/,,,,,,9068534681,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUNAIDIE,MELOG,junaidiemelog@sksu.edu.ph,sksu@1234,,/,,,,,,9533779134,,"Maguid, Palimbang, Sultan Kudarat ",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JERRY,MOHAMAD,jerrymohamad@sksu.edu.ph,sksu@1234,,/,,,,,,9676419405,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARVEN,MOHAMAD,marvenmohamad@sksu.edu.ph,sksu@1234,,/,,,,,,9270221724,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SITTIE HAYA,MUDTI,sittiehayamudti@sksu.edu.ph,sksu@1234,,/,,,,,,9552593953,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAHIMA,MUSLIMEN,rahimamuslimen@sksu.edu.ph,sksu@1234,,/,,,,,,9679745811,,"Kolong kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KASHMAIRA,NAMIL,kashmairanamil@sksu.edu.ph,sksu@1234,,/,,,,,,9366194786,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LIZA MAE,NARBONITA,lizamaenarbonita@sksu.edu.ph,sksu@1234,,/,,,,,,9650895523,,,,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DARREL DAVE,NAVARRO,darreldavenavarro@sksu.edu.ph,sksu@1234,,/,,,,,,9362058964,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHNLERRY,OBADO,johnlerryobado@sksu.edu.ph,sksu@1234,,/,,,,,,997740705,,"Kisek, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAINE,OLANGKAYA,norhaineolangkaya@sksu.edu.ph,sksu@1234,,/,,,,,,9976910273,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDULGAPOR,PACO,abdulgaporpaco@sksu.edu.ph,sksu@1234,,/,,,,,,9058414536,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARANI,PACO,saranipaco@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ESNAIRA,PAGADATAN,esnairapagadatan@sksu.edu.ph,sksu@1234,,/,,,,,,9977027371,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JONATHAN,PALAD,jonathanpalad@sksu.edu.ph,sksu@1234,,/,,,,,,9655196092,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOABBEN,PANGANSAYAN,joabbenpangansayan@sksu.edu.ph,sksu@1234,,/,,,,,,9068533569,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ZUL-AMIN,PANGANSAYAN,zul-aminpangansayan@sksu.edu.ph,sksu@1234,,/,,,,,,9976504867,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SHERY,PARAISO,sheryparaiso@sksu.edu.ph,sksu@1234,,/,,,,,,9979058560,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAMERA,POLWA,samerapolwa@sksu.edu.ph,sksu@1234,,/,,,,,,9261805808,,"Kanipaan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMMAD,PULUA,mohammadpulua@sksu.edu.ph,sksu@1234,,/,,,,,,9355885306,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JASIM,RAKIM,jasimrakim@sksu.edu.ph,sksu@1234,,/,,,,,,9654610905,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CYMONETTE GRACE,RAMOS,cymonettegraceramos@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FEL MARK,RAMOS,felmarkramos@sksu.edu.ph,sksu@1234,,/,,,,,,9657704616,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+"CELSO, JR.",REBUSADA,celsorebusada@sksu.edu.ph,sksu@1234,,/,,,,,,9566349940,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CRISTINE,ROSALES,cristinerosales@sksu.edu.ph,sksu@1234,,/,,,,,,9070620070,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ESNAIN,SABAN,esnainsaban@sksu.edu.ph,sksu@1234,,/,,,,,,9756408393,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+IAN,SABDULA,iansabdula@sksu.edu.ph,sksu@1234,,/,,,,,,9355454174,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BENJIEVAR,SABDULA,benjievarsabdula@sksu.edu.ph,sksu@1234,,/,,,,,,9068775124,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FAIDZAH,SABIWANG,faidzahsabiwang@sksu.edu.ph,sksu@1234,,/,,,,,,9068021136,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARIE COLEN,SACAY,mariecolensacay@sksu.edu.ph,sksu@1234,,/,,,,,,9679584101,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHIN,SAIDINA,norhinsaidina@sksu.edu.ph,sksu@1234,,/,,,,,,9753190231,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DISA,SALAMAN,disasalaman@sksu.edu.ph,sksu@1234,,/,,,,,,9353647238,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RIC GYVER,SALAS,ricgyversalas@sksu.edu.ph,sksu@1234,,/,,,,,,9970942639,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GLENG,SALIDO,glengsalido@sksu.edu.ph,sksu@1234,,/,,,,,,9758882267,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOE HYR,SALIK,joehyrsalik@sksu.edu.ph,sksu@1234,,/,,,,,,9972705889,,"Maguid, Palimbang, Sultan Kudarat ",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMEDIN,SALIKULA,mohamedinsalikula@sksu.edu.ph,sksu@1234,,/,,,,,,9658614249,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUHAIMEN,SANAWI,juhaimensanawi@sksu.edu.ph,sksu@1234,,/,,,,,,9757690829,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FARHAN,SANDAY,farhansanday@sksu.edu.ph,sksu@1234,,/,,,,,,9651852904,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-AKMAD,SANSAWI,nor-akmadsansawi@sksu.edu.ph,sksu@1234,,/,,,,,,9368235879,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDULNASSER,SHEIK,abdulnassersheik@sksu.edu.ph,sksu@1234,,/,,,,,,9261742931,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LURMINA,SILONGAN,lurminasilongan@sksu.edu.ph,sksu@1234,,/,,,,,,9168375137,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NUR HASSAN,SILONGAN,nurhassansilongan@sksu.edu.ph,sksu@1234,,/,,,,,,9059555553,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NUR HASSIM,SILONGAN,nurhassimsilongan@sksu.edu.ph,sksu@1234,,/,,,,,,9364531601,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMIRA,SINGGON,amirasinggon@sksu.edu.ph,sksu@1234,,/,,,,,,9050955476,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NASRUDIN,SOLA,nasrudinsola@sksu.edu.ph,sksu@1234,,/,,,,,,9758005466,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NASHREEN,SULA,nashreensula@sksu.edu.ph,sksu@1234,,/,,,,,,9654636004,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FERMIN JR.,SUNDUNGAN,ferminsundungan@sksu.edu.ph,sksu@1234,,/,,,,,,9277686975,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SULTAN,SUWAIB,sultansuwaib@sksu.edu.ph,sksu@1234,,/,,,,,,9950774956,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAYRODIN,SWEB,hayrodinsweb@sksu.edu.ph,sksu@1234,,/,,,,,,9068533504,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JERICO,TABAYOYON,jericotabayoyon@sksu.edu.ph,sksu@1234,,/,,,,,,9971707962,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+PARIDA,TAGORANAO,paridatagoranao@sksu.edu.ph,sksu@1234,,/,,,,,,9268432364,,"Malisbong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ADINYLE,TAVARA,adinyletavara@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DATU PAROUH,TAYA,datuparouhtaya@sksu.edu.ph,sksu@1234,,/,,,,,,9750795815,,"Libua, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMERAH,TIMAN,amerahtiman@sksu.edu.ph,sksu@1234,,/,,,,,,9657704997,,"Kolong-kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GINA,TIMAN,ginatiman@sksu.edu.ph,sksu@1234,,/,,,,,,9639503612,,"Ticulab, Maitum, Saranggani Province",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HADIYA,TIMBAO,hadiyatimbao@sksu.edu.ph,sksu@1234,,/,,,,,,9360987077,,"Kidayan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CHERA MAE,TOLEDO,cheramaetoledo@sksu.edu.ph,sksu@1234,,/,,,,,,9265858317,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HALID,TUANSI,halidtuansi@sksu.edu.ph,sksu@1234,,/,,,,,,9553989059,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FUDSIYA,USMAN,fudsiyausman@sksu.edu.ph,sksu@1234,,/,,,,,,9365875253,,"Kolong-kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMAR,USOP,amarusop@sksu.edu.ph,sksu@1234,,/,,,,,,9365885698,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KAHARUDIN,UTTO,kaharudinutto@sksu.edu.ph,sksu@1234,,/,,,,,,9530918782,,"Maguid, Palimbang, Sultan Kudart",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMMAD,UYAG,mohammaduyag@sksu.edu.ph,sksu@1234,,/,,,,,,9269211099,,"kanipaan, Palimbang, Sultan Kudart",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KENETH LLOYD,VALDEZ,kenethlloydvaldez@sksu.edu.ph,sksu@1234,,/,,,,,,9550813275,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUVIE JEAN,VILLANUEVA,juviejeanvillanueva@sksu.edu.ph,sksu@1234,,/,,,,,,9677111810,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUDY ANN,VILLASE,judyannvillase@sksu.edu.ph,sksu@1234,,/,,,,,,9657388927,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOLLIBEE,VILLEGAS,jollibeevillegas@sksu.edu.ph,sksu@1234,,/,,,,,,9067495527,,,,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDUL RAUOF,WATAMAMA,abdulrauofwatamama@sksu.edu.ph,sksu@1234,,/,,,,,,9651599805,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KING HYDER,WATAMAMA,kinghyderwatamama@sksu.edu.ph,sksu@1234,,/,,,,,,9679742200,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAIHAM,ABAN,raihamaban@sksu.edu.ph,sksu@1234,,/,,,,,,9758662899,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAIDA,ABAS,saidaabas@sksu.edu.ph,sksu@1234,,/,,,,,,9750712355,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-ALI,ABDUL,nor-aliabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9651259262,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAIRA,ABDUL,johairaabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9556082608,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SHEIKA MAE,ABDUL,sheikamaeabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9752307133,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SHEYRIKIT,ABDULLAH,sheyrikitabdullah@sksu.edu.ph,sksu@1234,,/,,,,,,9750615488,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SITTIE AISA,ALI,sittieaisaali@sksu.edu.ph,sksu@1234,,/,,,,,,9554686134,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AISAH,ALI,aisahali@sksu.edu.ph,sksu@1234,,/,,,,,,9363375847,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ROWENA,ALI,rowenaali@sksu.edu.ph,sksu@1234,,/,,,,,,9273448741,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+REYMARK,AMEL,reymarkamel@sksu.edu.ph,sksu@1234,,/,,,,,,9364163120,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BAINALYN,ANDANG,bainalynandang@sksu.edu.ph,sksu@1234,,/,,,,,,9973761106,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARIMA,ANDI,sarimaandi@sksu.edu.ph,sksu@1234,,/,,,,,,9552674076,,"Maganao,Palimbang,Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NARAHIMA,ARON,narahimaaron@sksu.edu.ph,sksu@1234,,/,,,,,,9756206529,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALMERA,BACAR,almerabacar@sksu.edu.ph,sksu@1234,,/,,,,,,9978142922,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BADRUDIN,BALAWAG,badrudinbalawag@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RENA,BALDERAS,renabalderas@sksu.edu.ph,sksu@1234,,/,,,,,,9655914858,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+CRISTINE MAE,BALURAN,cristinemaebaluran@sksu.edu.ph,sksu@1234,,/,,,,,,9365892963,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RIZZA MAE,BATICULA,rizzamaebaticula@sksu.edu.ph,sksu@1234,,/,,,,,,9550811181,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JAMES KENNETH,CARANCIO,jameskennethcarancio@sksu.edu.ph,sksu@1234,,/,,,,,,9675897238,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALONORA,CASE,alonoracase@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Kisek, Palimbang,sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARL ANDRELENE,CASE,marlandrelenecase@sksu.edu.ph,sksu@1234,,/,,,,,,9975415301,,"poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DECEMIE,CERNA,decemiecerna@sksu.edu.ph,sksu@1234,,/,,,,,,9069782921,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RICA,CONEJAR,ricaconejar@sksu.edu.ph,sksu@1234,,/,,,,,,9974306514,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ARNEL JR.,CORDADA,arnelcordada@sksu.edu.ph,sksu@1234,,/,,,,,,9262051088,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUNIELYN,CUARESMA,junielyncuaresma@sksu.edu.ph,sksu@1234,,/,,,,,,9978319425,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FAYED,DAGUIT,fayeddaguit@sksu.edu.ph,sksu@1234,,/,,,,,,9655015480,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+APRIL JOY,DEDELIS,apriljoydedelis@sksu.edu.ph,sksu@1234,,/,,,,,,9651259279,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ANGEL ROSE,DEPOSITARIO,angelrosedepositario@sksu.edu.ph,sksu@1234,,/,,,,,,9269484676,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MANSOUR,DIMATE,mansourdimate@sksu.edu.ph,sksu@1234,,/,,,,,,9973998229,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDULBAYAN,EBRAHIM,abdulbayanebrahim@sksu.edu.ph,sksu@1234,,/,,,,,,9758568716,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+TARHATA,EMBING,tarhataembing@sksu.edu.ph,sksu@1234,,/,,,,,,9552243674,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ERIC,ESTRELLO,ericestrello@sksu.edu.ph,sksu@1234,,/,,,,,,9552674051,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GENELYN,ESTRELLO,genelynestrello@sksu.edu.ph,sksu@1234,,/,,,,,,9651259311,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUDESSAH,FELARCA,judessahfelarca@sksu.edu.ph,sksu@1234,,/,,,,,,9364919867,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LIEZEL,GALVEZ,liezelgalvez@sksu.edu.ph,sksu@1234,,/,,,,,,9557405509,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GEMARIE,GINOGALING,gemarieginogaling@sksu.edu.ph,sksu@1234,,/,,,,,,9556087461,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HOSNA,GUIABEL,hosnaguiabel@sksu.edu.ph,sksu@1234,,/,,,,,,9068534462,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAIME,GUIABEL,haimeguiabel@sksu.edu.ph,sksu@1234,,/,,,,,,9262053516,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUDY RICA,GUIAMEL,judyricaguiamel@sksu.edu.ph,sksu@1234,,/,,,,,,9265460257,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDALI,GUIAPAL,abdaliguiapal@sksu.edu.ph,sksu@1234,,/,,,,,,9066463739,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAIRAMAE,GUIRRERO,hairamaeguirrero@sksu.edu.ph,sksu@1234,,/,,,,,,9352162899,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAIDIN,HARON,johaidinharon@sksu.edu.ph,sksu@1234,,/,,,,,,9357855063,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAIDA,JIAPAL,norhaidajiapal@sksu.edu.ph,sksu@1234,,/,,,,,,9169822750,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOWIE,KUMPA,jowiekumpa@sksu.edu.ph,sksu@1234,,/,,,,,,9355886053,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GARY,KUSAIN,garykusain@sksu.edu.ph,sksu@1234,,/,,,,,,9051344933,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORSAILA,LABUNGAN,norsailalabungan@sksu.edu.ph,sksu@1234,,/,,,,,,9361960659,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAHIMA,LADZAK,rahimaladzak@sksu.edu.ph,sksu@1234,,/,,,,,,9978142908,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOMAR,LAGAYAN,momarlagayan@sksu.edu.ph,sksu@1234,,/,,,,,,9750795822,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RHEA MAE,LANJE,rheamaelanje@sksu.edu.ph,sksu@1234,,/,,,,,,9262072969,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RODOLFO,LIMOS,rodolfolimos@sksu.edu.ph,sksu@1234,,/,,,,,,9553052949,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MAE,MAMINTAS,maemamintas@sksu.edu.ph,sksu@1234,,/,,,,,,9059494021,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAMSIYA,MANGULAMAS,samsiyamangulamas@sksu.edu.ph,sksu@1234,,/,,,,,,9677084162,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HAIRENE,MANONDOG,hairenemanondog@sksu.edu.ph,sksu@1234,,/,,,,,,9559815771,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HASBI,MANONDOG,hasbimanondog@sksu.edu.ph,sksu@1234,,/,,,,,,9631581338,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SONAN,MILITANTE,sonanmilitante@sksu.edu.ph,sksu@1234,,/,,,,,,9051368256,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HABIB,MUDTI,habibmudti@sksu.edu.ph,sksu@1234,,/,,,,,,9654606919,,"Malatunol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ABDUL HASSIM,MUSTAPHA,abdulhassimmustapha@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FAHIMA,NALUD,fahimanalud@sksu.edu.ph,sksu@1234,,/,,,,,,9756116833,,"Kolong kolong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HALID,NAMIL,halidnamil@sksu.edu.ph,sksu@1234,,/,,,,,,9550649931,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FATIMA,NAMIL,fatimanamil@sksu.edu.ph,sksu@1234,,/,,,,,,9977541198,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JEANY ROSE,NIEVERAS,jeanyrosenieveras@sksu.edu.ph,sksu@1234,,/,,,,,,9753121404,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARCIA,ONTING,sarciaonting@sksu.edu.ph,sksu@1234,,/,,,,,,9051469015,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JAN MELVIN,ORIT,janmelvinorit@sksu.edu.ph,sksu@1234,,/,,,,,,9755747914,,"Pasandalan, Lebak, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+AMERA,OTING,ameraoting@sksu.edu.ph,sksu@1234,,/,,,,,,9753524692,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LAURA JANE,PAAN,laurajanepaan@sksu.edu.ph,sksu@1234,,/,,,,,,9558704797,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORBAINA,PANDIAN,norbainapandian@sksu.edu.ph,sksu@1234,,/,,,,,,9362002114,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ESMAEL,PANGANSAYAN,esmaelpangansayan@sksu.edu.ph,sksu@1234,,/,,,,,,9059488642,,"Maganao,Palimbang,Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ZAHARA,PANINDIGAN,zaharapanindigan@sksu.edu.ph,sksu@1234,,/,,,,,,9752660135,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BRYLLE,PARAJES,brylleparajes@sksu.edu.ph,sksu@1234,,/,,,,,,9369933789,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ASIA,PIANG,asiapiang@sksu.edu.ph,sksu@1234,,/,,,,,,9558638760,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HEMAN,PING,hemanping@sksu.edu.ph,sksu@1234,,/,,,,,,9262058698,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHNAIFA,PINO,johnaifapino@sksu.edu.ph,sksu@1234,,/,,,,,,9353665959,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NHOR- INDIRA,PINO,nhor-indirapino@sksu.edu.ph,sksu@1234,,/,,,,,,9972760091,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RUDY JAY,RAMOS,rudyjayramos@sksu.edu.ph,sksu@1234,,/,,,,,,9970913804,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BAISARAH,RODER,baisarahroder@sksu.edu.ph,sksu@1234,,/,,,,,,9973740763,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RAISA,SABIWANG,raisasabiwang@sksu.edu.ph,sksu@1234,,/,,,,,,9357244462,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NURHAMSA,SALIGAN,nurhamsasaligan@sksu.edu.ph,sksu@1234,,/,,,,,,9068533509,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMIDIN AIMAN,SALONG,mohamidinaimansalong@sksu.edu.ph,sksu@1234,,/,,,,,,9351930678,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+VANESSA,SANAWI,vanessasanawi@sksu.edu.ph,sksu@1234,,/,,,,,,9559815545,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FATIMA,SARIF,fatimasarif@sksu.edu.ph,sksu@1234,,/,,,,,,9654610561,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JEMUEL,SINGGON,jemuelsinggon@sksu.edu.ph,sksu@1234,,/,,,,,,9361960659,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MENMEN,SIOKON,menmensiokon@sksu.edu.ph,sksu@1234,,/,,,,,,9367484822,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SOEHARTO,SIOKON,soehartosiokon@sksu.edu.ph,sksu@1234,,/,,,,,,9971747726,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+PHILIP CEASAR,SUCALDITO,philipceasarsucaldito@sksu.edu.ph,sksu@1234,,/,,,,,,9066682923,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALMAIDA,SUCCOR,almaidasuccor@sksu.edu.ph,sksu@1234,,/,,,,,,9652899238,,"Langali, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RODROGO JR.,TEREZ,rodrogoterez@sksu.edu.ph,sksu@1234,,/,,,,,,9382116177,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUNAIRA,TIA,junairatia@sksu.edu.ph,sksu@1234,,/,,,,,,9554312309,,"Maganao,Palimbang,Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+IMIE,TOLEDO,imietoledo@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Napnapon, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DONA JANE,TRAJE,donajanetraje@sksu.edu.ph,sksu@1234,,/,,,,,,9354591861,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GIZELLE,UBANG,gizelleubang@sksu.edu.ph,sksu@1234,,/,,,,,,9362651915,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MARHANA,UNSA,marhanaunsa@sksu.edu.ph,sksu@1234,,/,,,,,,9973953242,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHALEDIN,UNSA,mohaledinunsa@sksu.edu.ph,sksu@1234,,/,,,,,,9368153664,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RADZKINA,UYAG,radzkinauyag@sksu.edu.ph,sksu@1234,,/,,,,,,9366322725,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+LEAH JOY,VILLARTA,leahjoyvillarta@sksu.edu.ph,sksu@1234,,/,,,,,,9365316221,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RADZHAINA,WALING,radzhainawaling@sksu.edu.ph,sksu@1234,,/,,,,,,9058355970,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MALEAJA,ABDUL,maleajaabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9067593488,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MOHARA,ABDUL,moharaabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9262081573,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+YUMIRA,ABDUL,yumiraabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9068533872,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BAI PARINA,ABDULLAH,baiparinaabdullah@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Langali, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAMSUDIN,ABUBAKAR,samsudinabubakar@sksu.edu.ph,sksu@1234,,/,,,,,,9363522334,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ELVIE,ARIZ,elvieariz@sksu.edu.ph,sksu@1234,,/,,,,,,9360951096,,"Langali, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KIMBERLY,BABOR,kimberlybabor@sksu.edu.ph,sksu@1234,,/,,,,,,9368239641,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAINA LAY,BADRON,johainalaybadron@sksu.edu.ph,sksu@1234,,/,,,,,,9068535660,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SARAH JANE,CANILANG,sarahjanecanilang@sksu.edu.ph,sksu@1234,,/,,,,,,9654919613,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+GLYZEL,CONEJAR,glyzelconejar@sksu.edu.ph,sksu@1234,,/,,,,,,950519244,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+VIM,DADIVAS,vimdadivas@sksu.edu.ph,sksu@1234,,/,,,,,,9362005688,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JAINODIN,DANDANG,jainodindandang@sksu.edu.ph,sksu@1234,,/,,,,,,9368238805,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOMARIE,DATUMANGUDA,jomariedatumanguda@sksu.edu.ph,sksu@1234,,/,,,,,,9354293362,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JUDE,ERMITA袿,judeermitano@sksu.edu.ph,sksu@1234,,/,,,,,,9256200535,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+SAIRAH,GANI,sairahgani@sksu.edu.ph,sksu@1234,,/,,,,,,9068534681,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MICAH TRISHA,GOMEZ,micahtrishagomez@sksu.edu.ph,sksu@1234,,/,,,,,,9362004236,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+ALMIRAH,GUIAMADEL,almirahguiamadel@sksu.edu.ph,sksu@1234,,/,,,,,,9557414462,,"Medol, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+HANIPA,INTIK,hanipaintik@sksu.edu.ph,sksu@1234,,/,,,,,,9973143882,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAN,KAMSA,norhankamsa@sksu.edu.ph,sksu@1234,,/,,,,,,9974127608,,"Wal, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JONAISA,KARNEN,jonaisakarnen@sksu.edu.ph,sksu@1234,,/,,,,,,9366450410,,"Malisbong, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NUR-ALI,LABUAN,nur-alilabuan@sksu.edu.ph,sksu@1234,,/,,,,,,9068534381,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+PHOEBE ROSE,MAGHINAY,phoeberosemaghinay@sksu.edu.ph,sksu@1234,,/,,,,,,9556784326,,"Linek Nalus, Kiamba, Saranggani Province",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORMINA,MANGACOY,norminamangacoy@sksu.edu.ph,sksu@1234,,/,,,,,,9352343378,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAIRA,MAULANA,johairamaulana@sksu.edu.ph,sksu@1234,,/,,,,,,9275389486,,"Langali, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+MUSLIMIN,OMPONG,musliminompong@sksu.edu.ph,sksu@1234,,/,,,,,,9753645493,,"Kidayan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+BAI RASMIN,ONGGAS,bairasminonggas@sksu.edu.ph,sksu@1234,,/,,,,,,9061328309,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+RODELYN,PAHUWAY,rodelynpahuway@sksu.edu.ph,sksu@1234,,/,,,,,,9051778205,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORSHEMA,PANDIAN,norshemapandian@sksu.edu.ph,sksu@1234,,/,,,,,,9751587395,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+KANDIBAI,RAJAMUDA,kandibairajamuda@sksu.edu.ph,sksu@1234,,/,,,,,,9268980194,,"Barurao 1 Lebak, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FEMA SHANE,RAMOS,femashaneramos@sksu.edu.ph,sksu@1234,,/,,,,,,9751596399,,"Dumulol,Palimbang, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+FEARLY QUEEN,SAMULDE,fearlyqueensamulde@sksu.edu.ph,sksu@1234,,/,,,,,,9559126205,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+DIALYN,TUMALES,dialyntumales@sksu.edu.ph,sksu@1234,,/,,,,,,9265813398,,"Christianuevo, Lebak, Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+IVY JANNINE,YANGORIN,ivyjannineyangorin@sksu.edu.ph,sksu@1234,,/,,,,,,9650895828,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,AGRI-BUSINESS,,PALIMBANG CAMPUS,,,,,TRUE
+NORAISA,ABAS,noraisaabas@sksu.edu.ph,sksu@1234,,/,,,,,,9676419360,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALIZANDRA,ABDILA,alizandraabdila@sksu.edu.ph,sksu@1234,,/,,,,,,9758657206,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NHOJA,ABDUL,nhojaabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9554434737,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORBAINIE,ABDUL,norbainieabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9352163050,,"Lupoken, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMMED,ABDULATIF,mohammedabdulatif@sksu.edu.ph,sksu@1234,,/,,,,,,9758108478,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALHAMIER,ABDULLAH,alhamierabdullah@sksu.edu.ph,sksu@1234,,/,,,,,,9058404124,,"Medol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SITTIE FARHANA,ABDULLAH,sittiefarhanaabdullah@sksu.edu.ph,sksu@1234,,/,,,,,,9656309755,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SUMAIYA,ABDULRAHMAN,sumaiyaabdulrahman@sksu.edu.ph,sksu@1234,,/,,,,,,9553125949,,"Wal, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANGELIE,ABENOJA,angelieabenoja@sksu.edu.ph,sksu@1234,,/,,,,,,9067735253,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARK,ALAY,markalay@sksu.edu.ph,sksu@1234,,/,,,,,,9976640546,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORFARINA,ALI,norfarinaali@sksu.edu.ph,sksu@1234,,/,,,,,,9552637255,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+GLENDYL,ALVAREZ,glendylalvarez@sksu.edu.ph,sksu@1234,,/,,,,,,9651582774,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CRISLYN,AMADOR,crislynamador@sksu.edu.ph,sksu@1234,,/,,,,,,9354830799,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ESNIYA,AMON,esniyaamon@sksu.edu.ph,sksu@1234,,/,,,,,,9658613572,,"Malatunol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORAINE,AMPUAN,noraineampuan@sksu.edu.ph,sksu@1234,,/,,,,,,9061670310,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RASIDA,ANDAL,rasidaandal@sksu.edu.ph,sksu@1234,,/,,,,,,9650895834,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JOMER,ANDIN,jomerandin@sksu.edu.ph,sksu@1234,,/,,,,,,9357849311,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MERIC,ANTIPOLO,mericantipolo@sksu.edu.ph,sksu@1234,,/,,,,,,9970942907,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HAZEL MAE,ARAGONES,hazelmaearagones@sksu.edu.ph,sksu@1234,,/,,,,,,9651580410,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JERAMIE,ARES,jeramieares@sksu.edu.ph,sksu@1234,,/,,,,,,9655196092,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALJAHID,BACAR,aljahidbacar@sksu.edu.ph,sksu@1234,,/,,,,,,9353183732,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAIMA,BAKAR,norhaimabakar@sksu.edu.ph,sksu@1234,,/,,,,,,9353647244,,"Kidayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BABY GRACE,BANTILLO,babygracebantillo@sksu.edu.ph,sksu@1234,,/,,,,,,9169983146,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JEMARY,BRIGONDO,jemarybrigondo@sksu.edu.ph,sksu@1234,,/,,,,,,9488208156,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORGERAH,BUESAN,norgerahbuesan@sksu.edu.ph,sksu@1234,,/,,,,,,9658612576,,"Kidayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAIDA,BURA,norhaidabura@sksu.edu.ph,sksu@1234,,/,,,,,,9551581523,,"Kolong-Kolong, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CLARENCE MAE,CANILANG,clarencemaecanilang@sksu.edu.ph,sksu@1234,,/,,,,,,9365880515,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARL ANDREY,CASE,marlandreycase@sksu.edu.ph,sksu@1234,,/,,,,,,9067475525,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JAMES HARVEY,CASTRO,jamesharveycastro@sksu.edu.ph,sksu@1234,,/,,,,,,9672015758,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAINIE,DAGADAS,johainiedagadas@sksu.edu.ph,sksu@1234,,/,,,,,,9357149605,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+REA MAE,DELA CERNA,reamaedelacerna@sksu.edu.ph,sksu@1234,,/,,,,,,9051952163,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANGELICA,DELOS REYES,angelicadelosreyes@sksu.edu.ph,sksu@1234,,/,,,,,,9973950329,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HAVER,DIMATE,haverdimate@sksu.edu.ph,sksu@1234,,/,,,,,,9362028634,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+OMOHAIR,DIPATUAN,omohairdipatuan@sksu.edu.ph,sksu@1234,,/,,,,,,9972844406,,"Culobe, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MILKYS,ENTIA,milkysentia@sksu.edu.ph,sksu@1234,,/,,,,,,9970942807,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CHRISLENE,ERMAC,chrisleneermac@sksu.edu.ph,sksu@1234,,/,,,,,,9651581001,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+KIMBERLY,ERMITA袿,kimberlyermitano@sksu.edu.ph,sksu@1234,,/,,,,,,9154960763,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ZEPRIS,GANADOS,zeprisganados@sksu.edu.ph,sksu@1234,,/,,,,,,9053005780,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FARISA,GARAY,farisagaray@sksu.edu.ph,sksu@1234,,/,,,,,,9365657119,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CHRISTINE,GRANDE,christinegrande@sksu.edu.ph,sksu@1234,,/,,,,,,9659133209,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MICHAEL,GUERRERO,michaelguerrero@sksu.edu.ph,sksu@1234,,/,,,,,,9365334063,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARSON,GUIABEL,marsonguiabel@sksu.edu.ph,sksu@1234,,/,,,,,,9262052027,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SHAHANI,GUIAMAL,shahaniguiamal@sksu.edu.ph,sksu@1234,,/,,,,,,9068535968,,"Medol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ABDULRAHID,GUIAPAL,abdulrahidguiapal@sksu.edu.ph,sksu@1234,,/,,,,,,9352905010,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMMAD,GUMAGA,mohammadgumaga@sksu.edu.ph,sksu@1234,,/,,,,,,9977545864,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RUSDA,HALIL,rusdahalil@sksu.edu.ph,sksu@1234,,/,,,,,,9362025944,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOJAIRA,HARON,mojairaharon@sksu.edu.ph,sksu@1234,,/,,,,,,9755560613,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AINA,KAMANSA,ainakamansa@sksu.edu.ph,sksu@1234,,/,,,,,,9107396879,,"Baluan, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BABY NHOR,KAMSA,babynhorkamsa@sksu.edu.ph,sksu@1234,,/,,,,,,9658602002,,,,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NURAISHA,KATUG,nuraishakatug@sksu.edu.ph,sksu@1234,,/,,,,,,9354833580,,"Medol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JUHAIREN,LABUAN,juhairenlabuan@sksu.edu.ph,sksu@1234,,/,,,,,,935128094,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HASLIA,LAGISINGAN,haslialagisingan@sksu.edu.ph,sksu@1234,,/,,,,,,9552449125,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+WARDA,LAGISINGAN,wardalagisingan@sksu.edu.ph,sksu@1234,,/,,,,,,9658613724,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JELLY KAYE,LENTIJA,jellykayelentija@sksu.edu.ph,sksu@1234,,/,,,,,,9750796490,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MORAINA,MADI,morainamadi@sksu.edu.ph,sksu@1234,,/,,,,,,9264322227,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MORAISA,MADI,moraisamadi@sksu.edu.ph,sksu@1234,,/,,,,,,9451243842,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NESSEL,MAGNO,nesselmagno@sksu.edu.ph,sksu@1234,,/,,,,,,9365854135,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALMERA,MAGUATE,almeramaguate@sksu.edu.ph,sksu@1234,,/,,,,,,9679747610,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HANAN,MAIDA,hananmaida@sksu.edu.ph,sksu@1234,,/,,,,,,9262059040,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BENJALIE,MALIWANAG,benjaliemaliwanag@sksu.edu.ph,sksu@1234,,/,,,,,,9068728482,,"Medol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NELJAYE,MANAYA,neljayemanaya@sksu.edu.ph,sksu@1234,,/,,,,,,9350611758,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RAKMAN,MANGULAMAS,rakmanmangulamas@sksu.edu.ph,sksu@1234,,/,,,,,,9757629087,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NASRIA,MAULANA,nasriamaulana@sksu.edu.ph,sksu@1234,,/,,,,,,9068908650,,"Langali, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARY ANN,MAULANA,maryannmaulana@sksu.edu.ph,sksu@1234,,/,,,,,,9363417624,,"Wal, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ISYL MAE,MILITANTE,isylmaemilitante@sksu.edu.ph,sksu@1234,,/,,,,,,9657715602,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHAMAD,MISUARI,mohamadmisuari@sksu.edu.ph,sksu@1234,,/,,,,,,9353139538,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-AISA,MOHAMMAD,nor-aisamohammad@sksu.edu.ph,sksu@1234,,/,,,,,,9559774353,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MHECCA ELLA,MONDOY,mheccaellamondoy@sksu.edu.ph,sksu@1234,,/,,,,,,9511994731,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JANICA,NAMIL,janicanamil@sksu.edu.ph,sksu@1234,,/,,,,,,9679577983,,Kraan Palimbang Sultan Kudarat,,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ROJEA SHYRA,NAVARRO,rojeashyranavarro@sksu.edu.ph,sksu@1234,,/,,,,,,9655893006,,Palimbang Sultan Kudarat,,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MAY QUEENCY,NIEVERAS,mayqueencynieveras@sksu.edu.ph,sksu@1234,,/,,,,,,9067729460,,"Maguid, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LAURENCE MAR,NIEVERAS,laurencemarnieveras@sksu.edu.ph,sksu@1234,,/,,,,,,9753828497,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LEALYNE,NISPEROS,lealynenisperos@sksu.edu.ph,sksu@1234,,/,,,,,,9973986696,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NIELAMAE,OLALISAN,nielamaeolalisan@sksu.edu.ph,sksu@1234,,/,,,,,,9658614262,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHIDA,OMAR,mohidaomar@sksu.edu.ph,sksu@1234,,/,,,,,,9356929735,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALLADIN,OMAR,alladinomar@sksu.edu.ph,sksu@1234,,/,,,,,,9363850716,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RAUL,OTING,rauloting@sksu.edu.ph,sksu@1234,,/,,,,,,9069791945,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AUBREY,PADILLA,aubreypadilla@sksu.edu.ph,sksu@1234,,/,,,,,,9058417303,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FAIRODZ,PANGANSAYAN,fairodzpangansayan@sksu.edu.ph,sksu@1234,,/,,,,,,9363417360,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORHAMZA,RACMAN,norhamzaracman@sksu.edu.ph,sksu@1234,,/,,,,,,9068130128,,"Lupoken, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MORCY,RADZAK,morcyradzak@sksu.edu.ph,sksu@1234,,/,,,,,,9652436422,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BABY NOR,SABIWANG,babynorsabiwang@sksu.edu.ph,sksu@1234,,/,,,,,,9363479186,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CHARMIE,SALCEDO,charmiesalcedo@sksu.edu.ph,sksu@1234,,/,,,,,,9068262588,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AINOR MARDIA,SALONG,ainormardiasalong@sksu.edu.ph,sksu@1234,,/,,,,,,9265618756,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JAYANN,SANDAY,jayannsanday@sksu.edu.ph,sksu@1234,,/,,,,,,9677813996,,"Barongis, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SHIEJANNA,SANGUAN,shiejannasanguan@sksu.edu.ph,sksu@1234,,/,,,,,,9675899981,,"Wasag, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MELKY,SENIER,melkysenier@sksu.edu.ph,sksu@1234,,/,,,,,,9976845579,,"Dumato, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FATIMA,SIMPAL,fatimasimpal@sksu.edu.ph,sksu@1234,,/,,,,,,9050777133,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JOBENA,SINGGON,jobenasinggon@sksu.edu.ph,sksu@1234,,/,,,,,,9659133740,,"Malatunol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALMIRA,SIOKON,almirasiokon@sksu.edu.ph,sksu@1234,,/,,,,,,9955332922,,"Kidayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANSELLE MAE,SOBONG,ansellemaesobong@sksu.edu.ph,sksu@1234,,/,,,,,,9269480693,,"Malisbong, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JANOL,SUMINSING,janolsuminsing@sksu.edu.ph,sksu@1234,,/,,,,,,9061724591,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FATIMA,TAGORANAO,fatimatagoranao@sksu.edu.ph,sksu@1234,,/,,,,,,9262059508,,"Malisbong, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORJAINA,TALAPAS,norjainatalapas@sksu.edu.ph,sksu@1234,,/,,,,,,9365883181,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ELVIEME,TAMO-O,elviemetamo-o@sksu.edu.ph,sksu@1234,,/,,,,,,9679747310,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ASKIAN JOHN,TAVARA,askianjohntavara@sksu.edu.ph,sksu@1234,,/,,,,,,9975290231,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JESSA CHRISTI,TAVERA,jessachristitavera@sksu.edu.ph,sksu@1234,,/,,,,,,9759702368,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FATIMA,TAYA,fatimataya@sksu.edu.ph,sksu@1234,,/,,,,,,9758874267,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MAHANI,TAYA,mahanitaya@sksu.edu.ph,sksu@1234,,/,,,,,,9658613708,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AMRIN,TELEBAN,amrinteleban@sksu.edu.ph,sksu@1234,,/,,,,,,92066391,,"Kiponget, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORHANINA,TIMAN,norhaninatiman@sksu.edu.ph,sksu@1234,,/,,,,,,9559615211,,"Lupoken, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOMINA,TIMAN,mominatiman@sksu.edu.ph,sksu@1234,,/,,,,,,9973764649,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALMAYRAH,TUANSI,almayrahtuansi@sksu.edu.ph,sksu@1234,,/,,,,,,9067198225,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SAMER,UKOM,samerukom@sksu.edu.ph,sksu@1234,,/,,,,,,9350627725,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORPA-AIN,ULAMA,norpa-ainulama@sksu.edu.ph,sksu@1234,,/,,,,,,9357585241,,"Malisbong, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HASHEM,ULAMA,hashemulama@sksu.edu.ph,sksu@1234,,/,,,,,,9759866283,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANA,UMBAS,anaumbas@sksu.edu.ph,sksu@1234,,/,,,,,,9067629448,,"Kidayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MUJIB,UNDAYA,mujibundaya@sksu.edu.ph,sksu@1234,,/,,,,,,9534103618,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JHANJALLANI,USMAN,jhanjallaniusman@sksu.edu.ph,sksu@1234,,/,,,,,,9679743819,,"Kolong-Kolong, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+APRIL JOY,VALDEZ,apriljoyvaldez@sksu.edu.ph,sksu@1234,,/,,,,,,9368190827,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ARGIELENE,VILLANUEVA,argielenevillanueva@sksu.edu.ph,sksu@1234,,/,,,,,,9650474003,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JULIET PEARL,VILLAVER,julietpearlvillaver@sksu.edu.ph,sksu@1234,,/,,,,,,9550637544,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORAISA,WALI,noraisawali@sksu.edu.ph,sksu@1234,,/,,,,,,9676775405,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BAINALYN,YUSOPH,bainalynyusoph@sksu.edu.ph,sksu@1234,,/,,,,,,9658616895,,"Maguid, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ESMAEL,ABDUL,esmaelabdul@sksu.edu.ph,sksu@1234,,/,,,,,,9262050907,,"Akol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BRAINYL KEIZZIA,AMARELA,brainylkeizziaamarela@sksu.edu.ph,sksu@1234,,/,,,,,,9363259543,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+KIMBERLY,BOTE,kimberlybote@sksu.edu.ph,sksu@1234,,/,,,,,,9552243431,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARRY JOY,CABANGON,marryjoycabangon@sksu.edu.ph,sksu@1234,,/,,,,,,9364276347,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HARON,CANILANG,haroncanilang@sksu.edu.ph,sksu@1234,,/,,,,,,935360470,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AMORIE,GANI,amoriegani@sksu.edu.ph,sksu@1234,,/,,,,,,9262054176,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+KEMBERLY,LACSON,kemberlylacson@sksu.edu.ph,sksu@1234,,/,,,,,,9068533415,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CYRIL JADE,LOPEZ,cyriljadelopez@sksu.edu.ph,sksu@1234,,/,,,,,,9262411257,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HAINA,MUDTI,hainamudti@sksu.edu.ph,sksu@1234,,/,,,,,,905146865,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SAADA,OMPONG,saadaompong@sksu.edu.ph,sksu@1234,,/,,,,,,9358726219,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+KAHARUDIN,PANINDIGAN,kaharudinpanindigan@sksu.edu.ph,sksu@1234,,/,,,,,,9061484974,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SHYRA JEAN,SANDAY,shyrajeansanday@sksu.edu.ph,sksu@1234,,/,,,,,,9051411093,,"Barongis, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+REALYN,TOYOC,realyntoyoc@sksu.edu.ph,sksu@1234,,/,,,,,,9756117338,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JOMIE GRACE,TUYOC,jomiegracetuyoc@sksu.edu.ph,sksu@1234,,/,,,,,,9364197737,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-SHEEHAM,ULALISAN,nor-sheehamulalisan@sksu.edu.ph,sksu@1234,,/,,,,,,9262057364,,"Barongis, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORHANA,UNTONG,norhanauntong@sksu.edu.ph,sksu@1234,,/,,,,,,9066297479,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RAIHANNA,ZAID,raihannazaid@sksu.edu.ph,sksu@1234,,/,,,,,,9368243313,,"Langali, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHANNA,ABDULATIF,mohannaabdulatif@sksu.edu.ph,sksu@1234,,/,,,,,,9554311928,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SAMER,ACOB,sameracob@sksu.edu.ph,sksu@1234,,/,,,,,,9357855063,,"Kidayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RUHAMINA,AMAN,ruhaminaaman@sksu.edu.ph,sksu@1234,,/,,,,,,9554303738,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JEYMER,ANDAB,jeymerandab@sksu.edu.ph,sksu@1234,,/,,,,,,9654099612,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NAICEL,BAYBAY,naicelbaybay@sksu.edu.ph,sksu@1234,,/,,,,,,9550631590,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FAHIMA,CAB,fahimacab@sksu.edu.ph,sksu@1234,,/,,,,,,9361152658,,"Kolong-Kolong, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+PRISCILA,CEBE,priscilacebe@sksu.edu.ph,sksu@1234,,/,,,,,,9654612076,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+PRINCESS LHEE,DALIDA,princesslheedalida@sksu.edu.ph,sksu@1234,,/,,,,,,9067810270,,"Dumolol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JUHAIRA,DATUWATA,juhairadatuwata@sksu.edu.ph,sksu@1234,,/,,,,,,9556786300,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANALIE,DELOS REYES,analiedelosreyes@sksu.edu.ph,sksu@1234,,/,,,,,,9754862551,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NIKKO,DESABILLE,nikkodesabille@sksu.edu.ph,sksu@1234,,/,,,,,,955741462,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+KYNNETH JADE,GUIANI,kynnethjadeguiani@sksu.edu.ph,sksu@1234,,/,,,,,,9970949104,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MERFE,HERMOSURA,merfehermosura@sksu.edu.ph,sksu@1234,,/,,,,,,9976913204,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANTHONY,IMPAL,anthonyimpal@sksu.edu.ph,sksu@1234,,/,,,,,,9068500809,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SAMERAH,KADIR,samerahkadir@sksu.edu.ph,sksu@1234,,/,,,,,,9267919606,,"Malisbong, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+PHOEBE HONEY,MENDOZA,phoebehoneymendoza@sksu.edu.ph,sksu@1234,,/,,,,,,9262054176,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+PRINCESS  DIANNE,SIAZON,princessdiannesiazon@sksu.edu.ph,sksu@1234,,/,,,,,,9359982068,,"Maguid, Palimbang, Sulktan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARRY ANN,TAG-AT,marryanntag-at@sksu.edu.ph,sksu@1234,,/,,,,,,9066481665,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MICHAEL,TAIB,michaeltaib@sksu.edu.ph,sksu@1234,,/,,,,,,9059435302,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ABDUL,TINDIG,abdultindig@sksu.edu.ph,sksu@1234,,/,,,,,,9056033736,,"Wal, Palimbang, Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALMOVIN,YUSOPH,almovinyusoph@sksu.edu.ph,sksu@1234,,/,,,,,,9651599944,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+DENNIS,ABADEJOS,dennisabadejos@sksu.edu.ph,sksu@1234,,/,,,,,,9360988639,,"Malatunol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ABIDIN,AKMAD,abidinakmad@sksu.edu.ph,sksu@1234,,/,,,,,,9309262133,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RIZZA,ALBA,rizzaalba@sksu.edu.ph,sksu@1234,,/,,,,,,9061295897,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOROL-AIN,ALFONSO,norol-ainalfonso@sksu.edu.ph,sksu@1234,,/,,,,,,9972760689,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SAIDEN,ALI,saidenali@sksu.edu.ph,sksu@1234,,/,,,,,,9653801277,,"Lupoken, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOAMMAR,ALI,moammarali@sksu.edu.ph,sksu@1234,,/,,,,,,9368200505,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+CHERRY MAE,AMPASO,cherrymaeampaso@sksu.edu.ph,sksu@1234,,/,,,,,,935170385,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+SHAIMA,ANOG,shaimaanog@sksu.edu.ph,sksu@1234,,/,,,,,,9302427924,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ABDUL,ANTONIO,abdulantonio@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARK,ANTONIO,markantonio@sksu.edu.ph,sksu@1234,,/,,,,,,9067907323,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOVAIRA,ARON,novairaaron@sksu.edu.ph,sksu@1234,,/,,,,,,9559753690,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JIDELYN,ARPON,jidelynarpon@sksu.edu.ph,sksu@1234,,/,,,,,,9106669631,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+GEORLYN JOY,BARUEL,georlynjoybaruel@sksu.edu.ph,sksu@1234,,/,,,,,,9068179621,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LYNDEE,BELLEZA,lyndeebelleza@sksu.edu.ph,sksu@1234,,/,,,,,,9755828925,,"Mina, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AMINA,BENITO,aminabenito@sksu.edu.ph,sksu@1234,,/,,,,,,9168760354,,"Wal, Palimbang, Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HASNIYA,BENITO,hasniyabenito@sksu.edu.ph,sksu@1234,,/,,,,,,9109165022,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LITTLE JANE,BONSIT,littlejanebonsit@sksu.edu.ph,sksu@1234,,/,,,,,,9753828483,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FLORDELIZA,CAPITAN,flordelizacapitan@sksu.edu.ph,sksu@1234,,/,,,,,,9262388862,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+DEXTER JAY,CARACUT,dexterjaycaracut@sksu.edu.ph,sksu@1234,,/,,,,,,9364459616,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JANINE LEE,CASUGA,janineleecasuga@sksu.edu.ph,sksu@1234,,/,,,,,,9357852599,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ESMAEL,DARPING,esmaeldarping@sksu.edu.ph,sksu@1234,,/,,,,,,9064782889,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ROSEMARIE,DELA CRUZ,rosemariedelacruz@sksu.edu.ph,sksu@1234,,/,,,,,,9751430365,,"Dumolol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JESSABEL,DELLOMES,jessabeldellomes@sksu.edu.ph,sksu@1234,,/,,,,,,9066052723,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JEZON,DELOS REYES,jezondelosreyes@sksu.edu.ph,sksu@1234,,/,,,,,,9365301123,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANGEL,DEPOSITARIO,angeldepositario@sksu.edu.ph,sksu@1234,,/,,,,,,9263270334,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+YUSOP,DERON,yusopderon@sksu.edu.ph,sksu@1234,,/,,,,,,9263664744,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MICHAILA,DIMASIMPAN,michailadimasimpan@sksu.edu.ph,sksu@1234,,/,,,,,,9752929736,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORAIDA,ENOG,noraidaenog@sksu.edu.ph,sksu@1234,,/,,,,,,9363850753,,"Kraan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARBINA,ENTIA,marbinaentia@sksu.edu.ph,sksu@1234,,/,,,,,,9503757884,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ANGELICA,ESOY,angelicaesoy@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Dumolol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RASMIA,FERMIN,rasmiafermin@sksu.edu.ph,sksu@1234,,/,,,,,,9356743085,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BOBBY CHITO,FERRER,bobbychitoferrer@sksu.edu.ph,sksu@1234,,/,,,,,,9505645688,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOR-EN,GUIABEL,nor-enguiabel@sksu.edu.ph,sksu@1234,,/,,,,,,9057169414,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LARA ANGELA,GUIRA,laraangelaguira@sksu.edu.ph,sksu@1234,,/,,,,,,9970942917,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BENJIELYN,GUTIERREZ,benjielyngutierrez@sksu.edu.ph,sksu@1234,,/,,,,,,9482247064,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LORMINA,HERMOSURA,lorminahermosura@sksu.edu.ph,sksu@1234,,/,,,,,,9556710222,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+AGNES,JUHAN,agnesjuhan@sksu.edu.ph,sksu@1234,,/,,,,,,9265329997,,"Kolong-Kolong, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALKAIDE,JUHAN,alkaidejuhan@sksu.edu.ph,sksu@1234,,/,,,,,,9505859449,,"Kolong-Kolong, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RAIHANA,KAMID,raihanakamid@sksu.edu.ph,sksu@1234,,/,,,,,,9263262051,,"Barongis, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BENNAJAR,KAMSI,bennajarkamsi@sksu.edu.ph,sksu@1234,,/,,,,,,9654610967,,"Lupoken, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ZAINAB,KANDA,zainabkanda@sksu.edu.ph,sksu@1234,,/,,,,,,9067198107,,"Maguid, Palimbang, Sulktan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALPHAIDA,KUSAIN,alphaidakusain@sksu.edu.ph,sksu@1234,,/,,,,,,9554820021,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MIZHEL ANN,MAMINTAS,mizhelannmamintas@sksu.edu.ph,sksu@1234,,/,,,,,,9302529278,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+REYNA DEE,MANUEL,reynadeemanuel@sksu.edu.ph,sksu@1234,,/,,,,,,9068160496,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BAI SHEEREA MARAH,MARIANO,baisheereamarahmariano@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+WARDA,MASTURA,wardamastura@sksu.edu.ph,sksu@1234,,/,,,,,,9357033052,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+LOVELYN JANE,MAUJON,lovelynjanemaujon@sksu.edu.ph,sksu@1234,,/,,,,,,9263844441,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ARLENE,MERCED,arlenemerced@sksu.edu.ph,sksu@1234,,/,,,,,,9463949072,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JENNER,MERCED,jennermerced@sksu.edu.ph,sksu@1234,,/,,,,,,9092809975,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+GRETCHEN,NAMBONG,gretchennambong@sksu.edu.ph,sksu@1234,,/,,,,,,9551504855,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ADORA,NAMIL,adoranamil@sksu.edu.ph,sksu@1234,,/,,,,,,9361172518,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+YASSER,NAMIL,yassernamil@sksu.edu.ph,sksu@1234,,/,,,,,,9099045898,,"Malatunol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RANREEVE,NAVARRO,ranreevenavarro@sksu.edu.ph,sksu@1234,,/,,,,,,9363546449,,"Malatunol, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FAISAL,OMAR,faisalomar@sksu.edu.ph,sksu@1234,,/,,,,,,9758005385,,"Wasag, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NAOMI,PABA,naomipaba@sksu.edu.ph,sksu@1234,,/,,,,,,9265123580,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MARY JOY,PANCHO,maryjoypancho@sksu.edu.ph,sksu@1234,,/,,,,,,9095605499,,"Milbuk, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JANIFA,PANGANSAYAN,janifapangansayan@sksu.edu.ph,sksu@1234,,/,,,,,,9357033052,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALI,PATO,alipato@sksu.edu.ph,sksu@1234,,/,,,,,,9355179122,,"Barongis, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+RONALD,PATRICIO,ronaldpatricio@sksu.edu.ph,sksu@1234,,/,,,,,,9753986994,,"Baranayan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JOHAINE,PINO,johainepino@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Barongis, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+FERLYN JANE,ROSANTO,ferlynjanerosanto@sksu.edu.ph,sksu@1234,,/,,,,,,9556087763,,"Tibuhol, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JEFFERSON,ROSARIO,jeffersonrosario@sksu.edu.ph,sksu@1234,,/,,,,,,9262053554,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ELTHON JOHN,SEMA,elthonjohnsema@sksu.edu.ph,sksu@1234,,/,,,,,,9360948941,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NOR MOHAMMAD,SUCCOR,normohammadsuccor@sksu.edu.ph,sksu@1234,,/,,,,,,9569415499,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ROSSMAN,SUCCOR,rossmansuccor@sksu.edu.ph,sksu@1234,,/,,,,,,9358141747,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+NORUDIN,SUWAIB,norudinsuwaib@sksu.edu.ph,sksu@1234,,/,,,,,,9309867234,,"Baliango, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+PRINCESS RIZZA,TALAPAS,princessrizzatalapas@sksu.edu.ph,sksu@1234,,/,,,,,,,,"Badiangon, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+HAZEL MAE,TAMPUS,hazelmaetampus@sksu.edu.ph,sksu@1234,,/,,,,,,9654223436,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+DAISY JOY,TASA,daisyjoytasa@sksu.edu.ph,sksu@1234,,/,,,,,,9061468407,,"Kanipaan, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+DANLYN,TIGAS,danlyntigas@sksu.edu.ph,sksu@1234,,/,,,,,,9093989937,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MAS-OD,TIMBAO,mas-odtimbao@sksu.edu.ph,sksu@1234,,/,,,,,,9652898326,,"Ligao, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+BAI AMERA,ULAMA,baiameraulama@sksu.edu.ph,sksu@1234,,/,,,,,,9265329972,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+ALI-EBRAHIM,ULAMA,ali-ebrahimulama@sksu.edu.ph,sksu@1234,,/,,,,,,9050921134,,"Wasag, Palimbang, Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+MOHANA,UMAL,mohanaumal@sksu.edu.ph,sksu@1234,,/,,,,,,9066654160,,"Poblacion, Palimbang Sultan kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+DANNAH,VALDEZ,dannahvaldez@sksu.edu.ph,sksu@1234,,/,,,,,,9461533678,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE
+JENNYLYN,YANSON,jennylynyanson@sksu.edu.ph,sksu@1234,,/,,,,,,9651543567,,"San Roque, Palimbang Sultan Kudarat",,STUDENT,BEED,,PALIMBANG CAMPUS,,,,,TRUE

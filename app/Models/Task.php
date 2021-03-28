@@ -106,4 +106,9 @@ class Task extends Model
             ->whereColumn('section_id', 'sections.id')
             ->limit(1)]);
     }
+
+    public function calendar_event()
+    {
+        return $this->hasOne(CalendarEvent::class);
+    }
 }

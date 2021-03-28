@@ -912,14 +912,6 @@ select {
 	right: 0.5rem;
 }
 
-.left-3 {
-	left: 0.75rem;
-}
-
-.bottom-3 {
-	bottom: 0.75rem;
-}
-
 .left-1 {
 	left: 0.25rem;
 }
@@ -1157,16 +1149,16 @@ select {
 	margin-left: -1px;
 }
 
+.mb-8 {
+	margin-bottom: 2rem;
+}
+
 .mr-4 {
 	margin-right: 1rem;
 }
 
 .mr-5 {
 	margin-right: 1.25rem;
-}
-
-.mb-8 {
-	margin-bottom: 2rem;
 }
 
 .box-border {
@@ -1269,16 +1261,16 @@ select {
 	height: 0.75rem;
 }
 
+.h-1 {
+	height: 0.25rem;
+}
+
 .h-32 {
 	height: 8rem;
 }
 
 .h-20 {
 	height: 5rem;
-}
-
-.h-1 {
-	height: 0.25rem;
 }
 
 .max-h-48 {
@@ -2070,6 +2062,10 @@ select {
 	background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+	background-color: transparent;
+}
+
 .bg-red-300 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
@@ -2083,10 +2079,6 @@ select {
 .bg-orange-500 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 115, 22, var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-	background-color: transparent;
 }
 
 .bg-red-200 {
@@ -2413,13 +2405,13 @@ select {
 	line-height: 2.25rem;
 }
 
-.text-\[3rem\] {
-	font-size: 3rem;
-}
-
 .text-5xl {
 	font-size: 3rem;
 	line-height: 1;
+}
+
+.text-\[3rem\] {
+	font-size: 3rem;
 }
 
 .font-semibold {
@@ -2438,16 +2430,16 @@ select {
 	font-weight: 500;
 }
 
-.font-extrabold {
-	font-weight: 800;
-}
-
 .font-light {
 	font-weight: 300;
 }
 
 .font-black {
 	font-weight: 900;
+}
+
+.font-extrabold {
+	font-weight: 800;
 }
 
 .uppercase {
@@ -2913,6 +2905,11 @@ button:focus {
 	color: rgba(99, 102, 241, var(--tw-text-opacity));
 }
 
+.hover\:text-red-600:hover {
+	--tw-text-opacity: 1;
+	color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+
 .hover\:text-red-800:hover {
 	--tw-text-opacity: 1;
 	color: rgba(153, 27, 27, var(--tw-text-opacity));
@@ -3302,6 +3299,11 @@ button:focus {
 		grid-column: span 1 / span 1;
 	}
 
+	.md\:my-6 {
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
 	.md\:my-0 {
 		margin-top: 0px;
 		margin-bottom: 0px;
@@ -3310,11 +3312,6 @@ button:focus {
 	.md\:mx-0 {
 		margin-left: 0px;
 		margin-right: 0px;
-	}
-
-	.md\:my-6 {
-		margin-top: 1.5rem;
-		margin-bottom: 1.5rem;
 	}
 
 	.md\:mt-0 {

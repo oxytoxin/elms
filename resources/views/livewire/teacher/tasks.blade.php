@@ -42,8 +42,8 @@
     @if ($display_grid)
     <div class="grid gap-3 mt-3 auto-rows-[1fr] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         @forelse ($tasks as $task)
-        <a href="{{ route('teacher.task', ['task' => $task->id]) }}">
-            <div class="flex flex-col h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
+        <div class="flex flex-col h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
+            <a href="{{ route('teacher.task', ['task' => $task->id]) }}">
                 <div class="pb-5 flex-1 space-y-2 {{ $task->deadline < now() ? 'bg-red-400' : 'bg-green-400' }}">
                     <div class="flex justify-around p-3">
                         <div class="flex-shrink-0 w-12 h-12">
@@ -65,20 +65,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center p-3 text-xs font-semibold uppercase">
-                    <div class="flex items-center space-x-2">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 60 60">
-                            <title>calendar</title>
-                            <path d="M18.75 22.5h7.5v7.5h-7.5zM30 22.5h7.5v7.5h-7.5zM41.25 22.5h7.5v7.5h-7.5zM7.5 45h7.5v7.5h-7.5zM18.75 45h7.5v7.5h-7.5zM30 45h7.5v7.5h-7.5zM18.75 33.75h7.5v7.5h-7.5zM30 33.75h7.5v7.5h-7.5zM41.25 33.75h7.5v7.5h-7.5zM7.5 33.75h7.5v7.5h-7.5zM48.75 0v3.75h-7.5v-3.75h-26.25v3.75h-7.5v-3.75h-7.5v60h56.25v-60h-7.5zM52.5 56.25h-48.75v-41.25h48.75v41.25z">
-                            </path>
-                        </svg>
-                        <div>
-                            <h1 class="text-red-600">{{ $task->deadline ? $task->deadline->format('h:i a, m/d/Y') : 'No deadline set' }}</h1>
-                        </div>
+            </a>
+            <div class="flex justify-center p-3 text-xs font-semibold uppercase">
+                <div class="flex items-center space-x-2">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 60 60">
+                        <title>calendar</title>
+                        <path d="M18.75 22.5h7.5v7.5h-7.5zM30 22.5h7.5v7.5h-7.5zM41.25 22.5h7.5v7.5h-7.5zM7.5 45h7.5v7.5h-7.5zM18.75 45h7.5v7.5h-7.5zM30 45h7.5v7.5h-7.5zM18.75 33.75h7.5v7.5h-7.5zM30 33.75h7.5v7.5h-7.5zM41.25 33.75h7.5v7.5h-7.5zM7.5 33.75h7.5v7.5h-7.5zM48.75 0v3.75h-7.5v-3.75h-26.25v3.75h-7.5v-3.75h-7.5v60h56.25v-60h-7.5zM52.5 56.25h-48.75v-41.25h48.75v41.25z">
+                        </path>
+                    </svg>
+                    <div>
+                        <h1 class="text-red-600">{{ $task->deadline ? $task->deadline->format('h:i a, m/d/Y') : 'No deadline set' }}</h1>
                     </div>
+                    <i wire:click="deleteTask({{ $task->id }})" class="text-xl cursor-pointer hover:text-red-600 icofont-trash"></i>
                 </div>
             </div>
-        </a>
+        </div>
         @empty
         <h1>Hooray! Nothing to do here yet.</h1>
         @endforelse

@@ -18,6 +18,7 @@ class CreateCalendarEventsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('code');
             $table->string('level');
+            $table->foreignId('task_id')->nullable()->default(null)->constrained();
             $table->foreignId('section_id')->nullable()->default(null)->constrained();
             $table->string('title');
             $table->boolean('allDay')->default(true);

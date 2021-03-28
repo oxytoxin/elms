@@ -16,11 +16,6 @@ class AccessCoursesSeeder extends Seeder
     {
         $this->encodeCSV('csvs/courses/access/BEED.csv');
         $this->encodeCSV('csvs/courses/access/BSEDScience.csv');
-        Course::create([
-            'code' => 'ENG323',
-            'name' => 'Children and Adolescent Literature',
-            'units' => 3
-        ]);
     }
 
     public function encodeCSV($path)
