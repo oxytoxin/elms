@@ -14,8 +14,7 @@ class AccessCoursesSeeder extends Seeder
      */
     public function run()
     {
-        $this->encodeCSV('csvs/courses/access/BEED.csv');
-        $this->encodeCSV('csvs/courses/access/BSEDScience.csv');
+        $this->encodeCSV('csvs/courses/courses-final.csv');
     }
 
     public function encodeCSV($path)

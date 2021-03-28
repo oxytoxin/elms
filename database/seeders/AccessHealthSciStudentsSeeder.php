@@ -30,7 +30,7 @@ class AccessHealthSciStudentsSeeder extends Seeder
             $u = User::create([
                 'campus_id' => $campus_id,
                 'name' => ucwords(trim(strtolower($student[1] . ' ' . $student[0]))),
-                'email' => str_replace('ñ', 'n', str_replace(' ', '', strtolower(str_replace('JR.', '', $student[1]) . $student[0] . '@sksu.edu.ph'))),
+                'email' => str_replace('ñ', 'n', str_replace(' ', '', strtolower(str_replace(['JR.', 'III', 'IV', 'II'], '', $student[1]) . $student[0] . '@sksu.edu.ph'))),
                 'email_verified_at' => now(),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 // 'password' => bcrypt(base64_encode(explode(' ', trim($student[0]))[0])), // password

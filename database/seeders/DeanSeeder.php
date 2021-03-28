@@ -77,6 +77,12 @@ class DeanSeeder extends Seeder
             'is_oic' => true
         ]);
         $u->roles()->attach(Role::find(5));
+        $u = User::where('email', 'henrisaaparis@sksu.edu.ph')->first();
+        Dean::create([
+            'user_id' => $u->id,
+            'college_id' => 15,
+        ]);
+        $u->roles()->attach(Role::find(5));
         $u = User::where('email', 'sarahjanegrande@sksu.edu.ph')->first();
         Dean::create([
             'user_id' => $u->id,

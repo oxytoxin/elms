@@ -1,8 +1,9 @@
 <div>
     @livewire('event-creator')
+    @livewire('events-list')
     <h1 class="mb-3 text-2xl font-semibold uppercase">Calendar of Events</h1>
     <button @click="Livewire.emit('openEventCreator')" class="p-2 text-white rounded-md bg-primary-500"><i class="mr-2 icofont-plus"></i>Create an Event</button>
-    <button @click="Livewire.emit('openEventCreator')" class="p-2 text-white rounded-md bg-primary-500"><i class="mr-2 icofont-plus"></i>View Events</button>
+    <button @click="Livewire.emit('openEventsList')" class="p-2 text-white rounded-md bg-primary-500"><i class="mr-2 icofont-calendar"></i>View Events</button>
     <div class="flex overflow-x-auto">
         <div id='calendar' class="w-full mt-5 overflow-x-auto"></div>
     </div>
@@ -27,7 +28,7 @@
             url: '/eventcalendar/events'
         });
         calendar.render();
-        window.addEventListener('event-created', () => {
+        window.addEventListener('events-changed', () => {
             calendar.refetchEvents();
         });
     });

@@ -74,6 +74,7 @@ class EventCreator extends Component
         $this->event_end_day = null;
         $this->event_end_time = null;
         $this->creatorOpen = false;
-        $this->dispatchBrowserEvent('event-created');
+        $this->alert('success', 'Event successfully created.', ['toast' => false, 'position' => 'center']);
+        $this->dispatchBrowserEvent('events-changed');
     }
 }

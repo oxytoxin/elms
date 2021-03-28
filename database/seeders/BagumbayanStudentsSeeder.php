@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
-class TacurongStudentsSeeder extends Seeder
+class BagumbayanStudentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,7 @@ class TacurongStudentsSeeder extends Seeder
      */
     public function run()
     {
-        $this->encodeCSV('csvs/masterlist/tacurong/artsci.csv', 9);
-        $this->encodeCSV('csvs/masterlist/tacurong/cbah.csv', 10);
+        $this->encodeCSV('csvs/masterlist/bagumbayan.csv', 5);
     }
     public function encodeCSV($path, $college_id)
     {
@@ -29,7 +28,7 @@ class TacurongStudentsSeeder extends Seeder
         array_splice($students, 0, 1);
         foreach ($students as $key => $student) {
             $u = User::create([
-                'campus_id' => 3,
+                'campus_id' => 5,
                 'name' => ucwords(trim(strtolower($student[1] . ' ' . $student[0]))),
                 'email' => str_replace('ñ', 'n', str_replace(' ', '', strtolower(str_replace(['JR.', 'III', 'IV', 'II'], '', $student[1]) . $student[0] . '@sksu.edu.ph'))),
                 'email_verified_at' => now(),
@@ -39,23 +38,14 @@ class TacurongStudentsSeeder extends Seeder
             ]);
             $u->roles()->attach(Role::find(2));
             $u->student()->create([
-                'college_id' => $college_id,
+                'college_id' => 15,
                 'department_id' => $this->getDepartment($student[9]),
             ]);
         }
     }
-
     public function getDepartment($dep)
     {
-        if (str_contains($dep, 'AB-Econ')) return 21;
-        if (str_contains($dep, 'AB-PolSci')) return 22;
-        if (str_contains($dep, 'Biology')) return 23;
-        if (str_contains($dep, 'Environmental Science')) return 24;
-        if (str_contains($dep, 'Entrepreneurship')) return 25;
-        if (str_contains($dep, 'Accountancy')) return 26;
-        if (str_contains($dep, 'Management Accounting')) return 27;
-        if (str_contains($dep, 'Hospitality Management')) return 28;
-        if (str_contains($dep, 'Accounting Information System')) return 29;
-        if (str_contains($dep, 'Tourism Management')) return 30;
+        if (str_contains($dep, 'Agribusiness')) return 38;
+        if (str_contains($dep, 'Agri-Fishery')) return 39;
     }
 }

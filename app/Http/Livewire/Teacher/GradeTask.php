@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Teacher;
 use App\Models\Task;
 use Livewire\Component;
 use Illuminate\Support\Facades\URL;
+use App\Notifications\GeneralNotification;
 
 class GradeTask extends Component
 {
@@ -152,6 +153,7 @@ class GradeTask extends Component
             'isGraded' => true,
             'assessment' => json_encode($this->items),
         ]);
+        $this->submission->student->user->notify(new GeneralNotification('A task has been graded.', route('preview-submission', ['submission' => $this->submission->id])));
         return redirect($this->previous);
     }
 }
