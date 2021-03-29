@@ -33,8 +33,12 @@ class StudentPagesController extends Controller
     }
     public function module(Module $module)
     {
-        $resources = $module->resources()->whereIn('teacher_id', auth()->user()->student->teachers)->get();
-        return view('pages.student.modules.module', compact('module', 'resources'));
+        $toOrient = $module->section->modules()->first()->id === $module->id && !auth()->user()->orientations()->where('section_id', $module->section->id)->first();
+        if ($module->section->modules()->first()->id !== $module->id && !auth()->user()->orientations()->where('section_id', $module->section->id)->first()) {
+            $module = $module->section->modules()->with('resources')->first();
+            return redirect()->route('student.course_modules', ['section' => $module->section->id, 'orient' => true]);
+        }
+        return view('pages.student.modules.module', compact('module', 'toOrient'));
     }
     public function course(Course $course)
     {

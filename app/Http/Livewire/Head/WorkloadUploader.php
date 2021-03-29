@@ -52,18 +52,21 @@ class WorkloadUploader extends Component
         foreach ($this->workloadArray as  $key => $workload) {
             $this->workloadArray[$key] = array_values(array_filter($workload, fn ($value) => !is_null($value) && $value !== ''));
         }
-        // foreach ($this->workloadArray as $key => $wload) {
-        //     $course = Course::where('code', $wload[1])->first();
-        //     if (!$course) {
-        //         $this->alert('error', 'Error: Some courses were not found in the database.', [
-        //             'toast' => false,
-        //             'position' => 'center'
-        //         ]);
-        //         $this->workloadArray = [];
-        //         // $this->fileId += 1;
-        //         return session()->flash('error', 'Error: Some courses were not found in the database.');
-        //     }
-        // }
+        $this->workloadArray = array_filter($this->workloadArray, fn ($value) => !is_null($value) && $value !== '' && $value !== []);
+        array_splice($this->workloadArray, -1, 1);
+        // dd($this->workloadArray);
+        foreach ($this->workloadArray as $key => $wload) {
+            $course = Course::where('code', $wload[1])->first();
+            if (!$course) {
+                $this->alert('error', 'Error: Some courses were not found in the database. Course code: ' . $wload[1], [
+                    'toast' => false,
+                    'position' => 'center'
+                ]);
+                $this->workloadArray = [];
+                // $this->fileId += 1;
+                return session()->flash('error', 'Error: Some courses were not found in the database.');
+            }
+        }
         DB::transaction(function () {
             $workloadChanged = false;
             foreach ($this->workloadArray as $key => $load) {
@@ -74,7 +77,7 @@ class WorkloadUploader extends Component
                     if ($course && !$course->sections->contains('code', $load[2])) {
                         if (!$course->teachers->contains($this->teacher))
                             $course->teachers()->attach($this->teacher);
-                        $s = Section::create(['code' => $load[2], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[5], 'schedule' => $load[4]]);
+                        $s = Section::create(['code' => $load[2], 'teacher_id' => $this->teacher->id, 'course_id' => $course->id, 'room' => $load[5] ?? '', 'schedule' => $load[4] ?? '']);
                         $s->grading_system()->create();
                         $chatroom = $s->chatroom()->create([
                             'name' => $s->course->name . ' - (' . $s->code . ')',

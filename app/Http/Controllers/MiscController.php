@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
 use App\Models\Support;
+use App\Models\Teacher;
 use App\Mail\PasswordMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -36,21 +37,27 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        $u = User::where('email', 'carmelacamilaurbano@sksu.edu.ph')->first();
-        Dean::create([
-            'user_id' => $u->id,
-            'college_id' => 4
+        $u = User::create([
+            'campus_id' => 2,
+            'name' => 'Charmagne Lavilles',
+            'email' => 'charmagnelavilles@sksu.edu.ph',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 'password' => bcrypt(base64_encode(explode(' ', trim(strtolower($teacher[0])))[0])), // password
+            'remember_token' => Str::random(10),
         ]);
-        $u->roles()->attach(Role::find(5));
-        // if ($request['email']) {
-        //     $email = $request['email'];
-        // } else $email = 'mjlac.kali@gmail.com';
-        // Password::sendResetLink(['email' => $email]);
-        // return "email sent to $email";
-        // $users = User::whereIn('email', ['joeselayro@sksu.edu.ph'])->get();
-        // foreach ($users as $user) {
-        //     Mail::to($user)->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper($user->name)))[0])));
+        $u->roles()->attach(Role::find(3));
+        $u->teacher()->create([
+            'college_id' => null,
+            'department_id' => null,
+        ]);
+
+        return 'enrolled ' . $u->name;
+        // $users = Teacher::get()->map(fn ($t) => $t->user);
+        // foreach ($users->chunk(10) as  $userschunk) {
+        //     UsersPasswordReset::dispatch($userschunk);
         // }
+        // return "mailed to {$users->count()} users...";
         // for ($i = 0; $i < 10; $i++) {
         //     $r = rand(0, 1);
         //     User::find(1)->supports()->create([

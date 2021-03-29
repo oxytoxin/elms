@@ -1,4 +1,4 @@
-<div class="w-full px-5">
+<div class="w-full">
     <div class="p-5 bg-gray-300 min-h-72">
         <div class="my-4">
             <h3><span class="font-semibold">Course Code/Description: </span><span>{{ $section->course->code }} / {{ $section->course->name }}</span></h3>
@@ -11,7 +11,3 @@
         </div>
     </div>
 </div>
-
-@section('sidebar')
-@include('includes.student.sidebar')
-@endsection

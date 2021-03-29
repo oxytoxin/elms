@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
-class AccessCTEStudentsSeeder extends Seeder
+class IsulanStudentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class AccessCTEStudentsSeeder extends Seeder
      */
     public function run()
     {
-        $this->encodeCSV('csvs/masterlist/access/education.csv', 1);
+        $this->encodeCSV('csvs/masterlist/isulan.csv', 2);
     }
     public function encodeCSV($path, $campus_id)
     {
@@ -38,7 +38,7 @@ class AccessCTEStudentsSeeder extends Seeder
             ]);
             $u->roles()->attach(Role::find(2));
             $u->student()->create([
-                'college_id' => 1,
+                'college_id' => $this->getCollege($student[9]),
                 'department_id' => $this->getDepartment($student[9]),
             ]);
         }
@@ -46,9 +46,27 @@ class AccessCTEStudentsSeeder extends Seeder
 
     public function getDepartment($dep)
     {
-        if (str_contains($dep, 'Diploma')) return 4;
-        if (str_contains($dep, 'BSED')) return 3;
-        if (str_contains($dep, 'BEED')) return 2;
-        if (str_contains($dep, 'BPEd')) return 1;
+        if (str_contains($dep, 'Civil Engineering')) return 14;
+        if (str_contains($dep, 'Computer Engineering')) return 15;
+        if (str_contains($dep, 'Electronics Engineering')) return 16;
+        if (str_contains($dep, 'Computer Science')) return 17;
+        if (str_contains($dep, 'Information Technology')) return 18;
+        if (str_contains($dep, 'Information Systems')) return 19;
+        if (str_contains($dep, 'BTVTE')) return 20;
+        if (str_contains($dep, 'BIT-')) return 45;
+        if (str_contains($dep, 'BSIT-')) return 45;
+    }
+
+    public function getCollege($dep)
+    {
+        if (str_contains($dep, 'Civil Engineering')) return 6;
+        if (str_contains($dep, 'Computer Engineering')) return 6;
+        if (str_contains($dep, 'Electronics Engineering')) return 6;
+        if (str_contains($dep, 'Computer Science')) return 7;
+        if (str_contains($dep, 'Information Technology')) return 7;
+        if (str_contains($dep, 'Information Systems')) return 7;
+        if (str_contains($dep, 'BTVTE')) return 8;
+        if (str_contains($dep, 'BIT-')) return 8;
+        if (str_contains($dep, 'BSIT-')) return 8;
     }
 }

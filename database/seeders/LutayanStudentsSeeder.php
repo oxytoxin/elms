@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
-class AccessCTEStudentsSeeder extends Seeder
+class LutayanStudentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,19 +16,18 @@ class AccessCTEStudentsSeeder extends Seeder
      */
     public function run()
     {
-        $this->encodeCSV('csvs/masterlist/access/education.csv', 1);
+        $this->encodeCSV('csvs/masterlist/lutayan.csv', 18);
     }
-    public function encodeCSV($path, $campus_id)
+    public function encodeCSV($path, $college_id)
     {
         $students = [];
         $handle = fopen(storage_path($path), "r");
         while (($data = fgetcsv($handle)) !== FALSE) {
             array_push($students, $data);
         }
-        array_splice($students, 0, 1);
         foreach ($students as $key => $student) {
             $u = User::create([
-                'campus_id' => $campus_id,
+                'campus_id' => 7,
                 'name' => ucwords(trim(strtolower($student[1] . ' ' . $student[0]))),
                 'email' => str_replace('ñ', 'n', str_replace(' ', '', strtolower(str_replace(['JR.', 'III', 'IV', 'II'], '', $student[1]) . $student[0] . '@sksu.edu.ph'))),
                 'email_verified_at' => now(),
@@ -38,17 +37,14 @@ class AccessCTEStudentsSeeder extends Seeder
             ]);
             $u->roles()->attach(Role::find(2));
             $u->student()->create([
-                'college_id' => 1,
-                'department_id' => $this->getDepartment($student[9]),
+                'college_id' => $college_id,
+                'department_id' => $this->getDepartment($student[2]),
             ]);
         }
     }
 
     public function getDepartment($dep)
     {
-        if (str_contains($dep, 'Diploma')) return 4;
-        if (str_contains($dep, 'BSED')) return 3;
-        if (str_contains($dep, 'BEED')) return 2;
-        if (str_contains($dep, 'BPEd')) return 1;
+        if (str_contains($dep, 'BAT')) return 42;
     }
 }

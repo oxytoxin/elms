@@ -267,5 +267,9 @@ class CollegeSeeder extends Seeder
             'name' => 'Bachelor in Elementary Education',
             'code' => 'BEED'
         ]);
+        College::find(8)->departments()->create([
+            'name' => 'Bachelor of Science in Industrial Technology',
+            'code' => ''
+        ]);
     }
 }

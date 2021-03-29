@@ -30,7 +30,7 @@ class CreateCourse extends Component
         $this->validate([
             'department_id' => 'required',
             'course_title' => 'required|string',
-            'course_code' => ['required', 'regex:/^[a-zA-Z]{3}\d{3}$/'],
+            'course_code' => 'required',
             'course_units' => ['required', 'numeric', 'min:1'],
         ]);
         $course = Course::create([

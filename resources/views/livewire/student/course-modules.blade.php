@@ -1,4 +1,4 @@
-<div>
+<div x-data x-init="Livewire.emit('orientation');">
     <h1 class="text-2xl font-semibold">COURSE MODULES {{ $section->code }}</h1>
     <h1 class="flex items-center justify-between p-2 italic font-semibold text-white bg-primary-500"><span>{{ $section->course->name }}</span>
         @if ($section->videoroom)

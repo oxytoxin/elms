@@ -11,6 +11,11 @@ class OrientationForm extends Component
 
     public Section $section;
 
+    public function mount(Section $section)
+    {
+        $this->section = $section;
+    }
+
     public function render()
     {
         return view('livewire.student.orientation-form')

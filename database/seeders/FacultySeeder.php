@@ -58,8 +58,8 @@ class FacultySeeder extends Seeder
                 'name' => ucwords(trim(strtolower($teacher[0]))),
                 'email' => strtolower($teacher[1]),
                 'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                // 'password' => bcrypt(base64_encode(explode(' ', trim($teacher[0]))[0])), // password
+                // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'password' => bcrypt(base64_encode(explode(' ', trim(strtolower($teacher[0])))[0])), // password
                 'remember_token' => Str::random(10),
             ]);
             $u->roles()->attach(Role::find(3));

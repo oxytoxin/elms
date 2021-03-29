@@ -33,8 +33,7 @@ class SendPasswordResets implements ShouldQueue
     {
         foreach ($event->users as $user) {
             // Password::sendResetLink(['email' => $user->email]);
-            Mail::to($user)->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper($user->name)))[0])));
-            sleep(2);
+            Mail::to($user)->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower($user->name)))[0])));
         }
     }
 }

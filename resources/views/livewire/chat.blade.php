@@ -44,7 +44,7 @@
             <div x-cloak x-show.transition.opacity="showSearch" class="p-1">
                 <input wire:model="search" x-ref="searchComponent" autocomplete="off" type="text" name="contactSearch" id="contactSearch" class="w-full form-input" placeholder="Search for name or email...">
             </div>
-            <ul x-show.transition.opacity="showSearch" x-ref="contactsContainer" @scroll="if($refs.contactsContainer.scrollTop + $refs.contactsContainer.clientHeight >= $refs.contactsContainer.scrollHeight - 5) @this.perContacts += 10" class="relative flex-grow h-0 overflow-y-auto divide-y-2">
+            <ul x-ref="contactsContainer" @scroll="if($refs.contactsContainer.scrollTop + $refs.contactsContainer.clientHeight >= $refs.contactsContainer.scrollHeight - 5) @this.perContacts += 10" class="relative flex-grow h-0 overflow-y-auto divide-y-2">
                 <div>
                     @if ($search)
                     <div class="absolute top-0 z-30 w-full h-full bg-green-200 divide-y-2">

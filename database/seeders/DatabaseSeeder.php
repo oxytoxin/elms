@@ -31,10 +31,13 @@ class DatabaseSeeder extends Seeder
             $this->call(AccessAgriStudentsSeeder::class);
             $this->call(AccessCrimStudentsSeeder::class);
             $this->call(AccessHealthSciStudentsSeeder::class);
+            $this->call(IsulanStudentsSeeder::class);
             $this->call(TacurongStudentsSeeder::class);
             $this->call(KalamansigStudentsSeeder::class);
             $this->call(BagumbayanStudentsSeeder::class);
             $this->call(PalimbangStudentsSeeder::class);
+            $this->call(LutayanStudentsSeeder::class);
+            $this->call(Lutayan2StudentsSeeder::class);
         }
         $this->call(DeanSeeder::class);
         // $this->call(MiscSeeder::class);

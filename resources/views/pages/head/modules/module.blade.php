@@ -7,8 +7,8 @@
         @forelse ($module->files as $file)
         <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
             <a href="{{ route('head.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
-            <i class="icofont-ui-file"></i>
-            {{ $file->name }}
+                <i class="icofont-ui-file"></i>
+                {{ $file->name }}
             </a>
             <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
                 <i class="icofont-download-alt"></i>
@@ -25,8 +25,8 @@
         @foreach ($resource->files as $file)
         <div class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
             <a href="{{ route('head.preview',['file'=> $file->id]) }}" class="p-3" target="_blank">
-            <i class="icofont-ui-file"></i>
-            {{ $file->name }}
+                <i class="icofont-ui-file"></i>
+                {{ $file->name }}
             </a>
             <a href="{{ route('file.download',['file'=> $file->id]) }}" target="_blank" class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
                 <i class="icofont-download-alt"></i>
@@ -36,8 +36,8 @@
         @empty
         <h1>No additional resources found.</h1>
         @endforelse
-</div>
-@endsection
-@section('sidebar')
+    </div>
+    @endsection
+    @section('sidebar')
     @include('includes.head.sidebar')
-@endsection
+    @endsection

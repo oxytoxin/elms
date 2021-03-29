@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(Todo::class);
     }
 
+    public function orientations()
+    {
+        return $this->hasMany(Orientation::class);
+    }
+
     public function dean()
     {
         return $this->hasOne(Dean::class);
