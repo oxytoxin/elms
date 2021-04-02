@@ -43,7 +43,7 @@
         })
     " class="fixed inset-0 z-[100]">
         <div class="grid w-full h-full bg-primary-500 place-items-center">
-            <h1 class="text-xl text-center mx-auto text-white animate-bounce">Please wait while we load some things...</h1>
+            <h1 class="mx-auto text-xl text-center text-white animate-bounce">Please wait while we load some things...</h1>
         </div>
     </div>
     @livewire('leina.chatbot', key('leina-chatbot'))
@@ -68,7 +68,7 @@
                 </h1>
                 <nav class="text-2xl whitespace-nowrap">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
-                    <a data-turbolinks="false" href="{{ route("$whereami.messages") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-wechat"></i></a>
+                    <a data-turbolinks="false" href="{{ route("$whereami.messages") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-message"></i></a>
                     @livewire('notification-component')
                     <a data-turbolinks="false" href="{{ route("$whereami.calendar") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>

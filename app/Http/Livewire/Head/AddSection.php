@@ -89,7 +89,9 @@ class AddSection extends Component
                 'message' => $t->user->name . ' has joined the group.'
             ]);
             $section->teacher->user->notify(new GeneralNotification('Your workload has been updated.', route('teacher.faculty_workload')));
-            Course::find($this->course_select)->teachers()->attach($this->faculty_select);
+            $c =  Course::find($this->course_select);
+            if (!$c->teachers()->where('teacher_id', $this->faculty_select)->first())
+                $c->teachers()->attach($this->faculty_select);
         });
         session()->flash('message', 'Section successfully added.');
         $this->section_code = '';

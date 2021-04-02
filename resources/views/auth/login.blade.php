@@ -43,30 +43,30 @@
                                         Remember me
                                     </label>
                                 </div>
-
+                                {{--
                                 @if (Route::has('password.request'))
                                 <div class="text-sm">
                                     <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
-                                        Forgot your password?
-                                    </a>
-                                </div>
-                                @endif
-
+                                Forgot your password?
+                                </a>
                             </div>
+                            @endif --}}
 
-                            <div>
-                                <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Sign in
-                                </button>
-                            </div>
-                        </form>
                     </div>
+
+                    <div>
+                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Sign in
+                        </button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="relative flex-1 hidden w-0 lg:block">
-            <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset('img/bg.webp') }}" alt="">
-            <img src="{{ asset('img/leina.webp') }}" alt="leina image" class="absolute w-44 top-5 right-10">
-        </div>
+    </div>
+    <div class="relative flex-1 hidden w-0 lg:block">
+        <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset('img/bg.webp') }}" alt="">
+        <img src="{{ asset('img/leina.webp') }}" alt="leina image" class="absolute w-44 top-5 right-10">
+    </div>
     </div>
 </x-guest-layout>

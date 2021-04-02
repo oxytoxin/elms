@@ -59,7 +59,7 @@ Route::get('/test', [MiscController::class, 'test']);
 Route::get('/task/{id}', [MiscController::class, 'taskRedirect'])->middleware(['auth']);
 Route::post('test', [TestController::class, 'test']);
 
-Route::view('/under_development', 'underdev')->name('soon_to_be_developed');
+Route::view('/under_development', 'errors.503')->name('soon_to_be_developed');
 
 
 // Student Routes

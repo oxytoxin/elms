@@ -27,6 +27,8 @@ class CreateCourse extends Component
     }
     public function addCourse()
     {
+        $c = Course::where('code', $this->course_code)->first();
+        if ($c) return session()->flash('message', 'A course already exists with this course code.');
         $this->validate([
             'department_id' => 'required',
             'course_title' => 'required|string',

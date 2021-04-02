@@ -55,6 +55,7 @@ class HeadCoursesPage extends Component
     public function removeSection(Section $section, $teacher_id)
     {
         $section->delete();
+        $this->course = Course::find($this->course->id);
         if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {
             $this->course->teachers()->detach($teacher_id);
         }
@@ -66,7 +67,7 @@ class HeadCoursesPage extends Component
     {
         $this->validate([
             'newCourseName' => 'required|string',
-            'newCourseCode' => ['required', 'regex:/^[a-zA-Z]{3}\d{3}$/']
+            'newCourseCode' => 'required'
         ]);
         $this->course->update([
             'name' => strtoupper($this->newCourseName),

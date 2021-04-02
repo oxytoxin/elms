@@ -16,7 +16,7 @@ class TeacherIsEnrolled
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->route('section')->course->teachers->where('id', auth()->user()->teacher->id)->first())
+        if ($request->route('section')->teacher_id == auth()->user()->teacher->id)
             return $next($request);
         return redirect()->route('teacher.modules');
     }
