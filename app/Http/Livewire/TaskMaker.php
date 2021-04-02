@@ -283,7 +283,7 @@ class TaskMaker extends Component
             }
             foreach ($item['files'] as $id => $file) {
                 $filename = $file->getClientOriginalName();
-                $url = $file->store('tasks', 'public');
+                $url = $file->store("", "tasks");
                 array_push($this->items[$key]['files'], ['name' => $filename, 'url' => $url]);
             }
         }
