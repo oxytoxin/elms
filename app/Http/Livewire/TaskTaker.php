@@ -111,8 +111,9 @@ class TaskTaker extends Component
                 $this->answers[$key]['files'] = [];
                 foreach ($item['files'] as $id => $file) {
                     $filename = $file->getClientOriginalName();
-                    $url = $file->store('tasks', 'public');
-                    array_push($this->answers[$key]['files'], ['name' => $filename, 'url' => $url]);
+                    $url = $file->store("", "tasks");
+                    $match = gdriver($url);
+                    array_push($this->answers[$key]['files'], ['name' => $filename, 'google_id' => $match['id'], 'url' => $url]);
                 }
             }
         }
