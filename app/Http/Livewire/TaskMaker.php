@@ -284,7 +284,8 @@ class TaskMaker extends Component
             foreach ($item['files'] as $id => $file) {
                 $filename = $file->getClientOriginalName();
                 $url = $file->store("", "tasks");
-                array_push($this->items[$key]['files'], ['name' => $filename, 'url' => $url]);
+                $match = gdriver($url);
+                array_push($this->answers[$key]['files'], ['name' => $filename, 'google_id' => $match['id'], 'url' => $url]);
             }
         }
         DB::transaction(function () {
