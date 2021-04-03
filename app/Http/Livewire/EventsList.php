@@ -19,7 +19,7 @@ class EventsList extends Component
 
     public function render()
     {
-        $this->events = auth()->user()->calendar_events()->get();
+        $this->events = auth()->user()->calendar_events()->where('level', '!=', 'tasks')->get();
         return view('livewire.events-list');
     }
 
