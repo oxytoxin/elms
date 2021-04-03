@@ -18,6 +18,7 @@ class RedirectMe
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
+            if (auth()->user()->email == 'elms@sksu.edu.ph') return redirect('/laravel-websockets');
             switch (auth()->user()->roles()->first()->id) {
                 case 2:
                     session(['whereami' => 'student']);

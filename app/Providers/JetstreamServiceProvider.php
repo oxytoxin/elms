@@ -33,8 +33,11 @@ class JetstreamServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (LoginRequest $request) {
             $user = User::where('email', $request->email)->first();
 
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
+            if (
+                $user &&
+                Hash::check($request->password, $user->password)
+            ) {
+                if ($user->email == 'elms@sksu.edu.ph') return $user;
                 switch ($user->roles()->first()->id) {
                     case 2:
                         session(['whereami' => 'student']);

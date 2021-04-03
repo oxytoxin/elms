@@ -66,7 +66,8 @@ class MiscController extends Controller
         //     ]);
         // }
         // User::find(1)->readSupports();
-        Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower('oxytoxinsgrace')))[0])));
+        // Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower('oxytoxinsgrace')))[0])));
+        Auth::logout();
     }
     public function sendPasswordResets()
     {
@@ -78,7 +79,7 @@ class MiscController extends Controller
 
     public function fileDownload(File $file)
     {
-        return Storage::disk('google')->download($file->google_id, $file->url);
+        return Storage::disk('google')->download($file->google_id, $file->name);
     }
     public function event_details($event, Request $request)
     {
