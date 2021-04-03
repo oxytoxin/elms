@@ -63,7 +63,7 @@
         <h1 class="mt-2 text-sm border-b-2 border-primary-600">Answer Attachments</h1>
         <div class="flex flex-col px-4 py-2 space-y-2 place-items-center">
             @foreach ($answers[$key]['files'] as $file)
-            <a target="blank" href="{{ asset('storage'.'/'.$file['url']) }}" class="block w-full text-xs italic font-semibold">
+            <a target="blank" href="{{ route("file.preview",['id' => $file['google_id']]) }}" class="block w-full text-xs italic font-semibold">
                 <div class="p-3 space-x-3 text-white rounded bg-primary-500"><i class="icofont-files-stack"></i><span>{{ $file['name'] }}</span></div>
             </a>
             @endforeach

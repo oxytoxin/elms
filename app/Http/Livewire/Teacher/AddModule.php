@@ -42,9 +42,9 @@ class AddModule extends Component
 
     public function deleteModule(Module $module)
     {
-        // foreach ($module->files as $f) {
-        //     Storage::cloud()->delete($f->google_id);
-        // }
+        foreach ($module->files as $f) {
+            Storage::cloud()->delete($f->google_id);
+        }
         $module->delete();
         $this->section = Section::find($this->section->id);
         $this->alert('success', 'Module has been removed.', ['toast' => false, 'position' => 'center']);

@@ -37,22 +37,22 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        $u = User::create([
-            'campus_id' => 2,
-            'name' => 'Charmagne Lavilles',
-            'email' => 'charmagnelavilles@sksu.edu.ph',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            // 'password' => bcrypt(base64_encode(explode(' ', trim(strtolower($teacher[0])))[0])), // password
-            'remember_token' => Str::random(10),
-        ]);
-        $u->roles()->attach(Role::find(3));
-        $u->teacher()->create([
-            'college_id' => null,
-            'department_id' => null,
-        ]);
+        // $u = User::create([
+        //     'campus_id' => 2,
+        //     'name' => 'Charmagne Lavilles',
+        //     'email' => 'charmagnelavilles@sksu.edu.ph',
+        //     'email_verified_at' => now(),
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     // 'password' => bcrypt(base64_encode(explode(' ', trim(strtolower($teacher[0])))[0])), // password
+        //     'remember_token' => Str::random(10),
+        // ]);
+        // $u->roles()->attach(Role::find(3));
+        // $u->teacher()->create([
+        //     'college_id' => null,
+        //     'department_id' => null,
+        // ]);
 
-        return 'enrolled ' . $u->name;
+        // return 'enrolled ' . $u->name;
         // $users = Teacher::get()->map(fn ($t) => $t->user);
         // foreach ($users->chunk(10) as  $userschunk) {
         //     UsersPasswordReset::dispatch($userschunk);
@@ -66,7 +66,7 @@ class MiscController extends Controller
         //     ]);
         // }
         // User::find(1)->readSupports();
-        // Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtoupper('oxytoxinsgrace')))[0])));
+        Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower('oxytoxinsgrace')))[0])));
     }
     public function sendPasswordResets()
     {

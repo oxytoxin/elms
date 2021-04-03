@@ -38,13 +38,10 @@
             <div class="flex justify-center my-3">
                 <div class="flex flex-col items-center">
                     @foreach ($item['files'] as $file)
-                    <a href="{{ asset('storage'.'/'.$file['url']) }}" target="_blank" class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg">
+                    <a href="{{ route("file.preview",['id' => $file['google_id']]) }}" target="_blank" class="inline-flex items-center justify-center bg-white border divide-x-2 rounded-lg border-primary-600">
                         <span class="p-3" target="_blank">
                             <i class="icofont-ui-file"></i>
                             {{ $file['name'] }}
-                        </span>
-                        <span class="p-3 text-white rounded-r-lg hover:text-primary-600 bg-primary-500">
-                            <i class="icofont-download-alt"></i>
                         </span>
                     </a>
                     @endforeach

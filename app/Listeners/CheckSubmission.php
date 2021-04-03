@@ -40,7 +40,7 @@ class CheckSubmission implements ShouldQueue
                     } else array_push($items, $key = ['isCorrect' => false, 'score' => 0]);
                 } else if ($content['enumeration']) {
                     $correctItems = 0;
-                    $studentEnums = array_map('strtolower', json_decode($answers[$key]['answer']));
+                    $studentEnums = array_map('strtolower', json_decode($answers[$key]['answer'], true)['items']);
                     $correctEnums = array_map('strtolower', $content['enumerationItems']);
                     foreach ($correctEnums as $key => $enumItem) {
                         if (in_array(sanitizeString($studentEnums[$key]), $correctEnums)) $correctItems++;

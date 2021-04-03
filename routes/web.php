@@ -29,6 +29,7 @@ use App\Http\Livewire\Teacher\FacultyWorkload;
 use App\Http\Controllers\StudentPagesController;
 use App\Http\Controllers\TeacherPagesController;
 use App\Http\Controllers\ProgramHeadPagesController;
+use App\Http\Livewire\PreviewFile;
 use App\Http\Livewire\Student\CourseModules;
 use App\Http\Livewire\Student\OrientationForm;
 
@@ -51,6 +52,7 @@ Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middle
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
 Route::get('/test', [MiscController::class, 'test']);
+Route::get('/preview-file/{id}', PreviewFile::class)->middleware(['auth'])->name('file.preview');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
