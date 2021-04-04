@@ -1,4 +1,5 @@
 <div>
+    <x-loading wire:loading.grid wire:target="submitAnswers" message="Submitting Answers..." />
     <h1 class="text-2xl font-semibold uppercase">{{ $task->task_type->name }}</h1>
     <div class="mt-5 uppercase">
         <h1><span class="font-semibold">Task: </span>{{ $task->name }}</h1>
@@ -31,7 +32,7 @@
         {{ 'bg-red-300' }}
         @endif
          mt-3 border border-gray-700 rounded-lg shadow-lg">
-            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $key+1 }}. {{ $item['essay'] ? '(Essay)' : ($item['enumeration'] ? '(Enumeration)' : '') }}</span><span>({{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' : '' }})</span></h1>
+            <h1 class="flex justify-between font-semibold text-orange-500"><span>Question {{ $key+1 }}. {{ $this->getIdentifier($item) }}</span><span>({{ $item['points'] }} pt/s. {{ $item['enumeration'] ? 'each' : '' }})</span></h1>
             <hr class="my-2 border-t-2 border-primary-600">
             <h1>{{ $item['question'] }}</h1>
             @if ($item['files'])

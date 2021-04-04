@@ -53,6 +53,14 @@ class TaskTaker extends Component
         }
     }
 
+    public function getIdentifier($item)
+    {
+        if ($item['essay']) return '(Essay)';
+        if ($item['enumeration']) return '(Enumeration)';
+        if ($item['attachment']) return '(File required.)';
+        if ($item['torf']) return '(True or False.)';
+    }
+
     public function submitAnswers()
     {
         if (auth()->user()->cannot('submit', $this->task)) return session()->flash('deadline', 'Unfortunately, this task has already been closed.');
@@ -88,7 +96,10 @@ class TaskTaker extends Component
                 if (sanitizeString($item['answer']) == "") $ta[$key]['answer'] = 'File attached.';
             }
         }
-        $unanswered = collect($ta)->filter(function ($a) {
+        $unanswered = collect($ta)->filter(function ($a, $k) use ($tc) {
+            if ($tc[$k]['attachment']) {
+                return empty($a['files']);
+            }
             return $a['answer'] == "";
         });
         if ($unanswered->count()) {
