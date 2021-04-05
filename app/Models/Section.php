@@ -33,6 +33,11 @@ class Section extends Model
         return $this->hasOne(GradingSystem::class);
     }
 
+    public function calendar_events()
+    {
+        return $this->hasMany(CalendarEvent::class);
+    }
+
     public function videoroom()
     {
         return $this->hasOne(Videoroom::class);

@@ -34,26 +34,23 @@ class HeadCoursesPage extends Component
         $this->teachers =  $this->course->teachers->reverse();
         $this->newCourseName = $this->course->name;
         $this->newCourseCode = $this->course->code;
-        $this->sections = auth()->user()->program_head->departments->flatMap(function ($department) {
-            return $department->teachers;
-        })->flatMap(function ($teacher) {
-            return $teacher->sections;
-        });
+        $this->sections = $this->course->sections;
     }
 
 
     public function render()
     {
-        $this->sections = auth()->user()->program_head->departments->flatMap(function ($department) {
-            return $department->teachers;
-        })->flatMap(function ($teacher) {
-            return $teacher->sections;
-        });
+        $this->sections = $this->course->sections;
         return view('livewire.head-courses-page');
     }
 
     public function removeSection(Section $section, $teacher_id)
     {
+        $section->chatroom->messages()->delete();
+        $section->chatroom->members()->detach();
+        $section->chatroom()->delete();
+        $section->calendar_events()->delete();
+        $section->grading_system()->delete();
         $section->delete();
         $this->course = Course::find($this->course->id);
         if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {

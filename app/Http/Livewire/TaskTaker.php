@@ -137,7 +137,7 @@ class TaskTaker extends Component
                     'answers' => json_encode($this->answers)
                 ]);
             });
-            event(new NewSubmission(auth()->user()->student, $this->task->id));
+            // event(new NewSubmission(auth()->user()->student, $this->task->id));
         }
         session()->flash('message', 'Task was successfully submitted.');
         return redirect()->route('student.tasks', ['task_type' => $this->task->task_type_id]);

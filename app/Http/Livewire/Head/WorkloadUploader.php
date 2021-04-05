@@ -43,6 +43,9 @@ class WorkloadUploader extends Component
 
     public function uploadWorkload()
     {
+        $this->validate([
+            'workload' => 'required|file',
+        ]);
         $workloadpath = $this->workload->storeAs('workloads', $this->workload->getClientOriginalName(), 'local');
         $handle = fopen(storage_path("app/$workloadpath"), "r");
         while (($data = fgetcsv($handle)) !== FALSE) {
