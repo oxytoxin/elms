@@ -28,7 +28,11 @@ class StudentResource extends Resource
                     ->dependable()
                     ->preload(),
                 Components\BelongsToSelect::make('department_id')
-                    ->relationship('department', 'name')
+                    ->when(fn () => true, function ($field, $record) {
+                        return $field->relationship('department', 'name', function ($query) use ($record) {
+                            return $query->where('college_id', $record->college_id);
+                        });
+                    })
                     ->preload(),
             ]);
     }
