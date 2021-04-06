@@ -2,15 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Filament\Roles;
-use Filament\Resources\Forms\Components;
-use Filament\Resources\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Tables\Columns;
-use Filament\Resources\Tables\Filter;
+use Filament\Resources\Forms\Form;
 use Filament\Resources\Tables\Table;
+use Filament\Resources\Tables\Filter;
+use Filament\Resources\Tables\Columns;
+use Filament\Resources\Forms\Components;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\StudentResource\Pages;
+use Filament\Resources\Forms\Components\BelongsToSelect;
+use App\Filament\Resources\StudentResource\RelationManagers;
 
 class StudentResource extends Resource
 {
@@ -22,9 +24,20 @@ class StudentResource extends Resource
             ->schema([
                 Components\BelongsToSelect::make('user_id')
                     ->required()
-                    ->relationship('user', 'name'),
+                    ->relationship('user', 'name', function ($query) {
+                        return $query->whereHas('roles', function (Builder $query) {
+                            $query->where('role_id', 2);
+                        });
+                    }),
                 Components\BelongsToSelect::make('college_id')
-                    ->relationship('college', 'name')
+                    ->when(fn () => true, function ($field, $record) {
+                        return $field->relationship('college', 'name', function ($query) use ($record) {
+                            if (isset($record->user->campus_id)) {
+                                $c = $record->user->campus_id;
+                            } else $c = null;
+                            return $query->where('campus_id', $c);
+                        });
+                    })
                     ->dependable()
                     ->preload(),
                 Components\BelongsToSelect::make('department_id')

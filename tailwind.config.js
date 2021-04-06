@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require('tailwindcss/colors')
 module.exports = {
+    mode: 'jit',
     purge: [
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php"

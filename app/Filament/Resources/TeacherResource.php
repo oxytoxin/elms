@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Tables\Columns;
 use Filament\Resources\Tables\Filter;
 use Filament\Resources\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TeacherResource extends Resource
 {
@@ -22,7 +23,11 @@ class TeacherResource extends Resource
             ->schema([
                 Components\BelongsToSelect::make('user_id')
                     ->required()
-                    ->relationship('user', 'name'),
+                    ->relationship('user', 'name', function ($query) {
+                        return $query->whereHas('roles', function (Builder $query) {
+                            $query->where('role_id', 3);
+                        });
+                    }),
             ]);
     }
 
