@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DB;
+use Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
