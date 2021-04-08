@@ -23,6 +23,7 @@ class WorkloadUploader extends Component
     public $workload;
     public $hasWorkload = false;
     public $fileId = 0;
+    public $course;
 
 
     public function mount(Teacher $teacher)
@@ -101,5 +102,20 @@ class WorkloadUploader extends Component
         $this->fileId += 1;
         $this->hasWorkload = true;
         return session()->flash('message', 'Workload was successfully added to faculty member.');
+    }
+
+    public function removeSection(Section $section, $teacher_id)
+    {
+        $this->course = $section->course;
+        $section->chatroom->messages()->delete();
+        $section->chatroom->members()->detach();
+        $section->chatroom()->delete();
+        $section->calendar_events()->delete();
+        $section->grading_system()->delete();
+        $section->delete();
+        if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {
+            $this->course->teachers()->detach($teacher_id);
+        }
+        session()->flash('message', 'Section succesfully deleted.');
     }
 }

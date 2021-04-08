@@ -18,6 +18,13 @@ class UserResource extends Resource
 {
     public static $icon = 'heroicon-o-collection';
 
+    public static function authorization()
+    {
+        return [
+            Roles\Manager::allow(),
+        ];
+    }
+
     public static function form(Form $form)
     {
         return $form
@@ -37,6 +44,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                Columns\Text::make('id'),
                 Columns\Text::make('name')->primary()->searchable(),
                 Columns\Text::make('email')->searchable(),
                 Columns\Text::make('campus.name')->label('Campus'),

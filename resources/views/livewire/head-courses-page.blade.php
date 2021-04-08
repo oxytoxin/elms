@@ -1,5 +1,9 @@
 <div class="w-full" x-data="{ showEditCourse:@entangle('showEditCourse')}">
-    <h1 class="mt-5 mb-2 text-xl font-semibold">{{ $course->name }} <i class="ml-5 cursor-pointer icofont-edit" wire:click="$set('showEditCourse',true)"></i><i onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCourse" class="ml-5 text-red-600 cursor-pointer icofont-trash"></i><i wire:loading wire:target="enrolFaculty" class="fa fa-spinner fa-spin"></i></h1>
+    <h1 class="mt-5 mb-2 text-xl font-semibold">{{ $course->name }}
+        <i class="ml-5 cursor-pointer icofont-edit" wire:click="$set('showEditCourse',true)"></i>
+        <i onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCourse" class="ml-5 text-red-600 cursor-pointer icofont-trash"></i>
+        <i wire:loading wire:target="enrolFaculty" class="fa fa-spinner fa-spin"></i>
+    </h1>
     <h1 class="mb-1 text-sm font-semibold">{{ $course->code }}</h1>
     <h1 class="mb-3 text-sm font-semibold">Units: {{ number_format($course->units,2) }}</h1>
 

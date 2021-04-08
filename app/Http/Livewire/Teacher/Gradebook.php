@@ -72,7 +72,7 @@ class Gradebook extends Component
             'attendance' => $this->grading_system->attendance_weight,
         ];
         if (!$this->section_id) {
-            $this->section_id = $this->course->sections->first()->id;
+            $this->section_id = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->first()->id;
         }
         $this->task_types = TaskType::withTaskCount()->get();
         $this->section = Section::find($this->section_id);
@@ -164,7 +164,7 @@ class Gradebook extends Component
     public function updateCourse()
     {
         $this->course = Course::find($this->course_id);
-        $this->section_id = $this->course->sections->first()->id;
+        $this->section_id = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->first()->id;
         $this->dispatchBrowserEvent('livewire:load');
     }
 

@@ -16,6 +16,13 @@ class ProgramHeadResource extends Resource
 {
     public static $icon = 'heroicon-o-collection';
 
+    public static function authorization()
+    {
+        return [
+            Roles\Manager::deny(),
+        ];
+    }
+
     public static function form(Form $form)
     {
         return $form

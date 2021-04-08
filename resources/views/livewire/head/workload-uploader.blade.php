@@ -40,7 +40,7 @@
                 <tbody class="divide-y-2 divide-primary-600">
                     @foreach ($sections as $section)
                     <tr class="divide-x-2 divide-primary-600">
-                        <td class="p-2">{{ $section->id }}</td>
+                        <td class="p-2"><i onclick="confirm('Confirm removal of section?') || event.stopImmediatePropagation()" wire:click.prevent="removeSection({{ $section->id }},{{ $section->teacher_id }})" class="text-red-600 cursor-pointer icofont-trash"></i></td>
                         <td class="p-2">{{ $section->course->name }}</td>
                         <td class="p-2">{{ $section->course->code }}</td>
                         <td class="p-2">{{ $section->code }}</td>

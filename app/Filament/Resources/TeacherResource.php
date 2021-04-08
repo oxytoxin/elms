@@ -17,6 +17,13 @@ class TeacherResource extends Resource
 {
     public static $icon = 'heroicon-o-collection';
 
+    public static function authorization()
+    {
+        return [
+            Roles\Manager::allow()->only(['viewAny']),
+        ];
+    }
+
     public static function form(Form $form)
     {
         return $form
@@ -26,7 +33,7 @@ class TeacherResource extends Resource
                     ->relationship('user', 'name', function ($query) {
                         return $query->whereHas('roles', function (Builder $query) {
                             $query->where('role_id', 3);
-                        });
+                        })->take(30);
                     }),
             ]);
     }
@@ -43,6 +50,8 @@ class TeacherResource extends Resource
                     ->label('college'),
                 Columns\Text::make('department.name')
                     ->label('department'),
+                Columns\Text::make('user.campus.name')
+                    ->label('campus'),
             ])
             ->filters([
                 //

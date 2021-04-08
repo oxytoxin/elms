@@ -78,7 +78,7 @@
                 @endif
                 @forelse ($item['options'] as $id=>$option)
                 <div>
-                    <input disabled type="radio" wire:model="answers.{{ $key }}.answer" id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="form-radio">
+                    <input disabled type="radio" id="answer_{{ $item['item_no'] }}_{{ $option }}" name="answer_{{ $item['item_no'] }}" value="{{ $option }}" class="form-radio">
                     <label for="answer_{{ $item['item_no'] }}_{{ $option }}">{{ $option }}</label>
                 </div>
                 @empty
@@ -87,23 +87,23 @@
                 @if ($item['attachment'])
                 <label class="text-xs font-semibold uppercase" for="answer_{{ $key }}_files">Add Attachment</label>
                 <div wire:key="filepond-{{ $key }}">
-                    <x-filepond disabled wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required wire:model="answers.{{ $key }}.files" class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
+                    <x-filepond disabled wire:key="filebrowser_{{ $key }}" inputname="answer_{{ $key }}_files" type="file" required class="w-full form-input" multiple id="answer_{{ $key }}_files" name="answer_{{ $key }}_files" />
                 </div>
                 @endif
                 @if ($item['essay'])
-                <textarea wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer" cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
+                <textarea disabled wire:key="item_{{ $key }}_textarea" placeholder="Your answer..." cols="30" rows="5" class="w-full border-2 border-gray-700 form-textarea"></textarea>
                 @elseif($item['enumeration'])
                 @if (session("enumError.$key"))
                 <h1 class="my-2 text-sm italic text-red-600">{{ session("enumError.$key") }}</h1>
                 @endif
                 <div class="flex flex-col space-y-2">
                     @foreach ($item['enumerationItems'] as $enum => $enumItem)
-                    <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model.lazy="enumeration.{{ $key }}.items.{{ $enum }}">
+                    <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
                     @endforeach
                 </div>
                 @else
                 @if (!$item['options'])
-                <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer..." wire:model="answers.{{ $key }}.answer">
+                <input disabled type="text" class="w-full border-2 border-gray-700 form-input" placeholder="Your answer...">
                 @endif
                 @endif
             </div>

@@ -32,7 +32,7 @@
                     <div class="flex-grow">
                         <h1 class="font-semibold">For Section:</h1>
                         <select wire:change="updateSection" wire:model="section_id" class="w-full truncate form-select" name="course_select" id="course_select">
-                            @forelse ($course->sections as $course_section)
+                            @forelse ($course->sections->where('teacher_id',auth()->user()->teacher->id) as $course_section)
                             <option value="{{ $course_section->id }}">{{ $course_section->code }}</option>
                             @empty
                             <option value="0" selected disabled hidden>No Courses Found.</option>

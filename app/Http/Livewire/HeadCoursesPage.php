@@ -79,6 +79,12 @@ class HeadCoursesPage extends Component
     }
     public function deleteCourse()
     {
+        if ($this->course->sections->count()) {
+            return $this->alert('error', 'Please delete all sections from this course first.', [
+                'toast' => false,
+                'position' => 'center'
+            ]);
+        }
         $this->course->teachers()->detach();
         $this->course->delete();
         return redirect('/');

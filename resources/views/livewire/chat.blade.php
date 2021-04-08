@@ -6,14 +6,22 @@
                 @forelse ($messages as $message)
                 @if ($message->sender_id)
                 @if ($message->sender_id == auth()->id())
-                <div wire:key="message-{{ $message->id }}" class="flex justify-end ">
-                    <h1 class="p-2 text-white break-all bg-blue-500 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
+                <div wire:key="message-{{ $message->id }}" class="flex justify-end">
+                    <div class="max-w-56 md:max-w-96">
+                        <div class="flex items-center justify-end text-xs">
+                            <h1>{{ $message->created_at->format('m/d g:i A') }}</h1>
+                        </div>
+                        <h1 style="overflow-wrap: anywhere" class="p-2 text-white bg-blue-500 rounded-md">{{ $message->message }}</h1>
+                    </div>
                 </div>
                 @else
-                <div wire:key="message-{{ $message->id }}">
-                    <h1 class="text-xs">{{ $message->sender->name }}</h1>
+                <div class="max-w-56 md:max-w-96" wire:key="message-{{ $message->id }}">
+                    <div class="flex items-center justify-between text-xs">
+                        <h1>{{ $message->sender->name }}</h1>
+                        <h1>{{ $message->created_at->format('m/d g:i A') }}</h1>
+                    </div>
                     <div class="flex">
-                        <h1 class="p-2 break-all bg-gray-300 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
+                        <h1 style="overflow-wrap: anywhere" class="p-2 bg-gray-300 rounded-md max-w-56 md:max-w-96">{{ $message->message }}</h1>
                     </div>
                 </div>
                 @endif

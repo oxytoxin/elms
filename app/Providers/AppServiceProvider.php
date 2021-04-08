@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use Livewire\Component;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Component;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         view()->composer('*', function ($view) {
             $view->with('whereami', \Session::get('whereami'));
+        });
+
+        Gate::define('viewWebTinker', function ($user) {
+            return in_array($user->email, ['elms@sksu.edu.ph']);
         });
     }
 }

@@ -18,6 +18,14 @@ class StudentResource extends Resource
 {
     public static $icon = 'heroicon-o-collection';
 
+    public static function authorization()
+    {
+        return [
+            Roles\Manager::allow(),
+        ];
+    }
+
+
     public static function form(Form $form)
     {
         return $form
@@ -27,7 +35,7 @@ class StudentResource extends Resource
                     ->relationship('user', 'name', function ($query) {
                         return $query->whereHas('roles', function (Builder $query) {
                             $query->where('role_id', 2);
-                        });
+                        })->take(30);
                     }),
                 Components\BelongsToSelect::make('college_id')
                     ->when(fn () => true, function ($field, $record) {
