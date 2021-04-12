@@ -60,6 +60,7 @@
                 <h1 class="my-2 font-bold">Course Student List</h1>
                 <table class="table min-w-full border-2 border-collapse border-gray-200 divide-y shadow">
                     <thead>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
                     </thead>
@@ -67,6 +68,7 @@
                         @forelse ($section->students()->wherePivot('teacher_id',auth()->user()->teacher->id)->get()->sortBy('user.name') as
                         $student)
                         <tr class="divide-x">
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $student->user->name }}</td>
                             <td class="flex items-center space-x-2"><span class="flex-1">{{ $student->user->email }}</span><i onclick="confirm('Confirm removal of student member?') || event.stopImmediatePropagation()" wire:click.prevent="removeStudent({{ $student->id }})" class="p-3 text-red-600 cursor-pointer icofont-trash"></i></td>
                         </tr>

@@ -68,9 +68,9 @@
                 </h1>
                 <nav class="text-2xl whitespace-nowrap">
                     <a @click="showSidebar = !showSidebar"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-navigation-menu"></i></a>
-                    <a data-turbolinks="false" href="{{ route("$whereami.messages") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-message"></i></a>
+                    <a data-turbolinks="false" href="{{ $whereami ? route("$whereami.messages") : '#' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-message"></i></a>
                     @livewire('notification-component')
-                    <a data-turbolinks="false" href="{{ route("$whereami.calendar") }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
+                    <a data-turbolinks="false" href="{{ $whereami ? route("$whereami.calendar") : '#' }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-ui-calendar"></i></a>
                     <a href="#"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-question-circle"></i></a>
                     <a href="{{ route('profile.show') }}"><i class="mx-2 cursor-pointer hover:text-primary-600 icofont-user-alt-4"></i></a>
                     <form class="inline-block" method="POST" action="{{ route('logout') }}">
