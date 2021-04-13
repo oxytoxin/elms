@@ -1,20 +1,24 @@
 <div id="table-container" class="overflow-auto text-gray-700" style="max-height:75vh;">
-    <table id="table_id" class="inline-block w-0 m-2 text-sm text-center border-collapse table-fixed">
+    <table id="table_id" class="inline-block text-sm text-center border-collapse table-fixed">
         <thead class="text-black border">
             <tr class="h-8">
                 <th class="sticky top-0 left-0 z-30 border bg-gradient-to-b from-green-400 to-green-400" rowspan="2">Student</th>
                 @foreach ($task_types as $type)
-                <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $type->task_count+2 }}">{{ $type->name }}</th>
+                @if (in_array($type->id, $tasks->keys()->all()))
+                <th wire:key="type-header-{{ $type->name }}" class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="{{ $tasks[$type->id]->count() +2 }}">{{ $type->name }} ({{ $weights[$type->name] }} %)</th>
+                @endif
                 @endforeach
-                <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="2">ATTENDANCE</th>
+                <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-40" colspan="2">ATTENDANCE ({{ $weights['attendance'] }} %)</th>
                 <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-20" rowspan="2">% TOTAL</th>
                 <th class="sticky top-0 z-20 uppercase border bg-gradient-to-b from-green-400 to-green-400 min-w-20" rowspan="2">GRADE</th>
             </tr>
             <tr>
                 @foreach ($tasks as $task)
                 @foreach ($task as $k => $t)
-                <td wire:key="item-header-{{ $t->id }}" class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score">
-                    <h1>{{ $k + 1 }}</h1>
+                <td wire:key="item-header-{{ $t->id }}" class="sticky z-20 px-2 text-xs border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score">
+                    <a title="{{ $t->name }}" class="w-full hover:text-white" href="{{ route('teacher.task', ['task' => $t->id]) }}">
+                        <h1>{{ $k + 1 }}</h1>
+                    </a>
                     <h1 class="whitespace-nowrap">({{ $t->max_score }}) pts.</h1>
                 </td>
                 @endforeach
@@ -27,7 +31,7 @@
                 @endforeach
                 <td class="sticky z-20 p-2 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score">
                     <h1 class="text-xs">DAYS PRESENT</h1>
-                    <h1>({{ $section->total_days }})
+                    <h1>({{ $section->total_days }})</h1>
                 </td>
                 <td class="sticky z-20 border cursor-pointer bg-gradient-to-b from-green-400 to-green-400 top-8 score hover:text-white">
                     <h1 class="text-sm">% score</h1>
@@ -40,9 +44,6 @@
                 <th scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-nowrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">
                     {{ $student->name }}
                 </th>
-                @php
-                $totalScore = 0;
-                @endphp
                 @foreach ($student->allTasksBySection($section, $quarter_id) as $index=>$student_task_type)
                 @foreach ($student_task_type as $student_task)
                 <td class="p-2 border {{ "row$student->id" }}">
@@ -61,23 +62,20 @@
                     {{ $student_task_type->sum('pivot.score') }}
                 </td>
                 <td class="p-2 border {{ "row$student->id" }}">
-                    {{ round($student_task_type->sum('pivot.score')/$tasks[$index]->sum('max_score')  * $grading_system->getWeightValue($index) , 2) }}
+                    {{ round($student->getGradeByTaskType($section, $quarter_id, $index), 2) }}
                 </td>
-                @php
-                $totalScore += round($student_task_type->sum('pivot.score')/$tasks[$index]->sum('max_score') * $grading_system->getWeightValue($index) , 2);
-                @endphp
                 @endforeach
                 <td class="p-2 border flex items-center justify-center space-x-2 {{ "row$student->id" }}">
-                    <span>{{ $student->pivot->days_present }}</span>
+                    <span>{{ $student->days_present }}</span>
                 </td>
                 <td class="p-2 border {{ "row$student->id" }}">
-                    {{ round($student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) }}
+                    {{ $student->getAttendanceGrade($section) }}
                 </td>
                 <td class="p-2 border {{ "row$student->id" }}">
-                    {{ round($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight,2) }}
+                    {{ $grading_system->attendance_weight ? round($student->getGrades($section, $quarter_id)->sum() + $student->getAttendanceGrade($section),2) : 'N/A'}}
                 </td>
                 <td class="p-2 border {{ "row$student->id" }}">
-                    {{ $grading_system->getGradeValue($totalScore + $student->pivot->days_present / $section->total_days *  $grading_system->attendance_weight )}}
+                    {{ $grading_system->attendance_weight ? $grading_system->getGradeValue($student->getGrades($section, $quarter_id)->sum() + $student->getAttendanceGrade($section) ) : 'N/A'}}
                 </td>
             </tr>
             @empty

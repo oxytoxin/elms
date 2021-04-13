@@ -21,13 +21,22 @@ class GradesExport implements FromView, ShouldAutoSize
 
     public function view(): View
     {
+        $section = Section::find($this->section);
+        $weights = [
+            'assignment' => $section->grading_system->assignment_weight,
+            'activity' => $section->grading_system->activity_weight,
+            'quiz' => $section->grading_system->quiz_weight,
+            'exam' => $section->grading_system->exam_weight,
+            'attendance' => $section->grading_system->attendance_weight,
+        ];
         return view('grades', [
+            'weights' => $weights,
             'quarter_id' => $this->quarter_id,
             'task_types' => TaskType::withTaskCount()->get(),
-            'tasks' => Section::find($this->section)->tasks()->with('task_type')->get()->groupBy('task_type_id')->sortKeys(),
-            'students' => Section::find($this->section)->students()->withName()->get()->sortBy('name'),
-            'section' => Section::find($this->section),
-            'grading_system' => Section::find($this->section)->grading_system,
+            'tasks' => $section->tasks()->where('quarter_id', $this->quarter_id)->with('task_type')->get()->groupBy('task_type_id')->sortKeys(),
+            'students' => $section->students()->withName()->get()->sortBy('name'),
+            'section' => $section,
+            'grading_system' => $section->grading_system,
         ]);
     }
 }
