@@ -11,10 +11,12 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 class GradesExport implements FromView, ShouldAutoSize
 {
     public $section;
+    public $quarter_id;
 
-    public function __construct($section)
+    public function __construct($section, $quarter_id)
     {
         $this->section = $section;
+        $this->quarter_id = $quarter_id;
     }
 
     public function view(): View

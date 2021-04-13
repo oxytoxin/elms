@@ -43,7 +43,7 @@
                 @php
                 $totalScore = 0;
                 @endphp
-                @foreach ($student->allTasksBySection($section) as $index=>$student_task_type)
+                @foreach ($student->allTasksBySection($section, $quarter_id) as $index=>$student_task_type)
                 @foreach ($student_task_type as $student_task)
                 <td class="p-2 border {{ "row$student->id" }}">
                     @if (is_subclass_of($student_task, 'Illuminate\Database\Eloquent\Model'))
