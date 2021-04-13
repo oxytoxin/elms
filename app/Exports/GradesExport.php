@@ -22,6 +22,7 @@ class GradesExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         return view('grades', [
+            'quarter_id' => $this->quarter_id,
             'task_types' => TaskType::withTaskCount()->get(),
             'tasks' => Section::find($this->section)->tasks()->with('task_type')->get()->groupBy('task_type_id')->sortKeys(),
             'students' => Section::find($this->section)->students()->withName()->get()->sortBy('name'),
