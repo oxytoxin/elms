@@ -18,6 +18,7 @@ class TaskMaker extends Component
 {
     use WithFileUploads;
     public $type;
+    public $allSection = false;
     public $task_name = "";
     public $task_instructions;
     public $module;
@@ -288,6 +289,15 @@ class TaskMaker extends Component
                 array_push($this->items[$key]['files'], ['name' => $filename, 'google_id' => $match['id'], 'url' => $url]);
             }
         }
+        if ($this->allSection) {
+            $sections = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->get();
+            foreach ($sections as  $section) {
+                $module = $section->modules()->where('course_id', $this->course->id)->where('name', $this->module->name)->first();
+                if (!$module) {
+                    return $this->alert('error', 'Some sections do not have this module.', ['toast' => false, 'position' => 'center']);
+                }
+            }
+        }
         DB::transaction(function () {
             if (!$this->task_instructions) $this->task_instructions = null;
             if (!$this->noDeadline) $deadline = $this->date_due . ' ' . $this->time_due;
@@ -296,44 +306,90 @@ class TaskMaker extends Component
             else $open_on = null;
             if (count($this->matchingTypeOptions)) $matchingtype_options = json_encode($this->matchingTypeOptions);
             else $matchingtype_options = null;
-            $task = Task::create([
-                'quarter_id' => $this->module->quarter_id,
-                'autocorrect' => $this->autocorrect,
-                'module_id' => $this->module->id,
-                'section_id' => $this->module->section_id,
-                'teacher_id' => auth()->user()->teacher->id,
-                'task_type_id' => TaskType::where('name', $this->type)->firstOrFail()->id,
-                'name' => $this->task_name,
-                'instructions' => $this->task_instructions,
-                'max_score' => $this->total_points,
-                'essay_rubric' => json_encode($this->task_rubric),
-                'matchingtype_options' => $matchingtype_options,
-                'content' => json_encode($this->items),
-                'deadline' => $deadline,
-                'open' => $this->openImmediately,
-                'open_on' => $open_on,
-            ]);
-            if (!$this->noDeadline && $this->openImmediately) {
-                $code = Carbon::now()->timestamp;
-                CalendarEvent::create([
-                    'user_id' => auth()->user()->id,
-                    'code' => $code,
-                    'title' => $task->name,
-                    'description' => $task->name . ' for module: ' . $task->module->name,
-                    'level' => 'tasks',
-                    'section_id' => $this->module->section_id,
-                    'task_id' => $task->id,
-                    'start' => $task->deadline,
-                    'end' => $task->deadline->addDay()->format('Y-m-d'),
-                    'url' => '/task/' . $task->id,
-                    'allDay' => false
-                ]);
-            }
-            if ($this->openImmediately) {
-                event(new NewTask($task, auth()->user()->teacher));
+            if ($this->allSection) {
+                $sections = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->get();
+                foreach ($sections as $key => $section) {
+                    $module = $section->modules()->where('course_id', $this->course->id)->where('name', $this->module->name)->first();
+                    $task = Task::create([
+                        'quarter_id' => $module->quarter_id,
+                        'autocorrect' => $this->autocorrect,
+                        'module_id' => $module->id,
+                        'section_id' => $section->id,
+                        'teacher_id' => auth()->user()->teacher->id,
+                        'task_type_id' => TaskType::where('name', $this->type)->firstOrFail()->id,
+                        'name' => $this->task_name,
+                        'instructions' => $this->task_instructions,
+                        'max_score' => $this->total_points,
+                        'essay_rubric' => json_encode($this->task_rubric),
+                        'matchingtype_options' => $matchingtype_options,
+                        'content' => json_encode($this->items),
+                        'deadline' => $deadline,
+                        'open' => $this->openImmediately,
+                        'open_on' => $open_on,
+                    ]);
+                    if (!$this->noDeadline && $this->openImmediately) {
+                        $code = Carbon::now()->timestamp;
+                        CalendarEvent::create([
+                            'user_id' => auth()->user()->id,
+                            'code' => $code,
+                            'title' => $task->name,
+                            'description' => $task->name . ' for module: ' . $task->module->name,
+                            'level' => 'tasks',
+                            'section_id' => $task->section_id,
+                            'task_id' => $task->id,
+                            'start' => $task->deadline,
+                            'end' => $task->deadline->addDay()->format('Y-m-d'),
+                            'url' => '/task/' . $task->id,
+                            'allDay' => false
+                        ]);
+                    }
+                    if ($this->openImmediately) {
+                        event(new NewTask($task, auth()->user()->teacher));
+                    } else {
+                        // TaskOpening::dispatch($task)->delay(Carbon::now()->addSeconds(10));
+                        TaskOpening::dispatch($task)->delay(Carbon::parse($this->date_open . ' ' . $this->time_open));
+                    }
+                }
             } else {
-                // TaskOpening::dispatch($task)->delay(Carbon::now()->addSeconds(10));
-                TaskOpening::dispatch($task)->delay(Carbon::parse($this->date_open . ' ' . $this->time_open));
+                $task = Task::create([
+                    'quarter_id' => $this->module->quarter_id,
+                    'autocorrect' => $this->autocorrect,
+                    'module_id' => $this->module->id,
+                    'section_id' => $this->module->section_id,
+                    'teacher_id' => auth()->user()->teacher->id,
+                    'task_type_id' => TaskType::where('name', $this->type)->firstOrFail()->id,
+                    'name' => $this->task_name,
+                    'instructions' => $this->task_instructions,
+                    'max_score' => $this->total_points,
+                    'essay_rubric' => json_encode($this->task_rubric),
+                    'matchingtype_options' => $matchingtype_options,
+                    'content' => json_encode($this->items),
+                    'deadline' => $deadline,
+                    'open' => $this->openImmediately,
+                    'open_on' => $open_on,
+                ]);
+                if (!$this->noDeadline && $this->openImmediately) {
+                    $code = Carbon::now()->timestamp;
+                    CalendarEvent::create([
+                        'user_id' => auth()->user()->id,
+                        'code' => $code,
+                        'title' => $task->name,
+                        'description' => $task->name . ' for module: ' . $task->module->name,
+                        'level' => 'tasks',
+                        'section_id' => $task->section_id,
+                        'task_id' => $task->id,
+                        'start' => $task->deadline,
+                        'end' => $task->deadline->addDay()->format('Y-m-d'),
+                        'url' => '/task/' . $task->id,
+                        'allDay' => false
+                    ]);
+                }
+                if ($this->openImmediately) {
+                    event(new NewTask($task, auth()->user()->teacher));
+                } else {
+                    // TaskOpening::dispatch($task)->delay(Carbon::now()->addSeconds(10));
+                    TaskOpening::dispatch($task)->delay(Carbon::parse($this->date_open . ' ' . $this->time_open));
+                }
             }
         });
         session()->flash('message', 'Task was successfully created.');

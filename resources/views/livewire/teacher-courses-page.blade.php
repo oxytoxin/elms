@@ -69,12 +69,12 @@
                         $student)
                         <tr class="divide-x">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $student->user->name }}</td>
+                            <td class="px-2 text-left">{{ $student->user->name }}</td>
                             <td class="flex items-center space-x-2"><span class="flex-1">{{ $student->user->email }}</span><i onclick="confirm('Confirm removal of student member?') || event.stopImmediatePropagation()" wire:click.prevent="removeStudent({{ $student->id }})" class="p-3 text-red-600 cursor-pointer icofont-trash"></i></td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="2">No students enrolled.</td>
+                            <td colspan="3">No students enrolled.</td>
                         </tr>
                         @endforelse
                     </tbody>

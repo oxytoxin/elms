@@ -10,6 +10,7 @@
                 @endif
                 <h1><span class="font-semibold">Perfect Score: </span>{{ $task->max_score }}</h1>
                 <a href="{{ route('teacher.task_preview',['task' => $task->id]) }}" class="inline-block p-2 text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600">PREVIEW TASK</a>
+                <button wire:click="deleteTask" class="p-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-900">FORCE DELETE</button>
             </div>
             <div x-data="{showDeadlineExtension:@entangle('showDeadlineExtension')}" class="mt-4 space-y-2 md:text-right md:mt-0">
                 <h1><span class="font-semibold">MODULE: </span>{{ $task->module->name }}</h1>

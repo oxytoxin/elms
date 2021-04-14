@@ -43,8 +43,8 @@
     <div class="grid gap-3 mt-3 auto-rows-[1fr] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         @forelse ($tasks as $task)
         <div class="flex flex-col h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
-            <a href="{{ route('teacher.task', ['task' => $task->id]) }}">
-                <div class="pb-5 flex-1 space-y-2 {{ $task->deadline < now() ? 'bg-red-400' : 'bg-green-400' }}">
+            <a class="flex flex-col flex-grow" href="{{ route('teacher.task', ['task' => $task->id]) }}">
+                <div class="flex-grow space-y-2 {{ $task->deadline < now() ? 'bg-red-400' : 'bg-green-400' }}">
                     <div class="flex justify-around p-3">
                         <div class="flex-shrink-0 w-12 h-12">
                             <img class="object-cover w-full h-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="teacher avatar">

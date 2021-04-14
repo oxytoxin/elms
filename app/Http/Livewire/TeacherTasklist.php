@@ -16,6 +16,22 @@ class TeacherTasklist extends Component
     public $search = "";
     public $showDeadlineExtension = false;
 
+    protected $listeners = [
+        'confirmDelete',
+        'cancelDelete'
+    ];
+
+    public function confirmDelete()
+    {
+        $this->task->delete();
+        return redirect()->route('teacher.tasks', ['task_type' => $this->task->task_type_id]);
+    }
+
+    public function cancelDelete()
+    {
+        return;
+    }
+
     public function mount(Task $task)
     {
         $this->task = $task;
@@ -46,6 +62,18 @@ class TeacherTasklist extends Component
         ])
             ->extends('layouts.master')
             ->section('content');
+    }
+
+    public function deleteTask()
+    {
+        $this->confirm('Confirm deletion of this task along with all student submissions?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Cancel',
+            'onConfirmed' => 'confirmDelete',
+            'onCancelled' => 'cancelDelete'
+        ]);
     }
 
     public function updatingSubmissionFilter($value)

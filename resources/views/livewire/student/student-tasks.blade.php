@@ -19,9 +19,9 @@
     @if ($display_grid)
     <div class="grid gap-3 mt-3 auto-rows-[1fr] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         @forelse ($tasks as $task)
-        <a href="{{ $task->student_submission ? route('preview-submission', ['submission' => $task->student_submission->pivot->id]) : route('student.task', ['task' => $task->id]) }}">
-            <div class="h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
-                <div class="flex justify-around p-3 {{ $task->deadline < now() && !auth()->user()->student->tasks->where('id', $task->id)->first() ? 'bg-red-400' : 'bg-green-400' }}">
+        <a class="flex flex-col flex-grow" href="{{ $task->student_submission ? route('preview-submission', ['submission' => $task->student_submission->pivot->id]) : route('student.task', ['task' => $task->id]) }}">
+            <div class="flex flex-col h-full overflow-hidden bg-white border-4 rounded-lg hover:bg-green-300 border-primary-600">
+                <div class="flex-grow flex justify-around p-3 {{ ($task->deadline && $task->deadline < now() && !auth()->user()->student->tasks->where('id', $task->id)->first()) ? 'bg-red-400' : 'bg-green-400' }}">
                     <div class="flex-shrink-0 w-16 h-16">
                         <img class="object-cover w-full h-full rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                     </div>
@@ -63,7 +63,7 @@
     <div class="flex flex-col mt-5 space-y-2">
         @forelse ($tasks as $task)
         <a href="{{ $task->student_submission ? route('preview-submission', ['submission' => $task->student_submission->pivot->id]) : route('student.task', ['task' => $task->id]) }}">
-            <div class="flex flex-col md:flex-row justify-between p-3 hover:bg-green-400 rounded-md  {{ $task->deadline < now() ? 'bg-red-400' : ($loop->iteration % 2 ? 'bg-green-300' : 'bg-green-200') }}">
+            <div class="flex flex-col md:flex-row justify-between p-3 hover:bg-green-400 rounded-md  {{ ($task->deadline && $task->deadline < now() && !auth()->user()->student->tasks->where('id', $task->id)->first()) ? 'bg-red-400' : 'bg-green-400' }}">
                 <div class="flex items-center space-x-2">
                     <img class="w-12 h-12 rounded-full" src="{{ $task->teacher->user->profile_photo_url }}" alt="teacher avatar">
                     <div class="text-sm font-semibold">

@@ -107,7 +107,7 @@
         </div>
     </div>
     <div x-ref="tablecontainer" id="table-container" class="overflow-auto lg:w-[60vw] mx-auto text-gray-700 max-h-[75vh]">
-        @if ($tasks->count())
+        @if ($tasks->count() && $section->students()->count())
         <table id="table_id" class="inline-block text-sm text-center border-collapse table-fixed">
             <thead class="text-black border">
                 <tr class="h-8">
@@ -198,7 +198,11 @@
         </table>
         @else
     </div>
+    @if ($section->students()->count())
     <h1 class="p-5 text-xl font-semibold text-center text-white bg-gray-400">No tasks found.</h1>
+    @else
+    <h1 class="p-5 text-xl font-semibold text-center text-white bg-gray-400">No students enrolled.</h1>
+    @endif
     @endif
 </div>
 

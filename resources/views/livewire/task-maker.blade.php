@@ -1,10 +1,14 @@
 <div>
-    <x-loading wire:loading.grid message="Uploading files..." />
+    <x-loading wire:loading.grid message="Processing request..." />
     <h1 class="text-2xl font-semibold">TASK CREATOR</h1>
     <div x-data="{showrubric: @entangle('showrubric'), showMatchingTypeOptions: @entangle('showMatchingTypeOptions'), showAddMatchingTypeOption: @entangle('showAddMatchingTypeOption')}" class="p-2 m-4 text-sm shadow">
         <h1>For Course: <span class="italic">{{ $module->course->name }}</span></h1>
         <h1>For Module: <span class="italic">{{ $module->name }}</span></h1>
-        <h1>For Section: <span class="italic">{{ $module->section->code }}</span></h1>
+        <span class="inline-flex items-center p-2 space-x-2 border border-primary-600">
+            <input wire:model="allSection" type="checkbox" name="allsections" id="allsections">
+            <label for="allsections">Assign to all sections of this course</label>
+        </span>
+        <h1>For Section: <span class="italic">{{ $allSection ? 'All sections of this course' : $module->section->code }}</span></h1>
         <h1>Task Type: {{ strtoupper($type) }}</h1>
         <label for="task_name">Task Name:</label>
         <input type="text" wire:model.defer="task_name" placeholder="Enter task name..." class="w-full form-input">
