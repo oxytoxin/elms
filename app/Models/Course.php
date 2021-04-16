@@ -13,6 +13,7 @@ use App\Models\CourseTeacherStudent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
@@ -20,19 +21,27 @@ class Course extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $casts = [
+        'name_conflict' => AsCollection::class
+    ];
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    // public function college()
-    // {
-    //     return $this->belongsTo(College::class);
-    // }
-    // public function department()
-    // {
-    //     return $this->belongsTo(Department::class);
-    // }
+    public function getNameAttribute($value)
+    {
+        if (Auth::check()) {
+            return $this->name_conflict[auth()->user()->campus_id] ?? $value;
+        }
+        return $value;
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
     public function teachers()
     {
         return $this->belongsToMany(Teacher::class);

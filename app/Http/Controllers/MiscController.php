@@ -18,6 +18,7 @@ use App\Models\CalendarEvent;
 use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
@@ -70,6 +71,7 @@ class MiscController extends Controller
         Auth::login(User::find(148));
         return redirect('/');
         // Auth::logout();
+        // dd(Course::find(313)->name);
     }
     public function sendPasswordResets()
     {
