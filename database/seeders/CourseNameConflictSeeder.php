@@ -18,6 +18,7 @@ class CourseNameConflictSeeder extends Seeder
         DB::transaction(function () {
             $c = Course::where('code', 'GE714')->first();
             $names = $c->name_conflict;
+            if (!$names) $names = collect();
             if (!$names->contains('SOSYEDAD AT LITERATURA/PANITIKANG PANLIPUNAN'))
                 $names->put(4, 'SOSYEDAD AT LITERATURA/PANITIKANG PANLIPUNAN');
             if (!$names->contains('SOSLIT'))
