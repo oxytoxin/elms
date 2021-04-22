@@ -107,11 +107,8 @@ class WorkloadUploader extends Component
     public function removeSection(Section $section, $teacher_id)
     {
         $this->course = $section->course;
-        $section->chatroom->messages()->delete();
-        $section->chatroom->members()->detach();
-        $section->chatroom()->delete();
-        $section->calendar_events()->delete();
         $section->grading_system()->delete();
+        $section->videoroom()->delete();
         $section->delete();
         if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {
             $this->course->teachers()->detach($teacher_id);
