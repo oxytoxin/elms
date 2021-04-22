@@ -1,7 +1,3 @@
 ## SKSU ELEADS
 
-### TODOS
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+# Official ELMS for Sultan Kudarat State University
