@@ -68,7 +68,7 @@ class MiscController extends Controller
         // }
         // User::find(1)->readSupports();
         // Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower('oxytoxinsgrace')))[0])));
-        Auth::login(User::find(259));
+        Auth::login(User::find(1107010));
         return redirect('/');
         // Auth::logout();
         // dd(Course::find(313)->name);
