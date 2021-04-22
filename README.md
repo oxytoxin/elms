@@ -1,3 +1,3 @@
 ## SKSU ELEADS
 
-# Official ELMS for Sultan Kudarat State University
+### Official ELMS for Sultan Kudarat State University
