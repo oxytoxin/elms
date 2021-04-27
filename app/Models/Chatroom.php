@@ -9,7 +9,7 @@ class Chatroom extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public $appends = ['receiver_name'];
+    public $appends = ['receiver'];
 
     public function section()
     {
@@ -39,15 +39,9 @@ class Chatroom extends Model
             ->take(1)])->with('latestMessage');
     }
 
-    public function getReceiverNameAttribute()
-    {
-        $id = auth()->id();
-        return $this->receiver ? $this->receiver->name : '';
-    }
-
     public function getReceiverAttribute()
     {
         $id = auth()->id();
-        return $this->members()->where('user_id', '!=', $id)->first();
+        return $this->members->where('user_id', '!=', $id)->first();
     }
 }

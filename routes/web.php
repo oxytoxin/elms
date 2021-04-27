@@ -53,6 +53,8 @@ Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');
 Route::get('/test', [MiscController::class, 'test']);
 Route::get('/preview-file/{id}', PreviewFile::class)->middleware(['auth'])->name('file.preview');
+Route::get('/debug-sentry', [MiscController::class, 'debugSentry']);
+Route::get('/phpinfo', [MiscController::class, 'phpinfo']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

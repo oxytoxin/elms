@@ -29,13 +29,26 @@ import Echo from 'laravel-echo'
 // });
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-  broadcaster: 'pusher',
-  key: '66212e32c297e111355b',
-  wsHost: window.location.hostname,
-  wsPort: 443,
-  wssPort: 443,
-  encrypted: true,
-  forceTLS: true,
-  disableStats: true,
-});
+if(process.env.MIX_APP_ENV == "local"){
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: '66212e32c297e111355b',
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        wssPort: 6001,
+        encrypted: false,
+        forceTLS: false,
+        disableStats: true,
+      });
+}else{
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: '66212e32c297e111355b',
+        wsHost: window.location.hostname,
+        wsPort: 443,
+        wssPort: 443,
+        encrypted: true,
+        forceTLS: true,
+        disableStats: true,
+      });
+}

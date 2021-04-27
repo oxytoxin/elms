@@ -48,11 +48,11 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
+                'encrypted' => env('APP_ENV') == "production" ? true : false,
                 'host' => '127.0.0.1',
-                'port' => 443,
-                'scheme' => 'https',
-                'useTLS' => true,
+                'port' => env('APP_ENV') == "production" ? 443 : 6001,
+                'scheme' => env('APP_ENV') == "production" ? 'https' : 'http',
+                'useTLS' => env('APP_ENV') == "production" ? true : false,
                 'curl_options' => [
                     CURLOPT_SSL_VERIFYHOST => 0,
                     CURLOPT_SSL_VERIFYPEER => 0,

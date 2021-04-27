@@ -39,12 +39,13 @@ class Chat extends Component
 
     public function render()
     {
+        // $this->chatrooms = auth()->user()->chatrooms()->withLatest()->get()->sortByDesc('latestMessage.created_at');
         $this->chatrooms = auth()->user()->chatrooms()->withLatest()->get()->sortByDesc('latestMessage.created_at');
-        $contacts = User::where('name', 'like', "%$this->search%")->orWhere('email', 'like', "%$this->search%")->get();
+        $contacts = User::where('name', 'like', "%$this->search%")->orWhere('email', 'like', "%$this->search%");
         return view('livewire.chat', [
             'chatrooms' => $this->chatrooms,
-            'messages' => $this->current_chatroom ? $this->current_chatroom->messages->take($this->perPage) : [],
-            'contacts' => $contacts->take($this->perContacts),
+            'messages' => $this->current_chatroom ? $this->current_chatroom->messages()->with('sender')->take($this->perPage)->get() : [],
+            'contacts' => $contacts->take($this->perContacts)->get(),
         ])
             ->extends('layouts.master')
             ->section('content');

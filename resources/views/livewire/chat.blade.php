@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full h-full">
     <div x-data="{ showSearch : false }" class="grid flex-grow w-full h-0 grid-cols-6 grid-rows-2 bg-gray-400 md:grid-rows-1">
         <div class="flex flex-col h-full col-span-6 bg-gray-300 md:col-span-4">
-            <div class="flex items-center h-16 p-2 bg-gray-300">{{ $current_chatroom ?  ($current_chatroom->name ? $current_chatroom->name : $current_chatroom->receiver_name ) : ($newMessageContact ? $newMessageContact['name'] : 'Messages')}}</div>
+            <div class="flex items-center h-16 p-2 bg-gray-300">{{ $current_chatroom ?  ($current_chatroom->name ? $current_chatroom->name : $current_chatroom->receiver->name ) : ($newMessageContact ? $newMessageContact['name'] : 'Messages')}}</div>
             <div x-ref="messagesContainer" @scroll="if($refs.messagesContainer.scrollHeight - $refs.messagesContainer.clientHeight <= $refs.messagesContainer.scrollTop * -1 + 5) @this.perPage += 10" class="flex flex-col-reverse flex-grow h-0 p-1 space-y-1 space-y-reverse overflow-y-auto bg-white">
                 @forelse ($messages as $message)
                 @if ($message->sender_id)
@@ -90,7 +90,7 @@
                             @if ($chatroom->isGroup)
                             <h1 class="text-black">{{ $chatroom->name }}</h1>
                             @else
-                            <h1 class="text-black">{{ $chatroom->receiver_name }}</h1>
+                            <h1 class="text-black">{{ $chatroom->receiver->name }}</h1>
                             @endif
                             <h1 class="w-full text-xs text-gray-700 truncate">{{ $chatroom->latestMessage->sender_id ? ($chatroom->latestMessage->sender_id == auth()->id() ? 'You:' : $chatroom->latestMessage->sender->shortname.':') : '' }} {{ $chatroom->latestMessage ? $chatroom->latestMessage->message : ''}}</h1>
                         </div>

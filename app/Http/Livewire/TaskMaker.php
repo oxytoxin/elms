@@ -237,6 +237,19 @@ class TaskMaker extends Component
     }
     public function saveTask()
     {
+        // Check if task should be given to all sections under this course of the authenticated teacher
+        // Return error if not all sections have the same module
+        if ($this->allSection) {
+            $sections = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->get();
+            foreach ($sections as  $section) {
+                $module = $section->modules()->where('course_id', $this->course->id)->where('name', $this->module->name)->first();
+                if (!$module) {
+                    return $this->alert('error', 'Some sections do not have this module.', ['toast' => false, 'position' => 'center']);
+                }
+            }
+        }
+
+        // Validate inputs for each task items
         $this->validate([
             'task_name' => 'required',
             'items.*.question' => 'required',
@@ -246,11 +259,16 @@ class TaskMaker extends Component
             'items.*.points' => 'required|numeric|min:1|max:100',
         ]);
 
+        // Parse deadline and open date
         $carbondue = Carbon::parse($this->date_due . ' ' . $this->time_due)->format('M d,Y - h:i a');
         $carbonopen = Carbon::parse($this->date_open . ' ' . $this->time_open)->format('M d,Y - h:i a');
+
+        // Insert item number for each items
         for ($i = 0; $i < count($this->items); $i++) {
             $this->items[$i]['item_no'] = $i + 1;
         }
+
+        // Check if deadline and open date and time set is valid
         if (!$this->noDeadline && Carbon::parse($this->date_due . ' ' . $this->time_due) < now()->addHour()) return session()->flash('error', 'Task deadline must at least be one hour from now.');
         if (!$this->openImmediately) {
             $this->validate([
@@ -261,12 +279,15 @@ class TaskMaker extends Component
             if ($carbondue < $carbonopen) return session()->flash('error', 'Cannot set the deadline before task opens.');
         }
 
+        // Check if any item is of type essay
+        // Show rubric creator if true
         foreach ($this->items as  $key => $item) {
             if ($item['essay'] && !$this->isRubricSet) {
                 $this->showrubric = true;
                 return false;
             }
         }
+
         foreach ($this->items as  $key => $item) {
             if (isset($item['answer']) && $item['options']) {
                 $this->items[$key]['answer'] = $item['options'][$item['answer']];
@@ -289,15 +310,7 @@ class TaskMaker extends Component
                 array_push($this->items[$key]['files'], ['name' => $filename, 'google_id' => $match['id'], 'url' => $url]);
             }
         }
-        if ($this->allSection) {
-            $sections = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->get();
-            foreach ($sections as  $section) {
-                $module = $section->modules()->where('course_id', $this->course->id)->where('name', $this->module->name)->first();
-                if (!$module) {
-                    return $this->alert('error', 'Some sections do not have this module.', ['toast' => false, 'position' => 'center']);
-                }
-            }
-        }
+
         DB::transaction(function () {
             if (!$this->task_instructions) $this->task_instructions = null;
             if (!$this->noDeadline) $deadline = $this->date_due . ' ' . $this->time_due;

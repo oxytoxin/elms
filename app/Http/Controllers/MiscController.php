@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Hash;
 use Mail;
+use Exception;
 use App\Models\Dean;
 use App\Models\File;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
+use App\Models\Course;
 use App\Models\Support;
 use App\Models\Teacher;
 use App\Mail\PasswordMail;
@@ -18,7 +20,6 @@ use App\Models\CalendarEvent;
 use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
@@ -38,41 +39,29 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        // $u = User::create([
-        //     'campus_id' => 2,
-        //     'name' => 'Charmagne Lavilles',
-        //     'email' => 'charmagnelavilles@sksu.edu.ph',
-        //     'email_verified_at' => now(),
-        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        //     // 'password' => bcrypt(base64_encode(explode(' ', trim(strtolower($teacher[0])))[0])), // password
-        //     'remember_token' => Str::random(10),
+        // return phpinfo();
+        // User::query()->update([
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         // ]);
-        // $u->roles()->attach(Role::find(3));
-        // $u->teacher()->create([
-        //     'college_id' => null,
-        //     'department_id' => null,
-        // ]);
-
-        // return 'enrolled ' . $u->name;
-        // $users = Teacher::get()->map(fn ($t) => $t->user);
-        // foreach ($users->chunk(10) as  $userschunk) {
-        //     UsersPasswordReset::dispatch($userschunk);
-        // }
-        // return "mailed to {$users->count()} users...";
-        // for ($i = 0; $i < 10; $i++) {
-        //     $r = rand(0, 1);
-        //     User::find(1)->supports()->create([
-        //         'message' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, deserunt?.',
-        //         'isQuery' => $r ? true : false,
-        //     ]);
-        // }
-        // User::find(1)->readSupports();
-        // Mail::to('mjlac.kali@gmail.com')->send(new PasswordMail(base64_encode(explode(' ', trim(strtolower('oxytoxinsgrace')))[0])));
-        Auth::login(User::find(1107010));
-        return redirect('/');
+        // $user = Auth::login(User::find(1107010));
+        // return redirect('/');
+        $user = User::find(234);
+        Mail::to($user)->send(new PasswordMail('12345678'));
+        return 'sent';
         // Auth::logout();
         // dd(Course::find(313)->name);
     }
+
+    public function phpinfo()
+    {
+        return phpinfo();
+    }
+
+    public function debugSentry()
+    {
+        throw new Exception('My first Sentry error!');
+    }
+
     public function sendPasswordResets()
     {
         foreach (User::get()->chunk(10) as $users) {

@@ -29,6 +29,10 @@ class GradeTask extends Component
     public $essay_score = 0;
 
 
+    public $messages = [
+        'partial.*.required' => 'Please provide valid partial points.'
+    ];
+
     public function mount(Task $task)
     {
         $this->previous = URL::previous();
@@ -111,7 +115,12 @@ class GradeTask extends Component
 
     public function markAsCorrect($key)
     {
-        $this->items[$key] = ['isCorrect' => true, 'score' => $this->task_content[$key]['points']];
+        if ($this->task_content[$key]['enumeration']) {
+            $total_points = $this->task_content[$key]['points'] * count($this->task_content[$key]['enumerationItems']);
+            $this->items[$key] = ['isCorrect' => true, 'score' => $total_points];
+        } else {
+            $this->items[$key] = ['isCorrect' => true, 'score' => $this->task_content[$key]['points']];
+        }
     }
 
     public function markAsWrong($key)
@@ -121,14 +130,27 @@ class GradeTask extends Component
 
     public function partialPoints($key)
     {
+        $this->validate([
+            "partial.$key" => 'required',
+        ]);
         try {
-            if ($this->partial[$key] > 0 && $this->partial[$key] <= $this->task_content[$key]['points']) {
-                $this->items[$key] = ['isCorrect' => 'partial', 'score' => $this->partial[$key]];
-                $this->partial[$key] = null;
-            } else
-                session()->flash("partialError$key", "Please provide a valid score.");
+            if ($this->task_content[$key]['enumeration']) {
+                $total_points = $this->task_content[$key]['points'] * count($this->task_content[$key]['enumerationItems']);
+                if ($this->partial[$key] > 0 && $this->partial[$key] <= $total_points) {
+                    $this->items[$key] = ['isCorrect' => 'partial', 'score' => $this->partial[$key]];
+                    $this->partial[$key] = null;
+                } else {
+                    session()->flash("partialError$key", "Please provide a valid score. Total score = # of items * points per item.");
+                }
+            } else {
+                if ($this->partial[$key] > 0 && $this->partial[$key] <= $this->task_content[$key]['points']) {
+                    $this->items[$key] = ['isCorrect' => 'partial', 'score' => $this->partial[$key]];
+                    $this->partial[$key] = null;
+                } else
+                    session()->flash("partialError$key", "Please provide a valid score.");
+            }
         } catch (\Throwable $th) {
-            //throw $th;
+            session()->flash("partialError$key", "Please provide a valid score.");
         }
     }
 

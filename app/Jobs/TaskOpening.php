@@ -50,8 +50,8 @@ class TaskOpening implements ShouldQueue
             'level' => 'tasks',
             'task_id' => $this->task->id,
             'section_id' => $this->task->section_id,
-            'start' => $this->task->deadline,
-            'end' => $this->task->deadline->addDay()->format('Y-m-d'),
+            'start' => $this->task->deadline ?: $this->task->created_at,
+            'end' => $this->task->deadline ? $this->task->deadline->addDay()->format('Y-m-d') : null,
             'url' => '/task/' . $this->task->id,
             'allDay' => false
         ]);
