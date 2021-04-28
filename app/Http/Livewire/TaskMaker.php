@@ -187,6 +187,15 @@ class TaskMaker extends Component
         }
     }
 
+    public function updated($name, $value)
+    {
+        if (preg_match('/items.\d+.points/', $name)) {
+            if (!is_numeric($value)) {
+                $this->items[intval(explode('.', $name)[1])]['points'] = 1;
+            }
+        }
+    }
+
     public function render()
     {
         $this->total_points = array_sum(array_map(function ($i) {

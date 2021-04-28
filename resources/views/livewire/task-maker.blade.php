@@ -95,7 +95,7 @@
                 </div>
                 <div>
                     <h1 class="font-semibold">{{ $item['enumeration'] ? "POINTS/ITEM" : "POINTS" }}</h1>
-                    <input type="number" wire:model="items.{{ $key }}.points" class="w-28 {{ $key%2 ? 'text-black' : '' }} form-input">
+                    <input type="number" wire:model.lazy="items.{{ $key }}.points" class="w-28 {{ $key%2 ? 'text-black' : '' }} form-input">
                 </div>
             </div>
             <div>
