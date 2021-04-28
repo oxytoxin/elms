@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Leina;
 
 use App\Models\Support;
+use Auth;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class Chatbot extends Component
 
     public function render()
     {
+        if(!Auth::check()) return redirect('login');
         return view('livewire.leina.chatbot', [
             'supports' => auth()->user()->supports->take($this->perPage),
         ]);

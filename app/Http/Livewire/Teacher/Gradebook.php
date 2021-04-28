@@ -158,7 +158,9 @@ class Gradebook extends Component
 
     public function confirmed()
     {
-        return Excel::download(new GradesExport($this->section->id, $this->quarter_id), $this->section->code . ' grades for ' . $this->course->name . '.xlsx');
+        $filename = $this->section->code . ' grades for ' . $this->course->name . '.xlsx';
+        $filename = str_replace(["/", "\\"], "_", $filename);
+        return Excel::download(new GradesExport($this->section->id, $this->quarter_id), $filename);
     }
 
     public function updateCourse()
