@@ -55,7 +55,7 @@ class Sidelist extends Component
     public function addTodo()
     {
         $this->validate([
-            'todo' => 'required|min:5'
+            'todo' => 'required|min:5|max:30'
         ]);
         auth()->user()->todos()->create([
             'content' => $this->todo,

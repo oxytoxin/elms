@@ -29,6 +29,9 @@
         @case('programhead')
             @include('includes.head.sidebar')
             @break
+        @case('dean')
+            @include('includes.dean.sidebar')
+            @break
         @default
     @endswitch
 @endsection

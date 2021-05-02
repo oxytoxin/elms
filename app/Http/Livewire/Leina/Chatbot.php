@@ -16,7 +16,7 @@ class Chatbot extends Component
 
     public function render()
     {
-        if(!Auth::check()) return redirect('login');
+        if (!Auth::check()) return redirect('login');
         return view('livewire.leina.chatbot', [
             'supports' => auth()->user()->supports->take($this->perPage),
         ]);
@@ -26,7 +26,7 @@ class Chatbot extends Component
     {
         $this->query = trim($this->query);
         $this->validate([
-            'query' => 'required',
+            'query' => 'required|max:120',
         ]);
         auth()->user()->supports()->create([
             'message' => $this->query,

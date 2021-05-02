@@ -46,8 +46,8 @@ use App\Http\Livewire\Student\OrientationForm;
 
 Route::get('/sendPasswordResets', [MiscController::class, 'sendPasswordResets'])->name('sendpassword.resets');
 Route::get('/download/{file}', [MiscController::class, 'fileDownload'])->name('file.download');
-Route::get('/event/{event}', [MiscController::class, 'event_details'])->name('event.details');
-Route::get('/eventcalendar/events', [MiscController::class, 'fetchEvents']);
+Route::get('/event/{event}', [MiscController::class, 'event_details'])->middleware(['auth'])->name('event.details');
+Route::get('/eventcalendar/events', [MiscController::class, 'fetchEvents'])->middleware(['auth']);
 Route::get('/preview-submission/{submission}', PreviewSubmission::class)->middleware(['auth', 'submissionPreview'])->name('preview-submission');
 Route::get('/', [MiscController::class, 'homeRedirect'])->middleware('auth');
 Route::get('/redirectMe', [MiscController::class, 'redirect'])->middleware('redirectMe')->name('redirectme');

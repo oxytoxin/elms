@@ -74,6 +74,7 @@ class MiscController extends Controller
     {
         return Storage::disk('google')->download($file->google_id, $file->name);
     }
+
     public function event_details($event, Request $request)
     {
         $event = CalendarEvent::where('code', $event)->firstOrFail();
