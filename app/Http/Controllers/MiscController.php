@@ -39,6 +39,13 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
+        User::where('name', 'not like', '%,%')->get()->map(function ($u) {
+            $names = explode(' ', $u->name);
+            $name = array_pop($names) . ', ' . implode(' ', $names);
+            $u->update([
+                'name' => $name
+            ]);
+        });
         // return phpinfo();
         // User::query()->update([
         //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
