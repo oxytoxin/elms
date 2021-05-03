@@ -24,18 +24,27 @@ class EnrolViaCode extends Component
     {
         $code = "";
         $code = json_decode(base64_decode($this->invite_code), true);
-        if (!$code) return session()->flash('error', 'No course found with this invite code.');
-        DB::transaction(function () use ($code) {
-            $section = Section::find($code['section_id']);
-            if (!$section->students->contains(auth()->user()->student)) {
-                Teacher::find($code['teacher_id'])->students()->attach(auth()->user()->student, ['course_id' => $code['course_id'], 'section_id' => $code['section_id']]);
-                $section->chatroom->members()->attach(auth()->id());
-                $section->chatroom->messages()->create([
-                    'sender_id' => null,
-                    'message' => auth()->user()->name . ' has joined the group.'
-                ]);
-            }
-        });
+        if (!$code) {
+            session()->flash('error', 'Incorrect invite code.');
+            return $this->alert('error', 'Incorrect invite code.', ['toast' => false, 'position' => 'center']);
+        }
+        if (array_key_exists('course_id', $code) && array_key_exists('teacher_id', $code) && array_key_exists('section_id', $code)) {
+            DB::transaction(function () use ($code) {
+                $section = Section::find($code['section_id']);
+                if (!$section->students->contains(auth()->user()->student)) {
+                    Teacher::find($code['teacher_id'])->students()->attach(auth()->user()->student, ['course_id' => $code['course_id'], 'section_id' => $code['section_id']]);
+                    $section->chatroom->members()->attach(auth()->id());
+                    $section->chatroom->messages()->create([
+                        'sender_id' => null,
+                        'message' => auth()->user()->name . ' has joined the group.'
+                    ]);
+                }
+            });
+        } else {
+            session()->flash('error', 'Incorrect invite code.');
+            return $this->alert('error', 'Incorrect invite code.', ['toast' => false, 'position' => 'center']);
+        }
+
         $this->invite_code = '';
         return redirect()->route('student.home');
     }
