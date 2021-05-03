@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function getShortnameAttribute()
     {
-        return explode(" ", $this->name)[1];
+        return trim(explode(",", $this->name)[1]);
     }
 
     public function todos()
