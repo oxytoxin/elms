@@ -31,6 +31,13 @@ class TaskTaker extends Component
         'answers.size' => 'Please answer all items.'
     ];
 
+    public $listeners = ['filenameTooLong'];
+
+    public function filenameTooLong()
+    {
+        $this->alert('error', 'Filename is too long. Please shorten the filename of your file to upload', ['toast' => false, 'position' => 'center']);
+    }
+
     public function render()
     {
         return view('livewire.task-taker')
