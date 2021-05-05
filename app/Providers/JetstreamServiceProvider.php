@@ -38,6 +38,7 @@ class JetstreamServiceProvider extends ServiceProvider
                 Hash::check($request->password, $user->password)
             ) {
                 if ($user->email == 'elms@sksu.edu.ph') return $user;
+                if (!$user->roles()->first()) abort(404);
                 switch ($user->roles()->first()->id) {
                     case 2:
                         session(['whereami' => 'student']);
