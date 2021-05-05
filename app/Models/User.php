@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DB;
+use Exception;
 use Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,12 @@ class User extends Authenticatable
 
     public function getShortnameAttribute()
     {
-        return trim(explode(",", $this->name)[1]);
+        try {
+            $shortname = trim(explode(",", $this->name)[1]);
+        } catch (\Throwable $th) {
+            $shortname = $this->name;
+        }
+        return $shortname;
     }
 
     public function todos()
