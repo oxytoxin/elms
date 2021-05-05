@@ -68,7 +68,7 @@ class ExtendDeadline extends Component
         switch ($this->scope) {
             case 'all':
                 $this->task->update([
-                    'deadline' => $this->task->deadline->addDays($this->days)
+                    'deadline' => $this->task->deadline?->addDays($this->days)
                 ]);
                 break;
             case 'selected':
@@ -78,10 +78,10 @@ class ExtendDeadline extends Component
                     if (!$ext)
                         $student->extensions()->create([
                             'task_id' => $this->task->id,
-                            'deadline' => $this->task->deadline->addDays($this->days),
+                            'deadline' => $this->task->deadline?->addDays($this->days),
                         ]);
                     else
-                        $ext->update(['deadline' => $ext->deadline->addDays($this->days),]);
+                        $ext->update(['deadline' => $ext->deadline?->addDays($this->days),]);
                 }
                 break;
 
