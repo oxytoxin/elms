@@ -31,6 +31,7 @@ class EnrolViaCode extends Component
         if (array_key_exists('course_id', $code) && array_key_exists('teacher_id', $code) && array_key_exists('section_id', $code)) {
             DB::transaction(function () use ($code) {
                 $section = Section::find($code['section_id']);
+                if (!$section) return $this->alert('error', 'This section has been removed.', ['toast' => false, 'position' => 'center']);
                 if (!$section->students->contains(auth()->user()->student)) {
                     Teacher::find($code['teacher_id'])->students()->attach(auth()->user()->student, ['course_id' => $code['course_id'], 'section_id' => $code['section_id']]);
                     $section->chatroom->members()->attach(auth()->id());
