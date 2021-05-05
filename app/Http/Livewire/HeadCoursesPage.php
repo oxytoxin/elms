@@ -46,11 +46,11 @@ class HeadCoursesPage extends Component
 
     public function removeSection(Section $section, $teacher_id)
     {
-        $section->chatroom->messages()->delete();
-        $section->chatroom->members()->detach();
-        $section->chatroom()->delete();
-        $section->calendar_events()->delete();
-        $section->grading_system()->delete();
+        $section->chatroom?->messages()->delete();
+        $section->chatroom?->members()->detach();
+        $section->chatroom()?->delete();
+        $section->calendar_events()?->delete();
+        $section->grading_system()?->delete();
         $section->delete();
         $this->course = Course::find($this->course->id);
         if (!$this->course->sections()->where('teacher_id', $teacher_id)->get()->count()) {

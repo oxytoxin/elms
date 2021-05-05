@@ -39,19 +39,19 @@ class MiscController extends Controller
 
     public function test(Request $request)
     {
-        User::where('name', 'not like', '%,%')->get()->map(function ($u) {
-            $names = explode(' ', $u->name);
-            $name = array_pop($names) . ', ' . implode(' ', $names);
-            $u->update([
-                'name' => $name
-            ]);
-        });
+        // User::where('name', 'not like', '%,%')->get()->map(function ($u) {
+        //     $names = explode(' ', $u->name);
+        //     $name = array_pop($names) . ', ' . implode(' ', $names);
+        //     $u->update([
+        //         'name' => $name
+        //     ]);
+        // });
         // return phpinfo();
         // User::query()->update([
         //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         // ]);
         // $user = Auth::login(User::find(1107010));
-        return redirect('login');
+        return redirect('/');
         // $user = User::find(234);
         // Mail::to($user)->send(new PasswordMail('12345678'));
         // return 'sent';
@@ -79,7 +79,12 @@ class MiscController extends Controller
 
     public function fileDownload(File $file)
     {
-        return Storage::disk('google')->download($file->google_id, $file->name);
+        try {
+            $download = Storage::disk('google')->download($file->google_id, $file->name);
+            return $download;
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function event_details($event, Request $request)
