@@ -18,9 +18,12 @@ class Sidelist extends Component
 
     public function render()
     {
+        $this->isStudent = auth()->user()->isStudent();
+        $this->user_id = auth()->user()->id;
+        $this->todos = auth()->user()->todos->sortByDesc('created_at');
         $upcoming = [];
         if ($this->isStudent) {
-            $upcoming = auth()->user()->student->allTasks->whereNotNull('deadline')->take(5)->sortBy('deadline');
+            $upcoming = auth()->user()->student?->allTasks->whereNotNull('deadline')->take(5)->sortBy('deadline');
         }
         $this->events = CalendarEvent::where('level', 'all')->get()->take(4)->sortBy('start');
         return view('livewire.layouts.sidelist', [
