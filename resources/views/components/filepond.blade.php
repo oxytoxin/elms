@@ -8,6 +8,7 @@
         FilePond.registerPlugin(FilePondPluginFileValidateSize);
         pond = FilePond.create($refs.input);
         pond.setOptions({
+            labelFileProcessingError: 'Error during upload. Make sure the filename does not exceed 150 characters.',
             maxFileSize: '20MB',
             allowMultiple: {{
         isset($attributes['multiple']) ? 'true' : 'false'
@@ -27,7 +28,7 @@
         });
         pond.onerror = ((error, file, status) => {
             console.log(file.source.name.length);
-            if(file.source.name.length > 150) @this.emitSelf('filenameTooLong');
+            if(file.source.name.length > 150) Livewire.emit('filenameTooLong');
         });
 
     "
@@ -42,8 +43,8 @@
         name="{{ $inputname }}"
         x-ref="input"
     />
+    <!-- if(file.source.name.length > 150) @this.emitSelf('filenameTooLong'); -->
 </div>
-
 @once @push('scripts')
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>

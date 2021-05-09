@@ -31,7 +31,7 @@ class TaskTaker extends Component
         'answers.size' => 'Please answer all items.'
     ];
 
-    public $listeners = ['filenameTooLong'];
+    protected $listeners = ['filenameTooLong'];
 
     public function filenameTooLong()
     {
