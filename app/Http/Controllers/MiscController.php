@@ -50,7 +50,7 @@ class MiscController extends Controller
         // User::query()->update([
         //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         // ]);
-        // $user = Auth::login(User::find(1107010));
+        // $user = Auth::login(User::find(26));
         return redirect('/');
         // $user = User::find(234);
         // Mail::to($user)->send(new PasswordMail('12345678'));

@@ -154,7 +154,7 @@
                       clearSelections();
                       if($refs.name_header_{{ $student->id }})
                       $refs.name_header_{{ $student->id }}.parentElement.classList.add('selected-row');
-                    " scope="row" class="z-10 sticky bg-white name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-nowrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">
+                    " scope="row" class="z-10 sticky bg-white text-left name-header max-w-32 md:max-w-96 md:break-normal truncate {{ "row$student->id" }} left-0 px-3 whitespace-nowrap border cursor-pointer bg-gradient-to-b hover:from-green-400 to-green-500">
                         {{ $student->name }}
                     </th>
                     @foreach ($student->allTasksBySection($section, $quarter_id) as $index=>$student_task_type)
