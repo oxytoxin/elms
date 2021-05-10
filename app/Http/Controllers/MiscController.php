@@ -20,6 +20,7 @@ use App\Models\CalendarEvent;
 use App\Events\UsersPasswordReset;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\Misc\SendSurvey;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
@@ -51,10 +52,14 @@ class MiscController extends Controller
         //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         // ]);
         // $user = Auth::login(User::find(26));
-        return redirect('/');
-        // $user = User::find(234);
-        // Mail::to($user)->send(new PasswordMail('12345678'));
-        // return 'sent';
+        // return redirect('/');
+        $users = Teacher::get()->map(function ($teacher) {
+            return $teacher->user;
+        });
+        foreach ($users as  $user) {
+            Mail::to($user)->send(new SendSurvey);
+        }
+        return 'sent';
         // Auth::logout();
         // dd(Course::find(313)->name);
     }
