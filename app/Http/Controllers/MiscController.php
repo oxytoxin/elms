@@ -53,12 +53,12 @@ class MiscController extends Controller
         // ]);
         // $user = Auth::login(User::find(26));
         // return redirect('/');
-        $users = Teacher::get()->map(function ($teacher) {
-            return $teacher->user;
-        });
-        foreach ($users as  $user) {
-            Mail::to($user)->send(new SendSurvey);
-        }
+        // $users = Teacher::get()->map(function ($teacher) {
+        //     return $teacher->user;
+        // });
+        // foreach ($users as  $user) {
+        //     Mail::to($user)->send(new SendSurvey);
+        // }
         return 'sent';
         // Auth::logout();
         // dd(Course::find(313)->name);
