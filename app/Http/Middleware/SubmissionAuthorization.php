@@ -23,6 +23,7 @@ class SubmissionAuthorization
             if (!(bool)Auth::user()->roles()->find(3) && !(bool)Auth::user()->roles()->find(2)) return redirect('/redirectMe');
         }
         $submission = StudentTask::find($request->route('submission'));
+        if (!$submission) abort(404);
         if (auth()->user()->isStudent()) {
             if ($submission->student_id !== auth()->user()->student->id) return redirect('/redirectMe');
         } elseif (auth()->user()->isTeacher()) {

@@ -38,5 +38,11 @@ class Handler extends ExceptionHandler
                 app('sentry')->captureException($e);
             }
         });
+
+        $this->reportable(function (Throwable $e) {
+            if (\Str::endsWith($e->getMessage(), 'File name too long')) { // Filtering that error message
+                return false;
+            }
+        });
     }
 }
