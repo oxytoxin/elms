@@ -81,9 +81,9 @@ class TeacherCoursesPage extends Component
         $this->inviteCode = base64_encode(json_encode(['course_id' => $section->course_id, 'section_id' => $section->id, 'teacher_id' => auth()->user()->teacher->id]));
     }
 
-    public function setEmail($email)
+    public function setEmail($stud)
     {
-        $this->email = $email;
+        $this->email = $stud['email'];
         $this->enrolStudent();
     }
 

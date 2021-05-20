@@ -40,7 +40,7 @@
                                 Student</button>
                             <div x-show="showQuery" class="absolute top-0 w-full overflow-y-auto bg-white divide-y-2 max-h-48 mt-14">
                                 @foreach ($students as $stud)
-                                <div wire:click="setEmail('{{ $stud->email }}')" wire:key="student-{{ $stud->id }}" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
+                                <div wire:click="setEmail({{ $stud }})" wire:key="student-{{ $stud->id }}" class="flex flex-col justify-between px-4 py-2 cursor-pointer md:flex-row">
                                     <h1>{{ $stud->name }}</h1>
                                     <h1>{{ $stud->email }}</h1>
                                 </div>
