@@ -138,7 +138,7 @@ Route::prefix('dean')->middleware(['auth', 'isDean'])->group(function () {
 Route::get('/dlist', function () {
     $dir = '/';
     $recursive = true; // Get subdirectories also?
-    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+    $contents = collect(Storage::disk('modules')->listContents($dir, $recursive));
 
     // return $contents->where('type', '=', 'dir'); // directories
     return $contents; // files
