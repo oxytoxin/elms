@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use DB;
 use Carbon\Carbon;
 use App\Models\Task;
+use App\Models\Draft;
 use App\Models\Course;
 use App\Models\Module;
 use App\Events\NewTask;
@@ -17,6 +18,7 @@ use Livewire\WithFileUploads;
 class TaskMaker extends Component
 {
     use WithFileUploads;
+    public $draft = null;
     public $type;
     public $allSection = false;
     public $task_name = "";
@@ -27,8 +29,6 @@ class TaskMaker extends Component
     public $date_due;
     public $time_due = "23:59";
     public $items = [];
-    public $questions = [];
-    public $response = "";
     public $total_points = 0;
     public $files = [];
     public $isRubricSet = false;
@@ -77,40 +77,95 @@ class TaskMaker extends Component
 
     public function mount()
     {
-        $this->date_due = Carbon::tomorrow()->format('Y-m-d');
         $this->modules = Module::get();
-        $this->module = Module::findOrFail(request('module'));
-        $this->course = Course::findOrFail(request('course'));
-        $this->type = request('type');
-        array_push($this->files, ['fileArray' => []]);
-        array_push($this->items, [
-            'files' => [],
-            'question' => '',
-            'points' => "1",
-            'options' => [],
-            'enumerationItems' => [],
-            'torf' => false,
-            'essay' => false,
-            'enumeration' => false,
-            'attachment' => false,
-        ]);
-        //
-        $this->rubric = [
-            'criteria' => [
+        if (request('draft_id')) {
+            $draft = Draft::find(request('draft_id'));
+            if ($draft->teacher_id != auth()->user()->teacher->id) abort(403);
+            else {
                 [
-                    'name' => 'Structure (Spelling, Grammar, etc.)',
-                    'weight' => 50
+                    'task_name' => $this->task_name,
+                    'date_due' => $this->date_due,
+                    'time_due' => $this->time_due,
+                    'date_open' => $this->date_open,
+                    'time_open' => $this->time_open,
+                    'items' => $this->items,
+                    'rubric' => $this->rubric,
+                    'task_rubric' => $this->task_rubric,
+                    'matchingTypeOptions' => $this->matchingTypeOptions,
+                    'type' => $this->type,
+                    'task_instructions' => $this->task_instructions,
+                    'allSection' => $this->allSection,
+                    'noDeadline' => $this->noDeadline,
+                    'openImmediately' => $this->openImmediately,
+                    'isRubricSet' => $this->isRubricSet,
+                    'total_points' => $this->total_points,
+                ] = $draft;
+                $this->module = Module::find($draft->module_id);
+                $this->course = Course::find($draft->course_id);
+                $this->draft = $draft;
+            }
+        } else {
+            $this->date_due = Carbon::tomorrow()->format('Y-m-d');
+            $this->module = Module::findOrFail(request('module'));
+            $this->course = Course::findOrFail(request('course'));
+            $this->type = request('type');
+            array_push($this->files, ['fileArray' => []]);
+            array_push($this->items, [
+                'files' => [],
+                'question' => '',
+                'points' => "1",
+                'options' => [],
+                'enumerationItems' => [],
+                'torf' => false,
+                'essay' => false,
+                'enumeration' => false,
+                'attachment' => false,
+            ]);
+            //
+            $this->rubric = [
+                'criteria' => [
+                    [
+                        'name' => 'Structure (Spelling, Grammar, etc.)',
+                        'weight' => 50
+                    ],
+                    [
+                        'name' => 'Content (Relevance to theme, coherence, etc.)',
+                        'weight' => 50
+                    ],
                 ],
-                [
-                    'name' => 'Content (Relevance to theme, coherence, etc.)',
-                    'weight' => 50
-                ],
-            ],
-            'performance_rating' => [
-                'Excellent', 'Good', 'Satisfactory'
-            ]
+                'performance_rating' => [
+                    'Excellent', 'Good', 'Satisfactory'
+                ]
 
-        ];
+            ];
+        }
+    }
+
+    public function saveDraft()
+    {
+        $draft = $this->draft ?? Draft::make();
+        $draft->task_name = $this->task_name;
+        $draft->task_instructions = $this->task_instructions;
+        $draft->matchingTypeOptions = $this->matchingTypeOptions;
+        $draft->date_due = $this->date_due;
+        $draft->time_due = $this->time_due;
+        $draft->date_open = $this->date_open;
+        $draft->time_open = $this->time_open;
+        $draft->module_id = $this->module->id;
+        $draft->course_id = $this->course->id;
+        $draft->teacher_id = auth()->user()->teacher->id;
+        $draft->items = $this->items;
+        $draft->task_rubric = $this->task_rubric;
+        $draft->rubric = $this->rubric;
+        $draft->type = $this->type;
+        $draft->allSection = $this->allSection;
+        $draft->noDeadline = $this->noDeadline;
+        $draft->openImmediately = $this->openImmediately;
+        $draft->isRubricSet = $this->isRubricSet;
+        $draft->total_points = $this->total_points;
+        $draft->save();
+        $this->draft = $draft;
+        $this->alert('success', 'Draft saved.');
     }
 
     public function rubricSet($rubric)
@@ -260,7 +315,8 @@ class TaskMaker extends Component
 
         // Validate inputs for each task items
         $this->validate([
-            'task_name' => 'required',
+            'task_name' => 'required|max:50',
+            'task_instructions' => 'max:150',
             'items.*.question' => 'required',
             'items.*.options.*' => 'required',
             'items.*.enumerationItems.*' => 'required',

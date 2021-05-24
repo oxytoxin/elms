@@ -1,5 +1,10 @@
 <div>
-    <x-loading wire:loading.grid message="Processing request..." />
+    <div class="fixed z-[99] md:bottom-40 bottom-0 md:right-10 right-0 ">
+        <button wire:loading.remove wire:target="saveDraft" wire:click="saveDraft" class="p-3 font-bold text-white bg-primary-500 hover:text-primary-600">SAVE DRAFT</button>
+        <h1 wire:offline>You are offline.</h1>
+        <span class="mx-4 text-sm italic animate-pulse" wire:loading wire:target="saveDraft">Saving Draft...</span>
+    </div>
+    <x-loading wire:loading.grid wire:target="saveTask" message="Processing request..." />
     <h1 class="text-2xl font-semibold">TASK CREATOR</h1>
     <div x-data="{showrubric: @entangle('showrubric'), showMatchingTypeOptions: @entangle('showMatchingTypeOptions'), showAddMatchingTypeOption: @entangle('showAddMatchingTypeOption')}" class="p-2 m-4 text-sm shadow">
         <h1>For Course: <span class="italic">{{ $module->course->name }}</span></h1>
@@ -112,7 +117,7 @@
             <div class="my-2">
                 <div class="flex space-x-2">
                     @if (!count($item['options']) && !$item['essay'] && !$item['torf'] && !$item['enumeration'])
-                    <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model.defer="items.{{ $key }}.answer" class="flex-grow text-black form-input" placeholder="Correct Answer (Optional)">
+                    <input type="text" name="items.{{ $key }}.answer" id="items.{{ $key }}.answer" wire:model.defer="items.{{ $key }}.answer" class="w-full text-black form-input" placeholder="Correct Answer (Optional)">
                     @endif
                 </div>
                 {{-- <input type="file" id="item_{{ $key }}_files" class="w-full form-input {{ $key%2 ? 'text-black' : '' }}" wire:model="files.{{ $key }}.fileArray" multiple> --}}
@@ -173,7 +178,8 @@
         <div class="flex flex-col items-center p-4 md:flex-row">
             <button class="w-full p-2 my-1 text-white bg-gray-500 rounded-lg whitespace-nowrap md:w-auto focus:outline-none hover:bg-green-300 hover:text-primary-600" wire:click.prevent="addItem({{ count($items) }})"><i class="mr-2 icofont-plus-circle"></i>Add Item</button>
             <span class="w-full p-2 my-1 font-semibold text-center text-white bg-orange-500 rounded-lg md:ml-3 md:w-auto">Total points: {{ $total_points }}</span>
-            <button wire:loading.attr="disabled" wire:click.prevent="saveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
+            <button wire:loading.remove @click="$wire.call('saveTask')" id="btnSaveTask" onclick="confirm('Do you want to finalize this task?') || event.stopImmediatePropagation()" class="w-full p-2 px-5 my-1 text-white rounded-lg md:ml-3 md:w-auto hover:text-primary-600 bg-primary-500 focus:outline-none">Submit Task</button>
+            <span class="mx-4 text-sm italic animate-pulse" wire:loading>Processing...</span>
         </div>
         @if (session('error'))
         <h1 class="mx-4 text-sm italic font-bold text-red-600">{{ session('error') }}</h1>

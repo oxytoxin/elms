@@ -87,6 +87,7 @@ class AddModule extends Component
         } else {
             DB::transaction(function () {
                 $mod = Module::create([
+                    'quarter_id' => $this->section->quarter_id,
                     'section_id' => $this->section->id,
                     'course_id' => $this->section->course->id,
                     'name' => $this->moduleName

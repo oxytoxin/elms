@@ -167,6 +167,7 @@ class Gradebook extends Component
     {
         $this->course = Course::find($this->course_id);
         $this->section_id = $this->course->sections()->where('teacher_id', auth()->user()->teacher->id)->first()->id;
+        $this->grading_system = Section::find($this->section_id)->grading_system;
         $this->dispatchBrowserEvent('livewire:load');
     }
 
@@ -174,6 +175,7 @@ class Gradebook extends Component
     {
         $this->students = $this->course->studentsBySection($this->section_id)->where('teacher_id', auth()->user()->teacher->id)->get()->sortBy('user.name');
         $this->quarter_id = Section::find($this->section_id)->quarter_id;
+        $this->grading_system = Section::find($this->section_id)->grading_system;
         $this->dispatchBrowserEvent('livewire:load');
     }
 }

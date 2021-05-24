@@ -66,6 +66,10 @@
                     <i class="mr-2 icofont-ui-folder"></i>
                     <h1 class="text-sm font-semibold">Exams</h1>
                 </a>
+                <a href="{{ route('teacher.task_drafts') }}" class="flex {{ strpos(url()->current(), 'task-drafts') ? 'bg-gray-400' : '' }} items-center p-2 bg-opacity-75 rounded-md hover:bg-gray-400 item">
+                    <i class="mr-2 icofont-ui-folder"></i>
+                    <h1 class="text-sm font-semibold">Drafts</h1>
+                </a>
             </div>
             @if (auth()
             ->user()

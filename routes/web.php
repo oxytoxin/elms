@@ -32,6 +32,7 @@ use App\Http\Controllers\ProgramHeadPagesController;
 use App\Http\Livewire\PreviewFile;
 use App\Http\Livewire\Student\CourseModules;
 use App\Http\Livewire\Student\OrientationForm;
+use App\Http\Livewire\Teacher\TaskDrafts;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,7 @@ Route::prefix('teacher')->middleware(['auth', 'verified', 'isTeacher'])->group(f
     Route::get('/my-workload', FacultyWorkload::class)->name('teacher.faculty_workload');
     Route::get('/extend-deadline/{task}', ExtendDeadline::class)->name('teacher.extend_deadline');
     Route::get('/messages', Chat::class)->name('teacher.messages');
+    Route::get('/task-drafts', TaskDrafts::class)->name('teacher.task_drafts');
     Route::get('/video-call/{room}', VideoCalling::class)->name('teacher.meeting')->middleware('meetingAuth');
 });
 
