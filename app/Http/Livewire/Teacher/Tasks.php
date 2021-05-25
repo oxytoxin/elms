@@ -76,6 +76,7 @@ class Tasks extends Component
     public function deleteTask($task_id)
     {
         $task = Task::find($task_id);
+        if (!$task) abort(404);
         if ($task->students()->count())
             return $this->alert('error', 'Task already has submissions.', ['toast' => false, 'position' => 'center']);
         $task->calendar_event()->delete();

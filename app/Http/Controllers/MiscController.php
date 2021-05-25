@@ -48,9 +48,9 @@ class MiscController extends Controller
         //     ]);
         // });
         // return phpinfo();
-        User::query()->update([
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        ]);
+        // User::query()->update([
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        // ]);
         // $user = Auth::login(User::find(26));
         // return redirect('/');
         // $users = Teacher::get()->map(function ($teacher) {
