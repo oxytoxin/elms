@@ -88,7 +88,6 @@ class TaskMaker extends Component
                     'time_due' => $this->time_due,
                     'date_open' => $this->date_open,
                     'time_open' => $this->time_open,
-                    'items' => $this->items,
                     'rubric' => $this->rubric,
                     'task_rubric' => $this->task_rubric,
                     'matchingTypeOptions' => $this->matchingTypeOptions,
@@ -100,6 +99,7 @@ class TaskMaker extends Component
                     'isRubricSet' => $this->isRubricSet,
                     'total_points' => $this->total_points,
                 ] = $draft;
+                $this->items = json_decode($draft->items, true);
                 $this->module = Module::find($draft->module_id);
                 $this->course = Course::find($draft->course_id);
                 $this->draft = $draft;
@@ -154,7 +154,7 @@ class TaskMaker extends Component
         $draft->module_id = $this->module->id;
         $draft->course_id = $this->course->id;
         $draft->teacher_id = auth()->user()->teacher->id;
-        $draft->items = $this->items;
+        $draft->items = json_encode($this->items);
         $draft->task_rubric = $this->task_rubric;
         $draft->rubric = $this->rubric;
         $draft->type = $this->type;
