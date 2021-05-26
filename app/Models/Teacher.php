@@ -49,6 +49,11 @@ class Teacher extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function drafts()
+    {
+        return $this->hasMany(Draft::class);
+    }
+
     public function sections()
     {
         return $this->hasMany(Section::class);

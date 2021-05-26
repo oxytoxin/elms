@@ -341,7 +341,9 @@ class TaskMaker extends Component
                 'time_open' => 'required',
             ]);
             if (Carbon::now()->addMinutes(30) > Carbon::parse($this->date_open . ' ' . $this->time_open)) return session()->flash('error', 'Task opening must at least be 30 minutes later than the current time.');
-            if ($carbondue < $carbonopen) return session()->flash('error', 'Cannot set the deadline before task opens.');
+            $due = Carbon::parse($this->date_due . ' ' . $this->time_due);
+            $open = Carbon::parse($this->date_open . ' ' . $this->time_open);
+            if ($due->isBefore($open)) return session()->flash('error', 'Cannot set the deadline before task opens.');
         }
 
         // Check if any item is of type essay

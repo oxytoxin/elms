@@ -11,7 +11,7 @@ class TaskDrafts extends Component
     public function render()
     {
         return view('livewire.teacher.task-drafts', [
-            'drafts' => Draft::get(),
+            'drafts' => auth()->user()->teacher->drafts,
         ])
             ->extends('layouts.master')
             ->section('content');
