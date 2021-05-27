@@ -13,6 +13,7 @@ class Draft extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'items' => 'array',
         'task_rubric' => 'array',
         'rubric' => 'array',
         'matchingTypeOptions' => 'array'

@@ -80,30 +80,27 @@ class TaskMaker extends Component
         $this->modules = Module::get();
         if (request('draft_id')) {
             $draft = Draft::find(request('draft_id'));
-            if ($draft->teacher_id != auth()->user()->teacher->id) abort(403);
-            else {
-                [
-                    'task_name' => $this->task_name,
-                    'date_due' => $this->date_due,
-                    'time_due' => $this->time_due,
-                    'date_open' => $this->date_open,
-                    'time_open' => $this->time_open,
-                    'rubric' => $this->rubric,
-                    'task_rubric' => $this->task_rubric,
-                    'matchingTypeOptions' => $this->matchingTypeOptions,
-                    'type' => $this->type,
-                    'task_instructions' => $this->task_instructions,
-                    'allSection' => $this->allSection,
-                    'noDeadline' => $this->noDeadline,
-                    'openImmediately' => $this->openImmediately,
-                    'isRubricSet' => $this->isRubricSet,
-                    'total_points' => $this->total_points,
-                ] = $draft;
-                $this->items = json_decode($draft->items, true);
-                $this->module = Module::find($draft->module_id);
-                $this->course = Course::find($draft->course_id);
-                $this->draft = $draft;
-            }
+            [
+                'task_name' => $this->task_name,
+                'date_due' => $this->date_due,
+                'time_due' => $this->time_due,
+                'date_open' => $this->date_open,
+                'time_open' => $this->time_open,
+                'rubric' => $this->rubric,
+                'task_rubric' => $this->task_rubric,
+                'matchingTypeOptions' => $this->matchingTypeOptions,
+                'type' => $this->type,
+                'items' => $this->items,
+                'task_instructions' => $this->task_instructions,
+                'allSection' => $this->allSection,
+                'noDeadline' => $this->noDeadline,
+                'openImmediately' => $this->openImmediately,
+                'isRubricSet' => $this->isRubricSet,
+                'total_points' => $this->total_points,
+            ] = $draft;
+            $this->module = Module::find($draft->module_id);
+            $this->course = Course::find($draft->course_id);
+            $this->draft = $draft;
         } else {
             $this->date_due = Carbon::tomorrow()->format('Y-m-d');
             $this->module = Module::findOrFail(request('module'));
@@ -154,7 +151,7 @@ class TaskMaker extends Component
         $draft->module_id = $this->module->id;
         $draft->course_id = $this->course->id;
         $draft->teacher_id = auth()->user()->teacher->id;
-        $draft->items = json_encode($this->items);
+        $draft->items = $this->items;
         $draft->task_rubric = $this->task_rubric;
         $draft->rubric = $this->rubric;
         $draft->type = $this->type;
