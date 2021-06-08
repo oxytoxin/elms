@@ -60,6 +60,13 @@ class TeacherCoursesPage extends Component
             ->section('content');
     }
 
+    public function changeQuarter()
+    {
+        $this->section->update(['quarter_id' => 2]);
+        $this->alert('success', 'Quarter changed successfully!');
+        $this->section = Section::find($this->section->id);
+    }
+
     public function createMeeting()
     {
         if ($this->section->videoroom) return;

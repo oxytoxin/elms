@@ -4,7 +4,9 @@
         <div class="flex flex-col items-center justify-between my-3 md:my-0 md:flex-row">
             <div>
                 <h1 class="mt-3 text-xl font-semibold">{{ $section->course->name }}<i wire:loading class="fa fa-spinner fa-spin"></i></h1>
-                <h1 class="mb-3 font-semibold">Section: {{ $section->code }}</h1>
+                <h1 class="mt-3 font-semibold">Section: {{ $section->code }}</h1>
+                <h1 class="mb-3 font-semibold">Quarter: {{ $section->quarter->name }}</h1>
+                <button onclick="return confirm('This action cannot be reversed!') || event.stopImmediatePropagation()" wire:click.prevent="changeQuarter" class="p-2 font-semibold text-white rounded bg-primary-500 hover:bg-primary-600">Change quarter to Finals</button>
             </div>
             <div class="flex flex-col space-y-2 md:space-y-0 md:space-x-2 md:flex-row">
                 <button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button>
