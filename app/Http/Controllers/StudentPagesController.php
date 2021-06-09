@@ -28,6 +28,8 @@ class StudentPagesController extends Controller
     }
     public function course_modules(Section $section)
     {
+        $isAllowed = (bool) $section->students()->where('student_id', auth()->user()->student->id)->first();
+        if (!$isAllowed) abort(403);
         $modules = $section->modules;
         return view('pages.student.modules.course_modules', compact('modules', 'section'));
     }
@@ -44,6 +46,8 @@ class StudentPagesController extends Controller
     }
     public function course(Course $course)
     {
+        $isAllowed = (bool) $course->students()->where('student_id', auth()->user()->student->id)->first();
+        if (!$isAllowed) abort(403);
         return view('pages.student.courses.course', compact('course'));
     }
     public function create_course()
@@ -52,6 +56,8 @@ class StudentPagesController extends Controller
     }
     public function preview(File $file)
     {
+        $isAllowed = (bool) $file->fileable->section->students()->where('student_id', auth()->user()->student->id)->first();
+        if (!$isAllowed) abort(403);
         return view('pages.student.preview', compact('file'));
     }
     public function calendar()

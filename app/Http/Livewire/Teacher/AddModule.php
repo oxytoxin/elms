@@ -37,6 +37,8 @@ class AddModule extends Component
 
     public function mount(Section $section)
     {
+        $isAllowed = $section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $this->section = $section;
     }
 

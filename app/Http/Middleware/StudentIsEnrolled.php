@@ -17,7 +17,7 @@ class StudentIsEnrolled
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Section::find($request->route('section'))->students()->where('student_id', auth()->user()->student->id)->first())
+        if (Section::find($request->route('section'))?->students()->where('student_id', auth()->user()->student->id)->first())
             return $next($request);
         return redirect()->route('student.home');
     }

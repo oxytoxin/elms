@@ -13,6 +13,8 @@ class OrientationForm extends Component
 
     public function mount(Section $section)
     {
+        $isStudentAllowed = (bool) $section->students()->where('student_id', auth()->user()->student->id)->first();
+        if (!$isStudentAllowed) abort(403);
         $this->section = $section;
     }
 

@@ -35,6 +35,8 @@ class GradeTask extends Component
 
     public function mount(Task $task)
     {
+        $isAllowed = $task->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $this->previous = URL::previous();
         $this->task = $task;
         $this->rubric = json_decode($task->essay_rubric, true);
