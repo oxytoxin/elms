@@ -56,7 +56,7 @@ class StudentPagesController extends Controller
     }
     public function preview(File $file)
     {
-        $isAllowed = (bool) $file->fileable->section->students()->where('student_id', auth()->user()->student->id)->first();
+        $isAllowed = (bool) $file->fileable->section?->students()->where('student_id', auth()->user()->student->id)->first() || (bool) $file->fileable->module?->section?->students()->where('student_id', auth()->user()->student->id)->first();
         if (!$isAllowed) abort(403);
         return view('pages.student.preview', compact('file'));
     }

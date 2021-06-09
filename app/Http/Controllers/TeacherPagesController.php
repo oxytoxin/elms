@@ -47,7 +47,7 @@ class TeacherPagesController extends Controller
     }
     public function preview(File $file)
     {
-        $isAllowed = $file->fileable->section->teacher_id == auth()->user()->teacher->id;
+        $isAllowed = $file->fileable->section->teacher_id == auth()->user()->teacher->id || $file->fileable->module?->section->teacher_id == auth()->user()->teacher->id;
         if (!$isAllowed) abort(403);
         return view('pages.teacher.preview', compact('file'));
     }
