@@ -27,11 +27,15 @@ class TeacherPagesController extends Controller
     }
     public function course_modules(Section $section)
     {
+        $isAllowed = $section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $modules = $section->modules;
         return view('pages.teacher.modules.course_modules', compact('modules', 'section'));
     }
     public function module(Module $module)
     {
+        $isAllowed = $module->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $task_types = TaskType::get();
         $resources = $module->resources()->where('teacher_id', auth()->user()->teacher->id)->get();
         return view('pages.teacher.modules.module', compact('module', 'task_types', 'resources'));

@@ -34,7 +34,10 @@ class TeacherTasklist extends Component
 
     public function mount(Task $task)
     {
+        $isAllowed = $task->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $this->task = $task;
+
         if (session("task" . $task->id . "filter")) $this->submissionFilter = session("task" . $task->id . "filter");
         else $this->submissionFilter = "all";
     }
