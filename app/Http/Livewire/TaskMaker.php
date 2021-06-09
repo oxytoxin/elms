@@ -77,9 +77,25 @@ class TaskMaker extends Component
 
     public function mount()
     {
-        $this->modules = Module::get();
+        $teacher = auth()->user()->teacher;
         if (request('draft_id')) {
             $draft = Draft::find(request('draft_id'));
+            if ($draft?->teacher_id != $teacher->id) abort(403);
+        } else {
+            if (!request('module') || !request('course') || !request('type')) abort(404);
+            if (!TaskType::whereName(request('type'))->first()) abort(403);
+            $module = Module::findOrFail(request('module'));
+            $course = Course::findOrFail(request('course'));
+        }
+
+        $isAllowed = $module->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
+        $isAllowed = (bool) $course->teachers->where('id', $teacher->id)->first();
+        if (!$isAllowed) abort(403);
+
+
+        $this->modules = Module::get();
+        if (request('draft_id')) {
             [
                 'task_name' => $this->task_name,
                 'date_due' => $this->date_due,
@@ -103,8 +119,8 @@ class TaskMaker extends Component
             $this->draft = $draft;
         } else {
             $this->date_due = Carbon::tomorrow()->format('Y-m-d');
-            $this->module = Module::findOrFail(request('module'));
-            $this->course = Course::findOrFail(request('course'));
+            $this->module = $module;
+            $this->course = $course;
             $this->type = request('type');
             array_push($this->files, ['fileArray' => []]);
             array_push($this->items, [

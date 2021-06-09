@@ -41,11 +41,25 @@ class ProgramHeadPagesController extends Controller
     }
     public function course_modules(Section $section)
     {
+        $sections = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        });
+        $isAllowed = (bool) $sections->where('id', $section->id)->first();
+        if (!$isAllowed) abort(403);
         $modules = $section->modules;
         return view('pages.head.modules.course_modules', compact('modules', 'section'));
     }
     public function module(Module $module)
     {
+        $sections = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        });
+        $isAllowed = (bool) $sections->where('course_id', $module->course_id)->first();
+        if (!$isAllowed) abort(403);
         $resources = $module->resources()->get();
         return view('pages.head.modules.module', compact('module', 'resources'));
     }
@@ -58,6 +72,11 @@ class ProgramHeadPagesController extends Controller
     }
     public function course(Course $course)
     {
+        $courses = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->courses;
+        });
+        $isAllowed = (bool) $courses->where('id', $course->id)->first();
+        if (!$isAllowed) abort(403);
         return view('pages.head.courses.course', compact('course'));
     }
     public function create_course()
@@ -66,6 +85,13 @@ class ProgramHeadPagesController extends Controller
     }
     public function preview(File $file)
     {
+        $sections = auth()->user()->program_head->departments->flatMap(function ($department) {
+            return $department->teachers;
+        })->flatMap(function ($teacher) {
+            return $teacher->sections;
+        });
+        $isAllowed = (bool)$sections->where('id', $file->fileable->section_id)->first();
+        if (!$isAllowed) abort(403);
         return view('pages.head.preview', compact('file'));
     }
     public function calendar()
