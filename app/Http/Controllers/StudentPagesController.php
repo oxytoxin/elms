@@ -33,6 +33,8 @@ class StudentPagesController extends Controller
     }
     public function module(Module $module)
     {
+        $isStudentAllowed = (bool) $module->section->students()->where('student_id', auth()->user()->student->id)->first();
+        if (!$isStudentAllowed) abort(403);
         $toOrient = $module->section->modules()->first()->id === $module->id && !auth()->user()->orientations()->where('section_id', $module->section->id)->first();
         if ($module->section->modules()->first()->id !== $module->id && !auth()->user()->orientations()->where('section_id', $module->section->id)->first()) {
             $module = $module->section->modules()->with('resources')->first();
