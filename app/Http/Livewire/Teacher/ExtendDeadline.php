@@ -40,6 +40,8 @@ class ExtendDeadline extends Component
 
     public function mount(Task $task)
     {
+        $isAllowed = $task->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $this->task = $task;
         $this->selected_students = new Collection();
     }

@@ -15,6 +15,8 @@ class TaskPreview extends Component
 
     public function mount(Task $task)
     {
+        $isAllowed = $task->section->teacher_id == auth()->user()->teacher->id;
+        if (!$isAllowed) abort(403);
         $this->task = $task;
         $this->rubric = json_decode($task->essay_rubric, true);
         $this->task_content = json_decode($this->task->content, true);
