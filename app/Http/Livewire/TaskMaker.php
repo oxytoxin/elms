@@ -375,6 +375,7 @@ class TaskMaker extends Component
             if (isset($this->files[$key]['fileArray']))
                 $this->items[$key]['files'] = $this->files[$key]['fileArray'];
         }
+
         foreach ($this->items as $key => $item) {
             if (!$item['enumeration'] && !isset($item['answer'])) $this->autocorrect = false;
         }
