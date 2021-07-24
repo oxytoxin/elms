@@ -92,9 +92,6 @@ class TaskMaker extends Component
             if (!$isAllowed) abort(403);
         }
 
-
-
-
         $this->modules = Module::get();
         if (request('draft_id')) {
             [
