@@ -54,7 +54,8 @@
                     <div>
                         <button onclick="clearSelections()" class="p-3 text-xs font-bold text-white uppercase rounded-lg hover:bg-primary-600 bg-primary-500">Clear
                             highlighted</button>
-                        <button wire:click="export" class="p-3 text-xs font-bold text-white uppercase rounded-lg hover:bg-primary-600 bg-primary-500">Export to Excel</button>
+                        <button wire:click="export" class="p-3 text-xs font-bold text-white uppercase rounded-lg hover:bg-primary-600 bg-primary-500">Export Quarter Grades to Excel</button>
+                        <button wire:click="export_grades" class="p-3 text-xs font-bold text-white uppercase rounded-lg hover:bg-primary-600 bg-primary-500">Export Grades Summary to Excel</button>
                     </div>
                 </div>
             </div>

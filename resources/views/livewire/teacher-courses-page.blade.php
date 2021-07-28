@@ -8,8 +8,9 @@
                 <h1 class="mb-3 font-semibold">Quarter: {{ $section->quarter->name }}</h1>
                 <button onclick="return confirm('This action cannot be reversed!') || event.stopImmediatePropagation()" wire:click.prevent="changeQuarter" class="p-2 font-semibold text-white rounded bg-primary-500 hover:bg-primary-600">Change quarter to Finals</button>
             </div>
-            <div class="flex flex-col space-y-2 md:space-y-0 md:space-x-2 md:flex-row">
+            <div class="flex mt-4 flex-col space-y-2 md:space-y-0 md:space-x-2 md:flex-row">
                 <button wire:click="$set('showInviteCode',true)" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">GET INVITE LINK</button>
+                <button wire:click="export_orientation" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">EXPORT COURSE ORIENTATION SUMMARY</button>
                 @if ($section->videoroom)
                 <button wire:click="joinMeeting" class="p-3 font-semibold text-white hover:text-primary-600 bg-primary-500">JOIN MEETING</button>
                 @else

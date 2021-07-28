@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Teacher;
 
 use App\Exports\GradesExport;
+use App\Exports\GradesSummaryExport;
 use App\Models\Course;
 use App\Models\GradingSystem;
 use App\Models\Quarter;
@@ -178,9 +179,11 @@ class Gradebook extends Component
         $this->grading_system = Section::find($this->section_id)->grading_system;
         $this->dispatchBrowserEvent('livewire:load');
     }
-//
-//    public function export_grades()
-//    {
-//        dd(123);
-//    }
+
+    public function export_grades()
+    {
+        $filename = $this->section->code . ' grades summary for ' . $this->course->name . '.xlsx';
+        $filename = str_replace(["/", "\\"], "_", $filename);
+        return Excel::download(new GradesSummaryExport($this->section->id), $filename);
+    }
 }

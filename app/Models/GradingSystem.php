@@ -40,6 +40,14 @@ class GradingSystem extends Model
         }
     }
 
+    public function getRemarks($value)
+    {
+        if($value < 75){
+            return 'FAILED';
+        }
+        return 'PASSED';
+    }
+
     public function getGradeValue($value)
     {
         $value = round($value);

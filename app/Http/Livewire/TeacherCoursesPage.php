@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\OrientationExport;
 use DB;
 use App\Models\User;
 use App\Models\Course;
@@ -16,6 +17,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use App\Notifications\GeneralNotification;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherCoursesPage extends Component
 {
@@ -178,5 +180,12 @@ class TeacherCoursesPage extends Component
     public function copyAlert()
     {
         $this->alert('success', 'Enrolment code copied!');
+    }
+
+    public function export_orientation()
+    {
+        $filename = $this->section->code . ' course orientation form for ' . $this->section->course->name . '.xlsx';
+        $filename = str_replace(["/", "\\"], "_", $filename);
+        return Excel::download(new OrientationExport($this->section->id), $filename);
     }
 }
