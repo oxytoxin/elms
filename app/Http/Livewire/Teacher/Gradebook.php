@@ -78,7 +78,7 @@ class Gradebook extends Component
         $this->section = Section::find($this->section_id);
         $this->grading_system = $this->section->grading_system;
         $this->tasks = $this->section->tasks()->where('quarter_id', $this->quarter_id)->with('task_type')->get()->groupBy('task_type_id')->sortKeys();
-        $this->students = $this->section->students()->withName()->get()->sortBy('name');
+        $this->students = $this->section->students()->wherePivot('teacher_id',auth()->user()->teacher->id)->withName()->get()->sortBy('name');
         return view('livewire.teacher.gradebook', [
             'tasks' => $this->tasks,
             'students' => $this->students,
@@ -178,4 +178,9 @@ class Gradebook extends Component
         $this->grading_system = Section::find($this->section_id)->grading_system;
         $this->dispatchBrowserEvent('livewire:load');
     }
+//
+//    public function export_grades()
+//    {
+//        dd(123);
+//    }
 }
